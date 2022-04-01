@@ -36,3 +36,7 @@ frontend/web-build/
 
 # macOS
 frontend/.DS_Store
+
+# idea
+
+.idea/
