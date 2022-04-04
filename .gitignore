@@ -42,9 +42,6 @@ frontend/.DS_Store
 .idea/
 backend/.idea/
 
-.idea/
-backend/.idea/
-
 ### Gradle ###
 .gradle
 /build/
