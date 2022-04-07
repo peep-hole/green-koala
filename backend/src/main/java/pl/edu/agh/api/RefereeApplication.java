@@ -1,4 +1,4 @@
-package com.example.referee;
+package pl.edu.agh.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
