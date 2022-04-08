@@ -1,4 +1,4 @@
-package com.example.referee;
+package pl.edu.agh.api;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
