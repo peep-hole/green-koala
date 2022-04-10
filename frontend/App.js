@@ -1,10 +1,12 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import Test from "./components/Test";
+import { StyleSheet } from 'react-native-web';
+import FormHeader from "./components/util/FormHeader";
+import { NativeBaseProvider } from 'native-base';
 
 export default function App() {
   return (
-    <Test />
+      <NativeBaseProvider>
+          <FormHeader name="Title"> </FormHeader>
+      </NativeBaseProvider>
   );
 }
 
