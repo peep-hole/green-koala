@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native-web';
-import FormHeader from "./components/util/FormHeader";
 import { NativeBaseProvider } from 'native-base';
+import RegisterPlayerForm from './components/RegisterPlayerForm';
 
 export default function App() {
   return (
       <NativeBaseProvider>
-          <FormHeader name="Title"> </FormHeader>
+          <RegisterPlayerForm/>
       </NativeBaseProvider>
   );
 }
