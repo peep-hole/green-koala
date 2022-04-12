@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import FormHeader from "./util/FormHeader";
-import {Center, FormControl, Text, VStack, Button, Flex} from "native-base";
+import {Button, Center, Flex, FormControl, Text, VStack} from "native-base";
 import Api from "./util/Api";
 import {FontAwesome} from "@expo/vector-icons";
 import DateTimePicker from "@react-native-community/datetimepicker"
@@ -16,6 +16,8 @@ const CreateMatchForm = () => {
     const [date, setDate] = useState(new Date())
     const [mode , setMode] = useState('date')
     const [show, setShow] = useState(false)
+    const [showSearch1, setShowSearch1] = useState(true)
+    const [showSearch2, setShowSearch2] = useState(true)
 
     const [dateString, setDateString] = useState(date.getDate() + "-" + date.getMonth() + "-" + date.getFullYear())
     const [timeString, setTimeString] = useState(date.getMinutes() < 10 ? date.getHours() + ":0" + date.getMinutes() : date.getHours() + ":" + date.getMinutes())
@@ -30,6 +32,7 @@ const CreateMatchForm = () => {
     }
 
     useEffect(() => {
+        console.log(typeof firstPlayer.name)
         getAllPlayers()
     }, [])
 
@@ -39,6 +42,7 @@ const CreateMatchForm = () => {
     }
 
     const onChange = (event, selectedDate) => {
+        event.preventDefault()
         const currDate = selectedDate || date
         setShow(Platform.OS === "ios")
         setDateString(date.getDate() + "-" + date.getMonth() + "-" + date.getFullYear()) // example date format
@@ -69,8 +73,9 @@ const CreateMatchForm = () => {
                 <VStack width="90%" mx="3" maxW="300px">
                     <FormControl>
                         <SearchableDropdown
-                            onItemSelect={(player) => {
-                                setFirstPlayer(player)
+                            onItemSelect={(item) => {
+                                setFirstPlayer(item)
+                                setShowSearch1(false)
                             }}
                             itemStyle={{
                                 padding: 10,
@@ -84,9 +89,10 @@ const CreateMatchForm = () => {
                             itemsContainerStyle={{ maxHeight: 140 }}
                             items={players}
                             resetValue={false}
+                            defaultIndex={2}
+                            placeholder={showSearch1 ? "Search" : firstPlayer.name}
                             textInputProps={
                                 {
-                                    placeholder: "Search",
                                     underlineColorAndroid: "transparent",
                                     style: {
                                         padding: 10,
@@ -110,6 +116,7 @@ const CreateMatchForm = () => {
                         <SearchableDropdown
                             onItemSelect={(player) => {
                                 setSecondPlayer(player)
+                                setShowSearch2(false)
                             }}
                             itemStyle={{
                                 padding: 10,
@@ -123,9 +130,9 @@ const CreateMatchForm = () => {
                             itemsContainerStyle={{ maxHeight: 140 }}
                             items={players}
                             resetValue={false}
+                            placeholder={showSearch2 ? "Search" : secondPlayer.name}
                             textInputProps={
                                 {
-                                    placeholder: "Search",
                                     underlineColorAndroid: "transparent",
                                     style: {
                                         padding: 10,

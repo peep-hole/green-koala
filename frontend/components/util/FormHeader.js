@@ -1,6 +1,5 @@
 import React from 'react';
-import {View} from "react-native-web";
-import {Box, Center, HStack, Icon, IconButton, StatusBar, Text} from "native-base";
+import {Box, HStack, Icon, IconButton, StatusBar, Text} from "native-base";
 
 const FormHeader = (props) => {
     /* #065f46 -> Headers
