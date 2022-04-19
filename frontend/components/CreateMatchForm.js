@@ -20,7 +20,7 @@ const CreateMatchForm = () => {
     const [showSearch2, setShowSearch2] = useState(true)
 
     const [dateString, setDateString] = useState(date.getDate() + "-" + date.getMonth() + "-" + date.getFullYear())
-    const [timeString, setTimeString] = useState(date.getMinutes() < 10 ? date.getHours() + ":0" + date.getMinutes() : date.getHours() + ":" + date.getMinutes())
+    const [timeString, setTimeString] = useState(date.getHours() + ":" + date.getMinutes().toString().padStart(2, "0"))
 
     const getAllPlayers = () => {
         Api.get('/players' // TODO type proper url when backend is ready
