@@ -1,11 +1,15 @@
-import { StyleSheet } from 'react-native-web';
-import FormHeader from "./components/util/FormHeader";
-import { NativeBaseProvider } from 'native-base';
+import {StyleSheet} from 'react-native-web';
+import {NativeBaseProvider} from 'native-base';
+import CreateMatchForm from "./components/CreateMatchForm";
+import {SSRProvider} from "react-bootstrap";
+import React from "react";
 
 export default function App() {
   return (
       <NativeBaseProvider>
-          <FormHeader name="Title"> </FormHeader>
+          <SSRProvider>
+              <CreateMatchForm> </CreateMatchForm>
+          </SSRProvider>
       </NativeBaseProvider>
   );
 }
