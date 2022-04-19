@@ -5,11 +5,13 @@ import { NativeBaseProvider, VStack, Input, Button,  Radio, Switch, InputGroup, 
 import Api from "./util/Api";
 
 const RegisterPlayerForm = () =>{
-    const submitColor = "tertiary.700";
+    const submitColor = "tertiary.600";
     const colorScheme = "tertiary";
     const padding = "10px";
+    const optionsSpacing = "20px";
     const verticalPadding = "10px";
     const horizontalPadding = "30px";
+    const marginTop = "30px";
     const errorColor = "#b91c1c"; /// error.700 in native base
 
     const [gender, setGender] = React.useState('male'); /// occurs a bug when was in object, planned to append on submit
@@ -88,7 +90,7 @@ const RegisterPlayerForm = () =>{
                     <InputRightAddon children={"kg"} />
                 </InputGroup>
             </VStack>
-            <VStack space={padding} w="100%">
+            <VStack space={optionsSpacing} w="100%" marginTop={marginTop}>
                 {/* maybe new component for every switch with props is better idea?, but what with passing object? */}
                 <Center display="flex" flexDirection="row" alignItems="center">
                     <Switch 
@@ -112,7 +114,7 @@ const RegisterPlayerForm = () =>{
                     <Text> Option3 </Text>
                 </Center> 
             </VStack>
-            <Center padding={padding}>
+            <Center padding={padding} marginTop={marginTop}>
                 <Button 
                 onPress={onSubmit} 
                 backgroundColor={submitColor}>
