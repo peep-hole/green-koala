@@ -46,7 +46,7 @@ const CreateMatchForm = () => {
         const currDate = selectedDate || date
         setShow(Platform.OS === "ios")
         setDateString(date.getDate() + "-" + date.getMonth() + "-" + date.getFullYear()) // example date format
-        setTimeString(date.getMinutes() < 10 ? date.getHours() + ":0" + date.getMinutes() : date.getHours() + ":" + date.getMinutes()) // example time format
+        setTimeString(date.getHours() + ":" + date.getMinutes().toString().padStart(2, "0"))
         setDate(currDate)
     }
 
