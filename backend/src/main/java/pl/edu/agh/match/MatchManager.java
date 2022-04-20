@@ -41,6 +41,11 @@ public class MatchManager {
         events.add(event);
     }
 
+    @Override
+    public String toString(){
+        return "Temporary manager string";
+    }
+
 
 
 }
