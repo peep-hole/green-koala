@@ -16,19 +16,19 @@ const RegisterPlayerForm = () =>{
 
     const [gender, setGender] = React.useState('male'); /// occurs a bug when was in object, planned to append on submit
     const [formData, setData] = React.useState({
-        name: undefined,
-        surname: undefined,
-        age: undefined,
-        weight: undefined,
-        option1: false,
-        option2: false,
-        option3: false
+        name: '',
+        surname: '',
+        age: '',
+        weight: '',
+        option1: '',
+        option2: '',
+        option3: ''
     });
     const [error, setError] = React.useState('');
 
     const validate = () => {        /// form logic
         for(const property in formData){    /// required fields
-            if(formData[property] === undefined || formData[property] === ''){
+            if(formData[property] === ''){
                 setError(property.toString() + ' is required');
                 return false;
             }
