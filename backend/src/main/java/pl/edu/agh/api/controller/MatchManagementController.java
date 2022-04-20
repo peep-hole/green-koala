@@ -10,7 +10,7 @@ import java.util.UUID;
 
 
 @RestController
-@RequestMapping("/api/match")
+@RequestMapping("/match")
 public class MatchManagementController {
 
     @Autowired
@@ -45,5 +45,26 @@ public class MatchManagementController {
     public MatchManagement create(@RequestBody MatchManagement management) {
         return service.save(management);
     }
+
+
+    // v2 version
+
+    @PostMapping("/newMatch")
+    public void addNewMatch() {
+        // TODO:
+        /**
+         * Odbieramy:
+         * - fighter 1
+         * - fighter 2
+         * - data
+         * - czas
+         * Zwracamy
+         * - tokeny sędziów
+         * - uniq id meczu (do bazy danych)
+         *
+         */
+    }
+
+
 
 }
