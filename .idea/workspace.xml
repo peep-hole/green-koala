@@ -4,21 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="67074e83-e987-4a3b-a23d-f00431171d6b" name="Changes" comment="branch publish">
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/api/controller/ErrorHandlerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/api/controller/MatchManagementController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/api/data/MatchManagement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/api/services/MatchManagementService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/backend/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/backend/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/build/tmp/compileTestJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/backend/build/tmp/compileTestJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/api/RefereeApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/api/RefereeApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/match/MatchManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/match/MatchManager.java" afterDir="false" />
+    <list default="true" id="67074e83-e987-4a3b-a23d-f00431171d6b" name="Changes" comment="backend rest api">
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/api/controller/MatchManagementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/api/controller/MatchManagementController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +96,7 @@
       <recent name="$PROJECT_DIR$/Backend" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.RefereeApplication (1)">
+  <component name="RunManager" selected="Gradle.green-koala [dependencies]">
     <configuration name="green-koala [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -208,9 +195,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.green-koala [dependencies]" />
         <item itemvalue="Spring Boot.RefereeApplication (1)" />
         <item itemvalue="Gradle.green-koala [run]" />
-        <item itemvalue="Gradle.green-koala [dependencies]" />
         <item itemvalue="Spring Boot.MessagingStompWebsocketApplication" />
         <item itemvalue="Gradle.green-koala [test]" />
       </list>
@@ -228,7 +215,7 @@
       <workItem from="1649427490207" duration="2190000" />
       <workItem from="1649450811670" duration="14000" />
       <workItem from="1649783406283" duration="8305000" />
-      <workItem from="1650188369909" duration="6331000" />
+      <workItem from="1650188369909" duration="11000000" />
     </task>
     <task id="LOCAL-00001" summary="Project Init">
       <created>1648742798290</created>
@@ -286,7 +273,21 @@
       <option name="project" value="LOCAL" />
       <updated>1649794745739</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="backend rest api">
+      <created>1650195523284</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1650195523284</updated>
+    </task>
+    <task id="LOCAL-00010" summary="backend rest api">
+      <created>1650478740351</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1650478740351</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -315,6 +316,7 @@
     <MESSAGE value="gitignore update" />
     <MESSAGE value="added backend schema" />
     <MESSAGE value="branch publish" />
-    <option name="LAST_COMMIT_MESSAGE" value="branch publish" />
+    <MESSAGE value="backend rest api" />
+    <option name="LAST_COMMIT_MESSAGE" value="backend rest api" />
   </component>
 </project>

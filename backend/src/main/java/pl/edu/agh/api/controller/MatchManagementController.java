@@ -10,40 +10,28 @@ import java.util.UUID;
 
 
 @RestController
-@RequestMapping("/api/match")
+@RequestMapping("/match")
 public class MatchManagementController {
 
     @Autowired
     private MatchManagementService service;
 
-    @GetMapping("/uniqId")
-    public UUID getUniqId() {
-        return UUID.randomUUID(); // TODO: add logic here
+    @PostMapping("/newMatch")
+    public void addNewMatch() {
+        // TODO:
+        /**
+         * Odbieramy:
+         * - fighter 1
+         * - fighter 2
+         * - data
+         * - czas
+         * Zwracamy
+         * - tokeny sędziów
+         * - uniq id meczu (do bazy danych)
+         *
+         */
     }
 
-    @GetMapping("/id/{id}")
-    public MatchManagement getById(@PathVariable String id) {
-        return service.find(id);
-    }
 
-    @GetMapping("/referee/main/{id}")
-    public String getSide1Token(@PathVariable String id){
-        return "Main Token for " + id;
-    }
-
-    @GetMapping("/referee/side1/{id}")
-    public String getSide2Token(@PathVariable String id){
-        return "Side 1 Token for " + id;
-    }
-
-    @GetMapping("/referee/side2/{id}")
-    public String getMainToken(@PathVariable String id){
-        return "Side 2 Token for " + id;
-    }
-
-    @PostMapping
-    public MatchManagement create(@RequestBody MatchManagement management) {
-        return service.save(management);
-    }
 
 }
