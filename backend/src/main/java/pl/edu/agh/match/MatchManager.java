@@ -1,7 +1,7 @@
 package pl.edu.agh.match;
 
-import pl.edu.agh.actors.Fighter;
-import pl.edu.agh.actors.Referee;
+import pl.edu.agh.api.actors.Fighter;
+import pl.edu.agh.api.actors.Referee;
 
 import java.util.LinkedList;
 

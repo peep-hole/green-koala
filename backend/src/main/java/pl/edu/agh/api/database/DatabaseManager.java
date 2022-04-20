@@ -1,4 +1,4 @@
-package pl.edu.agh.database;
+package pl.edu.agh.api.database;
 
 public class DatabaseManager {
 }

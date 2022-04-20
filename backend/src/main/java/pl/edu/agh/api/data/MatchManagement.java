@@ -1,7 +1,7 @@
 package pl.edu.agh.api.data;
 
-import pl.edu.agh.actors.Fighter;
-import pl.edu.agh.actors.Referee;
+import pl.edu.agh.api.actors.Fighter;
+import pl.edu.agh.api.actors.Referee;
 import pl.edu.agh.match.MatchManager;
 import pl.edu.agh.match.Timer;
 

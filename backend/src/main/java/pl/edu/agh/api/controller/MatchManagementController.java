@@ -3,35 +3,30 @@ package pl.edu.agh.api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pl.edu.agh.api.data.MatchManagement;
+import pl.edu.agh.api.actors.Referee;
+import pl.edu.agh.api.model.Match;
 import pl.edu.agh.api.services.MatchManagementService;
 
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 
 @RestController
 @RequestMapping("/match")
 public class MatchManagementController {
+    // TODO: generating random UUID as match id / fighter id -> backend/frontend?
 
     @Autowired
-    private MatchManagementService service;
+    private MatchManagementService matchManagementService;
 
-    @PostMapping("/newMatch")
-    public void addNewMatch() {
-        // TODO:
-        /**
-         * Odbieramy:
-         * - fighter 1
-         * - fighter 2
-         * - data
-         * - czas
-         * Zwracamy
-         * - tokeny sędziów
-         * - uniq id meczu (do bazy danych)
-         *
-         */
+    @GetMapping("/all")
+    public List<Match> getMatches() {
+        return matchManagementService.getMatches();
     }
 
-
-
+    @PostMapping("/newMatch")
+    public Map<Referee, UUID> addNewMatch(@RequestBody Match match) {
+        return matchManagementService.addNewMatch(match);
+    }
 }

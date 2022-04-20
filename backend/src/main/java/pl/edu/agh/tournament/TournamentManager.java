@@ -1,6 +1,6 @@
 package pl.edu.agh.tournament;
 
-import pl.edu.agh.database.DatabaseManager;
+import pl.edu.agh.api.database.DatabaseManager;
 
 public class TournamentManager {
 
