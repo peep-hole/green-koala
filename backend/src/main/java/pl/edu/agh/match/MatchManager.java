@@ -42,10 +42,9 @@ public class MatchManager {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "Temporary manager string";
     }
-
 
 
 }

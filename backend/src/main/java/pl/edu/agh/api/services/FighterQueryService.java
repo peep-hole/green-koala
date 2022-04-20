@@ -12,11 +12,11 @@ public class FighterQueryService {
     @Autowired
     private FighterRepository fighterRepository;
 
-    public List<Fighter> getAllFighters(){
+    public List<Fighter> getAllFighters() {
         return fighterRepository.findAll();
     }
 
-    public void registerFighter(Fighter fighter){
+    public void registerFighter(Fighter fighter) {
         fighterRepository.save(fighter);
     }
 }

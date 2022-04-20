@@ -1,7 +1,5 @@
 package pl.edu.agh.tokenizer;
 
-import pl.edu.agh.api.actors.Referee;
-
 import java.util.UUID;
 
 public class Tokenizer {

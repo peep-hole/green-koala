@@ -1,6 +1,5 @@
 package pl.edu.agh.api.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.edu.agh.api.actors.Fighter;
@@ -19,7 +18,7 @@ public class ActorsController {
         return fighterQueryService.getAllFighters();
     }
 
-    @PostMapping(value = "/registerFighter")
+    @PostMapping(value = "/register-fighter")
     public String registerFighter(@RequestBody Fighter fighter) {
         fighterQueryService.registerFighter(fighter);
         return "OK";

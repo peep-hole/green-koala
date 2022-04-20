@@ -13,7 +13,7 @@ import java.util.UUID;
 
 
 @RestController
-@RequestMapping("/match")
+@RequestMapping("/matches")
 public class MatchManagementController {
     // TODO: generating random UUID as match id / fighter id -> backend/frontend?
 
@@ -25,7 +25,7 @@ public class MatchManagementController {
         return matchManagementService.getMatches();
     }
 
-    @PostMapping("/newMatch")
+    @PostMapping("/new-match")
     public Map<Referee, UUID> addNewMatch(@RequestBody Match match) {
         return matchManagementService.addNewMatch(match);
     }
