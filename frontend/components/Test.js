@@ -15,10 +15,10 @@ const Test = () => {
     })
 
     return (
-        <div>
+        <View>
             <FormHeader>
             </FormHeader>
-        </div>
+        </View>
     );
 };
 
