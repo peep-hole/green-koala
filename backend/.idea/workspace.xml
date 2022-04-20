@@ -4,27 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe5d30e3-9bcd-46ae-ba90-5c969c095566" name="Changes" comment="GK-66: add h2 db dependencies">
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/actors/Fighter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/database/FighterRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/database/MatchManagementRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/model/Match.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/services/FighterQueryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="fe5d30e3-9bcd-46ae-ba90-5c969c095566" name="Changes" comment="GK-66, GK-55, GK-42: create database connection &amp; add matches and fighters to db &amp; tokens generation">
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/actors/Fighter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/actors/Referee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/actors/Referee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/controller/ActorsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/controller/ActorsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/controller/MatchManagementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/controller/MatchManagementController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/data/MatchManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/data/MatchManagement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/services/MatchManagementService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/services/MatchManagementService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/database/DatabaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/database/DatabaseManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/match/MatchManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/match/MatchManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/tokenizer/Tokenizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/tokenizer/Tokenizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/tournament/TournamentManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/tournament/TournamentManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -322,6 +303,14 @@
       <workItem from="1648824804942" duration="31000" />
       <workItem from="1649268676542" duration="789000" />
     </task>
+    <task id="LOCAL-00001" summary="GK-66, GK-55, GK-42: create database connection &amp; add matches and fighters to db &amp; tokens generation">
+      <created>1650488411316</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1650488411316</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -343,6 +332,7 @@
     <MESSAGE value="update gitignore for gradle project" />
     <MESSAGE value="update" />
     <MESSAGE value="GK-66: add h2 db dependencies" />
-    <option name="LAST_COMMIT_MESSAGE" value="GK-66: add h2 db dependencies" />
+    <MESSAGE value="GK-66, GK-55, GK-42: create database connection &amp; add matches and fighters to db &amp; tokens generation" />
+    <option name="LAST_COMMIT_MESSAGE" value="GK-66, GK-55, GK-42: create database connection &amp; add matches and fighters to db &amp; tokens generation" />
   </component>
 </project>
