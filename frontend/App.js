@@ -1,11 +1,15 @@
-import { StyleSheet } from 'react-native-web';
-import { NativeBaseProvider } from 'native-base';
-import RegisterPlayerForm from './components/RegisterPlayerForm';
+import {StyleSheet} from 'react-native-web';
+import {NativeBaseProvider} from 'native-base';
+import CreateMatchForm from "./components/CreateMatchForm";
+import {SSRProvider} from "react-bootstrap";
+import React from "react";
 
 export default function App() {
   return (
       <NativeBaseProvider>
-          <RegisterPlayerForm/>
+          <SSRProvider>
+              <CreateMatchForm> </CreateMatchForm>
+          </SSRProvider>
       </NativeBaseProvider>
   );
 }
