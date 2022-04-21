@@ -1,28 +1,62 @@
-import { StyleSheet, Text, View } from 'react-native';
-import { Button } from 'react-native';
+import FormHeader from './util/FormHeader';
+import { Center, Button, VStack, Text } from 'native-base';
 import React from 'react';
+import { FontAwesome } from '@expo/vector-icons';
 const LoginPick = () => {
     return (
         <>
-            <Text>Login Screen</Text>
-            <Text>Dołącz jako</Text>
-            <View style={rolePickContainer}>
-                <Button style={rolePickStyle} title="Sędzia główny" onPress={() => {}} />
-                <Button title="Sędzia boczny" onPress={() => {}} />
-                <Button title="Organizator" onPress={() => {}} />
-            </View>
+            <FormHeader name="Login Screen"></FormHeader>
+            <Center>
+                <FontAwesome name="handshake-o" size={200}></FontAwesome>
 
-            <Button title="Info"></Button>
+                <Text marginBottom="10px" color="black" fontSize={20} fontWeight="bold">
+                    Dołącz jako
+                </Text>
+
+                <VStack>
+                    <Button
+                        onPress={() => {}}
+                        marginTop="30px"
+                        size="lg"
+                        marginRight="30px"
+                        marginLeft="30px"
+                        bg="#059669"
+                        _text={{
+                            color: 'white',
+                        }}
+                    >
+                        Sędzia Główny
+                    </Button>
+                    <Button
+                        onPress={() => {}}
+                        marginTop="30px"
+                        size="lg"
+                        marginRight="30px"
+                        marginLeft="30px"
+                        bg="#059669"
+                        _text={{
+                            color: 'white',
+                        }}
+                    >
+                        Sędzia Boczny
+                    </Button>
+                    <Button
+                        onPress={() => {}}
+                        marginTop="30px"
+                        size="lg"
+                        marginRight="30px"
+                        marginLeft="30px"
+                        bg="#059669"
+                        _text={{
+                            color: 'white',
+                        }}
+                    >
+                        Organizator
+                    </Button>
+                </VStack>
+            </Center>
         </>
     );
 };
-
-const rolePickContainer = {
-    display: 'flex',
-    flexDirection: 'column',
-    flexWrap: 'nowrap',
-};
-
-const rolePickStyle = { padding: 50, margin: 20 };
 
 export default LoginPick;
