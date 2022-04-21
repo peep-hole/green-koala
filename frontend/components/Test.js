@@ -1,6 +1,6 @@
-import React from 'react';
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from 'react';
 import Api from "./util/Api";
+import FormHeader from "./util/FormHeader";
 
 const Test = () => {
     const [test, setTest] = useState('')
@@ -15,9 +15,10 @@ const Test = () => {
     })
 
     return (
-        <div>
-            {test}
-        </div>
+        <View>
+            <FormHeader>
+            </FormHeader>
+        </View>
     );
 };
 

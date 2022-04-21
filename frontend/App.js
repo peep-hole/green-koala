@@ -1,10 +1,16 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import Test from "./components/Test";
+import {StyleSheet} from 'react-native-web';
+import {NativeBaseProvider} from 'native-base';
+import CreateMatchForm from "./components/CreateMatchForm";
+import {SSRProvider} from "react-bootstrap";
+import React from "react";
 
 export default function App() {
   return (
-    <Test />
+      <NativeBaseProvider>
+          <SSRProvider>
+              <CreateMatchForm> </CreateMatchForm>
+          </SSRProvider>
+      </NativeBaseProvider>
   );
 }
 
