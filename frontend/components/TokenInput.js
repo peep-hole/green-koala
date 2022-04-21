@@ -7,8 +7,16 @@ import { FontAwesome } from '@expo/vector-icons';
 
 const MainRefereeTokenInput = props => {
     const [userType, setUserType] = useState('');
+    const [error, setError] = useState(false);
+    const [clickAction, setClickAction] = useState(() => () => {
+        setError(false);
+        console.log('Mock sent token to backend');
+        setError(true);
+    });
 
     //we can set things like routes on button click depending on the type later
+    //my idea - get match data from token here and pass it as a prop to the next screen, otherwise show error if i.e. token does not exist
+
     useEffect(() => {
         switch (props.userType) {
             case 'Main':
@@ -46,9 +54,19 @@ const MainRefereeTokenInput = props => {
                 </Text>
                 <VStack width="90%">
                     <Input marginTop="20px" placeholder="Podaj kod spotkania"></Input>
-                    <Button marginTop="20px" marginRight="50px" marginLeft="50px" bg="#059669">
+                    <Button
+                        marginTop="20px"
+                        marginRight="50px"
+                        marginLeft="50px"
+                        bg="#059669"
+                        onPress={clickAction}
+                    >
                         Dołącz
                     </Button>
+                    <Text color="red.500">
+                        {error &&
+                            'Unable to join the match, please check the token and try again'}
+                    </Text>
                 </VStack>
             </Center>
         </>
