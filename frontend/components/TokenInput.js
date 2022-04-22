@@ -53,10 +53,10 @@ const TokenInput = props => {
     useEffect(() => {
         switch (props.userType) {
             case 'Main':
-                setUserType('Sędzia Główny');
+                setUserType('Main Referee');
                 break;
             case 'Side':
-                setUserType('Sędzia Boczny');
+                setUserType('Side Referee');
                 break;
             case 'Organizer':
                 setUserType('Organizer');
@@ -70,7 +70,7 @@ const TokenInput = props => {
         <>
             <FormHeader name="Token"></FormHeader>
             <Button
-                marginBottom="150px"
+                marginBottom="50px"
                 width="50"
                 marginLeft={30}
                 bg="#059669"
@@ -81,14 +81,14 @@ const TokenInput = props => {
                 <FontAwesome name="arrow-circle-left" size={30} color="white"></FontAwesome>
             </Button>
             <Center>
-                <Text fontSize="20">Dołączasz do spotkania jako</Text>
+                <Text fontSize="20">You are entering the app as</Text>
                 <Text fontWeight="bold" fontSize="30">
                     {userType}
                 </Text>
                 <VStack width="90%">
                     <Input
                         marginTop="20px"
-                        placeholder="Podaj kod spotkania"
+                        placeholder="Enter your login token"
                         onChangeText={value => {
                             setToken(value);
                         }}
@@ -103,12 +103,11 @@ const TokenInput = props => {
                         }}
                         onPress={() => clickAction(token)}
                     >
-                        Dołącz
+                        Enter the app
                     </Button>
                     <Text color="red.500">
                         {error &&
                             'Unable to join the match, please check the token and try again'}
-                        {token}
                     </Text>
                 </VStack>
             </Center>
