@@ -31,5 +31,4 @@ public class MatchManagementService {
     public List<Match> getMatches() {
         return matchManagementRepository.findAll();
     }
-
 }

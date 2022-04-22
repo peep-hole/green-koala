@@ -21,5 +21,4 @@ public class Timer {
     public long getTime() {
         return isRunning ? sumTime + System.currentTimeMillis() - startTimestamp : sumTime;
     }
-
 }
