@@ -18,8 +18,6 @@ public class MatchManagement {
         this.id = id;
 
         this.manager = new MatchManager(fighter1, fighter2, main, side1, side2, new Timer());
-
-
     }
 
     public String getId() {
@@ -37,5 +35,4 @@ public class MatchManagement {
     public String getManager() {
         return manager.toString();
     }
-
 }

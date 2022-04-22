@@ -21,11 +21,13 @@ public class MatchManagementController {
     private MatchManagementService matchManagementService;
 
     @GetMapping("/all")
+    @ResponseBody
     public List<Match> getMatches() {
         return matchManagementService.getMatches();
     }
 
     @PostMapping("/new-match")
+    @ResponseBody
     public Map<Referee, UUID> addNewMatch(@RequestBody Match match) {
         return matchManagementService.addNewMatch(match);
     }

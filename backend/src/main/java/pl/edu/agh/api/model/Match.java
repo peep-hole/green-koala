@@ -9,17 +9,15 @@ import java.util.UUID;
 
 @Entity
 @Table
-@Getter
-@Setter
-@ToString
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class Match {
     @Id
-    private Long id;
-    private Long fighterId1;
-    private Long fighterId2;
+    private UUID id;
+    private UUID fighterId1;
+    private UUID fighterId2;
     private String date;
     private String time;
     private UUID mainRefereeToken;
