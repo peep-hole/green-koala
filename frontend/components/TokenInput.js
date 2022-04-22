@@ -98,6 +98,9 @@ const TokenInput = props => {
                         marginRight="50px"
                         marginLeft="50px"
                         bg="#059669"
+                        _text={{
+                            color: 'white',
+                        }}
                         onPress={() => clickAction(token)}
                     >
                         Dołącz
