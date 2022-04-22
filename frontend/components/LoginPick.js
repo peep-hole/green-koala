@@ -10,7 +10,7 @@ const LoginPick = () => {
                 <FontAwesome name="handshake-o" size={200}></FontAwesome>
 
                 <Text marginBottom="10px" color="black" fontSize={20} fontWeight="bold">
-                    Dołącz jako
+                    Join as
                 </Text>
 
                 <VStack>
@@ -25,7 +25,7 @@ const LoginPick = () => {
                             color: 'white',
                         }}
                     >
-                        Sędzia Główny
+                        Main Referee
                     </Button>
                     <Button
                         onPress={() => {}}
@@ -38,7 +38,7 @@ const LoginPick = () => {
                             color: 'white',
                         }}
                     >
-                        Sędzia Boczny
+                        Side Referee
                     </Button>
                     <Button
                         onPress={() => {}}
@@ -51,7 +51,7 @@ const LoginPick = () => {
                             color: 'white',
                         }}
                     >
-                        Organizator
+                        Organizer
                     </Button>
                 </VStack>
             </Center>
