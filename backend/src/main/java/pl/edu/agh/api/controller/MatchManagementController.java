@@ -1,7 +1,9 @@
 package pl.edu.agh.api.controller;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.edu.agh.api.actors.Referee;
 import pl.edu.agh.api.model.Match;
@@ -13,22 +15,19 @@ import java.util.UUID;
 
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/matches")
 public class MatchManagementController {
-    // TODO: generating random UUID as match id / fighter id -> backend/frontend?
-
-    @Autowired
-    private MatchManagementService matchManagementService;
+    private final MatchManagementService matchManagementService;
 
     @GetMapping("/all")
-    @ResponseBody
-    public List<Match> getMatches() {
-        return matchManagementService.getMatches();
+    public ResponseEntity<List<Match>> getMatches() {
+        return new ResponseEntity<>(matchManagementService.getAllMatches(), HttpStatus.OK);
     }
 
+    // TODO: consider creating new class to return data here
     @PostMapping("/new-match")
-    @ResponseBody
-    public Map<Referee, UUID> addNewMatch(@RequestBody Match match) {
-        return matchManagementService.addNewMatch(match);
+    public ResponseEntity<Map<Referee, UUID>> addNewMatch(@RequestBody Match match) {
+        return new ResponseEntity<>(matchManagementService.addNewMatch(match), HttpStatus.OK);
     }
 }
