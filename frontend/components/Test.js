@@ -9,13 +9,16 @@ const Test = () => {
     const [userData, setUserData] = useState({
         connected: false,
         message: ''
-    }) 
+    }) ;
     const [response, setResponse] = useState('');
 
-    stompClient = over(sock);
-    stompClient.connect({}, onConnected, onError);
+    useEffect(() => {
+        stompClient = over(sock);
+        stompClient.connect({},onConnected, onError);
+    }, []);
 
     const onConnected = () => {
+        console.log("CONNECTED")
         stompClient.subscribe('/test/response', onMessageReceived);
         stompClient.send("/backend/message", {}, JSON.stringify({
             message: "Join"
@@ -29,7 +32,7 @@ const Test = () => {
     }
 
     const onError = (error) => {
-        console.log("Error" + error);
+        console.log("Error: " + error);
     }
 
     const sendMessage = () => {
