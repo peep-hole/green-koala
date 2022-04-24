@@ -1,9 +1,9 @@
-package pl.edu.agh.api.services;
+package pl.edu.agh.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import pl.edu.agh.api.actors.Fighter;
-import pl.edu.agh.api.database.FighterRepository;
+import pl.edu.agh.model.Fighter;
+import pl.edu.agh.repository.FighterRepository;
 
 import java.util.List;
 import java.util.UUID;

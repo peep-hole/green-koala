@@ -4,19 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe5d30e3-9bcd-46ae-ba90-5c969c095566" name="Changes" comment="code refactor, change endpoints naming">
+    <list default="true" id="fe5d30e3-9bcd-46ae-ba90-5c969c095566" name="Changes" comment="GK-66 replace @Data annotation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Group 9.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/actors/Fighter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/actors/Fighter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/controller/ActorsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/controller/ActorsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/controller/ErrorHandlerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/controller/ErrorHandlerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/controller/MatchManagementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/controller/MatchManagementController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/database/DatabaseManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/model/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/model/Match.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/services/FighterQueryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/services/FighterService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/services/MatchManagementService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/services/MatchManagementService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/tournament/TournamentManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/tournament/TournamentManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/config/CorsConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/RefereeApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/RefereeApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/TestResource.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/actors/Fighter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/model/Fighter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/actors/Referee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/constants/RefereeType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/controller/ActorsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/controller/ActorsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/controller/ErrorHandlerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/controller/ErrorHandlerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/controller/MatchManagementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/controller/MatchManagementController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/data/MatchManagement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/database/FighterRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/repository/FighterRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/database/MatchManagementRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/repository/MatchManagementRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/model/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/model/Match.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/services/FighterService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/service/FighterService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/services/MatchManagementService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/service/MatchManagementService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/match/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/constants/Event.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/match/MatchManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/match/Timer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/utils/Timer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/tokenizer/Tokenizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/utils/Tokenizer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/tournament/TournamentManager.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +91,7 @@
       <map>
         <entry key="com.haulmont.jpb.jpaInspector" value="false" />
         <entry key="com.haulmont.jpb.jpaPalette" value="false" />
-        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
       </map>
     </option>
   </component>
@@ -108,6 +117,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -238,7 +248,7 @@
     </configuration>
     <configuration name="RefereeApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="referee.main" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="pl.edu.agh.api.RefereeApplication" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="pl.edu.agh.RefereeApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -316,7 +326,8 @@
       <updated>1648824803785</updated>
       <workItem from="1648824804942" duration="31000" />
       <workItem from="1649268676542" duration="789000" />
-      <workItem from="1650795696871" duration="5379000" />
+      <workItem from="1650795696871" duration="6546000" />
+      <workItem from="1650802595398" duration="1736000" />
     </task>
     <task id="LOCAL-00001" summary="GK-66, GK-55, GK-42: create database connection &amp; add matches and fighters to db &amp; tokens generation">
       <created>1650488411316</created>
@@ -339,7 +350,42 @@
       <option name="project" value="LOCAL" />
       <updated>1650489338964</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="GK-66 add generic ResponseEntity, change field injection to constructor injection">
+      <created>1650801342419</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1650801342419</updated>
+    </task>
+    <task id="LOCAL-00005" summary="GK-66 remove redundant files">
+      <created>1650801399273</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1650801399273</updated>
+    </task>
+    <task id="LOCAL-00006" summary="GK-66 change to constructor injection, setting id if null">
+      <created>1650801542408</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1650801542408</updated>
+    </task>
+    <task id="LOCAL-00007" summary="GK-66 replace @Data annotation">
+      <created>1650801779401</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1650801779401</updated>
+    </task>
+    <task id="LOCAL-00008" summary="GK-66 replace @Data annotation">
+      <created>1650802035531</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1650802035531</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -364,6 +410,11 @@
     <MESSAGE value="GK-66, GK-55, GK-42: create database connection &amp; add matches and fighters to db &amp; tokens generation" />
     <MESSAGE value="bump versions" />
     <MESSAGE value="code refactor, change endpoints naming" />
-    <option name="LAST_COMMIT_MESSAGE" value="code refactor, change endpoints naming" />
+    <MESSAGE value="GK-66 add generic ResponseEntity" />
+    <MESSAGE value="GK-66 add generic ResponseEntity, change field injection to constructor injection" />
+    <MESSAGE value="GK-66 remove redundant files" />
+    <MESSAGE value="GK-66 change to constructor injection, setting id if null" />
+    <MESSAGE value="GK-66 replace @Data annotation" />
+    <option name="LAST_COMMIT_MESSAGE" value="GK-66 replace @Data annotation" />
   </component>
 </project>

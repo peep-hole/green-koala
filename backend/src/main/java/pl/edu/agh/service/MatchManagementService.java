@@ -1,11 +1,11 @@
-package pl.edu.agh.api.services;
+package pl.edu.agh.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import pl.edu.agh.api.actors.Referee;
-import pl.edu.agh.api.database.MatchManagementRepository;
-import pl.edu.agh.api.model.Match;
-import pl.edu.agh.tokenizer.Tokenizer;
+import pl.edu.agh.constants.RefereeType;
+import pl.edu.agh.model.Match;
+import pl.edu.agh.repository.MatchManagementRepository;
+import pl.edu.agh.utils.Tokenizer;
 
 import java.util.List;
 import java.util.Map;
@@ -21,7 +21,7 @@ public class MatchManagementService {
         return matchManagementRepository.findAll();
     }
 
-    public Map<Referee, UUID> addNewMatch(Match match) {
+    public Map<RefereeType, UUID> addNewMatch(Match match) {
         if (match.getId() == null) {
             match.setId(UUID.randomUUID());
         }
@@ -30,8 +30,8 @@ public class MatchManagementService {
         match.setSideRefereeToken2(tokenizer.generateToken());
 
         matchManagementRepository.save(match);
-        return Map.of(Referee.MAIN_REFEREE, match.getMainRefereeToken(),
-                Referee.SIDE_REFEREE_1, match.getSideRefereeToken1(),
-                Referee.SIDE_REFEREE_2, match.getSideRefereeToken2());
+        return Map.of(RefereeType.MAIN_REFEREE, match.getMainRefereeToken(),
+                RefereeType.SIDE_REFEREE_1, match.getSideRefereeToken1(),
+                RefereeType.SIDE_REFEREE_2, match.getSideRefereeToken2());
     }
 }

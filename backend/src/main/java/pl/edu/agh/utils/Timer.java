@@ -1,11 +1,11 @@
-package pl.edu.agh.match;
+package pl.edu.agh.utils;
 
 public class Timer {
     private long sumTime;
     private long startTimestamp;
     private boolean isRunning;
-    public Timer() {
 
+    public Timer() {
     }
 
     public void startTime() {

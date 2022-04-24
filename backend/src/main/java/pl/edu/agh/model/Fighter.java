@@ -1,4 +1,4 @@
-package pl.edu.agh.api.model;
+package pl.edu.agh.model;
 
 import lombok.*;
 import org.hibernate.Hibernate;
@@ -14,29 +14,23 @@ import java.util.UUID;
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class Match {
+public class Fighter {
     @Id
     private UUID id;
-    private UUID fighterId1;
-    private UUID fighterId2;
-    private String date;
-    private String time;
-    private UUID mainRefereeToken;
-    private Long mainRefereeId;
-    private UUID sideRefereeToken1;
-    private Long sideRefereeId1;
-    private UUID sideRefereeToken2;
-    private Long sideRefereeId2;
+    private String name;
+    private String surname;
+    private Long age;
+    private Long weight;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Match match = (Match) o;
-        return id != null && Objects.equals(id, match.id);
+        Fighter fighter = (Fighter) o;
+        return id != null && Objects.equals(id, fighter.id);
     }
 
     @Override
