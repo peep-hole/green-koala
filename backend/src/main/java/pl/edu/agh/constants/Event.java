@@ -1,4 +1,4 @@
-package pl.edu.agh.match;
+package pl.edu.agh.constants;
 
 public enum Event {
     ATTACK,
