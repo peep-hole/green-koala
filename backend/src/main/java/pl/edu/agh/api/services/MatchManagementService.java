@@ -1,6 +1,6 @@
 package pl.edu.agh.api.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.edu.agh.api.actors.Referee;
 import pl.edu.agh.api.database.MatchManagementRepository;
@@ -12,12 +12,19 @@ import java.util.Map;
 import java.util.UUID;
 
 @Service
+@RequiredArgsConstructor
 public class MatchManagementService {
-    private final Tokenizer tokenizer = new Tokenizer();  // TODO
-    @Autowired
-    MatchManagementRepository matchManagementRepository;
+    private final Tokenizer tokenizer = new Tokenizer();
+    private final MatchManagementRepository matchManagementRepository;
+
+    public List<Match> getAllMatches() {
+        return matchManagementRepository.findAll();
+    }
 
     public Map<Referee, UUID> addNewMatch(Match match) {
+        if (match.getId() == null) {
+            match.setId(UUID.randomUUID());
+        }
         match.setMainRefereeToken(tokenizer.generateToken());
         match.setSideRefereeToken1(tokenizer.generateToken());
         match.setSideRefereeToken2(tokenizer.generateToken());
@@ -26,9 +33,5 @@ public class MatchManagementService {
         return Map.of(Referee.MAIN_REFEREE, match.getMainRefereeToken(),
                 Referee.SIDE_REFEREE_1, match.getSideRefereeToken1(),
                 Referee.SIDE_REFEREE_2, match.getSideRefereeToken2());
-    }
-
-    public List<Match> getMatches() {
-        return matchManagementRepository.findAll();
     }
 }
