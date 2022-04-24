@@ -1,16 +1,20 @@
 package pl.edu.agh.api.model;
 
 import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
 @Table
-@Data
-@NoArgsConstructor
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @AllArgsConstructor
 @Builder
 public class Match {
@@ -26,4 +30,17 @@ public class Match {
     private Long sideRefereeId1;
     private UUID sideRefereeToken2;
     private Long sideRefereeId2;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Match match = (Match) o;
+        return id != null && Objects.equals(id, match.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }
