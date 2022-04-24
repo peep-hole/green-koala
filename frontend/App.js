@@ -1,16 +1,11 @@
 import {StyleSheet} from 'react-native-web';
-import {NativeBaseProvider} from 'native-base';
-import CreateMatchForm from "./components/CreateMatchForm";
-import {SSRProvider} from "react-bootstrap";
-import React from "react";
+import React from 'react';
+import Test from './components/Test'
 
 export default function App() {
+  
   return (
-      <NativeBaseProvider>
-          <SSRProvider>
-              <CreateMatchForm> </CreateMatchForm>
-          </SSRProvider>
-      </NativeBaseProvider>
+      <Test />
   );
 }
 
