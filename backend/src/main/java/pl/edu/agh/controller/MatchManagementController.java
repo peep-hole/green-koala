@@ -56,7 +56,7 @@ public class MatchManagementController {
         List<Match> matches = matchManagementService.getAllMatches();
 
         for (Match match: matches) {
-            if (match.getId().equals(uuidID)) { // TODO: don't know why repository.getById() doesn't work :<
+            if (match.getId().equals(uuidID)) {
 
                 return match;
             }
