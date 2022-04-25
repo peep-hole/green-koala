@@ -17,6 +17,9 @@ const DisplayMatch = props => {
     const [fighter1Score, setFighter1Score] = useState(props.match.fighter1Score);
     const [fighter2Score, setFighter2Score] = useState(props.match.fighter2Score);
 
+    //will be used to determine which elements of the interface should be shown - either "Main" or "Side"
+    const refereeType = props.refereeType;
+
     return (
         <>
             <FormHeader name="Match" marginBottom="200px"></FormHeader>
