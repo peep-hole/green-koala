@@ -30,4 +30,38 @@ public class MatchManagementController {
     public ResponseEntity<Map<RefereeType, UUID>> addNewMatch(@RequestBody Match match) {
         return new ResponseEntity<>(matchManagementService.addNewMatch(match), HttpStatus.OK);
     }
+
+    @GetMapping("/match-by-token/{token}")
+    public Match getMatchByToken(@PathVariable String token) {
+        UUID uuidToken = UUID.fromString(token);
+
+        List<Match> matches = matchManagementService.getAllMatches();
+
+        for (Match match: matches) {
+            if (match.getMainRefereeToken().equals(uuidToken) ||
+                    match.getSideRefereeToken1().equals(uuidToken) ||
+                    match.getSideRefereeToken2().equals(uuidToken)) {
+
+                return match;
+            }
+        }
+
+        return null;
+    }
+
+    @GetMapping("/match-by-id/{id}")
+    public Match getMatchById(@PathVariable String id) {
+        UUID uuidID= UUID.fromString(id);
+
+        List<Match> matches = matchManagementService.getAllMatches();
+
+        for (Match match: matches) {
+            if (match.getId().equals(uuidID)) { // TODO: don't know why repository.getById() doesn't work :<
+
+                return match;
+            }
+        }
+
+        return null;
+    }
 }
