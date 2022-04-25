@@ -15,13 +15,25 @@ const Timer = () => {
     }
 
     const reset = () => {
+        sendFinalTimeToDatabase()
         setMinutes(0)
         setSeconds(0)
         setIsActive(false)
     }
 
     const sendTimeToDatabase = () => {
-        Api.post('/timer', {
+        Api.post('/timer/token', {
+            minutes: minutes,
+            seconds: seconds
+        }).then(res => {
+            console.log(res)
+        }).catch(e => {
+            console.log(e)
+        })
+    }
+
+    const sendFinalTimeToDatabase = () => {
+        Api.post('/timer-end/token', {
             minutes: minutes,
             seconds: seconds
         }).then(res => {
