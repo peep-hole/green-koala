@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { HStack, VStack, Text, Button, Center, Box, Flex } from 'native-base';
 import FormHeader from './util/FormHeader';
 
+//mockup to use in testing - we will pass a correct object with props from token input
 const match = {
     time: 0,
     fighter1Name: 'Fighter One',
@@ -9,6 +10,26 @@ const match = {
     fighter1Score: 3,
     fighter2Score: 2,
 };
+
+//easiest way to test - replace App in App.js with:
+// export default function App() {
+//     const match = {
+//         time: 0,
+//         fighter1Name: 'Fighter One',
+//         fighter2Name: 'Fighter Two',
+//         fighter1Score: 3,
+//         fighter2Score: 2,
+//     };
+
+//     return (
+
+//         <NativeBaseProvider>
+//             <SSRProvider>
+//                 <DisplayMatch match={match}></DisplayMatch>
+//             </SSRProvider>
+//         </NativeBaseProvider>
+//     );
+// }
 
 const DisplayMatch = props => {
     const [matchTime, setMatchTime] = useState(props.match.time);
@@ -115,17 +136,22 @@ const DisplayMatch = props => {
                         </Box>
 
                         <VStack>
-                            <HStack>
-                                <Button width="50%" p="20px" bg="red.500">
-                                    RED point
+                            <Center>
+                                <HStack>
+                                    <Button width="50%" p="20px" m="2px" bg="red.500">
+                                        RED point
+                                    </Button>
+                                    <Button width="50%" p="20px" m="2px" bg="blue.500" n>
+                                        BLUE point
+                                    </Button>
+                                </HStack>
+                            </Center>
+
+                            <Center>
+                                <Button bg="gray.500" p="15px" width="100%">
+                                    No point
                                 </Button>
-                                <Button width="50%" p="20px" bg="blue.500" n>
-                                    BLUE point
-                                </Button>
-                            </HStack>
-                            <Button bg="gray.500" p="30px">
-                                No point
-                            </Button>
+                            </Center>
                         </VStack>
                     </Center>
                 </VStack>
