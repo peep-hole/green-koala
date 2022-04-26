@@ -9,7 +9,7 @@ export default function App() {
   return (
       <NativeBaseProvider>
           <SSRProvider>
-              <FightInfo> </FightInfo>
+              <FightInfo fightId="1234" > </FightInfo>
           </SSRProvider>
       </NativeBaseProvider>
   );
