@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { HStack, VStack, Text, Button, Center, Box, Flex } from 'native-base';
 import FormHeader from './util/FormHeader';
+import DisplayScore from './DisplayScore';
 
 //mockup to use in testing - we will pass a correct object with props from token input
 const match = {
@@ -76,53 +77,10 @@ const DisplayMatch = props => {
                             </Box>
                         </HStack>
 
-                        <Flex
-                            bg="gray.300"
-                            p="5%"
-                            width="auto"
-                            borderColor="black"
-                            borderWidth="1"
-                            rounded="lg"
-                            flexDirection="row"
-                            alignItems={'center'}
-                            mb="20px"
-                        >
-                            <Center
-                                bg="gray.300"
-                                _text={{
-                                    color: 'black',
-                                    fontWeight: 'bold',
-                                    fontSize: '4xl',
-                                }}
-                                width="120px"
-                                height="64px"
-                                borderColor="black"
-                                borderWidth="1"
-                            >
-                                {fighter1Score}
-                            </Center>
-
-                            <Center>
-                                <Text fontSize="md" p="20px">
-                                    Score
-                                </Text>
-                            </Center>
-
-                            <Center
-                                bg="gray.300"
-                                _text={{
-                                    color: 'black',
-                                    fontWeight: 'bold',
-                                    fontSize: '4xl',
-                                }}
-                                width="120px"
-                                height="64px"
-                                borderColor="black"
-                                borderWidth="1"
-                            >
-                                {fighter2Score}
-                            </Center>
-                        </Flex>
+                        <DisplayScore
+                            fighter1Score={fighter1Score}
+                            fighter2Score={fighter2Score}
+                        ></DisplayScore>
 
                         <Box bg="gray.300" mb="20px" width="100%" height="200px">
                             <VStack>
