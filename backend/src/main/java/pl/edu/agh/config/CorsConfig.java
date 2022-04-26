@@ -1,4 +1,4 @@
-package pl.edu.agh.api;
+package pl.edu.agh.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
