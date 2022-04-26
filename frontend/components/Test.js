@@ -9,25 +9,25 @@ const Test = () => {
     const [userData, setUserData] = useState({
         connected: false,
         message: ''
-    }) ;
+    });
     const [response, setResponse] = useState('');
 
     useEffect(() => {
         stompClient = over(sock);
-        stompClient.connect({},onConnected, onError);
+        stompClient.connect({}, onConnected, onError);
     }, []);
 
     const onConnected = () => {
         console.log("CONNECTED")
         stompClient.subscribe('/test/response', onMessageReceived);
-        stompClient.send("/backend/message", {}, JSON.stringify({
-            message: "Join"
+        stompClient.send("/backend/timer", {}, JSON.stringify({
+            action: "GET"
         }));
         setUserData({...userData, "connected": true});
     }
 
     const onMessageReceived = (payload) => {
-        let message = JSON.parse(payload.body)["message"];
+        let message = payload.body;
         setResponse(message);
     }
 
@@ -35,25 +35,51 @@ const Test = () => {
         console.log("Error: " + error);
     }
 
-    const sendMessage = () => {
-        if(stompClient){
-        let message ={
-            message: "Hardcoded message"
-        };
-        stompClient.send('/backend/message', {}, JSON.stringify(message));
+    const sendStart = () => {
+        if (stompClient) {
+            let message = {
+                action: "START"
+            };
+            stompClient.send('/backend/timer', {}, JSON.stringify(message));
+        }
+    }
+
+    const sendStop = () => {
+        if (stompClient) {
+            let message = {
+                action: "STOP"
+            };
+            stompClient.send('/backend/timer', {}, JSON.stringify(message));
+        }
+    }
+
+    const sendGet = () => {
+        if (stompClient) {
+            let message = {
+                action: "GET"
+            };
+            stompClient.send('/backend/timer', {}, JSON.stringify(message));
         }
     }
 
     return (
         <>
-        {userData.connected? "YES": "NO"}
-        <NativeBaseProvider>
-        <Button 
-          onPress={sendMessage} >
-              Send something
-        </Button>
-        </NativeBaseProvider>
-        {response}
+            {userData.connected ? "YES" : "NO"}
+            <NativeBaseProvider>
+                <Button
+                    onPress={sendStart}>
+                    Send start
+                </Button>
+                <Button
+                    onPress={sendStop}>
+                    Send Stop
+                </Button>
+                <Button
+                    onPress={sendGet}>
+                    Send get
+                </Button>
+            </NativeBaseProvider>
+            {response}
         </>
     );
 };
