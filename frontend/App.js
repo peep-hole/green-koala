@@ -3,12 +3,13 @@ import {NativeBaseProvider} from 'native-base';
 import CreateMatchForm from "./components/CreateMatchForm";
 import {SSRProvider} from "react-bootstrap";
 import React from "react";
+import FightInfo from './components/FightInfo';
 
 export default function App() {
   return (
       <NativeBaseProvider>
           <SSRProvider>
-              <CreateMatchForm> </CreateMatchForm>
+              <FightInfo> </FightInfo>
           </SSRProvider>
       </NativeBaseProvider>
   );
