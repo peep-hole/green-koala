@@ -15,25 +15,14 @@ const Timer = () => {
     }
 
     const reset = () => {
-        sendFinalTimeToDatabase()
+        sendTimeToDatabase('-end')
         setMinutes(0)
         setSeconds(0)
         setIsActive(false)
     }
 
-    const sendTimeToDatabase = () => {
-        Api.post('/timer/token', {
-            minutes: minutes,
-            seconds: seconds
-        }).then(res => {
-            console.log(res)
-        }).catch(e => {
-            console.log(e)
-        })
-    }
-
-    const sendFinalTimeToDatabase = () => {
-        Api.post('/timer-end/token', {
+    const sendTimeToDatabase = (param) => {
+        Api.post(`/timer${param}/token`, {
             minutes: minutes,
             seconds: seconds
         }).then(res => {
@@ -53,7 +42,7 @@ const Timer = () => {
                 } else{
                     setSeconds(seconds + 1)
                 }
-                sendTimeToDatabase()
+                sendTimeToDatabase('')
             }, 1000)
         } else if (!isActive && (seconds !== 0 && minutes !== 0)){
             clearInterval(interval)
