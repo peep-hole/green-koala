@@ -205,11 +205,4 @@ const CreateMatchForm = () => {
     );
 };
 
-const styles = StyleSheet.create({
-    ionicons: {
-        marginTop: "20px"
-    }
-})
-
-
 export default CreateMatchForm;
