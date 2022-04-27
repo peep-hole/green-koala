@@ -25,10 +25,10 @@ const TokenInput = props => {
     const [clickAction, setClickAction] = useState(() => token => {
         setError(false);
         console.log(token);
-        console.log('/match/' + token);
+        console.log('/match/token/' + token);
 
         Api.get(
-            '/match/' + token // temporary request body
+            '/match/token/' + token // temporary request body
         )
             .then(res => {
                 console.log(res);

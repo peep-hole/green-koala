@@ -19,11 +19,9 @@ const RegisterPlayerForm = () =>{
         name: '',
         surname: '',
         age: '',
-        weight: '',
-        option1: '',
-        option2: '',
-        option3: ''
+        weight: ''
     });
+
     const [error, setError] = React.useState('');
 
     const validate = () => {        /// form logic
@@ -50,7 +48,7 @@ const RegisterPlayerForm = () =>{
 
     const onSubmit = () => {
         if(validate()){
-            Api.post("/player_add", {
+            Api.post("/actors/register-fighter", {
                 player_data: {...formData, gender: gender}
             })
             .then(response => console.log(response.data))
@@ -90,30 +88,30 @@ const RegisterPlayerForm = () =>{
                     <InputRightAddon children={"kg"} />
                 </InputGroup>
             </VStack>
-            <VStack space={optionsSpacing} w="100%" marginTop={marginTop}>
-                {/* maybe new component for every switch with props is better idea?, but what with passing object? */}
-                <Center display="flex" flexDirection="row" alignItems="center">
-                    <Switch 
-                    colorScheme={colorScheme}
-                    isChecked={formData.option1} 
-                    onToggle={() => {setData({...formData, option1: !formData.option1})}} />
-                    <Text> Option1 </Text>
-                </Center>
-                <Center display="flex" flexDirection="row" alignItems="center">
-                    <Switch 
-                    colorScheme={colorScheme}
-                    isChecked={formData.option2} 
-                    onToggle={() => {setData({...formData, option2: !formData.option2})}} />
-                    <Text> Option2 </Text>
-                </Center>
-                <Center display="flex" flexDirection="row" alignItems="center">
-                    <Switch 
-                    colorScheme={colorScheme}
-                    isChecked={formData.option3}  
-                    onToggle={() => {setData({...formData, option3: !formData.option3})}} />
-                    <Text> Option3 </Text>
-                </Center> 
-            </VStack>
+            {/*<VStack space={optionsSpacing} w="100%" marginTop={marginTop}>*/}
+            {/*    /!* maybe new component for every switch with props is better idea?, but what with passing object? *!/*/}
+            {/*    <Center display="flex" flexDirection="row" alignItems="center">*/}
+            {/*        <Switch */}
+            {/*        colorScheme={colorScheme}*/}
+            {/*        isChecked={formData.option1} */}
+            {/*        onToggle={() => {setData({...formData, option1: !formData.option1})}} />*/}
+            {/*        <Text> Option1 </Text>*/}
+            {/*    </Center>*/}
+            {/*    <Center display="flex" flexDirection="row" alignItems="center">*/}
+            {/*        <Switch */}
+            {/*        colorScheme={colorScheme}*/}
+            {/*        isChecked={formData.option2} */}
+            {/*        onToggle={() => {setData({...formData, option2: !formData.option2})}} />*/}
+            {/*        <Text> Option2 </Text>*/}
+            {/*    </Center>*/}
+            {/*    <Center display="flex" flexDirection="row" alignItems="center">*/}
+            {/*        <Switch */}
+            {/*        colorScheme={colorScheme}*/}
+            {/*        isChecked={formData.option3}  */}
+            {/*        onToggle={() => {setData({...formData, option3: !formData.option3})}} />*/}
+            {/*        <Text> Option3 </Text>*/}
+            {/*    </Center> */}
+            {/*</VStack>*/}
             <Center padding={padding} marginTop={marginTop}>
                 <Button 
                 onPress={onSubmit} 

@@ -5,7 +5,7 @@ import Api from "./util/Api";
 import {FontAwesome} from "@expo/vector-icons";
 import DateTimePicker from "@react-native-community/datetimepicker"
 import SearchableDropdown from "react-native-searchable-dropdown";
-import {Platform, StyleSheet} from "react-native";
+import {Platform} from "react-native";
 
 const CreateMatchForm = () => {
     const [firstPlayer, setFirstPlayer] = useState({})
@@ -23,7 +23,7 @@ const CreateMatchForm = () => {
     const [timeString, setTimeString] = useState(date.getHours() + ":" + date.getMinutes().toString().padStart(2, "0"))
 
     const getAllPlayers = () => {
-        Api.get('/players' // TODO type proper url when backend is ready
+        Api.get('/actors/fighters' // TODO type proper url when backend is ready
         ).then(res => {
             setPlayers(res.data)
         }).catch(e => {
@@ -51,9 +51,9 @@ const CreateMatchForm = () => {
     }
 
     const onCreateClick = () => {
-        Api.post("/match", { // temporary request body
-            firstPlayer: firstPlayer,
-            secondPlayer: secondPlayer,
+        Api.post("/matches/new-match", { // temporary request body
+            fighterId1: firstPlayer.id,
+            fighterId2: secondPlayer.id,
             date: dateString,
             time: timeString
           }).then(res => {

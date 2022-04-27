@@ -18,10 +18,10 @@ const FightInfo = props => {
 
     //request for match's fighters data
     const getFighters = () => {
-        Api.get('/fighters/id' + fightData.fighterId1
+        Api.get('/actors/fighters/id/' + fightData.fighterId1
         ).then(res => { setFirstFighter(res.data) }).catch(e => { console.log(e) });
 
-        Api.get('/fighters/id' + fightData.fighterId2
+        Api.get('/actors/fighters/id/' + fightData.fighterId2
         ).then(res => { setSecondFighter(res.data) }).catch(e => { console.log(e) });
     };
 
@@ -46,15 +46,15 @@ const FightInfo = props => {
         //temporary mocked fighters
         setFirstFighter({
             "id": "123",
-            "firstName": "Marien",
-            "lastName": "Quinteiro",
+            "name": "Marien",
+            "surname": "Quinteiro",
             "age": "34"
             //...
         });
         setSecondFighter({
             "id": "122",
-            "firstName": "Philipe",
-            "lastName": "Contore",
+            "name": "Philipe",
+            "surname": "Contore",
             "age": "33"
             //...
         });
@@ -78,14 +78,14 @@ const FightInfo = props => {
                     <Flex direction="row" marginTop="15px" rounded="lg" borderColor="black" borderWidth="1" p="4px">
                         <FontAwesome name="user-circle" size={28} color="black" />
                         <Text marginLeft={5} color="black" fontSize={20} fontWeight="bold" >
-                            {fighter1.firstName}  {fighter1.lastName}
+                            {fighter1.name}  {fighter1.surname}
                         </Text>
                     </Flex>
                     <Text marginTop="5px" marginBottom="5px" color="black" fontSize={22} fontWeight="bold" >VS</Text>
                     <Flex direction="row" rounded="lg" borderColor="black" borderWidth="1" p="4px">
                         <FontAwesome name="user-circle" size={28} color="black" />
                         <Text marginLeft={5} color="black" fontSize={20} fontWeight="bold" >
-                            {fighter2.firstName}  {fighter2.lastName}
+                            {fighter2.name}  {fighter2.surname}
                         </Text>
                     </Flex>
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { HStack, VStack, Text, Button, Center, Box, Flex } from 'native-base';
 import FormHeader from './util/FormHeader';
 import DisplayScore from './DisplayScore';
+import Timer from "./Timer";
 
 //mockup to use in testing - we will pass a correct object with props from token input
 const match = {
@@ -44,7 +45,8 @@ const DisplayMatch = props => {
 
     return (
         <>
-            <FormHeader name="Match" marginBottom="200px"></FormHeader>
+            <FormHeader name="Match" marginBottom="200px"/>
+            <Timer/>
             <Center>
                 <VStack width="90%">
                     <Center>
