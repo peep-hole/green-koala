@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { HStack, VStack, Text, Button, Center, Box, Flex } from 'native-base';
 import FormHeader from './util/FormHeader';
 import DisplayScore from './DisplayScore';
+import Timer from "./Timer";
 
 //mockup to use in testing - we will pass a correct object with props from token input
 const match = {
@@ -33,23 +34,22 @@ const match = {
 // }
 
 const DisplayMatch = props => {
-    const [matchTime, setMatchTime] = useState(props.match.time);
-    const [fighter1Name, setFighter1Name] = useState(props.match.fighter1Name);
-    const [fighter2Name, setFighter2Name] = useState(props.match.fighter2Name);
-    const [fighter1Score, setFighter1Score] = useState(props.match.fighter1Score);
-    const [fighter2Score, setFighter2Score] = useState(props.match.fighter2Score);
+    const [matchTime, setMatchTime] = useState(match.time);
+    const [fighter1Name, setFighter1Name] = useState(match.fighter1Name);
+    const [fighter2Name, setFighter2Name] = useState(match.fighter2Name);
+    const [fighter1Score, setFighter1Score] = useState(match.fighter1Score);
+    const [fighter2Score, setFighter2Score] = useState(match.fighter2Score);
 
     //will be used to determine which elements of the interface should be shown - either "Main" or "Side"
-    const refereeType = props.refereeType;
+    // const refereeType = props.refereeType;
 
     return (
         <>
-            <FormHeader name="Match" marginBottom="200px"></FormHeader>
+            <FormHeader name="Match" marginBottom="200px"/>
             <Center>
                 <VStack width="90%">
+                    <Timer/>
                     <Center>
-                        <Text>{matchTime}</Text>
-
                         <HStack width="100%" mb="20px">
                             <Box
                                 bg="red.400"
@@ -60,7 +60,7 @@ const DisplayMatch = props => {
                                 height="40px"
                             >
                                 <Center>
-                                    <Text color="white">{fighter1Name}</Text>
+                                    <Text color="white">{fighter1Name.toString()}</Text>
                                 </Center>
                             </Box>
                             <Box
@@ -72,15 +72,15 @@ const DisplayMatch = props => {
                                 height="40px"
                             >
                                 <Center>
-                                    <Text color="white">{fighter2Name}</Text>
+                                    <Text color="white">{fighter2Name.toString()}</Text>
                                 </Center>
                             </Box>
                         </HStack>
 
                         <DisplayScore
-                            fighter1Score={fighter1Score}
-                            fighter2Score={fighter2Score}
-                        ></DisplayScore>
+    fighter1Score={fighter1Score}
+    fighter2Score={fighter2Score}
+    />
 
                         <Box bg="gray.300" mb="20px" width="100%" height="200px">
                             <VStack>

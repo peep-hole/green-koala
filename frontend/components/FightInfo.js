@@ -63,7 +63,7 @@ const FightInfo = props => {
 
     return (
         <>
-            <FormHeader name="Fight Details"></FormHeader>
+            <FormHeader name="Fight Details"/>
             <ScrollView>
                 <Center>
                     {/* Fight date-time */}

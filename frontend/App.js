@@ -3,17 +3,33 @@ import {NativeBaseProvider} from 'native-base';
 import CreateMatchForm from "./components/CreateMatchForm";
 import {SSRProvider} from "react-bootstrap";
 import React from "react";
+import {NativeRouter, Route, Routes} from "react-router-native";
 import FightInfo from './components/FightInfo';
 import Timer from "./components/Timer";
 import FormHeader from "./components/util/FormHeader";
 import RegisterPlayerForm from "./components/RegisterPlayerForm";
+import Demo from "./components/Demo";
+import TokenInput from "./components/TokenInput";
+import LoginPick from "./components/LoginPick";
+import DisplayScore from "./components/DisplayScore";
+import DisplayMatch from "./components/DisplayMatch";
 
 
 export default function App() {
   return (
       <NativeBaseProvider>
           <SSRProvider>
-              <FightInfo fightId="1234" > </FightInfo>
+              <NativeRouter>
+                  <Routes>
+                      <Route path='/' element={<Demo/>}/>
+                      <Route path='/tokenInput' element={<TokenInput/>}/>
+                      <Route path='/registerPlayerForm' element={<RegisterPlayerForm/>}/>
+                      <Route path='/loginPick' element={<LoginPick/>}/>
+                      <Route path='/fightInfo' element={<FightInfo/>}/>
+                      <Route path='/displayMatch' element={<DisplayMatch/>}/>
+                      <Route path='/createMatchForm' element={<CreateMatchForm/>}/>
+                  </Routes>
+              </NativeRouter>
           </SSRProvider>
       </NativeBaseProvider>
   );
