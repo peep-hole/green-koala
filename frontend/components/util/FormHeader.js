@@ -1,5 +1,6 @@
 import React from 'react';
 import {Box, HStack, Icon, IconButton, StatusBar, Text} from "native-base";
+import {Link} from "react-router-native"
 
 const FormHeader = (props) => {
     /* #065f46 -> Headers
@@ -14,9 +15,9 @@ const FormHeader = (props) => {
             <HStack marginBottom="30px" bg="#065f46" px="1" py="3" justifyContent="space-between" alignItems="center" w="100%">
                 <HStack alignItems="center">
                     <IconButton icon={<Icon size="sm" name="menu" color="white" />} />
-                    <Text color="white" fontSize="20" fontWeight="bold">
+                    <Link to="/"><Text color="white" fontSize="20" fontWeight="bold">
                         {props.name}
-                    </Text>
+                    </Text></Link>
                 </HStack>
                 <HStack>
                     <IconButton icon={<Icon name="favorite" size="sm" color="white" />} />
