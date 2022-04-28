@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import Api from "./util/Api";
 import FormHeader from "./util/FormHeader";
 import { VStack, Button, Center, Flex, Text, ScrollView } from "native-base";
@@ -6,58 +6,62 @@ import { FontAwesome } from "@expo/vector-icons";
 
 const FightInfo = props => {
 
-    let [fightData, setFightData] = useState({});
-    let [fighter1, setFirstFighter] = useState({});
-    let [fighter2, setSecondFighter] = useState({});
+    const [fightData, setFightData] = useState({});
+    const [fighter1, setFirstFighter] = useState({});
+    const [fighter2, setSecondFighter] = useState({});
 
     //request for match instance with fightID
     const getFight = () => {
         Api.get('/matches/id/' + props.fightId
-        ).then(res => { setFightData(res.data) }).catch(e => { console.log(e) })
+        ).then(res => {
+            console.log(res.data)
+            setFightData(res.data)
+        }).catch(e => { console.log(e) })
     };
 
     //request for match's fighters data
     const getFighters = () => {
-        Api.get('/fighters/id' + fightData.fighterId1
+        console.log(fightData)
+        Api.get('/actors/fighters/id/' + fightData.fighterId1
         ).then(res => { setFirstFighter(res.data) }).catch(e => { console.log(e) });
 
-        Api.get('/fighters/id' + fightData.fighterId2
+        Api.get('/actors/fighters/id/' + fightData.fighterId2
         ).then(res => { setSecondFighter(res.data) }).catch(e => { console.log(e) });
     };
 
     useEffect(() => {
         console.log("Fight id: ", props.fightId)
-        getFight();
+        getFight()
+        getFighters()
         //temporary mocked fight data
-        setFightData({
-            "id": "123",
-            "fighterId1": "123",
-            "fighterId2": "222",
-            "date": "12.05.2022",
-            "time": "18:22",
-            "mainRefereeToken": "wergr342rfgq5354r23e1",
-            "mainRefereeId": "234",
-            "sideRefereeToken1": "32thhrlyjjytq5354r23e1",
-            "sideRefereeId1": "324",
-            "sideRefereeToken2": "124324tgtrfertertwet43",
-            "sideRefereeId2": "444",
-        });
-        getFighters();
+        // setFightData({
+        //     "id": "123",
+        //     "fighterId1": "123",
+        //     "fighterId2": "222",
+        //     "date": "12.05.2022",
+        //     "time": "18:22",
+        //     "mainRefereeToken": "wergr342rfgq5354r23e1",
+        //     "mainRefereeId": "234",
+        //     "sideRefereeToken1": "32thhrlyjjytq5354r23e1",
+        //     "sideRefereeId1": "324",
+        //     "sideRefereeToken2": "124324tgtrfertertwet43",
+        //     "sideRefereeId2": "444",
+        // });
         //temporary mocked fighters
-        setFirstFighter({
-            "id": "123",
-            "firstName": "Marien",
-            "lastName": "Quinteiro",
-            "age": "34"
-            //...
-        });
-        setSecondFighter({
-            "id": "122",
-            "firstName": "Philipe",
-            "lastName": "Contore",
-            "age": "33"
-            //...
-        });
+        // setFirstFighter({
+        //     "id": "123",
+        //     "firstName": "Marien",
+        //     "lastName": "Quinteiro",
+        //     "age": "34"
+        //     //...
+        // });
+        // setSecondFighter({
+        //     "id": "122",
+        //     "firstName": "Philipe",
+        //     "lastName": "Contore",
+        //     "age": "33"
+        //     //...
+        // });
         console.log(fightData, fighter1, fighter2);
     }, []);
 

@@ -6,6 +6,7 @@ import {FontAwesome} from "@expo/vector-icons";
 import DateTimePicker from "@react-native-community/datetimepicker"
 import SearchableDropdown from "react-native-searchable-dropdown";
 import {Platform, StyleSheet} from "react-native";
+import axios from "axios";
 
 const CreateMatchForm = () => {
     const [firstPlayer, setFirstPlayer] = useState({})
@@ -23,8 +24,9 @@ const CreateMatchForm = () => {
     const [timeString, setTimeString] = useState(date.getHours() + ":" + date.getMinutes().toString().padStart(2, "0"))
 
     const getAllPlayers = () => {
-        Api.get('/players' // TODO type proper url when backend is ready
+        Api.get('/api/actors/fighters' // TODO type proper url when backend is ready
         ).then(res => {
+            console.log(res.data)
             setPlayers(res.data)
         }).catch(e => {
             console.log(e) // TODO handle it somehow
@@ -32,7 +34,6 @@ const CreateMatchForm = () => {
     }
 
     useEffect(() => {
-        console.log(typeof firstPlayer.name)
         getAllPlayers()
     }, [])
 
@@ -89,7 +90,6 @@ const CreateMatchForm = () => {
                             itemsContainerStyle={{ maxHeight: 140 }}
                             items={players}
                             resetValue={false}
-                            defaultIndex={2}
                             placeholder={showSearch1 ? "Search" : firstPlayer.name}
                             textInputProps={
                                 {
