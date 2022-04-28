@@ -4,28 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe5d30e3-9bcd-46ae-ba90-5c969c095566" name="Changes" comment="GK-66 replace @Data annotation">
+    <list default="true" id="fe5d30e3-9bcd-46ae-ba90-5c969c095566" name="Changes" comment="GK-66 change project structure">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/config/CorsConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/RefereeApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/RefereeApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/TestResource.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/actors/Fighter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/model/Fighter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/actors/Referee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/constants/RefereeType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/controller/ActorsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/controller/ActorsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/controller/ErrorHandlerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/controller/ErrorHandlerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/controller/MatchManagementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/controller/MatchManagementController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/data/MatchManagement.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/database/FighterRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/repository/FighterRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/database/MatchManagementRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/repository/MatchManagementRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/model/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/model/Match.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/services/FighterService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/service/FighterService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/api/services/MatchManagementService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/service/MatchManagementService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/match/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/constants/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/match/MatchManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/match/Timer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/utils/Timer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/tokenizer/Tokenizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/utils/Tokenizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/tournament/TournamentManager.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -328,6 +308,9 @@
       <workItem from="1649268676542" duration="789000" />
       <workItem from="1650795696871" duration="6546000" />
       <workItem from="1650802595398" duration="1736000" />
+      <workItem from="1650913294168" duration="21000" />
+      <workItem from="1650913331233" duration="597000" />
+      <workItem from="1650914629650" duration="597000" />
     </task>
     <task id="LOCAL-00001" summary="GK-66, GK-55, GK-42: create database connection &amp; add matches and fighters to db &amp; tokens generation">
       <created>1650488411316</created>

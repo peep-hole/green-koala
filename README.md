@@ -1,4 +1,5 @@
 # green-koala
+
 Group Project for Software Engineering classes at AGH UST
 
 ## Collaborators
@@ -10,4 +11,11 @@ Group Project for Software Engineering classes at AGH UST
 - [Ryszard Pręcikowski](https://github.com/RysiekPrecikowski)
 - [Sylwia Marek](https://github.com/sy1wi4)
 - [Tomasz Boroń](https://github.com/t0ms0n00)
+
+## Definition of Done
+
+- Code works as expected (compiling, no errors)
+- Acceptance criteria met
+- Code reviewed by other developer(s)
+- Merged with develop branch 
 
