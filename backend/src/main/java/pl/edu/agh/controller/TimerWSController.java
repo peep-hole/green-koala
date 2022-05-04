@@ -18,7 +18,7 @@ public class TimerWSController {
     private final Timer timer = new Timer();
     private final SimpMessagingTemplate template;
 
-    @MessageMapping("/backend/timer")
+    @MessageMapping("/timer")
     @SendTo("/response/timer")
     private String receivedMessage(@Payload TimerMessage message) {
         System.out.println("TIMER CONTROLLER " + message);

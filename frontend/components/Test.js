@@ -20,7 +20,7 @@ const Test = () => {
     const onConnected = () => {
         console.log("CONNECTED")
         stompClient.subscribe("/response/timer", onMessageReceived);
-        stompClient.send("/backend/timer", {}, JSON.stringify({
+        stompClient.send("/timer", {}, JSON.stringify({
             action: "GET"
         }));
         setUserData({...userData, "connected": true});
@@ -41,7 +41,7 @@ const Test = () => {
             let message = {
                 action: "START"
             };
-            stompClient.send('/backend/timer', {}, JSON.stringify(message));
+            stompClient.send('/timer', {}, JSON.stringify(message));
         }
     }
 
@@ -50,7 +50,7 @@ const Test = () => {
             let message = {
                 action: "STOP"
             };
-            stompClient.send('/backend/timer', {}, JSON.stringify(message));
+            stompClient.send('/timer', {}, JSON.stringify(message));
         }
     }
 
@@ -59,7 +59,7 @@ const Test = () => {
             let message = {
                 action: "GET"
             };
-            stompClient.send('/backend/timer', {}, JSON.stringify(message));
+            stompClient.send('/timer', {}, JSON.stringify(message));
         }
     }
 
