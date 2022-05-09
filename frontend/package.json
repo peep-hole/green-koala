@@ -8,7 +8,9 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "test": "jest"
+    "test": "jest",
+    "lint:js": "eslint components/**/*.js",
+    "lint": "npm run lint:js"
   },
   "jest": {
     "preset": "jest-expo",
@@ -38,6 +40,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
+    "eslint": "8.15.0",
+    "eslint-plugin-react": "^7.29.4",
     "react-test-renderer": "^17.0.2"
   },
   "private": true
