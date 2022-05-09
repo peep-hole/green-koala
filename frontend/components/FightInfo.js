@@ -13,41 +13,8 @@ const FightInfo = props => {
     const [f1loading, setF1Loading] = useState(true);
     const [f2loading, setF2Loading] = useState(true);
 
-    // //request for match instance with fightID
-    // const getFight = () => {
-    //     Api.get('/matches/id/' + 'ea5d74b4-c70b-11ec-9d64-0242ac120002')
-    //         .then(res => {
-    //             console.log(res.data);
-    //             setFightData(res.data);
-    //             console.log(fightData);
-    //         })
-    //         .catch(e => {
-    //             console.log(e);
-    //         });
-    // };
-
-    // //request for match's fighters data
-    // const getFighters = () => {
-    //     console.log(fightData);
-    //     Api.get('/actors/fighters/id/' + fightData.fighterId1)
-    //         .then(res => {
-    //             setFirstFighter(res.data);
-    //         })
-    //         .catch(e => {
-    //             console.log(e);
-    //         });
-
-    //     Api.get('/actors/fighters/id/' + fightData.fighterId2)
-    //         .then(res => {
-    //             setSecondFighter(res.data);
-    //         })
-    //         .catch(e => {
-    //             console.log(e);
-    //         });
-    // };
-
     useEffect(() => {
-        axios.get('http://localhost:8080/api' + '/matches/id/' + props.fightId).then(data => {
+        Api.get('/matches/id/' + props.fightId).then(data => {
             setFightData(data.data);
             console.log(data);
             //console.log(fightData.data);
@@ -55,21 +22,17 @@ const FightInfo = props => {
             const fighterId2 = data.data.fighterId2;
             setLoading(false);
 
-            axios
-                .get('http://localhost:8080/api' + '/actors/fighters/id/' + fighterId1)
-                .then(res => {
-                    console.log(res);
-                    console.log(res.data);
-                    setFirstFighter(res.data);
-                    setF1Loading(false);
-                });
+            Api.get('/actors/fighters/id/' + fighterId1).then(res => {
+                console.log(res);
+                console.log(res.data);
+                setFirstFighter(res.data);
+                setF1Loading(false);
+            });
 
-            axios
-                .get('http://localhost:8080/api' + '/actors/fighters/id/' + fighterId2)
-                .then(res => {
-                    setSecondFighter(res.data);
-                    setF2Loading(false);
-                });
+            Api.get('/actors/fighters/id/' + fighterId2).then(res => {
+                setSecondFighter(res.data);
+                setF2Loading(false);
+            });
         });
     }, []);
 
