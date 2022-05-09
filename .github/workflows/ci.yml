@@ -3,7 +3,22 @@ on: [push]
 
 jobs:
   
-  frontend_build_test:
+  backend_build_and_test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup JDK 17
+        uses: actions/setup-java@v2
+        with:
+          java-version: 17
+          distribution: 'adopt'
+          cache: gradle
+      - name: Backend build
+        run: cd backend && ./gradlew build
+      - name: Backend test
+        run: cd backend && ./gradlew test
+  
+  frontend_build_and_test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
