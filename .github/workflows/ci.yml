@@ -43,7 +43,7 @@ jobs:
           node-version: 16.x
 
       - name: Install Node deps
-        run: npm ci
+        run: cd frontend && npm ci
 
       - name: Run linters
         uses: wearerequired/lint-action@v2
