@@ -17,7 +17,7 @@ import DisplayMatch from "./components/DisplayMatch";
 
 export default function App() {
   return (
-      <NtiveBaseProvider>
+      <NativeBaseProvider>
           <SSRProvider>
               <NativeRouter>
                   <Routes>
