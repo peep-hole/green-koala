@@ -34,4 +34,8 @@ public class MatchManagementService {
                 RefereeType.SIDE_REFEREE_1, match.getSideRefereeToken1(),
                 RefereeType.SIDE_REFEREE_2, match.getSideRefereeToken2());
     }
+
+    public Match getMatchById(UUID id) {
+        return matchManagementRepository.getById(id);
+    }
 }

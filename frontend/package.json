@@ -26,7 +26,8 @@
     "react-native-vector-icons": "^9.1.0",
     "react-native-web": "0.17.1",
     "sockjs-client": "^1.6.0",
-    "stompjs": "^2.3.3"
+    "stompjs": "^2.3.3",
+    "react-router-native": "^6.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
