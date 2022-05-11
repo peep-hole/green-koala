@@ -9,11 +9,15 @@ public class Timer {
     }
 
     public void startTime() {
+        if (isRunning)
+            return;
         startTimestamp = System.currentTimeMillis();
         isRunning = true;
     }
 
     public void stopTime() {
+        if (!isRunning)
+            return;
         sumTime += System.currentTimeMillis() - startTimestamp;
         isRunning = false;
     }
