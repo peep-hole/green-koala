@@ -8,8 +8,8 @@ import SearchableDropdown from "react-native-searchable-dropdown";
 import {Platform, StyleSheet} from "react-native";
 
 const CreateMatchForm = () => {
-    const [firstPlayer, setFirstPlayer] = useState({})
-    const [secondPlayer, setSecondPlayer] = useState({})
+    const [firstPlayer, setFirstPlayer] = useState('')
+    const [secondPlayer, setSecondPlayer] = useState('')
 
     const [players, setPlayers] = useState([])
 
@@ -21,19 +21,22 @@ const CreateMatchForm = () => {
 
     const [dateString, setDateString] = useState(date.getDate() + "-" + date.getMonth() + "-" + date.getFullYear())
     const [timeString, setTimeString] = useState(date.getHours() + ":" + date.getMinutes().toString().padStart(2, "0"))
+    
+    const [playersLoaded, setPlayersLoaded] = useState(false);
 
     const getAllPlayers = () => {
-        Api.get('/players' // TODO type proper url when backend is ready
+        Api.get('/actors/fighters' // TODO type proper url when backend is ready
         ).then(res => {
             setPlayers(res.data)
+            console.log(res.data)
+            setPlayersLoaded(true);
         }).catch(e => {
             console.log(e) // TODO handle it somehow
         })
     }
 
     useEffect(() => {
-        console.log(typeof firstPlayer.name)
-        getAllPlayers()
+        getAllPlayers()  
     }, [])
 
     const showMode = (mode) => {
@@ -42,16 +45,21 @@ const CreateMatchForm = () => {
     }
 
     const onChange = (event, selectedDate) => {
-        event.preventDefault()
         const currDate = selectedDate || date
         setShow(Platform.OS === "ios")
-        setDateString(date.getDate() + "-" + date.getMonth() + "-" + date.getFullYear()) // example date format
-        setTimeString(date.getHours() + ":" + date.getMinutes().toString().padStart(2, "0"))
         setDate(currDate)
+        setDateString(selectedDate.getDate() + "-" + selectedDate.getMonth() + "-" + selectedDate.getFullYear()) // example date format
+        setTimeString(selectedDate.getHours() + ":" + selectedDate.getMinutes().toString().padStart(2, "0"))
     }
 
     const onCreateClick = () => {
-        Api.post("/match", { // temporary request body
+        console.log({
+            firstPlayer: firstPlayer,
+            secondPlayer: secondPlayer,
+            date: dateString,
+            time: timeString
+        })
+        Api.post("/matches/new-match", { // temporary request body
             firstPlayer: firstPlayer,
             secondPlayer: secondPlayer,
             date: dateString,
@@ -64,7 +72,7 @@ const CreateMatchForm = () => {
     }
 
     return (
-        <>
+        playersLoaded && <>
             <FormHeader name="Create fight"> </FormHeader>
             <Center>
                 <Text marginBottom="20px" color="black" fontSize="18" fontWeight="bold">
@@ -74,8 +82,11 @@ const CreateMatchForm = () => {
                     <FormControl>
                         <SearchableDropdown
                             onItemSelect={(item) => {
+                                console.log(item)
                                 setFirstPlayer(item)
+                                console.log(firstPlayer)
                                 setShowSearch1(false)
+                                console.log(item)
                             }}
                             itemStyle={{
                                 padding: 10,
@@ -107,6 +118,7 @@ const CreateMatchForm = () => {
                                     nestedScrollEnabled: true,
                                 }
                             }
+                            value={firstPlayer}
                         />
                         <Center>
                             <Text color="black" fontSize="16" padding="5px" fontWeight="bold">
