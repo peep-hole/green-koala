@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import FormHeader from "./util/FormHeader";
+import FormHeaderLink from "./util/FormHeaderLink";
 import {Button, Center, Flex, FormControl, Text, VStack} from "native-base";
 import Api from "./util/Api";
 import {FontAwesome} from "@expo/vector-icons";
@@ -73,7 +73,7 @@ const CreateMatchForm = () => {
 
     return (
         playersLoaded && <>
-            <FormHeader name="Create fight"> </FormHeader>
+            <FormHeaderLink pathname="MatchList" state={{}} name="Create fight"> </FormHeaderLink>
             <Center>
                 <Text marginBottom="20px" color="black" fontSize="18" fontWeight="bold">
                     Choose fighters

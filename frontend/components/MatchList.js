@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Api from './util/Api';
 import FormHeaderLink from './util/FormHeaderLink';
-import { VStack, Button, Center, Box, Heading, FlatList, HStack, Spacer, Text, ScrollView } from 'native-base';
-import { FontAwesome } from '@expo/vector-icons';
+import { VStack, Flex, Center, Box, Heading, FlatList, HStack, Spacer, Text, ScrollView } from 'native-base';
 import { Link, useLocation } from "react-router-native";
+import { MaterialIcons } from '@expo/vector-icons';
 
 const MatchList = () => {
 
@@ -31,7 +31,7 @@ const MatchList = () => {
     return (
         matchesLoaded && <>
             <FormHeaderLink pathname="" state={{}} name="Matches" />
-            <Box id="oncoming_matches" height="30%">
+            <Box id="oncoming_matches" height="35%">
                 <Heading fontSize="xl" p="4" pb="3">
                     <Center>
                         Oncoming Fights
@@ -58,7 +58,7 @@ const MatchList = () => {
                     } keyExtractor={item => item.id} />
                 </ScrollView>
             </Box>
-            <Box id="history_matches" height="50%">
+            <Box id="history_matches" height="35%">
                 <Heading fontSize="xl" p="4" pb="3">
                     <Center>
                         History Fights
@@ -85,6 +85,11 @@ const MatchList = () => {
                         keyExtractor={item => item.id} />
                 </ScrollView>
             </Box>
+            <Flex direction="row-reverse">
+                <Link to="/createMatchForm">
+                    <MaterialIcons name="add-circle-outline" size={70} color="black" />
+                </Link>
+            </Flex>
 
             {/* Here footer component containing administrator's navigation bar */}
         </>
