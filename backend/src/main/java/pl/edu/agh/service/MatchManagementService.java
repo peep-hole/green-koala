@@ -3,7 +3,6 @@ package pl.edu.agh.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.edu.agh.constants.RefereeType;
-import pl.edu.agh.model.Fighter;
 import pl.edu.agh.model.Match;
 import pl.edu.agh.repository.MatchManagementRepository;
 import pl.edu.agh.utils.Tokenizer;
@@ -37,10 +36,14 @@ public class MatchManagementService {
     }
 
     public Match getMatchById(UUID id) {
-        return matchManagementRepository.getById(id);
+        return matchManagementRepository.findById(id).orElse(null);
     }
 
-    public boolean matchExists(Match match){
+    public boolean matchExists(Match match) {
         return matchManagementRepository.existsById(match.getId());
+    }
+
+    public boolean matchIdExists(UUID id) {
+        return matchManagementRepository.existsById(id);
     }
 }

@@ -28,7 +28,15 @@ public class FighterService {
         fighterRepository.save(fighter);
     }
 
+    public Fighter getFighterById(UUID id) {
+        return fighterRepository.findById(id).orElse(null);
+    }
+
     public boolean fighterExists(Fighter fighter) {
-        return fighterRepository.existsById(fighter.getId());
+        return fighterIdExists(fighter.getId());
+    }
+
+    public boolean fighterIdExists(UUID id) {
+        return fighterRepository.existsById(id);
     }
 }
