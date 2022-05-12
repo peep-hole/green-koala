@@ -4,14 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="67074e83-e987-4a3b-a23d-f00431171d6b" name="Changes" comment="[GK-extra] Added getFighterById endpoint">
+    <list default="true" id="67074e83-e987-4a3b-a23d-f00431171d6b" name="Changes" comment="made database persistent">
       <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/config/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/config/AppConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/model/Fighter.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/model/Fighter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/model/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/model/Match.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/service/FighterService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/service/FighterService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/service/MatchManagementService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/service/MatchManagementService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,8 +84,8 @@
     </option>
     <option name="myId2Visible">
       <map>
-        <entry key="com.haulmont.jpb.jpaInspector" value="true" />
-        <entry key="com.haulmont.jpb.jpaPalette" value="true" />
+        <entry key="com.haulmont.jpb.jpaInspector" value="false" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="false" />
         <entry key="com.haulmont.jpb.jpaStructure" value="false" />
       </map>
     </option>
@@ -363,7 +365,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651087163011</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="made database persistent">
+      <created>1652384710497</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1652384710498</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -408,7 +417,8 @@
     <MESSAGE value="[GK-54] Added getMatchByToken/Id endpoints" />
     <MESSAGE value="Merge remote-tracking branch 'origin/GK-54-dostarczanie-informacji-o-meczu-na-podstawie-tokena' into GK-54-dostarczanie-informacji-o-meczu-na-podstawie-tokena" />
     <MESSAGE value="[GK-extra] Added getFighterById endpoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="[GK-extra] Added getFighterById endpoint" />
+    <MESSAGE value="made database persistent" />
+    <option name="LAST_COMMIT_MESSAGE" value="made database persistent" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

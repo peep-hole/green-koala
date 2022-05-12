@@ -3,6 +3,7 @@ package pl.edu.agh.model;
 import lombok.*;
 import org.hibernate.Hibernate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -19,6 +20,7 @@ import java.util.UUID;
 @Builder
 public class Match {
     @Id
+    @Column(nullable = false, unique = true, updatable = false, columnDefinition = "uuid")
     private UUID id;
     private UUID fighterId1;
     private UUID fighterId2;
