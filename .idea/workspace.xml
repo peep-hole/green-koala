@@ -5,13 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="67074e83-e987-4a3b-a23d-f00431171d6b" name="Changes" comment="[GK-extra] Added getFighterById endpoint">
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/config/AppConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/backend/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/config/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/config/AppConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/service/FighterService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/service/FighterService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +84,7 @@
       <map>
         <entry key="com.haulmont.jpb.jpaInspector" value="true" />
         <entry key="com.haulmont.jpb.jpaPalette" value="true" />
-        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
       </map>
     </option>
   </component>
@@ -98,6 +98,10 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -246,7 +250,6 @@
       <workItem from="1650977038088" duration="606000" />
       <workItem from="1650983241087" duration="9000" />
       <workItem from="1651084549415" duration="4918000" />
-
     </task>
     <task id="LOCAL-00001" summary="Project Init">
       <created>1648742798290</created>
@@ -406,5 +409,41 @@
     <MESSAGE value="Merge remote-tracking branch 'origin/GK-54-dostarczanie-informacji-o-meczu-na-podstawie-tokena' into GK-54-dostarczanie-informacji-o-meczu-na-podstawie-tokena" />
     <MESSAGE value="[GK-extra] Added getFighterById endpoint" />
     <option name="LAST_COMMIT_MESSAGE" value="[GK-extra] Added getFighterById endpoint" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-jpa/2.6.3/f8a00876d4d23efe8ced44c42a94ef108488e12f/spring-data-jpa-2.6.3-sources.jar!/org/springframework/data/jpa/repository/support/SimpleJpaRepository.java</url>
+          <line>363</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-jpa/2.6.3/f8a00876d4d23efe8ced44c42a94ef108488e12f/spring-data-jpa-2.6.3-sources.jar!/org/springframework/data/jpa/repository/support/SimpleJpaRepository.java</url>
+          <line>366</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-jpa/2.6.3/f8a00876d4d23efe8ced44c42a94ef108488e12f/spring-data-jpa-2.6.3-sources.jar!/org/springframework/data/jpa/repository/support/SimpleJpaRepository.java</url>
+          <line>381</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-jpa/2.6.3/f8a00876d4d23efe8ced44c42a94ef108488e12f/spring-data-jpa-2.6.3-sources.jar!/org/springframework/data/jpa/repository/support/SimpleJpaRepository.java</url>
+          <line>372</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-jpa/2.6.3/f8a00876d4d23efe8ced44c42a94ef108488e12f/spring-data-jpa-2.6.3-sources.jar!/org/springframework/data/jpa/repository/support/SimpleJpaRepository.java</url>
+          <line>374</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-jpa/2.6.3/f8a00876d4d23efe8ced44c42a94ef108488e12f/spring-data-jpa-2.6.3-sources.jar!/org/springframework/data/jpa/repository/support/SimpleJpaRepository.java</url>
+          <line>377</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
