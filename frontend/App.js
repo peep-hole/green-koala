@@ -13,6 +13,7 @@ import TokenInput from './components/TokenInput';
 import LoginPick from './components/LoginPick';
 import DisplayScore from './components/DisplayScore';
 import DisplayMatch from './components/DisplayMatch';
+import MatchList from './components/MatchList';
 
 export default function App() {
     return (
@@ -32,6 +33,7 @@ export default function App() {
                         />
                         <Route path="/displayMatch" element={<DisplayMatch />} />
                         <Route path="/createMatchForm" element={<CreateMatchForm />} />
+                        <Route path="/matchList" element={<MatchList />}/>
                     </Routes>
                 </NativeRouter>
             </SSRProvider>

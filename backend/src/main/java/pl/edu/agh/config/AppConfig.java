@@ -38,6 +38,27 @@ public class AppConfig {
             match2.setDate("13.05.2022");
             match2.setTime("13:13");
 
+            Match match3 = new Match();
+            match3.setId(UUID.fromString("ea5d4355-c70b-11ec-9d64-0242ac120002"));
+            match3.setFighterId1(fighter3.getId());
+            match3.setFighterId2(fighter4.getId());
+            match3.setDate("18.05.2022");
+            match3.setTime("13:13");
+
+            Match match4 = new Match();
+            match4.setId(UUID.fromString("ea5d4222-c70b-11ec-9d64-0242ac120002"));
+            match4.setFighterId1(fighter3.getId());
+            match4.setFighterId2(fighter4.getId());
+            match4.setDate("18.06.2022");
+            match4.setTime("13:13");
+
+            Match match5 = new Match();
+            match5.setId(UUID.fromString("ea5d1111-c70b-11ec-9d64-0242ac120002"));
+            match5.setFighterId1(fighter1.getId());
+            match5.setFighterId2(fighter2.getId());
+            match5.setDate("29.11.2022");
+            match5.setTime("16:15");
+
             fighterService.registerFighter(fighter1);
             fighterService.registerFighter(fighter2);
             fighterService.registerFighter(fighter3);
@@ -45,6 +66,9 @@ public class AppConfig {
 
             matchManagementService.addNewMatch(match1);
             matchManagementService.addNewMatch(match2);
+            matchManagementService.addNewMatch(match3);
+            matchManagementService.addNewMatch(match4);
+            matchManagementService.addNewMatch(match5);
 
         };
     }

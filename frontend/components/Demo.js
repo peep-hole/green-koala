@@ -22,6 +22,7 @@ const Demo = () => {
                     <Button style={styles.button}><Link to='/fightInfo'><Text> Fight info </Text></Link></Button>
                     <Button style={styles.button}><Link to='/displayMatch'><Text> Display match </Text></Link></Button>
                     <Button style={styles.button}><Link to='/createMatchForm'><Text> Create match form </Text></Link></Button>
+                    <Button style={styles.button}><Link to='/matchList'><Text>Matches</Text></Link></Button>
                 </Center>
             </VStack>
         </View>
