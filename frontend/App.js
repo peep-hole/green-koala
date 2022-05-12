@@ -25,15 +25,10 @@ export default function App() {
                         <Route path="/tokenInput" element={<TokenInput />} />
                         <Route path="/registerPlayerForm" element={<RegisterPlayerForm />} />
                         <Route path="/loginPick" element={<LoginPick />} />
-                        <Route
-                            path="/fightInfo"
-                            element={
-                                <FightInfo fightId="ea5d74b4-c70b-11ec-9d64-0242ac120002" />
-                            }
-                        />
+                        <Route path="/fightInfo" element={<FightInfo />} />
                         <Route path="/displayMatch" element={<DisplayMatch />} />
                         <Route path="/createMatchForm" element={<CreateMatchForm />} />
-                        <Route path="/matchList" element={<MatchList />}/>
+                        <Route path="/matchList" element={<MatchList />} />
                     </Routes>
                 </NativeRouter>
             </SSRProvider>

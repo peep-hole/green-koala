@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Api from './util/Api';
-import FormHeader from './util/FormHeader';
+import FormHeaderLink from './util/FormHeaderLink';
 import { VStack, Button, Center, Flex, Text, ScrollView } from 'native-base';
 import { FontAwesome } from '@expo/vector-icons';
-import axios from 'axios';
+import { useLocation, useParams } from 'react-router-native';
 
-const FightInfo = props => {
+const FightInfo = () => {
+    // const { fightId } = useParams();
+    const props = useLocation();
     const [fightData, setFightData] = useState({});
     const [fighter1, setFirstFighter] = useState({});
     const [fighter2, setSecondFighter] = useState({});
@@ -14,22 +16,22 @@ const FightInfo = props => {
     const [f2loading, setF2Loading] = useState(true);
 
     useEffect(() => {
-        Api.get('/matches/id/' + props.fightId).then(data => {
-            setFightData(data.data);
-            console.log(data);
+
+        Api.get('/matches/id/' + props.state.fightId).then(res => {
+            setFightData(res.data);
             //console.log(fightData.data);
-            const fighterId1 = data.data.fighterId1;
-            const fighterId2 = data.data.fighterId2;
+            const fighterId1 = res.data.fighterId1;
+            const fighterId2 = res.data.fighterId2;
             setLoading(false);
 
             Api.get('/actors/fighters/id/' + fighterId1).then(res => {
-                console.log(res);
                 console.log(res.data);
                 setFirstFighter(res.data);
                 setF1Loading(false);
             });
 
             Api.get('/actors/fighters/id/' + fighterId2).then(res => {
+                console.log(res.data);
                 setSecondFighter(res.data);
                 setF2Loading(false);
             });
@@ -38,7 +40,7 @@ const FightInfo = props => {
 
     return (
         <>
-            <FormHeader name="Fight Details" />
+            <FormHeaderLink pathname="MatchList" state={{}} name="Fight Details" />
             <ScrollView>
                 <Center>
                     {/* Fight date-time */}
