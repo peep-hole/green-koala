@@ -15,6 +15,8 @@ import DisplayScore from './components/DisplayScore';
 import DisplayMatch from './components/DisplayMatch';
 import MatchList from './components/MatchList';
 import CancelFightConfirmation from './components/CancelFightConfirmation';
+import FighterList from './components/FighterList';
+import TournamentList from './components/TournamentList';
 
 export default function App() {
     return (
@@ -31,6 +33,8 @@ export default function App() {
                         <Route path="/createMatchForm" element={<CreateMatchForm />} />
                         <Route path="/cancelMatch" element={<CancelFightConfirmation />} />
                         <Route path="/matchList" element={<MatchList />} />
+                        <Route path="/fighterList" element={<FighterList/>} />
+                        <Route path="/tournamentList" element={<TournamentList/>} />
                     </Routes>
                 </NativeRouter>
             </SSRProvider>

@@ -4,6 +4,7 @@ import FormHeaderLink from './util/FormHeaderLink';
 import { VStack, Flex, Center, Box, Heading, FlatList, HStack, Spacer, Text, ScrollView } from 'native-base';
 import { Link, useLocation } from "react-router-native";
 import { MaterialIcons } from '@expo/vector-icons';
+import AdminFooter from './util/AdminFooter';
 
 const MatchList = () => {
 
@@ -90,6 +91,7 @@ const MatchList = () => {
                 </Link>
             </Flex>
 
+            <AdminFooter selected={1}></AdminFooter>
             {/* Here footer component containing administrator's navigation bar */}
         </>
     );
