@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Api from './util/Api';
 import FormHeaderLink from './util/FormHeaderLink';
 import { VStack, Flex, Center, Box, Heading, FlatList, HStack, Spacer, Text, ScrollView } from 'native-base';
-import { Link, useLocation } from "react-router-native";
+import { Link } from "react-router-native";
 import { MaterialIcons } from '@expo/vector-icons';
 import AdminFooter from './util/AdminFooter';
 
@@ -12,7 +12,7 @@ const MatchList = () => {
     const [matchesLoaded, setMatchesLoaded] = useState(false);
 
     const getAllMatches = () => {
-        Api.get('/matches/all' // TODO check if proper endpont?
+        Api.get('/matches/all' //TODO: special endpoint for getting matches + fighters
         ).then(res => {
             setMatches(res.data);
             // console.log(res.data);
@@ -31,17 +31,18 @@ const MatchList = () => {
     return (
         matchesLoaded && <>
             <FormHeaderLink pathname="" state={{}} name="Matches" />
-            <Box id="oncoming_matches" height="35%">
-                <Heading fontSize="xl" p="4" pb="3">
+            <Box id="oncoming_matches" height="33%" >
+                <Heading fontSize="xl" marginBottom={1}>
                     <Center>
                         Oncoming Fights
                     </Center>
                 </Heading>
-                <ScrollView>
+                <ScrollView margin={3} backgroundColor="gray.200">
+                    {/* TODO: update filtering when model will contain bool determining if fight is over / or maybe score is not null? */}
                     <FlatList data={matches.filter(match => !match.isFinished)} renderItem={
                         ({ item }) =>
                             <Link to="/fightInfo" state={{ fightId: item.id }} >
-                                <Box borderBottomWidth="1" _dark={{ borderColor: "gray.600" }} borderColor="coolGray.200" pl="4" pr="5" py="2">
+                                <Box borderBottomWidth={1} borderTopWidth={1} _dark={{ borderColor: "gray.800" }} borderColor="coolGray.400" pl="4" pr="5" py="2">
                                     <HStack space={3} justifyContent="space-between">
                                         <VStack>
                                             <Text _dark={{ color: "warmGray.50" }} color="coolGray.800" bold>
@@ -58,17 +59,17 @@ const MatchList = () => {
                     } keyExtractor={item => item.id} />
                 </ScrollView>
             </Box>
-            <Box id="history_matches" height="35%">
-                <Heading fontSize="xl" p="4" pb="3">
+            <Box id="history_matches" height="33%">
+                <Heading fontSize="xl" marginTop={1} marginBottom={1}>
                     <Center>
                         History Fights
                     </Center>
                 </Heading>
-                <ScrollView>
+                <ScrollView margin={3} backgroundColor="gray.200">
                     <FlatList data={matches.filter(match => !match.isFinished)} renderItem={
                         ({ item }) =>
-                            <Link to="/fightInfo" state={{ fightId: item.id }} >
-                                <Box borderBottomWidth="1" _dark={{ borderColor: "gray.600" }} borderColor="coolGray.200" pl="4" pr="5" py="2">
+                            <Link to="/fightResult" state={{ fightId: item.id }} >
+                                <Box borderBottomWidth={1} borderTopWidth={1} _dark={{ borderColor: "gray.800" }} borderColor="coolGray.400" pl="4" pr="5" py="2">
                                     <HStack space={3} justifyContent="space-between">
                                         <VStack>
                                             <Text _dark={{ color: "warmGray.50" }} color="coolGray.800" bold>
@@ -92,7 +93,6 @@ const MatchList = () => {
             </Flex>
 
             <AdminFooter selected={1}></AdminFooter>
-            {/* Here footer component containing administrator's navigation bar */}
         </>
     );
 };

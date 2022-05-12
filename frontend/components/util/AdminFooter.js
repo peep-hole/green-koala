@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import { Box, HStack, Icon, Pressable, Center, Text } from "native-base";
 import { Link } from "react-router-native"
-import { NativeBaseProvider } from 'native-base';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 
@@ -32,7 +30,6 @@ const AdminFooter = props => {
                             </Center>
                         </Link>
                     </Pressable>
-
 
                     <Pressable cursor="pointer" opacity={selected === 1 ? 1 : 0.5} py="2" flex={1} onPress={() => setSelected(1)}>
                         <Link to="/matchList">

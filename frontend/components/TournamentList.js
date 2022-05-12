@@ -4,8 +4,6 @@ import FormHeaderLink from './util/FormHeaderLink';
 
 const TournamentList = () => {
 
-
-
     return (
         <>
             <FormHeaderLink pathname="" name="Tournaments"></FormHeaderLink>

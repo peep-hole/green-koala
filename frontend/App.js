@@ -17,6 +17,7 @@ import MatchList from './components/MatchList';
 import CancelFightConfirmation from './components/CancelFightConfirmation';
 import FighterList from './components/FighterList';
 import TournamentList from './components/TournamentList';
+import FightResult from './components/FightResult';
 
 export default function App() {
     return (
@@ -29,6 +30,7 @@ export default function App() {
                         <Route path="/registerPlayerForm" element={<RegisterPlayerForm />} />
                         <Route path="/loginPick" element={<LoginPick />} />
                         <Route path="/fightInfo" element={<FightInfo />} />
+                        <Route path="/fightResult" element={<FightResult />} />
                         <Route path="/displayMatch" element={<DisplayMatch />} />
                         <Route path="/createMatchForm" element={<CreateMatchForm />} />
                         <Route path="/cancelMatch" element={<CancelFightConfirmation />} />

@@ -5,8 +5,6 @@ import FormHeaderLink from './util/FormHeaderLink';
 
 const FighterList = () => {
 
-
-
     return (
         <>
             <FormHeaderLink pathname="" name="Fighters"></FormHeaderLink>
