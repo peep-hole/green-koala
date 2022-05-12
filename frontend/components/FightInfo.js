@@ -3,7 +3,9 @@ import Api from './util/Api';
 import FormHeaderLink from './util/FormHeaderLink';
 import { VStack, Button, Center, Flex, Text, ScrollView } from 'native-base';
 import { FontAwesome } from '@expo/vector-icons';
+import { Link } from 'react-router-native';
 import { useLocation, useParams } from 'react-router-native';
+
 
 const FightInfo = () => {
     // const { fightId } = useParams();
@@ -40,14 +42,14 @@ const FightInfo = () => {
 
     return (
         <>
-            <FormHeaderLink pathname="MatchList" state={{}} name="Fight Details" />
+            <FormHeaderLink pathname="matchList" state={{}} name="Fight Details" />
             <ScrollView>
                 <Center>
                     {/* Fight date-time */}
                     <Flex direction="row">
                         <FontAwesome name="calendar" size={28} color="black" />
                         <Text marginLeft={5} color="black" fontSize={22} fontWeight="bold">
-                            {!loading && fightData.date && ' ' && fightData.time}
+                            {!loading && fightData.date + ' ' + fightData.time}
                         </Text>
                     </Flex>
 
@@ -122,13 +124,17 @@ const FightInfo = () => {
                         </Text>
                     </VStack>
 
-                    {/* Fight cancelling button TODO: send request to backend */}
-                    <Button
-                        marginTop="30px"
-                        colorScheme="red"
-                        onPress={() => console.log('Handling fight cancelling...')}
-                    >
-                        Cancel fight
+                    {/* Fight cancelling button*/}
+                    <Button marginTop="30px" colorScheme="red">
+                        <Link to="/cancelMatch"
+                            state={{
+                                fightId: props.state.fightId,
+                                date: fightData.date + ' ' + fightData.time,
+                                fighter1: fighter1.name + ' ' + fighter1.surname,
+                                fighter2: fighter2.name + ' ' + fighter2.surname
+                            }}>
+                            <Text>Cancel fight</Text>
+                        </Link>
                     </Button>
                 </Center>
             </ScrollView>

@@ -7,7 +7,6 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 const MatchList = () => {
 
-    const linkData = useLocation();
     const [matches, setMatches] = useState([]);
     const [matchesLoaded, setMatchesLoaded] = useState(false);
 
