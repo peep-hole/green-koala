@@ -46,6 +46,12 @@ const DisplayMatch = props => {
     const [fighter2Name, setFighter2Name] = useState(match.fighter2Name);
     const [fighter1Score, setFighter1Score] = useState(match.fighter1Score);
     const [fighter2Score, setFighter2Score] = useState(match.fighter2Score);
+    const [sideDecisions, setSideDecisions] = useState({
+        side1: "Ref 1 decision", /// remove before pr
+        side2: "Placeholder 2",
+        points1: null,
+        points2: null
+    })
 
     //will be used to determine which elements of the interface should be shown - either "Main" or "Side"
     // const refereeType = props.refereeType;
@@ -58,7 +64,18 @@ const DisplayMatch = props => {
 
     const onConnected = () => {
         stompClient.subscribe("/response/status", () => {
-            console.log("Reveived message on /response/status endpoint")
+            Api.get(`/status/${props.id}`
+            ).then(res => {
+                console.log(res.data) /// TODO: make sure that everything works when back implementation will be ready
+                setSideDecisions({
+                    side1: res.data.side1ActualDecision,
+                    side2: res.data.side2ActualDecision,
+                    points1: res.data.points1,
+                    points2: res.data.points2
+                })
+            }).catch(e => {
+                console.log(e)
+            })
         })
     }
 
@@ -108,10 +125,10 @@ const DisplayMatch = props => {
                         <Box bg="gray.300" mb="20px" width="100%" height="200px">
                             <VStack>
                                 <Center>
-                                    <Text>event1 placeholder</Text>
+                                    <Text>{sideDecisions.side1}</Text>
                                 </Center>
                                 <Center>
-                                    <Text>event2 placeholder</Text>
+                                    <Text>{sideDecisions.side2}</Text>
                                 </Center>
                             </VStack>
                         </Box>
