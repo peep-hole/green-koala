@@ -1,5 +1,3 @@
-import SockJS from 'sockjs-client';
+const url = 'http://localhost:8080/api/ws'
 
-let sock = new SockJS('http://localhost:8080/api/ws');
-
-export default sock;
+export default url;

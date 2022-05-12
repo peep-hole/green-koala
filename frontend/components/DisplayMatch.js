@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { HStack, VStack, Text, Button, Center, Box, Flex } from 'native-base';
 import FormHeader from './util/FormHeader';
 import DisplayScore from './DisplayScore';
 import Timer from "./Timer";
+import {over} from "stompjs"
+import SockJS from 'sockjs-client';
+import url from './util/Websocket';
 
 //mockup to use in testing - we will pass a correct object with props from token input
 const match = {
@@ -12,6 +15,10 @@ const match = {
     fighter1Score: 3,
     fighter2Score: 2,
 };
+
+let sock = null;
+let stompClient = null;
+/// must be globals!
 
 //easiest way to test - replace App in App.js with:
 // export default function App() {
@@ -42,6 +49,22 @@ const DisplayMatch = props => {
 
     //will be used to determine which elements of the interface should be shown - either "Main" or "Side"
     // const refereeType = props.refereeType;
+
+    useEffect(() => {
+        sock = new SockJS(url);
+        stompClient = over(sock);
+        stompClient.connect({}, onConnected, onError);
+    }, []);
+
+    const onConnected = () => {
+        stompClient.subscribe("/response/status", () => {
+            console.log("Reveived message on /response/status endpoint")
+        })
+    }
+
+    const onError = (error) => {
+        console.log("Error: " + error);
+    }
 
     return (
         <>
