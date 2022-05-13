@@ -41,6 +41,7 @@ jobs:
        uses: github/super-linter@v4.9.2
        env:
           ACTIONS_RUNNER_DEBUG: true
-          VALIDATE_ALL_CODEBASE: false
+          VALIDATE_JAVASCRIPT_ES: true
+          VALIDATE_JAVA: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
