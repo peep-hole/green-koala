@@ -9,6 +9,8 @@ import pl.edu.agh.model.Match;
 import pl.edu.agh.service.FighterService;
 import pl.edu.agh.service.MatchManagementService;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 @Configuration
@@ -70,6 +72,15 @@ public class AppConfig {
             matchManagementService.addNewMatch(match4);
             matchManagementService.addNewMatch(match5);
 
+            List<Fighter> fighters = Arrays.asList(fighter1, fighter2, fighter3, fighter4);
+            fighters.forEach((Fighter fighter) -> {
+                if (!fighterService.fighterExists(fighter)) fighterService.registerFighter(fighter);
+            });
+
+            List<Match> matches = Arrays.asList(match1, match2, match3, match4, match5);
+            matches.forEach((Match match) -> {
+                if (!matchManagementService.matchExists(match)) matchManagementService.addNewMatch(match);
+            });
         };
     }
 }
