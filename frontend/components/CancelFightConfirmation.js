@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import Api from './util/Api';
 import FormHeaderLink from './util/FormHeaderLink';
 import { Flex, Center, Button, Text, ScrollView, Heading } from 'native-base';
-import { Link, useLocation } from "react-router-native";
+import { Link, Navigate, useLocation } from "react-router-native";
 import { FontAwesome } from '@expo/vector-icons';
 
 const CancelFightConfirmation = () => {
 
     const props = useLocation({});
-
+    const [cancelled, setCancelled] = useState(false);
     useEffect(() => {
         console.log(props);
     }, []);
@@ -16,6 +16,7 @@ const CancelFightConfirmation = () => {
     const cancelFight = () => {
         Api.delete('/matches/cancel/' + props.state.fightId //change to delete after back update
         ).then(res => {
+            setCancelled(true);
         }).catch(e => {
             console.log(e)
         })
@@ -83,18 +84,17 @@ const CancelFightConfirmation = () => {
                     </Button>
 
                     {/* Delete button */}
-                    <Button marginTop="5px" colorScheme="red" >
-                        <Link to="/MatchList"
-                            onPress={() => {
-                                console.log('Handling fight cancelling...')
-                                cancelFight();
-                            }}>
-                            <Text color="white" >Delete</Text>
-                        </Link>
+                    <Button marginTop="5px" colorScheme="red"
+                        onPress={() => {
+                            console.log('Handling fight cancelling...')
+                            cancelFight();
+                        }}>
+                        <Text color="white" >Delete</Text>
                     </Button>
-
                 </Center>
             </ScrollView>
+            {cancelled && <Navigate to="/matchList"></Navigate>}
+
 
             {/* Here footer component containing administrator's navigation bar */}
         </>

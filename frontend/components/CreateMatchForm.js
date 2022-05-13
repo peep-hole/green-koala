@@ -1,11 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import FormHeaderLink from "./util/FormHeaderLink";
-import {Button, Center, Flex, FormControl, Text, VStack} from "native-base";
+import { Button, Center, Flex, FormControl, Text, VStack } from "native-base";
 import Api from "./util/Api";
-import {FontAwesome} from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
 import DateTimePicker from "@react-native-community/datetimepicker"
 import SearchableDropdown from "react-native-searchable-dropdown";
-import {Platform, StyleSheet} from "react-native";
+import { Platform } from "react-native";
+import { Navigate } from "react-router-native";
 
 const CreateMatchForm = () => {
     const [firstPlayer, setFirstPlayer] = useState('')
@@ -14,15 +15,16 @@ const CreateMatchForm = () => {
     const [players, setPlayers] = useState([])
 
     const [date, setDate] = useState(new Date())
-    const [mode , setMode] = useState('date')
+    const [mode, setMode] = useState('date')
     const [show, setShow] = useState(false)
     const [showSearch1, setShowSearch1] = useState(true)
     const [showSearch2, setShowSearch2] = useState(true)
 
     const [dateString, setDateString] = useState(date.getDate() + "-" + date.getMonth() + "-" + date.getFullYear())
     const [timeString, setTimeString] = useState(date.getHours() + ":" + date.getMinutes().toString().padStart(2, "0"))
-    
+
     const [playersLoaded, setPlayersLoaded] = useState(false);
+    const [matchCreated, setMatchCreated] = useState(false);
 
     const getAllPlayers = () => {
         Api.get('/actors/fighters' // TODO type proper url when backend is ready
@@ -36,7 +38,7 @@ const CreateMatchForm = () => {
     }
 
     useEffect(() => {
-        getAllPlayers()  
+        getAllPlayers()
     }, [])
 
     const showMode = (mode) => {
@@ -64,10 +66,11 @@ const CreateMatchForm = () => {
             secondPlayer: secondPlayer,
             date: dateString,
             time: timeString
-          }).then(res => {
-              console.log(res)
-          }).catch(e => {
-              console.log(e)
+        }).then(res => {
+            console.log(res)
+            setMatchCreated(true);
+        }).catch(e => {
+            console.log(e)
         })
     }
 
@@ -177,12 +180,12 @@ const CreateMatchForm = () => {
                             </Flex>
                             <Flex direction="row" marginTop="30px">
                                 <Button
-                                        onPress={() => showMode('time')}
-                                        variant="outline"
-                                        borderColor="#ccc"
-                                        _text={{
-                                            color: "#ccc"
-                                        }}>
+                                    onPress={() => showMode('time')}
+                                    variant="outline"
+                                    borderColor="#ccc"
+                                    _text={{
+                                        color: "#ccc"
+                                    }}>
                                     Select time
                                 </Button>
                                 <Center marginLeft="5px">
@@ -195,8 +198,8 @@ const CreateMatchForm = () => {
                                 size="lg"
                                 marginRight="30px"
                                 bg="#059669" _text={{
-                                        color: "white"
-                                    }}>
+                                    color: "white"
+                                }}>
                                 Create
                             </Button>
                         </Center>
@@ -213,6 +216,7 @@ const CreateMatchForm = () => {
                     onChange={onChange}>
                 </DateTimePicker>
             )}
+            {matchCreated && <Navigate to="/matchList"></Navigate>}
         </>
     );
 };
