@@ -31,14 +31,9 @@ public class ActorsController {
     public ResponseEntity<Fighter> getFighterById(@PathVariable String id) {
 
         UUID uuidId = UUID.fromString(id);
-        List<Fighter> fighters = fighterService.getAllFighters();
 
-        for (Fighter fighter : fighters) {
-            if (fighter.getId().equals(uuidId)) {
-                return new ResponseEntity<>(fighter, HttpStatus.OK);
-            }
-        }
-
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return fighterService.fighterIdExists(uuidId) ?
+                new ResponseEntity<>(fighterService.getFighterById(uuidId), HttpStatus.OK) :
+                new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }

@@ -32,12 +32,12 @@ public class MatchManagementController {
     }
 
     @GetMapping("/token/{token}")
-    public ResponseEntity<Match> getMatchByToken(@PathVariable String token) {
+    public ResponseEntity<Match> getMatchByRefereeToken(@PathVariable String token) {
         UUID uuidToken = UUID.fromString(token);
 
         List<Match> matches = matchManagementService.getAllMatches();
 
-        for (Match match: matches) {
+        for (Match match : matches) {
             if (match.getMainRefereeToken().equals(uuidToken) ||
                     match.getSideRefereeToken1().equals(uuidToken) ||
                     match.getSideRefereeToken2().equals(uuidToken)) {
@@ -51,17 +51,10 @@ public class MatchManagementController {
 
     @GetMapping("/id/{id}")
     public ResponseEntity<Match> getMatchById(@PathVariable String id) {
-        UUID uuidID= UUID.fromString(id);
+        UUID uuidId = UUID.fromString(id);
 
-        List<Match> matches = matchManagementService.getAllMatches();
-
-        for (Match match: matches) {
-            if (match.getId().equals(uuidID)) {
-
-                return new ResponseEntity<>(match, HttpStatus.OK);
-            }
-        }
-
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return matchManagementService.matchIdExists(uuidId) ?
+                new ResponseEntity<>(matchManagementService.getMatchById(uuidId), HttpStatus.OK) :
+                new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }
