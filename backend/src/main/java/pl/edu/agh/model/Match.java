@@ -32,6 +32,10 @@ public class Match {
     private Long sideRefereeId1;
     private UUID sideRefereeToken2;
     private Long sideRefereeId2;
+    private Integer fighter1Points;
+    private Integer fighter2Points;
+    // TODO add event lis
+    // TODO consider dividing into two separate classes
 
     @Override
     public boolean equals(Object o) {

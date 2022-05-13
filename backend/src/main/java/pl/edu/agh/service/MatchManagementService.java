@@ -48,4 +48,6 @@ public class MatchManagementService {
     }
 
     public void deleteMatch(UUID id) {matchManagementRepository.deleteById(id);}
+
+    public void updateMatch(Match match) {matchManagementRepository.save(match);}
 }
