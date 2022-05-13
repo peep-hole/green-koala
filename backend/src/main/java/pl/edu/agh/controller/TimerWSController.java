@@ -8,37 +8,41 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
-import pl.edu.agh.utils.Timer;
+import pl.edu.agh.TimerManager;
 import pl.edu.agh.websocket.TimerMessage;
+import pl.edu.agh.websocket.TimerResponseMessage;
 
 @RequiredArgsConstructor
 @Controller
 @EnableScheduling
 public class TimerWSController {
-    private final Timer timer = new Timer();
+    private final TimerManager timerManager;
     private final SimpMessagingTemplate template;
 
     @MessageMapping("/timer")
     @SendTo("/response/timer")
-    private String receivedMessage(@Payload TimerMessage message) {
+    private TimerResponseMessage receivedMessage(@Payload TimerMessage message) {
         System.out.println("TIMER CONTROLLER " + message);
 
         switch (message.getAction()) {
             case STOP:
-                timer.stopTime();
+                timerManager.stopTime();
                 break;
             case START:
-                timer.startTime();
+                timerManager.startTime();
+                break;
+            case RESTART:
+                timerManager.resetTime();
                 break;
             default:
                 break;
         }
 
-        return String.valueOf(timer.getTime());
+        return new TimerResponseMessage(timerManager.getTime(), false);
     }
 
     @Scheduled(fixedRate = 500)
     public void sendTimerToReferees(){
-        this.template.convertAndSend("/response/timer", timer.getTime());
+        this.template.convertAndSend("/response/timer", new TimerResponseMessage(timerManager.getTime(), false));
     }
 }
