@@ -63,6 +63,15 @@ const Test = () => {
         }
     }
 
+    const sendRestart = () => {
+        if (stompClient) {
+            let message = {
+                action: "RESTART"
+            };
+            stompClient.send('/timer', {}, JSON.stringify(message));
+        }
+    }
+
     return (
         <>
             {userData.connected ? "YES" : "NO"}
@@ -78,6 +87,10 @@ const Test = () => {
                 <Button
                     onPress={sendGet}>
                     Send get
+                </Button>
+                <Button
+                    onPress={sendRestart}>
+                    Send RESTART
                 </Button>
             </NativeBaseProvider>
             {response}
