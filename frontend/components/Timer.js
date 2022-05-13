@@ -1,68 +1,139 @@
 import React, {useEffect, useState} from 'react';
 import {Box, Button, Center, HStack, StatusBar, Text, View} from "native-base";
 import { FontAwesome } from '@expo/vector-icons';
-import {StyleSheet} from "react-native";
-import Api from "./util/Api";
+import {StyleSheet, Alert} from "react-native";
+import sock from "./util/Websocket";
+import { over } from 'stompjs';
 
-const Timer = () => {
+let stompClient = null
+
+const Timer = props => {
     const bgColor = "tertiary.800"
     const [seconds, setSeconds] = useState(0)
     const [minutes, setMinutes] = useState(0)
     const [isActive, setIsActive] = useState(false)
+    const [render, setRender] = useState({})
+
+    useEffect(() => {
+        stompClient = over(sock);
+        stompClient.connect({}, onConnected, onError);
+    }, []);
+
+
+    const onConnected = () => {
+        console.log("CONNECTED")
+        stompClient.subscribe("/response/timer", onMessageReceived);
+        stompClient.send("/timer", {}, JSON.stringify({
+            action: "GET"
+        }));
+    }
+
+    const onError = (error) => {
+        console.log("Error: " + error);
+    }
+
+    const onMessageReceived = (payload) => {
+        let millis = payload.body
+        let minutes = Math.floor(millis / 60000)
+        let seconds = Number(((millis % 60000) / 1000).toFixed(0))
+        setMinutes(minutes)
+        setSeconds(seconds)
+    }
 
     const toggle = () => {
         setIsActive(!isActive)
+        if(isActive) {
+            sendStart()
+        } else {
+            sendStop()
+        }
     }
 
     const reset = () => {
-        sendTimeToDatabase('-end')
-        setMinutes(0)
-        setSeconds(0)
-        setIsActive(false)
+        return Alert.alert(
+            "Are your sure?",
+            "Are you sure you want to reset the timer?",
+            [
+                {
+                    text: "Yes",
+                    onPress: () => {
+                        sendReset()
+                    },
+                },
+                {
+                    text: "No",
+                },
+            ]
+        );
     }
 
-    const sendTimeToDatabase = (param) => {
-        Api.post(`/timer${param}/token`, {
-            minutes: minutes,
-            seconds: seconds
-        }).then(res => {
-            console.log(res)
-        }).catch(e => {
-            console.log(e)
-        })
+    const end = () => {
+        return Alert.alert(
+            "Are your sure?",
+            "Are you sure you want to end the match?",
+            [
+                {
+                    text: "Yes",
+                    onPress: () => {
+                        sendEnd()
+                    },
+                },
+                {
+                    text: "No",
+                },
+            ]
+        );
     }
 
-    useEffect(() => {
-        let interval = null
-        if(isActive){
-            interval = setInterval(() => {
-                if(seconds === 59){
-                    setMinutes(minutes + 1)
-                    setSeconds(0)
-                } else{
-                    setSeconds(seconds + 1)
-                }
-                sendTimeToDatabase('')
-            }, 1000)
-        } else if (!isActive && (seconds !== 0 && minutes !== 0)){
-            clearInterval(interval)
+    const sendStart = () => {
+        if(stompClient) {
+            let message = {
+                action: "START"
+            };
+            stompClient.send('/timer', {}, JSON.stringify(message));
         }
-        return () => clearInterval(interval)
-    }, [isActive, seconds])
+    }
 
-    return (
-        <>
-            <Box safeAreaTop />
-            <Center>
-            <HStack bg={bgColor} px="1" py="3" justifyContent="center" alignItems="center" w="100%">
-                {isActive? <FontAwesome style={styles.ionicons} name="pause" size={24} color="black" onPress={toggle}/> :
+    const sendStop = () => {
+        if(stompClient) {
+            let message = {
+                action: "STOP"
+            };
+            stompClient.send('/timer', {}, JSON.stringify(message));
+        }
+    }
+
+    const sendReset = () => {
+        if(stompClient) {
+            let message = {
+                action: "RESET"
+            };
+            stompClient.send('/timer', {}, JSON.stringify(message));
+        }
+    }
+
+    const sendEnd = () => {
+        if(stompClient) {
+            let message = {
+                action: "END"
+            };
+            stompClient.send('/timer', {}, JSON.stringify(message));
+        }
+    }
+
+    if(props.isMain){
+        return <HStack bg={bgColor} px="1" py="3" justifyContent="center" alignItems="center" w="100%">
+                    {isActive? <FontAwesome style={styles.ionicons} name="pause" size={24} color="black" onPress={toggle}/> :
                     <FontAwesome style={styles.ionicons} name="play" size={24} color="black" onPress={toggle}/>}
-                <Text fontSize={24}>{minutes.toString().padStart(2, "0") + ":" + seconds.toString().padStart(2, "0")}</Text>
-                <FontAwesome style={styles.ionicons} name="stop" size={24} color="black" onPress={reset}/>
-            </HStack>
-            </Center>
-        </>
-    )
+                    <Text fontSize={24}>{minutes.toString().padStart(2, "0") + ":" + seconds.toString().padStart(2, "0")}</Text>
+                    <FontAwesome style={styles.ionicons} name="stop" size={24} color="black" onPress={reset}/>
+                    <FontAwesome style={styles.ionicons} name="close" size={24} color="black" onPress={end}/>
+                </HStack>
+    } else {
+        return <HStack bg={bgColor} px="1" py="3" justifyContent="center" alignItems="center" w="100%">
+                    <Text fontSize={24}>{minutes.toString().padStart(2, "0") + ":" + seconds.toString().padStart(2, "0")}</Text>
+                </HStack>
+    }
 };
 
 const styles = StyleSheet.create({

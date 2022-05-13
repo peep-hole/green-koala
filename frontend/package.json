@@ -34,13 +34,13 @@
     "react-native-svg": "12.1.1",
     "react-native-vector-icons": "^9.1.0",
     "react-native-web": "0.17.1",
+    "react-router-native": "^6.3.0",
+    "react-test-renderer": "^17.0.1",
     "sockjs-client": "^1.6.0",
-    "stompjs": "^2.3.3",
-    "react-router-native": "^6.3.0"
+    "stompjs": "^2.3.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9",
-    "react-test-renderer": "^17.0.2"
+    "@babel/core": "^7.12.9"
   },
   "private": true
 }

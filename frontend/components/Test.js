@@ -29,7 +29,7 @@ const Test = () => {
     const onMessageReceived = (payload) => {
         let message = payload.body;
         console.log(message)
-        setResponse(message);
+        setResponse(message)
     }
 
     const onError = (error) => {
