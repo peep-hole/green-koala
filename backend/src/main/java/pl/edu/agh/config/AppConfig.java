@@ -9,6 +9,8 @@ import pl.edu.agh.model.Match;
 import pl.edu.agh.service.FighterService;
 import pl.edu.agh.service.MatchManagementService;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 @Configuration
@@ -59,17 +61,15 @@ public class AppConfig {
             match5.setDate("29.11.2022");
             match5.setTime("16:15");
 
-            fighterService.registerFighter(fighter1);
-            fighterService.registerFighter(fighter2);
-            fighterService.registerFighter(fighter3);
-            fighterService.registerFighter(fighter4);
+            List<Fighter> fighters = Arrays.asList(fighter1, fighter2, fighter3, fighter4);
+            fighters.forEach((Fighter fighter) -> {
+                if (!fighterService.fighterExists(fighter)) fighterService.registerFighter(fighter);
+            });
 
-            matchManagementService.addNewMatch(match1);
-            matchManagementService.addNewMatch(match2);
-            matchManagementService.addNewMatch(match3);
-            matchManagementService.addNewMatch(match4);
-            matchManagementService.addNewMatch(match5);
-
+            List<Match> matches = Arrays.asList(match1, match2, match3, match4, match5);
+            matches.forEach((Match match) -> {
+                if (!matchManagementService.matchExists(match)) matchManagementService.addNewMatch(match);
+            });
         };
     }
 }
