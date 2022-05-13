@@ -58,7 +58,7 @@ public class MatchManagementController {
                 new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/cancel/{id}")
+    @DeleteMapping("/cancel/{id}")
     public ResponseEntity<Boolean> cancelMatch(@PathVariable String id) {
         matchManagementService.deleteMatch(UUID.fromString(id));
         return new ResponseEntity<>(true, HttpStatus.OK);

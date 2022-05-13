@@ -13,6 +13,13 @@ const CancelFightConfirmation = () => {
         console.log(props);
     }, []);
 
+    const cancelFight = () => {
+        Api.delete('/matches/cancel/' + props.state.fightId //change to delete after back update
+        ).then(res => {
+        }).catch(e => {
+            console.log(e)
+        })
+    }
 
     return (
         <>
@@ -21,7 +28,7 @@ const CancelFightConfirmation = () => {
                 <Center>
 
                     <Heading marginBottom={25} marginTop={25}>
-                        Cancel following fight?
+                        Delete following fight?
                     </Heading>
 
                     {/* Fight date-time */}
@@ -77,7 +84,11 @@ const CancelFightConfirmation = () => {
 
                     {/* Delete button */}
                     <Button marginTop="5px" colorScheme="red" >
-                        <Link to="/MatchList" onPress={() => console.log('Handling fight cancelling...')}>
+                        <Link to="/MatchList"
+                            onPress={() => {
+                                console.log('Handling fight cancelling...')
+                                cancelFight();
+                            }}>
                             <Text color="white" >Delete</Text>
                         </Link>
                     </Button>
