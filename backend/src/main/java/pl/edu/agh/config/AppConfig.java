@@ -61,20 +61,6 @@ public class AppConfig {
             match5.setDate("29.11.2022");
             match5.setTime("16:15");
 
-<<<<<<< HEAD
-=======
-            fighterService.registerFighter(fighter1);
-            fighterService.registerFighter(fighter2);
-            fighterService.registerFighter(fighter3);
-            fighterService.registerFighter(fighter4);
-
-            matchManagementService.addNewMatch(match1);
-            matchManagementService.addNewMatch(match2);
-            matchManagementService.addNewMatch(match3);
-            matchManagementService.addNewMatch(match4);
-            matchManagementService.addNewMatch(match5);
-
->>>>>>> 952c109acbeeb1cb1e586de09bde30fbf45bbc28
             List<Fighter> fighters = Arrays.asList(fighter1, fighter2, fighter3, fighter4);
             fighters.forEach((Fighter fighter) -> {
                 if (!fighterService.fighterExists(fighter)) fighterService.registerFighter(fighter);
