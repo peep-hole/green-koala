@@ -30,7 +30,7 @@ export default function App() {
                                 <FightInfo fightId="ea5d74b4-c70b-11ec-9d64-0242ac120002" />
                             }
                         />
-                        <Route path="/displayMatch" element={<DisplayMatch />} />
+                        <Route path="/displayMatch" element={<DisplayMatch fightId="ea5d74b4-c70b-11ec-9d64-0242ac120002" />} />
                         <Route path="/createMatchForm" element={<CreateMatchForm />} />
                     </Routes>
                 </NativeRouter>

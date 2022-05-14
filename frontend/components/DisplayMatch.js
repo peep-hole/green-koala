@@ -20,26 +20,6 @@ let sock = null;
 let stompClient = null;
 /// must be globals!
 
-//easiest way to test - replace App in App.js with:
-// export default function App() {
-//     const match = {
-//         time: 0,
-//         fighter1Name: 'Fighter One',
-//         fighter2Name: 'Fighter Two',
-//         fighter1Score: 3,
-//         fighter2Score: 2,
-//     };
-
-//     return (
-
-//         <NativeBaseProvider>
-//             <SSRProvider>
-//                 <DisplayMatch match={match}></DisplayMatch>
-//             </SSRProvider>
-//         </NativeBaseProvider>
-//     );
-// }
-
 const DisplayMatch = props => {
     const [matchTime, setMatchTime] = useState(match.time);
     const [fighter1Name, setFighter1Name] = useState(match.fighter1Name);
@@ -53,7 +33,7 @@ const DisplayMatch = props => {
         points2: null
     })
 
-    //will be used to determine which elements of the interface should be shown - either "Main" or "Side"
+    // will be used to determine which elements of the interface should be shown - either "Main" or "Side"
     // const refereeType = props.refereeType;
 
     useEffect(() => {
@@ -64,7 +44,7 @@ const DisplayMatch = props => {
 
     const onConnected = () => {
         stompClient.subscribe("/response/status", () => {
-            Api.get(`/status/${props.id}`
+            Api.get(`/status/${props.fightId}`
             ).then(res => {
                 console.log(res.data) /// TODO: make sure that everything works when back implementation will be ready
                 setSideDecisions({
@@ -118,9 +98,9 @@ const DisplayMatch = props => {
                         </HStack>
 
                         <DisplayScore
-    fighter1Score={fighter1Score}
-    fighter2Score={fighter2Score}
-    />
+                        fighter1Score={fighter1Score}
+                        fighter2Score={fighter2Score}
+                        />
 
                         <Box bg="gray.300" mb="20px" width="100%" height="200px">
                             <VStack>
