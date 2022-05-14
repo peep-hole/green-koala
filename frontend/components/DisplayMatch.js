@@ -27,10 +27,8 @@ const DisplayMatch = props => {
     const [fighter1Score, setFighter1Score] = useState(match.fighter1Score);
     const [fighter2Score, setFighter2Score] = useState(match.fighter2Score);
     const [sideDecisions, setSideDecisions] = useState({
-        side1: "Ref 1 decision", /// remove before pr
-        side2: "Placeholder 2",
-        points1: null,
-        points2: null
+        side1: "Decision arrived - mock", /// remove mocks before merge!
+        side2: "Somethin looooooooooooooooooooooooooooooooooooooong to test behaviour in more than one line",
     })
 
     // will be used to determine which elements of the interface should be shown - either "Main" or "Side"
@@ -50,8 +48,10 @@ const DisplayMatch = props => {
                 setSideDecisions({
                     side1: res.data.side1ActualDecision,
                     side2: res.data.side2ActualDecision,
-                    points1: res.data.points1,
-                    points2: res.data.points2
+                })
+                setSideDecisions({
+                    side1: res.data.side1ActualDecision,
+                    side2: res.data.side2ActualDecision
                 })
             }).catch(e => {
                 console.log(e)
@@ -102,14 +102,20 @@ const DisplayMatch = props => {
                         fighter2Score={fighter2Score}
                         />
 
-                        <Box bg="gray.300" mb="20px" width="100%" height="200px">
+                        <Box bg="gray.300" mb="20px" width="100%" >
                             <VStack>
-                                <Center>
-                                    <Text>{sideDecisions.side1}</Text>
-                                </Center>
-                                <Center>
-                                    <Text>{sideDecisions.side2}</Text>
-                                </Center>
+                                <Box p="10px" width="100%">
+                                    <Box width="100%" borderColor="black" borderWidth={1}>
+                                        <Text fontSize="16px" p="10px">{`Referee1: ${sideDecisions.side1}`}</Text>
+                                        <Box width="100%" pt="10px" height="15px" bgColor={"blue.500"} />
+                                    </Box>
+                                </Box>
+                                <Box p="10px" width="100%">
+                                    <Box width="100%" borderColor="black" borderWidth={1}>
+                                        <Text fontSize="16px" p="10px">{`Referee2: ${sideDecisions.side2}`}</Text>
+                                        <Box width="100%" pt="10px" height="15px" bgColor={"red.500"} />
+                                    </Box>
+                                </Box>
                             </VStack>
                         </Box>
 
