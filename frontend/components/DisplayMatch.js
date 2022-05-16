@@ -3,6 +3,7 @@ import { HStack, VStack, Text, Button, Center, Box, Flex } from 'native-base';
 import FormHeader from './util/FormHeader';
 import DisplayScore from './DisplayScore';
 import Timer from "./Timer";
+import MainRefereeFooter from './util/MainRefereeFooter';
 
 //mockup to use in testing - we will pass a correct object with props from token input
 const match = {
@@ -45,10 +46,10 @@ const DisplayMatch = props => {
 
     return (
         <>
-            <FormHeader name="Match" marginBottom="200px"/>
+            <FormHeader name="Match" marginBottom="200px" />
             <Center>
                 <VStack width="90%">
-                    <Timer/>
+                    <Timer />
                     <Center>
                         <HStack width="100%" mb="20px">
                             <Box
@@ -78,9 +79,9 @@ const DisplayMatch = props => {
                         </HStack>
 
                         <DisplayScore
-    fighter1Score={fighter1Score}
-    fighter2Score={fighter2Score}
-    />
+                            fighter1Score={fighter1Score}
+                            fighter2Score={fighter2Score}
+                        />
 
                         <Box bg="gray.300" mb="20px" width="100%" height="200px">
                             <VStack>
@@ -115,9 +116,7 @@ const DisplayMatch = props => {
                 </VStack>
             </Center>
 
-            <Text marginTop="auto" textAlign={'center'}>
-                Navbar placeholder
-            </Text>
+            <MainRefereeFooter selected={1}></MainRefereeFooter>
         </>
     );
 };

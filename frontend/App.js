@@ -13,6 +13,8 @@ import TokenInput from './components/TokenInput';
 import LoginPick from './components/LoginPick';
 import DisplayScore from './components/DisplayScore';
 import DisplayMatch from './components/DisplayMatch';
+import FightHistory from './components/FightHistory';
+import FightStats from './components/FightStats';
 
 export default function App() {
     return (
@@ -32,6 +34,9 @@ export default function App() {
                         />
                         <Route path="/displayMatch" element={<DisplayMatch />} />
                         <Route path="/createMatchForm" element={<CreateMatchForm />} />
+                        <Route path="/fightHistory" element={<FightHistory />} />
+                        <Route path="/fightStats" element={<FightStats />} />
+
                     </Routes>
                 </NativeRouter>
             </SSRProvider>
