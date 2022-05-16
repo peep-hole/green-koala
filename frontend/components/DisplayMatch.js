@@ -94,13 +94,13 @@ const DisplayMatch = props => {
                             </VStack>
                         </Box>
 
-                        <VStack>
+                        <VStack width="100%" mb="20px">
                             <Center>
-                                <HStack>
-                                    <Button width="50%" p="20px" m="2px" bg="red.500">
+                                <HStack width="100%">
+                                    <Button width="50%" p="20px" mb="2px" bg="red.500">
                                         RED point
                                     </Button>
-                                    <Button width="50%" p="20px" m="2px" bg="blue.500" n>
+                                    <Button width="50%" p="20px" mb="2px" bg="blue.500" n>
                                         BLUE point
                                     </Button>
                                 </HStack>
