@@ -53,7 +53,7 @@ const DisplayMatch = props => {
                     <Center>
                         <HStack width="100%" mb="20px">
                             <Box
-                                bg="red.400"
+                                bg="red.500"
                                 p="5px"
                                 width="50%"
                                 borderColor="black"
@@ -65,7 +65,7 @@ const DisplayMatch = props => {
                                 </Center>
                             </Box>
                             <Box
-                                bg="blue.400"
+                                bg="blue.500"
                                 p="5px"
                                 width="50%"
                                 borderColor="black"
@@ -116,7 +116,15 @@ const DisplayMatch = props => {
                 </VStack>
             </Center>
 
-            <MainRefereeFooter selected={1}></MainRefereeFooter>
+            <MainRefereeFooter selected={1}
+                state={{
+                    fighter1: fighter1Name.toString(),
+                    fighter2: fighter2Name.toString(),
+                    fighter1Score: fighter1Score,
+                    fighter2Score: fighter2Score
+                }}>
+
+            </MainRefereeFooter>
         </>
     );
 };

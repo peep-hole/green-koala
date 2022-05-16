@@ -7,7 +7,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 
 const MainRefereeFooter = props => {
-    const [selected, setSelected] = React.useState(1);
+    const [selected, setSelected] = React.useState();
 
     useEffect(() => {
         if (props) {
@@ -22,7 +22,7 @@ const MainRefereeFooter = props => {
                 <HStack bg="#065f46" alignItems="center" safeAreaBottom shadow={6}>
 
                     <Pressable opacity={selected === 0 ? 1 : 0.5} py="3" flex={1} onPress={() => setSelected(0)}>
-                        <Link to="/fightHistory">
+                        <Link to="/fightHistory" state={props.state}>
                             <Center>
                                 <Icon as={<MaterialCommunityIcons name="format-list-bulleted-square" size={24} color="black" />} color="white" size="lg" />
                                 <Text color="white" fontSize="16">
@@ -44,7 +44,7 @@ const MainRefereeFooter = props => {
                     </Pressable>
 
                     <Pressable opacity={selected === 2 ? 1 : 0.6} py="2" flex={1} onPress={() => setSelected(2)}>
-                        <Link to="/fightStats">
+                        <Link to="/fightStats" state={props.state}>
                             <Center>
                                 <Icon as={<Ionicons name="stats-chart" size={40} color="black" />} color="white" size="lg" />
                                 <Text color="white" fontSize="16">
