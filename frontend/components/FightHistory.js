@@ -102,7 +102,7 @@ const FightHistory = () => {
                                             {item.time}
                                         </Text>
                                     </HStack>
-                                    <Text _dark={{ color: "warmGray.50" }} color="coolGray.800" alignSelf="flex-center">
+                                    <Text _dark={{ color: "warmGray.50" }} color="coolGray.800" alignSelf="center">
                                         {item.decision}
                                     </Text>
                                 </Box>
