@@ -19,12 +19,12 @@ const FightStats = () => {
                         <HStack width="100%" mb="20px">
                             <Box bg="red.500" p="5px" width="50%" borderColor="black" borderWidth="1" height="40px">
                                 <Center>
-                                    <Text color="white">{props.state.fighter1}</Text>
+                                    <Text color="white">{props.state.fighter1.name + ' ' + props.state.fighter1.surname}</Text>
                                 </Center>
                             </Box>
                             <Box bg="blue.500" p="5px" width="50%" borderColor="black" borderWidth="1" height="40px">
-                                <Center>
-                                    <Text color="white">{props.state.fighter2}</Text>
+                            <Center>
+                                    <Text color="white">{props.state.fighter2.name + ' ' + props.state.fighter2.surname}</Text>
                                 </Center>
                             </Box>
                         </HStack>
@@ -45,6 +45,7 @@ const FightStats = () => {
 
             <MainRefereeFooter selected={2}
                 state={{
+                    matchData: props.state.matchData,
                     fighter1: props.state.fighter1,
                     fighter2: props.state.fighter2,
                     fighter1Score: props.state.fighter1Score,

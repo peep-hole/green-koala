@@ -6,62 +6,34 @@ import Timer from "./Timer";
 import MainRefereeFooter from './util/MainRefereeFooter';
 import { useLocation } from 'react-router-native';
 
-//mockup to use in testing - we will pass a correct object with props from token input
-const match = {
-    time: 0,
-    fighter1Name: 'Fighter One',
-    fighter2Name: 'Fighter Two',
-    fighter1Score: 3,
-    fighter2Score: 2,
-};
-
-//easiest way to test - replace App in App.js with:
-// export default function App() {
-//     const match = {
-//         time: 0,
-//         fighter1Name: 'Fighter One',
-//         fighter2Name: 'Fighter Two',
-//         fighter1Score: 3,
-//         fighter2Score: 2,
-//     };
-
-//     return (
-
-//         <NativeBaseProvider>
-//             <SSRProvider>
-//                 <DisplayMatch match={match}></DisplayMatch>
-//             </SSRProvider>
-//         </NativeBaseProvider>
-//     );
-// }
+const fighterScore1 = 3;
+const fighterScore2 = 2;
 
 const DisplayMatch = () => {
 
     const props = useLocation();
 
-    const [matchTime, setMatchTime] = useState(match.time);
-    const [fighter1Name, setFighter1Name] = useState(match.fighter1Name);
-    const [fighter2Name, setFighter2Name] = useState(match.fighter2Name);
-    const [fighter1Score, setFighter1Score] = useState(match.fighter1Score);
-    const [fighter2Score, setFighter2Score] = useState(match.fighter2Score);
-
-    const [refereeType, setRefereeType] = useState(props.state.userType);
     //will be used to determine which elements of the interface should be shown - either "Main" or "Side"
 
     useEffect(() => {
-        setRefereeType(props.state.userType);
-        console.log("Joined match as:")
-        console.log(props.state.userType)
+        console.log("passed to displaymatch:")
+        console.log(props.state.matchData);
+        console.log(props.state.fighter1);
+        console.log(props.state.fighter2);
+        console.log("Joined match as:");
+        console.log(props.state.userType);
     }, []);
 
 
     return (
         <View height="100%">
-            <FormHeader name="Match"/>
+            <FormHeader name="Match" />
+
             <Center height="70%">
                 <VStack width="90%" >
                     <Timer />
                     <Center>
+
                         <HStack width="100%" mb="20px">
                             <Box
                                 bg="red.500"
@@ -72,7 +44,7 @@ const DisplayMatch = () => {
                                 height="40px"
                             >
                                 <Center>
-                                    <Text color="white">{fighter1Name.toString()}</Text>
+                                    <Text color="white">{props.state.fighter1.name + ' ' + props.state.fighter1.surname}</Text>
                                 </Center>
                             </Box>
                             <Box
@@ -84,14 +56,15 @@ const DisplayMatch = () => {
                                 height="40px"
                             >
                                 <Center>
-                                    <Text color="white">{fighter2Name.toString()}</Text>
+                                    <Text color="white">{props.state.fighter2.name + ' ' + props.state.fighter2.surname}</Text>
                                 </Center>
                             </Box>
                         </HStack>
 
+
                         <DisplayScore
-                            fighter1Score={fighter1Score}
-                            fighter2Score={fighter2Score}
+                            fighter1Score={fighterScore1}
+                            fighter2Score={fighterScore2}
                         />
 
                         <Box bg="gray.300" mb="20px" width="100%" height="30%">
@@ -118,7 +91,7 @@ const DisplayMatch = () => {
                             </Center>
 
                             <Center>
-                                <Button bg="gray.500"  width="100%">
+                                <Button bg="gray.500" width="100%">
                                     No point
                                 </Button>
                             </Center>
@@ -129,13 +102,13 @@ const DisplayMatch = () => {
 
             <MainRefereeFooter selected={1}
                 state={{
-                    fighter1: fighter1Name.toString(),
-                    fighter2: fighter2Name.toString(),
-                    fighter1Score: fighter1Score,
-                    fighter2Score: fighter2Score,
-                    userType: refereeType
+                    matchData: props.state.matchData,
+                    fighter1: props.state.fighter1,
+                    fighter2: props.state.fighter2,
+                    fighter1Score: fighterScore1,
+                    fighter2Score: fighterScore2,
+                    userType: props.state.userType
                 }}>
-
             </MainRefereeFooter>
         </View>
 

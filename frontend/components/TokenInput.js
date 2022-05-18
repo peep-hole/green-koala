@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Input, NativeBaseProvider, Text, Center, Button, VStack } from 'native-base';
+import { Input, Text, Center, Button, VStack } from 'native-base';
 import FormHeaderLink from './util/FormHeaderLink';
-import { FontAwesome } from '@expo/vector-icons';
 import Api from './util/Api';
 import { Navigate, useLocation } from 'react-router-native';
 
@@ -17,7 +16,13 @@ const TokenInput = () => {
     const [matchData, setMatchData] = useState({});
     const [refereeJoining, setRefereeJoining] = useState(false);
     const [organizerJoining, setOrganizerJoining] = useState(false);
+    const [matchDataLoaded, setMatchDataLoaded] = useState(false);
 
+    const [fighter1, setFirstFighter] = useState({});
+    const [fighter2, setSecondFighter] = useState({});
+
+    const [f1Loaded, setF1Loaded] = useState(false);
+    const [f2Loaded, setF2Loaded] = useState(false);
 
     // temporary example request handler - for referee
     // needs an endpoint on the backend which will return match data fitting the token and fail if token is invalid
@@ -41,9 +46,12 @@ const TokenInput = () => {
 
             Api.get('/matches/token/' + token)
                 .then(res => {
-                    console.log(res.data);
                     console.log('Tokent sent');
                     setMatchData(res.data);
+                    console.log(res.data);
+                    setMatchDataLoaded(true);
+                    getFightersData(res.data);
+
                     if ((props.state.userType == "Main" && res.data.mainRefereeToken == token) ||
                         (props.state.userType == "Side" && (res.data.sideRefereeToken1 == token || res.data.sideRefereeToken2 == token))) {
                         setRefereeJoining(true);
@@ -59,6 +67,24 @@ const TokenInput = () => {
                     console.log('Could not send mock token to back');
                 });
         }
+    };
+
+    const getFightersData = (data) => {
+        const fighterId1 = data.fighterId1;
+        const fighterId2 = data.fighterId2;
+
+        Api.get('/actors/fighters/id/' + fighterId1).then(res => {
+            console.log(res.data);
+            setFirstFighter(res.data);
+            setF1Loaded(true);
+        });
+
+        Api.get('/actors/fighters/id/' + fighterId2).then(res => {
+            console.log(res.data);
+            setSecondFighter(res.data);
+            setF2Loaded(true);
+        });
+
     };
 
     //do we need this? maybe we can just keep using props.state.userType
@@ -98,7 +124,15 @@ const TokenInput = () => {
                 </VStack>
             </Center>
             {organizerJoining && <Navigate to="/matchList" state={{ token: token }}></Navigate>}
-            {refereeJoining && <Navigate to="/displayMatch" state={{ userType: props.state.userType }}></Navigate>}
+            {refereeJoining && matchDataLoaded && f1Loaded && f2Loaded &&
+                <Navigate to="/displayMatch"
+                    state={{
+                        userType: props.state.userType,
+                        matchData: matchData,
+                        fighter1: fighter1,
+                        fighter2: fighter2
+                    }}>
+                </Navigate>}
 
         </>
     );
