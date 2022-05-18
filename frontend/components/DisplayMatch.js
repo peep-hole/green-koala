@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { HStack, VStack, Text, Button, Center, Box, Flex } from 'native-base';
+import { HStack, VStack, Text, Button, Center, Box, View } from 'native-base';
 import FormHeader from './util/FormHeader';
 import DisplayScore from './DisplayScore';
 import Timer from "./Timer";
@@ -45,10 +45,10 @@ const DisplayMatch = props => {
     // const refereeType = props.refereeType;
 
     return (
-        <>
-            <FormHeader name="Match" marginBottom="200px" />
-            <Center>
-                <VStack width="90%">
+        <View height="100%">
+            <FormHeader name="Match"/>
+            <Center height="70%">
+                <VStack width="90%" >
                     <Timer />
                     <Center>
                         <HStack width="100%" mb="20px">
@@ -83,7 +83,7 @@ const DisplayMatch = props => {
                             fighter2Score={fighter2Score}
                         />
 
-                        <Box bg="gray.300" mb="20px" width="100%" height="200px">
+                        <Box bg="gray.300" mb="20px" width="100%" height="30%">
                             <VStack>
                                 <Center>
                                     <Text>event1 placeholder</Text>
@@ -94,7 +94,7 @@ const DisplayMatch = props => {
                             </VStack>
                         </Box>
 
-                        <VStack width="100%" mb="20px">
+                        <VStack width="100%">
                             <Center>
                                 <HStack width="100%">
                                     <Button width="50%" p="20px" mb="2px" bg="red.500">
@@ -107,7 +107,7 @@ const DisplayMatch = props => {
                             </Center>
 
                             <Center>
-                                <Button bg="gray.500" p="15px" width="100%">
+                                <Button bg="gray.500"  width="100%">
                                     No point
                                 </Button>
                             </Center>
@@ -125,7 +125,8 @@ const DisplayMatch = props => {
                 }}>
 
             </MainRefereeFooter>
-        </>
+        </View>
+
     );
 };
 

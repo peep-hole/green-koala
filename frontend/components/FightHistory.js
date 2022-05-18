@@ -83,11 +83,11 @@ const FightHistory = () => {
                 </VStack>
 
                 <Box id="oncoming_matches" height="auto" width="90%">
-                    <Text fontSize={20} marginBottom={3}>
-                        <Center>
+                    <Center>
+                        <Text fontSize={20} marginBottom={3}>
                             Event decisions
-                        </Center>
-                    </Text>
+                        </Text>
+                    </Center>
                     {/* TODO: update filtering when model will contain bool determining if fight is over / or maybe score is not null? */}
                     <FlatList backgroundColor="gray.200"
                         data={events} renderItem={

@@ -1,13 +1,18 @@
 import React from 'react';
 import AdminFooter from './util/AdminFooter';
-import FormHeaderLink from './util/FormHeaderLink';
+import FormHeader from './util/FormHeader';
+import { Text, Center } from 'native-base';
 
 const TournamentList = () => {
 
     return (
         <>
-            <FormHeaderLink pathname="" name="Tournaments"></FormHeaderLink>
-
+            <FormHeader name="Tournaments"></FormHeader>
+            <Center>
+                <Text marginTop={50} fontSize={25}>
+                    TOURNAMENT LIST HERE
+                </Text>
+            </Center>
             <AdminFooter selected={2}></AdminFooter>
         </>
     );

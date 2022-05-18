@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Input, NativeBaseProvider, Text, Center, Button, VStack } from 'native-base';
-import FormHeader from './util/FormHeader';
+import FormHeaderLink from './util/FormHeaderLink';
 import { FontAwesome } from '@expo/vector-icons';
 import Api from './util/Api';
+import { useLocation } from 'react-router-native';
+
 //example call for App.js - <TokenInput userType="Organizer" />
 
-const TokenInput = props => {
+const TokenInput = () => {
+
+    const props = useLocation();
     const [userType, setUserType] = useState('');
     const [error, setError] = useState(false);
     const [token, setToken] = useState('');
@@ -51,7 +55,7 @@ const TokenInput = props => {
     //we can set things like routes on button click, function called on token submit depending on the type later
     //my idea - get match data from token here and pass it as a prop to the next screen, otherwise show error if i.e. token does not exist
     useEffect(() => {
-        switch (props.userType) {
+        switch (props.state.userType) {
             case 'Main':
                 setUserType('Main Referee');
                 break;
@@ -68,7 +72,7 @@ const TokenInput = props => {
 
     return (
         <>
-            <FormHeader name="Token"></FormHeader>
+            <FormHeaderLink pathname="loginPick" name="Token"></FormHeaderLink>
             <Button
                 marginBottom="50px"
                 width="50"
@@ -107,7 +111,7 @@ const TokenInput = props => {
                     </Button>
                     <Text color="red.500">
                         {error &&
-                            'Unable to join the match, please check the token and try again'}
+                            'Unable to join, please check the token and try again'}
                     </Text>
                 </VStack>
             </Center>

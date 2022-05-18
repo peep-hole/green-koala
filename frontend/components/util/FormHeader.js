@@ -1,6 +1,6 @@
 import React from 'react';
-import {Box, HStack, Icon, IconButton, StatusBar, Text} from "native-base";
-import {Link} from "react-router-native"
+import { Box, Center, HStack, StatusBar, Text } from "native-base";
+import { Link } from "react-router-native"
 
 const FormHeader = (props) => {
     /* #065f46 -> Headers
@@ -12,14 +12,12 @@ const FormHeader = (props) => {
         <>
             <StatusBar bg="#065f46" barStyle="light-content" />
             <Box safeAreaTop bg="#065f46" />
-            <HStack marginBottom="30px" bg="#065f46" px="1" py="3" justifyContent="space-between" alignItems="center" w="100%">
-                <HStack alignItems="center">
-                    <Link to="/"><Text color="white" fontSize="20" fontWeight="bold">
+            <HStack marginBottom="30px" bg="#065f46" px="1" py="3" w="100%">
+                <Link to="/">
+                    <Text marginLeft="20px" color="white" fontSize="20" fontWeight="bold">
                         {props.name}
-                    </Text></Link>
-                </HStack>
-                <HStack>
-                </HStack>
+                    </Text>
+                </Link>
             </HStack>
         </>
     );
