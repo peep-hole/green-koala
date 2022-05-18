@@ -14,7 +14,7 @@ const CancelFightConfirmation = () => {
     }, []);
 
     const cancelFight = () => {
-        Api.delete('/matches/cancel/' + props.state.fightId //change to delete after back update
+        Api.delete('/matches/cancel/' + props.state.fightId
         ).then(res => {
             setCancelled(true);
         }).catch(e => {
