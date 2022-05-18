@@ -13,6 +13,11 @@ import TokenInput from './components/TokenInput';
 import LoginPick from './components/LoginPick';
 import DisplayScore from './components/DisplayScore';
 import DisplayMatch from './components/DisplayMatch';
+import MatchList from './components/MatchList';
+import CancelFightConfirmation from './components/CancelFightConfirmation';
+import FighterList from './components/FighterList';
+import TournamentList from './components/TournamentList';
+import FightResult from './components/FightResult';
 
 export default function App() {
     return (
@@ -24,14 +29,14 @@ export default function App() {
                         <Route path="/tokenInput" element={<TokenInput />} />
                         <Route path="/registerPlayerForm" element={<RegisterPlayerForm />} />
                         <Route path="/loginPick" element={<LoginPick />} />
-                        <Route
-                            path="/fightInfo"
-                            element={
-                                <FightInfo fightId="ea5d74b4-c70b-11ec-9d64-0242ac120002" />
-                            }
-                        />
+                        <Route path="/fightInfo" element={<FightInfo />} />
+                        <Route path="/fightResult" element={<FightResult />} />
                         <Route path="/displayMatch" element={<DisplayMatch />} />
                         <Route path="/createMatchForm" element={<CreateMatchForm />} />
+                        <Route path="/cancelMatch" element={<CancelFightConfirmation />} />
+                        <Route path="/matchList" element={<MatchList />} />
+                        <Route path="/fighterList" element={<FighterList/>} />
+                        <Route path="/tournamentList" element={<TournamentList/>} />
                     </Routes>
                 </NativeRouter>
             </SSRProvider>
