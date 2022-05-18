@@ -18,8 +18,6 @@ const FormHeader = (props) => {
                         {props.name}
                     </Text></Link>
                 </HStack>
-                <HStack>
-                </HStack>
             </HStack>
         </>
     );

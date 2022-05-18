@@ -2,37 +2,40 @@ import React, {useEffect, useState} from 'react';
 import {HStack, Text} from "native-base";
 import { FontAwesome } from '@expo/vector-icons';
 import {StyleSheet, Alert} from "react-native";
-import sock from "./util/Websocket";
+import url from "./util/Websocket";
+import SockJS from 'sockjs-client';
 import { over } from 'stompjs';
 
 let stompClient = null
+let sock = null
 
 const Timer = props => {
-    const bgColor = "tertiary.800"
+    const bg= "black"
     const [seconds, setSeconds] = useState(0)
     const [minutes, setMinutes] = useState(0)
     const [isActive, setIsActive] = useState(false)
 
     useEffect(() => {
-        stompClient = over(sock);
-        stompClient.connect({}, onConnected, onError);
-    }, []);
+        sock = new SockJS(url)
+        stompClient = over(sock)
+        stompClient.connect({}, onConnected, onError)
+    }, [])
 
 
     const onConnected = () => {
         console.log("CONNECTED")
-        stompClient.subscribe("/response/timer", onMessageReceived);
+        stompClient.subscribe("/response/timer", onMessageReceived)
         stompClient.send("/timer", {}, JSON.stringify({
             action: "GET"
         }));
     }
 
     const onError = (error) => {
-        console.log("Error: " + error);
+        console.log("Error: " + error)
     }
 
     const onMessageReceived = (payload) => {
-        let millis = payload.body
+        let millis = JSON.parse(payload.body).time
         let minutes = Math.floor(millis / 60000)
         let seconds = Number(((millis % 60000) / 1000).toFixed(0))
         setMinutes(minutes)
@@ -40,15 +43,19 @@ const Timer = props => {
     }
 
     const toggle = () => {
-        setIsActive(!isActive)
-        if(isActive) {
+        if(!isActive) {
             sendStart()
         } else {
             sendStop()
         }
+        setIsActive(!isActive)
     }
 
     const reset = () => {
+        if(isActive){
+            setIsActive(!isActive)
+        }
+        sendReset()
         return Alert.alert(
             "Are your sure?",
             "Are you sure you want to reset the timer?",
@@ -67,6 +74,7 @@ const Timer = props => {
     }
 
     const end = () => {
+        sendEnd()
         return Alert.alert(
             "Are your sure?",
             "Are you sure you want to end the match?",
@@ -111,7 +119,7 @@ const Timer = props => {
         }
     }
 
-    const sendEnd = () => {
+    const sendEnd = () => { // waiting for endpoint from backend
         if(stompClient) {
             let message = {
                 action: "END"
@@ -121,15 +129,17 @@ const Timer = props => {
     }
 
     if(props.isMain){
-        return <HStack bg={bgColor} px="1" py="3" justifyContent="center" alignItems="center" w="100%">
+        return <>
+                <HStack bg={bg} px="1" py="3" justifyContent="center" alignItems="center" w="100%">
                     {isActive? <FontAwesome style={styles.ionicons} name="pause" size={24} color="black" onPress={toggle}/> :
                     <FontAwesome style={styles.ionicons} name="play" size={24} color="black" onPress={toggle}/>}
-                    <Text fontSize={24}>{minutes.toString().padStart(2, "0") + ":" + seconds.toString().padStart(2, "0")}</Text>
+                    <Text fontSize={24} color="white">{minutes.toString().padStart(2, "0") + ":" + seconds.toString().padStart(2, "0")}</Text>
                     <FontAwesome style={styles.ionicons} name="stop" size={24} color="black" onPress={reset}/>
-                    <FontAwesome style={styles.ionicons} name="close" size={24} color="black" onPress={end}/>
+                    <FontAwesome style={styles.closeIcon} name="close" size={32} color="black" onPress={end}/>
                 </HStack>
+        </>
     } else {
-        return <HStack bg={bgColor} px="1" py="3" justifyContent="center" alignItems="center" w="100%">
+        return <HStack bg={bg} px="1" py="3" justifyContent="center" alignItems="center" w="100%">
                     <Text fontSize={24}>{minutes.toString().padStart(2, "0") + ":" + seconds.toString().padStart(2, "0")}</Text>
                 </HStack>
     }
@@ -138,7 +148,13 @@ const Timer = props => {
 const styles = StyleSheet.create({
     ionicons: {
         marginLeft: 20,
-        marginRight: 20
+        marginRight: 20,
+        color: "white"
+    },
+    closeIcon: {
+        position: "absolute",
+        marginLeft: "85%",
+        color: "white"
     }
 })
 
