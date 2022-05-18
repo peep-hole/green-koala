@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Box, Button, Center, HStack, StatusBar, Text, View} from "native-base";
+import {HStack, Text} from "native-base";
 import { FontAwesome } from '@expo/vector-icons';
 import {StyleSheet, Alert} from "react-native";
 import sock from "./util/Websocket";
@@ -12,7 +12,6 @@ const Timer = props => {
     const [seconds, setSeconds] = useState(0)
     const [minutes, setMinutes] = useState(0)
     const [isActive, setIsActive] = useState(false)
-    const [render, setRender] = useState({})
 
     useEffect(() => {
         stompClient = over(sock);

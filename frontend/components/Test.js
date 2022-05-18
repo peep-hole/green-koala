@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import sock from "./util/Websocket";
-import {over} from 'stompjs';
+import { over } from 'stompjs';
 import {NativeBaseProvider, Button} from 'native-base';
 
 let stompClient = null;
