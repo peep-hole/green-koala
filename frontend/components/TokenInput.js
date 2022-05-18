@@ -73,18 +73,7 @@ const TokenInput = () => {
     return (
         <>
             <FormHeaderLink pathname="loginPick" name="Token"></FormHeaderLink>
-            <Button
-                marginBottom="50px"
-                width="50"
-                marginLeft={30}
-                bg="#059669"
-                text={{
-                    color: 'white',
-                }}
-            >
-                <FontAwesome name="arrow-circle-left" size={30} color="white"></FontAwesome>
-            </Button>
-            <Center>
+            <Center marginTop="20%">
                 <Text fontSize="20">You are entering the app as</Text>
                 <Text fontWeight="bold" fontSize="30">
                     {userType}

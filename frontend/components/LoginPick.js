@@ -1,10 +1,14 @@
 import FormHeader from './util/FormHeader';
 import { Center, Button, VStack, Text } from 'native-base';
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesome } from '@expo/vector-icons';
-import { Link } from 'react-router-native';
+import { Navigate } from 'react-router-native';
 
 const LoginPick = () => {
+
+
+    const [user, setUser] = useState("");
+    const [userTypePicked, setUserTypePicked] = useState(false);
 
 
     return (
@@ -18,30 +22,33 @@ const LoginPick = () => {
                 </Text>
 
                 <VStack>
-                    <Button marginTop="30px" size="lg" marginRight="30px" marginLeft="30px" bg="#059669" _text={{ color: 'white', }}>
-                        <Link to="/tokenInput" state={{ userType: "Main" }}>
-                            <Text>
-                                Main Referee
-                            </Text>
-                        </Link>
+                    <Button marginTop="30px" size="lg" marginRight="30px" marginLeft="30px" bg="#059669" _text={{ color: 'white', }}
+                        onPress={() => {
+                            setUser("Main");
+                            setUserTypePicked(true);
+                        }}>
+                        <Text>Main Referee</Text>
                     </Button>
 
-                    <Button marginTop="30px" size="lg" marginRight="30px" marginLeft="30px" bg="#059669" _text={{ color: 'white', }}>
-                        <Link to="/tokenInput" state={{ userType: "Side" }}>
-                            <Text>
-                                Side Referee
-                            </Text>
-                        </Link>
+                    <Button marginTop="30px" size="lg" marginRight="30px" marginLeft="30px" bg="#059669" _text={{ color: 'white', }}
+                        onPress={() => {
+                            setUser("Side");
+                            setUserTypePicked(true);
+                        }}>
+                        <Text>Side Referee</Text>
                     </Button>
-                    <Button marginTop="30px" size="lg" marginRight="30px" marginLeft="30px" bg="#059669" _text={{ color: 'white', }}>
-                        <Link to="/tokenInput" state={{ userType: "Organizer" }}>
-                            <Text>
-                                Organizer
-                            </Text>
-                        </Link>
+
+                    <Button marginTop="30px" size="lg" marginRight="30px" marginLeft="30px" bg="#059669" _text={{ color: 'white', }}
+                        onPress={() => {
+                            setUser("Organizer");
+                            setUserTypePicked(true);
+                        }}>
+                        <Text> Organizer</Text>
                     </Button>
                 </VStack>
             </Center>
+            {userTypePicked && <Navigate to="/tokenInput" state={{ userType: user }}></Navigate>}
+
         </>
     );
 };

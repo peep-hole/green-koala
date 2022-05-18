@@ -2,24 +2,30 @@ import React, { useEffect, useState } from 'react';
 import Api from './util/Api';
 import FormHeaderLink from './util/FormHeaderLink';
 import { Flex, Center, Button, Text, ScrollView, Heading } from 'native-base';
-import { Link, Navigate, useLocation } from "react-router-native";
+import { Navigate, useLocation } from "react-router-native";
 import { FontAwesome } from '@expo/vector-icons';
 
 const CancelFightConfirmation = () => {
 
     const props = useLocation({});
     const [cancelled, setCancelled] = useState(false);
+    const [deleted, setDeleted] = useState(false);
+
     useEffect(() => {
         console.log(props);
     }, []);
 
-    const cancelFight = () => {
+    const deleteFight = () => {
         Api.delete('/matches/cancel/' + props.state.fightId
         ).then(res => {
-            setCancelled(true);
+            setDeleted(true);
         }).catch(e => {
             console.log(e)
         })
+    }
+
+    const cancel = () => {
+        setCancelled(true)
     }
 
     return (
@@ -77,23 +83,23 @@ const CancelFightConfirmation = () => {
                     </Flex>
 
                     {/* Cancell button */}
-                    <Button marginTop="30px" colorScheme="gray">
-                        <Link to="/fightInfo" state={{ fightId: props.state.fightId }}>
-                            <Text color="white" >Cancel</Text>
-                        </Link>
+                    <Button marginTop="30px" colorScheme="gray"
+                        onPress={cancel}>
+                        <Text color="white" p="0px" m="0px">Cancel</Text>
                     </Button>
 
                     {/* Delete button */}
                     <Button marginTop="5px" colorScheme="red"
                         onPress={() => {
                             console.log('Handling fight cancelling...')
-                            cancelFight();
+                            deleteFight();
                         }}>
                         <Text color="white" >Delete</Text>
                     </Button>
                 </Center>
             </ScrollView>
-            {cancelled && <Navigate to="/matchList"></Navigate>}
+            {deleted && <Navigate to="/matchList"></Navigate>}
+            {cancelled && <Navigate to="/fightInfo" state={{ fightId: props.state.fightId }} ></Navigate>}
 
 
             {/* Here footer component containing administrator's navigation bar */}

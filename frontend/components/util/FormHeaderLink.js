@@ -14,10 +14,10 @@ const FormHeaderLink = (props) => {
         <>
             <StatusBar bg="#065f46" barStyle="light-content" />
             <Box safeAreaTop bg="#065f46" />
-            <HStack marginBottom="30px" bg="#065f46" px="1" py="3" justifyContent="space-between" alignItems="center" w="100%">
+            <HStack marginBottom="30px" bg="#065f46" px="2" py="3" justifyContent="space-between" alignItems="center" w="100%">
                 <HStack alignItems="center">
                     <Link to={"/" + props.pathname} state={props.state}>
-                        <AntDesign name="back" size={24} color="black" />
+                        <AntDesign name="back" size={30} color="black" />
                     </Link>
                     
                     <Text marginLeft={30} color="white" fontSize="20" fontWeight="bold">
