@@ -5,7 +5,7 @@ const DisplayScore = props => {
         <Flex
             bg="gray.300"
             p="5%"
-            width="auto"
+            width="100%"
             borderColor="black"
             borderWidth="1"
             rounded="lg"
@@ -20,7 +20,7 @@ const DisplayScore = props => {
                     fontWeight: 'bold',
                     fontSize: '4xl',
                 }}
-                width="120px"
+                width="33%"
                 height="64px"
                 borderColor="black"
                 borderWidth="1"
@@ -28,7 +28,7 @@ const DisplayScore = props => {
                 {props.fighter1Score}
             </Center>
 
-            <Center>
+            <Center width="33%">
                 <Text fontSize="md" p="20px">
                     Score
                 </Text>
@@ -41,7 +41,7 @@ const DisplayScore = props => {
                     fontWeight: 'bold',
                     fontSize: '4xl',
                 }}
-                width="120px"
+                width="33%"
                 height="64px"
                 borderColor="black"
                 borderWidth="1"
