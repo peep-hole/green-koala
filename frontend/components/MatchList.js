@@ -29,8 +29,9 @@ const MatchList = () => {
 
 
     return (
-        matchesLoaded && <>
-            <FormHeaderLink pathname="" state={{}} name="Matches" />
+        <>
+        <FormHeaderLink pathname="" state={{}} name="Matches" />
+        {matchesLoaded && <>
             <Box id="oncoming_matches" height="33%" >
                 <Heading fontSize="xl" marginBottom={1}>
                     <Center>
@@ -90,7 +91,9 @@ const MatchList = () => {
                 </Link>
             </Flex>
 
-            <AdminFooter selected={1}></AdminFooter>
+            
+        </>}
+        <AdminFooter selected={1}></AdminFooter>
         </>
     );
 };
