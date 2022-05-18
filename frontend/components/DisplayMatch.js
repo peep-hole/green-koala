@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { HStack, VStack, Text, Button, Center, Box, View } from 'native-base';
 import FormHeader from './util/FormHeader';
 import DisplayScore from './DisplayScore';
 import Timer from "./Timer";
 import MainRefereeFooter from './util/MainRefereeFooter';
+import { useLocation } from 'react-router-native';
 
 //mockup to use in testing - we will pass a correct object with props from token input
 const match = {
@@ -34,15 +35,25 @@ const match = {
 //     );
 // }
 
-const DisplayMatch = props => {
+const DisplayMatch = () => {
+
+    const props = useLocation();
+
     const [matchTime, setMatchTime] = useState(match.time);
     const [fighter1Name, setFighter1Name] = useState(match.fighter1Name);
     const [fighter2Name, setFighter2Name] = useState(match.fighter2Name);
     const [fighter1Score, setFighter1Score] = useState(match.fighter1Score);
     const [fighter2Score, setFighter2Score] = useState(match.fighter2Score);
 
+    const [refereeType, setRefereeType] = useState(props.state.userType);
     //will be used to determine which elements of the interface should be shown - either "Main" or "Side"
-    // const refereeType = props.refereeType;
+
+    useEffect(() => {
+        setRefereeType(props.state.userType);
+        console.log("Joined match as:")
+        console.log(props.state.userType)
+    }, []);
+
 
     return (
         <View height="100%">
@@ -121,7 +132,8 @@ const DisplayMatch = props => {
                     fighter1: fighter1Name.toString(),
                     fighter2: fighter2Name.toString(),
                     fighter1Score: fighter1Score,
-                    fighter2Score: fighter2Score
+                    fighter2Score: fighter2Score,
+                    userType: refereeType
                 }}>
 
             </MainRefereeFooter>

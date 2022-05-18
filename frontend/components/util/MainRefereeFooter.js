@@ -33,7 +33,7 @@ const MainRefereeFooter = props => {
                     </Pressable>
 
                     <Pressable opacity={selected === 1 ? 1 : 0.5} py="2" flex={1} onPress={() => setSelected(1)}>
-                        <Link to="/displayMatch">
+                        <Link to="/displayMatch" state={props.state}>
                             <Center>
                                 <Icon as={<MaterialIcons name="event-available" size={40} color="black" />} color="white" size="lg" />
                                 <Text color="white" fontSize="16">

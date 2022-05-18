@@ -24,7 +24,7 @@ const FightInfo = () => {
 
         Api.get('/matches/id/' + props.state.fightId).then(res => {
             setFightData(res.data);
-            //console.log(fightData.data);
+            // console.log(res.data);
             const fighterId1 = res.data.fighterId1;
             const fighterId2 = res.data.fighterId2;
             setLoading(false);

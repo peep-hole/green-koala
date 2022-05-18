@@ -116,7 +116,9 @@ const FightHistory = () => {
                     fighter1: props.state.fighter1,
                     fighter2: props.state.fighter2,
                     fighter1Score: props.state.fighter1Score,
-                    fighter2Score: props.state.fighter2Score
+                    fighter2Score: props.state.fighter2Score,
+                    userType: props.state.userType
+
                 }}>
             </MainRefereeFooter>
         </>
