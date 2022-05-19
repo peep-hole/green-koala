@@ -8,7 +8,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint . --ext .js,.jsx"
   },
   "jest": {
     "preset": "jest-expo",
@@ -34,12 +35,14 @@
     "react-native-svg": "12.1.1",
     "react-native-vector-icons": "^9.1.0",
     "react-native-web": "0.17.1",
+    "react-router-native": "^6.3.0",
     "sockjs-client": "^1.6.0",
-    "stompjs": "^2.3.3",
-    "react-router-native": "^6.3.0"
+    "stompjs": "^2.3.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
+    "eslint": "^8.15.0",
+    "eslint-plugin-react": "^7.30.0",
     "react-test-renderer": "^17.0.2"
   },
   "private": true

@@ -35,12 +35,12 @@ jobs:
    runs-on: ubuntu-latest
   
    steps:
-     - uses: actions/checkout@v2
-   
-     - name: Super-Linter
-       uses: github/super-linter@v4.9.2
-       env:
-          ACTIONS_RUNNER_DEBUG: true
-          VALIDATE_ALL_CODEBASE: false
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v2
+    
+      - name: Install modules
+        run: cd frontend && npm install
+      
+      - name: run ESLint
+        run: cd frontend && npm run lint
+      
         
