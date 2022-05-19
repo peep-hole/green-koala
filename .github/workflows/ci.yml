@@ -40,5 +40,9 @@ jobs:
       - name: Install modules
         run: cd frontend && npm install
       
-      - name: run ESLint
+      - name: Run ESLint
         run: cd frontend && npm run lint
+
+      - name: Run Checkstyle for Java
+        run: cd backend && ./gradlew checkstyleMain
+        
