@@ -9,7 +9,7 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "test": "jest",
-    "lint": "eslint . --ext .js,.jsx"
+    "lint": "eslint ./components --ext .js,.jsx"
   },
   "jest": {
     "preset": "jest-expo",
