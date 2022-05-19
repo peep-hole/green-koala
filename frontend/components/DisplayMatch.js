@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { HStack, VStack, Text, Button, Center, Box, View } from 'native-base';
 import FormHeader from './util/FormHeader';
 import DisplayScore from './DisplayScore';
@@ -28,44 +28,27 @@ const DisplayMatch = () => {
     return (
         <View height="100%">
             <FormHeader name="Match" />
-
             <Center height="70%">
                 <VStack width="90%" >
                     <Timer />
                     <Center>
-
                         <HStack width="100%" mb="20px">
-                            <Box
-                                bg="red.500"
-                                p="5px"
-                                width="50%"
-                                borderColor="black"
-                                borderWidth="1"
-                                height="40px"
-                            >
+                            <Box bg="red.500" p="5px" width="50%" borderColor="black" borderWidth="1" height="40px">
                                 <Center>
                                     <Text color="white">{props.state.fighter1.name + ' ' + props.state.fighter1.surname}</Text>
                                 </Center>
                             </Box>
-                            <Box
-                                bg="blue.500"
-                                p="5px"
-                                width="50%"
-                                borderColor="black"
-                                borderWidth="1"
-                                height="40px"
-                            >
+                            <Box bg="blue.500" p="5px" width="50%" borderColor="black" borderWidth="1" height="40px">
                                 <Center>
                                     <Text color="white">{props.state.fighter2.name + ' ' + props.state.fighter2.surname}</Text>
                                 </Center>
                             </Box>
                         </HStack>
 
-
                         <DisplayScore
                             fighter1Score={fighterScore1}
-                            fighter2Score={fighterScore2}
-                        />
+                            fighter2Score={fighterScore2}>
+                        </DisplayScore>
 
                         <Box bg="gray.300" mb="20px" width="100%" height="30%">
                             <VStack>
@@ -100,16 +83,18 @@ const DisplayMatch = () => {
                 </VStack>
             </Center>
 
-            <MainRefereeFooter selected={1}
-                state={{
-                    matchData: props.state.matchData,
-                    fighter1: props.state.fighter1,
-                    fighter2: props.state.fighter2,
-                    fighter1Score: fighterScore1,
-                    fighter2Score: fighterScore2,
-                    userType: props.state.userType
-                }}>
-            </MainRefereeFooter>
+            {props.state.userType == "Main" &&
+                <MainRefereeFooter selected={1}
+                    state={{
+                        matchData: props.state.matchData,
+                        fighter1: props.state.fighter1,
+                        fighter2: props.state.fighter2,
+                        fighter1Score: fighterScore1,
+                        fighter2Score: fighterScore2,
+                        userType: props.state.userType
+                    }}>
+                </MainRefereeFooter>}
+
         </View>
 
     );
