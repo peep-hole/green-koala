@@ -102,7 +102,7 @@ const FightInfo = () => {
                     </Text>
                     <Text marginLeft="35px" marginRight="40px" color="grey" fontSize={15}>
                         Lorem Ipsum is simply dummy text of the printing and typesetting
-                        industry. Lorem Ipsum has been the industry's standard dummy text ever
+                        industry. Lorem Ipsum has been the industry`&apos;`s standard dummy text ever
                         since the{' '}
                     </Text>
 
