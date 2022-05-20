@@ -23,8 +23,7 @@ public class ActorsController {
 
     @PostMapping(value = "/register-fighter")
     public ResponseEntity<UUID> registerFighter(@RequestBody Fighter fighter) {
-        fighterService.registerFighter(fighter);
-        return new ResponseEntity<>(fighter.getId(), HttpStatus.OK);
+        return new ResponseEntity<>(fighterService.registerFighter(fighter).getId(), HttpStatus.OK);
     }
 
     @GetMapping("/fighters/id/{id}")

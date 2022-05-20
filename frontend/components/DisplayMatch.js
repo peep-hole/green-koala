@@ -27,10 +27,11 @@ const DisplayMatch = () => {
 
     return (
         <View height="100%">
-            <FormHeader name="Match" />
-            <Center height="70%">
-                <VStack width="90%" >
-                    <Timer />
+
+            <Box safeAreaTop bg="#065f46" />
+            <Timer isMain={true}/>
+            <Center height="70%" marginTop={5}>
+                <VStack width="90%">
                     <Center>
                         <HStack width="100%" mb="20px">
                             <Box bg="red.500" p="5px" width="50%" borderColor="black" borderWidth="1" height="40px">
