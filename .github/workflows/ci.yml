@@ -42,3 +42,6 @@ jobs:
       
       - name: run ESLint
         run: cd frontend && npm run lint
+
+      - name: Run Checkstyle for Java
+        run: cd backend && ./gradlew checkstyleMain
