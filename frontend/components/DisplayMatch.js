@@ -3,6 +3,7 @@ import { HStack, VStack, Text, Button, Center, Box, Flex } from 'native-base';
 import FormHeader from './util/FormHeader';
 import DisplayScore from './DisplayScore';
 import Timer from "./Timer";
+import MainRefereeFooter from './util/MainRefereeFooter';
 
 //mockup to use in testing - we will pass a correct object with props from token input
 const match = {
@@ -52,7 +53,7 @@ const DisplayMatch = props => {
                     <Center>
                         <HStack width="100%" mb="20px">
                             <Box
-                                bg="red.400"
+                                bg="red.500"
                                 p="5px"
                                 width="50%"
                                 borderColor="black"
@@ -64,7 +65,7 @@ const DisplayMatch = props => {
                                 </Center>
                             </Box>
                             <Box
-                                bg="blue.400"
+                                bg="blue.500"
                                 p="5px"
                                 width="50%"
                                 borderColor="black"
@@ -78,9 +79,9 @@ const DisplayMatch = props => {
                         </HStack>
 
                         <DisplayScore
-    fighter1Score={fighter1Score}
-    fighter2Score={fighter2Score}
-    />
+                            fighter1Score={fighter1Score}
+                            fighter2Score={fighter2Score}
+                        />
 
                         <Box bg="gray.300" mb="20px" width="100%" height="200px">
                             <VStack>
@@ -93,13 +94,13 @@ const DisplayMatch = props => {
                             </VStack>
                         </Box>
 
-                        <VStack>
+                        <VStack width="100%" mb="20px">
                             <Center>
-                                <HStack>
-                                    <Button width="50%" p="20px" m="2px" bg="red.500">
+                                <HStack width="100%">
+                                    <Button width="50%" p="20px" mb="2px" bg="red.500">
                                         RED point
                                     </Button>
-                                    <Button width="50%" p="20px" m="2px" bg="blue.500" n>
+                                    <Button width="50%" p="20px" mb="2px" bg="blue.500" n>
                                         BLUE point
                                     </Button>
                                 </HStack>
@@ -115,9 +116,15 @@ const DisplayMatch = props => {
                 </VStack>
             </Center>
 
-            <Text marginTop="auto" textAlign={'center'}>
-                Navbar placeholder
-            </Text>
+            <MainRefereeFooter selected={1}
+                state={{
+                    fighter1: fighter1Name.toString(),
+                    fighter2: fighter2Name.toString(),
+                    fighter1Score: fighter1Score,
+                    fighter2Score: fighter2Score
+                }}>
+
+            </MainRefereeFooter>
         </>
     );
 };

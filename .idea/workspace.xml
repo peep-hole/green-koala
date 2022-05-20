@@ -4,15 +4,42 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="67074e83-e987-4a3b-a23d-f00431171d6b" name="Changes" comment="fixed storing entity id in db">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/controller/MatchManagementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/controller/MatchManagementController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/service/MatchManagementService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/service/MatchManagementService.java" afterDir="false" />
+    <list default="true" id="b8decdcf-1dc5-42ba-b639-c41f48852093" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/bootRunMainClassName" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/reports/tests/test/classes/pl.edu.agh.api.RefereeApplicationTests.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/reports/tests/test/classes/pl.edu.agh.api.controller.ActorsControllerTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/reports/tests/test/classes/pl.edu.agh.api.controller.MatchManagementControllerTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/reports/tests/test/classes/pl.edu.agh.api.service.FighterServiceTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/reports/tests/test/classes/pl.edu.agh.api.service.MatchManagementServiceTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/reports/tests/test/css/base-style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/reports/tests/test/css/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/reports/tests/test/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/reports/tests/test/js/report.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/reports/tests/test/packages/pl.edu.agh.api.controller.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/reports/tests/test/packages/pl.edu.agh.api.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/reports/tests/test/packages/pl.edu.agh.api.service.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/resources/main/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/test-results/test/TEST-pl.edu.agh.api.RefereeApplicationTests.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/test-results/test/TEST-pl.edu.agh.api.controller.ActorsControllerTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/test-results/test/TEST-pl.edu.agh.api.controller.MatchManagementControllerTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/test-results/test/TEST-pl.edu.agh.api.service.FighterServiceTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/test-results/test/TEST-pl.edu.agh.api.service.MatchManagementServiceTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/test-results/test/binary/output.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/test-results/test/binary/output.bin.idx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/test-results/test/binary/results.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/tmp/compileTestJava/previous-compilation-data.bin" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
   </component>
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
@@ -80,7 +107,7 @@
       <map>
         <entry key="com.haulmont.jpb.jpaInspector" value="false" />
         <entry key="com.haulmont.jpb.jpaPalette" value="false" />
-        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
       </map>
     </option>
   </component>
@@ -93,11 +120,9 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "node.js.selected.package.tslint": "(autodetect)"
-  }
-}]]></component>
+  <component name="PropertiesComponent">
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -170,26 +195,26 @@
     </configuration>
     <configuration name="MessagingStompWebsocketApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="green-koala.backend.main" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="pl.edu.agh.api.MessagingStompWebsocketApplication" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="pl.edu.agh.api.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="pl.edu.agh.api.MessagingStompWebsocketApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="RefereeApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="green-koala.backend.main" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="pl.edu.agh.api.RefereeApplication" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="pl.edu.agh.api.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="pl.edu.agh.api.RefereeApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>

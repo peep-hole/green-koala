@@ -31,7 +31,7 @@ public class TimerWSController {
             case START:
                 timerManager.startTime();
                 break;
-            case RESTART:
+            case RESET:
                 timerManager.resetTime();
                 break;
             default:

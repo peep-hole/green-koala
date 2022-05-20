@@ -47,5 +47,7 @@ public class MatchManagementService {
         return matchManagementRepository.existsById(id);
     }
 
-    public void deleteMatch(UUID id) {matchManagementRepository.deleteById(id);}
+    public void deleteMatch(UUID id) {
+        matchManagementRepository.deleteById(id);
+    }
 }
