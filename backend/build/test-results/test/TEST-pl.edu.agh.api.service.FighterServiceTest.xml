@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="pl.edu.agh.api.service.FighterServiceTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2022-05-20T10:17:44" hostname="MacBook-Air-Adrian.local" time="0.056">
+  <properties/>
+  <testcase name="fighterExists()" classname="pl.edu.agh.api.service.FighterServiceTest" time="0.053"/>
+  <testcase name="getAllFighters()" classname="pl.edu.agh.api.service.FighterServiceTest" time="0.001"/>
+  <testcase name="registerFighter()" classname="pl.edu.agh.api.service.FighterServiceTest" time="0.0"/>
+  <testcase name="getFighterById()" classname="pl.edu.agh.api.service.FighterServiceTest" time="0.0"/>
+  <testcase name="fighterIdExists()" classname="pl.edu.agh.api.service.FighterServiceTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

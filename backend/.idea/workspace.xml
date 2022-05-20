@@ -6,8 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="fe5d30e3-9bcd-46ae-ba90-5c969c095566" name="Changes" comment="GK-66 change project structure">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/controller/ActorsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/controller/ActorsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/controller/TimerWSController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/controller/TimerWSController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/service/FighterService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/service/FighterService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/websocket/TimerMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/websocket/TimerMessage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +19,9 @@
   </component>
   <component name="CodeStyleSettingsInfer">
     <option name="done" value="true" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
   </component>
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
@@ -134,7 +140,14 @@
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="Gradle.backend [clean]">
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Gradle.MatchManagementControllerTest.getMatchByIdNotFound">
     <configuration default="true" type="DjangoTestsConfigurationType">
       <module name="referee" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -249,101 +262,117 @@
       <option name="USE_PATTERN" value="false" />
       <method v="2" />
     </configuration>
-    <configuration name="RefereeApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="pl.edu.agh.RefereeApplication" />
-      <module name="referee.main" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="pl.edu.agh.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="backend [bootRun]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="MatchManagementControllerTest.addNewMatch" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
+        <option name="scriptParameters" value="" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
           <list>
-            <option value="bootRun" />
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;pl.edu.agh.api.controller.MatchManagementControllerTest.addNewMatch&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="backend [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="MatchManagementControllerTest.getMatchByIdFound" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
+        <option name="scriptParameters" value="" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
           <list>
-            <option value="build" />
->>>>>>> develop
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;pl.edu.agh.api.controller.MatchManagementControllerTest.getMatchByIdFound&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="backend [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="MatchManagementControllerTest.getMatchByIdNotFound" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
+        <option name="scriptParameters" value="" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
           <list>
-            <option value="clean" />
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;pl.edu.agh.api.controller.MatchManagementControllerTest.getMatchByIdNotFound&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="backend [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="MatchManagementControllerTest.getMatchByRefereeTokenFound" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
+        <option name="scriptParameters" value="" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
           <list>
-            <option value="dependencies" />
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;pl.edu.agh.api.controller.MatchManagementControllerTest.getMatchByRefereeTokenFound&quot;" />
           </list>
         </option>
->>>>>>> develop
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="MatchManagementControllerTest.getMatchByRefereeTokenNotFound" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;pl.edu.agh.api.controller.MatchManagementControllerTest.getMatchByRefereeTokenNotFound&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
@@ -377,11 +406,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.backend [clean]" />
-        <item itemvalue="Gradle.backend [build]" />
-        <item itemvalue="Application.RefereeApplication" />
-        <item itemvalue="Gradle.backend [dependencies]" />
-        <item itemvalue="Gradle.backend [bootRun]" />
+        <item itemvalue="Gradle.MatchManagementControllerTest.getMatchByIdNotFound" />
+        <item itemvalue="Gradle.MatchManagementControllerTest.getMatchByIdFound" />
+        <item itemvalue="Gradle.MatchManagementControllerTest.getMatchByRefereeTokenNotFound" />
+        <item itemvalue="Gradle.MatchManagementControllerTest.getMatchByRefereeTokenFound" />
+        <item itemvalue="Gradle.MatchManagementControllerTest.addNewMatch" />
       </list>
     </recent_temporary>
   </component>
@@ -403,6 +432,9 @@
       <workItem from="1650913294168" duration="21000" />
       <workItem from="1650913331233" duration="597000" />
       <workItem from="1650914629650" duration="597000" />
+      <workItem from="1652886730727" duration="3201000" />
+      <workItem from="1652898544282" duration="3001000" />
+      <workItem from="1653026285291" duration="12105000" />
     </task>
     <task id="LOCAL-00001" summary="GK-66, GK-55, GK-42: create database connection &amp; add matches and fighters to db &amp; tokens generation">
       <created>1650488411316</created>
@@ -574,7 +606,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="update gitignore for gradle project" />
@@ -589,5 +620,10 @@
     <MESSAGE value="GK-66 change to constructor injection, setting id if null" />
     <MESSAGE value="GK-66 replace @Data annotation" />
     <option name="LAST_COMMIT_MESSAGE" value="GK-66 replace @Data annotation" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/referee$FighterServiceTest_registerFighter.ic" NAME="FighterServiceTest.registerFighter Coverage Results" MODIFIED="1653028812999" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/referee$FighterServiceTest.ic" NAME="FighterServiceTest Coverage Results" MODIFIED="1653029259629" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/referee$MatchManagementServiceTest_addNewMatch.ic" NAME="MatchManagementServiceTest.addNewMatch Coverage Results" MODIFIED="1653029717168" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
