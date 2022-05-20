@@ -44,9 +44,9 @@ const Timer = props => {
 
     const toggle = () => {
         if(!isActive) {
-            sendStart()
+            sendAction("START")
         } else {
-            sendStop()
+            sendAction("STOP")
         }
         setIsActive(!isActive)
     }
@@ -55,7 +55,6 @@ const Timer = props => {
         if(isActive){
             setIsActive(!isActive)
         }
-        sendReset()
         return Alert.alert(
             "Are your sure?",
             "Are you sure you want to reset the timer?",
@@ -63,7 +62,7 @@ const Timer = props => {
                 {
                     text: "Yes",
                     onPress: () => {
-                        sendReset()
+                        sendAction("RESET")
                     },
                 },
                 {
@@ -74,7 +73,6 @@ const Timer = props => {
     }
 
     const end = () => {
-        sendEnd()
         return Alert.alert(
             "Are your sure?",
             "Are you sure you want to end the match?",
@@ -82,7 +80,7 @@ const Timer = props => {
                 {
                     text: "Yes",
                     onPress: () => {
-                        sendEnd()
+                        sendAction("END")
                     },
                 },
                 {
@@ -92,39 +90,29 @@ const Timer = props => {
         );
     }
 
-    const sendStart = () => {
-        if(stompClient) {
-            let message = {
-                action: "START"
-            };
-            stompClient.send('/timer', {}, JSON.stringify(message));
-        }
+    const send = (action) => {
+        let message = {
+            action: action
+        };
+        stompClient.send('/timer', {}, JSON.stringify(message));
     }
 
-    const sendStop = () => {
+    const sendAction = (action) => {
         if(stompClient) {
-            let message = {
-                action: "STOP"
-            };
-            stompClient.send('/timer', {}, JSON.stringify(message));
-        }
-    }
-
-    const sendReset = () => {
-        if(stompClient) {
-            let message = {
-                action: "RESET"
-            };
-            stompClient.send('/timer', {}, JSON.stringify(message));
-        }
-    }
-
-    const sendEnd = () => { // waiting for endpoint from backend
-        if(stompClient) {
-            let message = {
-                action: "END"
-            };
-            stompClient.send('/timer', {}, JSON.stringify(message));
+            switch (action) {
+                case "START":
+                    send(action)
+                    break
+                case "STOP":
+                    send(action)
+                    break
+                case "RESET":
+                    send(action)
+                    break
+                case "END":
+                    send(action)
+                    break
+            }
         }
     }
 
