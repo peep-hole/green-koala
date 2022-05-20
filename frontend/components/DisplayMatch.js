@@ -46,10 +46,10 @@ const DisplayMatch = props => {
 
     return (
         <>
-            <FormHeader name="Match" marginBottom="200px" />
-            <Center>
+            <Box safeAreaTop bg="#065f46" />
+            <Timer isMain={true}/>
+            <Center marginTop={5}>
                 <VStack width="90%">
-                    <Timer />
                     <Center>
                         <HStack width="100%" mb="20px">
                             <Box
