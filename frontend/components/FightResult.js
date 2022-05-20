@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Api from './util/Api';
 import FormHeaderLink from './util/FormHeaderLink';
-import { VStack, Button, Center, Flex, Text, ScrollView } from 'native-base';
+import { Center, Flex, Text, ScrollView } from 'native-base';
 import { FontAwesome } from '@expo/vector-icons';
-import { Navigate } from 'react-router-native';
-import { useLocation } from 'react-router-native';
+import { useLocation} from 'react-router-native';
 
 
-const FightInfo = () => {
+const FightResult = () => {
 
     const props = useLocation();
     const [fightData, setFightData] = useState({});
@@ -17,14 +16,11 @@ const FightInfo = () => {
     const [f1loading, setF1Loading] = useState(true);
     const [f2loading, setF2Loading] = useState(true);
 
-    const [fightCancelling, setFightCancelling] = useState(false);
-
-
     useEffect(() => {
 
         Api.get('/matches/id/' + props.state.fightId).then(res => {
             setFightData(res.data);
-            // console.log(res.data);
+            //console.log(fightData.data);
             const fighterId1 = res.data.fighterId1;
             const fighterId2 = res.data.fighterId2;
             setLoading(false);
@@ -43,13 +39,9 @@ const FightInfo = () => {
         });
     }, []);
 
-    const cancelFight = () => {
-        setFightCancelling(true);
-    }
-
     return (
         <>
-            <FormHeaderLink pathname="matchList" state={{}} name="Fight Details" />
+            <FormHeaderLink pathname="matchList" state={{}} name="Fight Results" />
             <ScrollView>
                 <Center>
                     {/* Fight date-time */}
@@ -96,60 +88,13 @@ const FightInfo = () => {
                         </Text>
                     </Flex>
 
-                    {/* Rules, TODO: api/matches/id/{id} seems to not contain rules info */}
-                    <Text marginTop="20px" color="black" fontSize={18} fontWeight="bold">
-                        Rules:
+                    <Text marginTop={50} fontSize={25}>
+                        RESULT COMPONENT HERE
                     </Text>
-                    <Text marginLeft="35px" marginRight="40px" color="grey" fontSize={15}>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting
-                        industry. Lorem Ipsum has been the industry's standard dummy text ever
-                        since the{' '}
-                    </Text>
-
-                    {/* Joining codes for referees */}
-                    <Text marginTop="15px" color="black" fontSize={16} fontWeight="bold">
-                        Join codes:
-                    </Text>
-                    <VStack alignItems="center">
-                        <Text marginTop="5px" color="black" fontSize={14} fontWeight="bold">
-                            Main Referee:
-                        </Text>
-                        <Text color="black" fontSize={16}>
-                            {fightData.mainRefereeToken}
-                        </Text>
-                        <Text marginTop="5px" color="black" fontSize={14} fontWeight="bold">
-                            Side Referee 1:
-                        </Text>
-                        <Text color="black" fontSize={16}>
-                            {fightData.sideRefereeToken1}
-                        </Text>
-                        <Text marginTop="5px" color="black" fontSize={14} fontWeight="bold">
-                            Side Referee 2:
-                        </Text>
-                        <Text color="black" fontSize={16}>
-                            {fightData.sideRefereeToken2}
-                        </Text>
-                    </VStack>
-
-                    {/* Fight cancelling button*/}
-                    <Button marginTop="30px" colorScheme="red"
-                        onPress={cancelFight}>
-                        <Text>Cancel fight</Text>
-                    </Button>
                 </Center>
             </ScrollView>
-
-            {fightCancelling &&
-                <Navigate to="/cancelMatch"
-                    state={{
-                        fightId: props.state.fightId,
-                        date: fightData.date + ' ' + fightData.time,
-                        fighter1: fighter1.name + ' ' + fighter1.surname,
-                        fighter2: fighter2.name + ' ' + fighter2.surname
-                    }}>
-                </Navigate>}
         </>
     );
 };
 
-export default FightInfo;
+export default FightResult;

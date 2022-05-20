@@ -36,6 +36,18 @@ public class MatchManagementService {
     }
 
     public Match getMatchById(UUID id) {
-        return matchManagementRepository.getById(id);
+        return matchManagementRepository.findById(id).orElse(null);
+    }
+
+    public boolean matchExists(Match match) {
+        return matchManagementRepository.existsById(match.getId());
+    }
+
+    public boolean matchIdExists(UUID id) {
+        return matchManagementRepository.existsById(id);
+    }
+
+    public void deleteMatch(UUID id) {
+        matchManagementRepository.deleteById(id);
     }
 }
