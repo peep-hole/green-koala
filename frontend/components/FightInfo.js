@@ -3,7 +3,7 @@ import Api from './util/Api';
 import FormHeaderLink from './util/FormHeaderLink';
 import { VStack, Button, Center, Flex, Text, ScrollView } from 'native-base';
 import { FontAwesome } from '@expo/vector-icons';
-import { Link } from 'react-router-native';
+import { Navigate } from 'react-router-native';
 import { useLocation } from 'react-router-native';
 
 
@@ -17,11 +17,14 @@ const FightInfo = () => {
     const [f1loading, setF1Loading] = useState(true);
     const [f2loading, setF2Loading] = useState(true);
 
+    const [fightCancelling, setFightCancelling] = useState(false);
+
+
     useEffect(() => {
 
         Api.get('/matches/id/' + props.state.fightId).then(res => {
             setFightData(res.data);
-            //console.log(fightData.data);
+            // console.log(res.data);
             const fighterId1 = res.data.fighterId1;
             const fighterId2 = res.data.fighterId2;
             setLoading(false);
@@ -39,6 +42,10 @@ const FightInfo = () => {
             });
         });
     }, []);
+
+    const cancelFight = () => {
+        setFightCancelling(true);
+    }
 
     return (
         <>
@@ -125,19 +132,22 @@ const FightInfo = () => {
                     </VStack>
 
                     {/* Fight cancelling button*/}
-                    <Button marginTop="30px" colorScheme="red">
-                        <Link to="/cancelMatch"
-                            state={{
-                                fightId: props.state.fightId,
-                                date: fightData.date + ' ' + fightData.time,
-                                fighter1: fighter1.name + ' ' + fighter1.surname,
-                                fighter2: fighter2.name + ' ' + fighter2.surname
-                            }}>
-                            <Text>Cancel fight</Text>
-                        </Link>
+                    <Button marginTop="30px" colorScheme="red"
+                        onPress={cancelFight}>
+                        <Text>Cancel fight</Text>
                     </Button>
                 </Center>
             </ScrollView>
+
+            {fightCancelling &&
+                <Navigate to="/cancelMatch"
+                    state={{
+                        fightId: props.state.fightId,
+                        date: fightData.date + ' ' + fightData.time,
+                        fighter1: fighter1.name + ' ' + fighter1.surname,
+                        fighter2: fighter2.name + ' ' + fighter2.surname
+                    }}>
+                </Navigate>}
         </>
     );
 };

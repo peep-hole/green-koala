@@ -6,7 +6,7 @@ import { Entypo } from '@expo/vector-icons';
 
 
 const AdminFooter = props => {
-    const [selected, setSelected] = React.useState(1);
+    const [selected, setSelected] = React.useState();
 
     useEffect(() => {
         if (props) {
@@ -16,7 +16,7 @@ const AdminFooter = props => {
 
     return (
         <>
-            <Box flex={1} bg="white" safeAreaTop width="100%" alignSelf="center">
+            <Box flex={1} bg="white" safeAreaBottom width="100%" alignSelf="center">
                 <Center flex={1}></Center>
                 <HStack bg="#065f46" alignItems="center" safeAreaBottom shadow={6}>
 

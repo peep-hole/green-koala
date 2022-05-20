@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import FormHeader from './util/FormHeader';
 import MainRefereeFooter from './util/MainRefereeFooter';
 import DisplayScore from './DisplayScore';
-import { HStack, VStack, Text, Center, Box, FlatList, Spacer } from 'native-base';
+import { HStack, VStack, Text, Center, Box, FlatList, Spacer, usePropsResolution } from 'native-base';
 import { useLocation } from "react-router-native"
 import Api from './util/Api';
 
@@ -62,14 +62,14 @@ const FightHistory = () => {
                 <VStack width="90%">
                     <Center>
                         <HStack width="100%" mb="20px">
-                            <Box bg="red.500" p="5px" width="50%" borderColor="black" borderWidth="1" height="40px">
+                        <Box bg="red.500" p="5px" width="50%" borderColor="black" borderWidth="1" height="40px">
                                 <Center>
-                                    <Text color="white">{props.state.fighter1}</Text>
+                                    <Text color="white">{props.state.fighter1.name + ' ' + props.state.fighter1.surname}</Text>
                                 </Center>
                             </Box>
                             <Box bg="blue.500" p="5px" width="50%" borderColor="black" borderWidth="1" height="40px">
-                                <Center>
-                                    <Text color="white">{props.state.fighter2}</Text>
+                            <Center>
+                                    <Text color="white">{props.state.fighter2.name + ' ' + props.state.fighter2.surname}</Text>
                                 </Center>
                             </Box>
                         </HStack>
@@ -83,11 +83,11 @@ const FightHistory = () => {
                 </VStack>
 
                 <Box id="oncoming_matches" height="auto" width="90%">
-                    <Text fontSize={20} marginBottom={3}>
-                        <Center>
+                    <Center>
+                        <Text fontSize={20} marginBottom={3}>
                             Event decisions
-                        </Center>
-                    </Text>
+                        </Text>
+                    </Center>
                     {/* TODO: update filtering when model will contain bool determining if fight is over / or maybe score is not null? */}
                     <FlatList backgroundColor="gray.200"
                         data={events} renderItem={
@@ -113,10 +113,12 @@ const FightHistory = () => {
 
             <MainRefereeFooter selected={0}
                 state={{
+                    matchData: props.state.matchData,
                     fighter1: props.state.fighter1,
                     fighter2: props.state.fighter2,
                     fighter1Score: props.state.fighter1Score,
-                    fighter2Score: props.state.fighter2Score
+                    fighter2Score: props.state.fighter2Score,
+                    userType: props.state.userType
                 }}>
             </MainRefereeFooter>
         </>
