@@ -1,4 +1,5 @@
 import { Flex, Center, Text } from 'native-base';
+import React from 'react';
 
 const DisplayScore = props => {
     return (

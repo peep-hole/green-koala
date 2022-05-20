@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { HStack, VStack, Text, Button, Center, Box, View } from 'native-base';
-import FormHeader from './util/FormHeader';
 import DisplayScore from './DisplayScore';
 import Timer from './Timer';
 import MainRefereeFooter from './util/MainRefereeFooter';

@@ -17,7 +17,7 @@ const CancelFightConfirmation = () => {
 
     const deleteFight = () => {
         Api.delete('/matches/cancel/' + props.state.fightId
-        ).then(res => {
+        ).then(() => {
             setDeleted(true);
         }).catch(e => {
             console.log(e)

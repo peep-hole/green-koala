@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import FormHeader from './util/FormHeader';
 import MainRefereeFooter from './util/MainRefereeFooter';
 import DisplayScore from './DisplayScore';
-import { HStack, VStack, Text, Center, Box, FlatList, Spacer, usePropsResolution } from 'native-base';
+import { HStack, VStack, Text, Center, Box, FlatList, Spacer } from 'native-base';
 import { useLocation } from "react-router-native"
 import Api from './util/Api';
 
@@ -11,7 +11,7 @@ const FightHistory = () => {
 
     const props = useLocation({});
     const [events, setEvents] = useState([]);
-    const [eventsLoaded, setEventsLoaded] = useState(false);
+    const [, setEventsLoaded] = useState(false);
 
     const getMatchEvents = () => {
         Api.get('/proper/endpoint/match/{id}' //TODO: special endpoint for getting match events

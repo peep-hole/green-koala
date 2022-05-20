@@ -1,16 +1,10 @@
 import React from 'react';
-import { Box, Button, Center, Text, View, VStack } from "native-base";
-import TokenInput from "./TokenInput";
+import { Button, Center, Text, View, VStack } from "native-base";
 import { Link } from "react-router-native";
 import FormHeader from "./util/FormHeader";
 import { StyleSheet } from "react-native";
 
 const Demo = () => {
-
-    const onPress = (to) => {
-
-    }
-
     return (
         <View>
             <FormHeader path='/' name="Demo" />
