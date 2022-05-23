@@ -16,5 +16,5 @@ public class DecisionMessage {
     int points2;
 
     List<Event> decision;
-    UUID token;
+    UUID refereeToken;
 }
