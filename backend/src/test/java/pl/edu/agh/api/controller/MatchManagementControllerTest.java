@@ -35,8 +35,8 @@ public class MatchManagementControllerTest {
     void getMatches() throws Exception {
         //given
         UUID id = UUID.randomUUID();
-        Match match = new Match(id, null, null, null, null, null,
-                null, null, null, null, null, null, null, null);
+        Match match = new Match();
+        match.setId(id);
         List<Match> matchList = List.of(match);
         given(matchManagementService.getAllMatches()).willReturn(matchList);
 
@@ -114,8 +114,8 @@ public class MatchManagementControllerTest {
     void getMatchByIdFound() throws Exception {
         //given
         UUID id = UUID.randomUUID();
-        Match match = new Match(id, null, null, null, null, null,
-                null, null, null, null, null, null, null, null);
+        Match match = new Match();
+        match.setId(id);
         given(matchManagementService.getMatchById(id)).willReturn(match);
         given(matchManagementService.matchIdExists(id)).willReturn(true);
 
