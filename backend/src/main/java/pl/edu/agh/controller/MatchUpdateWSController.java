@@ -32,6 +32,7 @@ public class MatchUpdateWSController {
     }
 
     private void sendUpdateNotificationToReferees() {
-        this.template.convertAndSend("/response/status", "");
+        System.out.println("SENDING UPDATE");
+        this.template.convertAndSend("/response/status", "update");
     }
 }
