@@ -31,6 +31,13 @@ public class MatchUpdateWSController {
         return new ResponseEntity<>(true, HttpStatus.OK);
     }
 
+    @PostMapping("/{id}/stop")
+    public void stopMatch(@PathVariable String id) {
+        matchStatusManager.endMatch(UUID.fromString(id));
+        sendUpdateNotificationToReferees();
+    }
+
+
     private void sendUpdateNotificationToReferees() {
         System.out.println("SENDING UPDATE");
         this.template.convertAndSend("/response/status", "update");
