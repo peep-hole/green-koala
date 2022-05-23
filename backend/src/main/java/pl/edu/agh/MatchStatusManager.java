@@ -33,8 +33,10 @@ public class MatchStatusManager {
         matchMap.put(matchId, match);
     }
 
-    public void endMatch() {
-
+    public void endMatch(UUID matchId) {
+        Match match = matchMap.get(matchId);
+        matchManagementService.addNewMatch(match);
+        matchMap.remove(matchId);
     }
 
     public void processStatusMessage(DecisionMessage message){
