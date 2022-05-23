@@ -3,14 +3,34 @@ import { HStack, VStack, Text, Button, Center, Box, View } from 'native-base';
 import DisplayScore from './DisplayScore';
 import Timer from './Timer';
 import MainRefereeFooter from './util/MainRefereeFooter';
-import { useLocation } from 'react-router-native';
+import { useLocation, useNavigate } from 'react-router-native';
 
 const fighterScore1 = 3;
 const fighterScore2 = 2;
 
+const navigateToPointPick = (
+    fighter,
+    fighterName,
+    isMainReferee,
+    token,
+    points1,
+    points2,
+    navigate
+) => {
+    const navState = {
+        fighter: fighter,
+        fighterName: fighterName,
+        isMainReferee: isMainReferee,
+        token: token,
+        points1: points1,
+        points2: points2,
+    };
+    navigate('/suggestPoints', { state: { navState } });
+};
+
 const DisplayMatch = () => {
     const props = useLocation();
-
+    const navigate = useNavigate();
     //will be used to determine which elements of the interface should be shown - either "Main" or "Side"
 
     useEffect(() => {
@@ -83,7 +103,25 @@ const DisplayMatch = () => {
                         <VStack width="100%">
                             <Center>
                                 <HStack width="100%">
-                                    <Button width="50%" p="20px" mb="2px" bg="red.500">
+                                    <Button
+                                        width="50%"
+                                        p="20px"
+                                        mb="2px"
+                                        bg="red.500"
+                                        onPress={() => {
+                                            navigateToPointPick(
+                                                1,
+                                                props.state.fighter1.name +
+                                                    ' ' +
+                                                    props.state.fighter1.surname,
+                                                props.state.userType === 'Main',
+                                                props.state.token,
+                                                fighterScore1,
+                                                fighterScore2,
+                                                navigate
+                                            );
+                                        }}
+                                    >
                                         RED point
                                     </Button>
                                     <Button width="50%" p="20px" mb="2px" bg="blue.500" n>

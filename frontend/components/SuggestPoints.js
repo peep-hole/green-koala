@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Modal, Center, Text, VStack, Radio, HStack } from 'native-base';
 import { useState, useEffect } from 'react';
 import FormHeader from './util/FormHeader';
+import { useNavigate, useLocation } from 'react-router-native';
 
 const data = {
     pickData: [
@@ -109,7 +110,10 @@ function reset(setCurrentStrings, setCurrentOptions, setIndexHistory) {
     setCurrentOptions([data.pickData[0], data.pickData[1]]);
 }
 
-export const SuggestPoints = props => {
+export const SuggestPoints = () => {
+    const locationData = useLocation();
+    const props = locationData.state.navState;
+    console.log(props);
     const [showModal, setShowModal] = useState(false);
     const [currentStrings, setCurrentStrings] = useState([]);
     const [indexHistory, setIndexHistory] = useState([[0, 1]]);

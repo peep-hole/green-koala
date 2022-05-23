@@ -7,7 +7,6 @@ import { Navigate, useLocation } from 'react-router-native';
 //example call for App.js - <TokenInput userType="Organizer" />
 
 const TokenInput = () => {
-
     const props = useLocation();
     const [userType, setUserType] = useState('');
     const [error, setError] = useState(false);
@@ -31,7 +30,7 @@ const TokenInput = () => {
     const joinAction = () => {
         setError(false);
 
-        if (props.state.userType == "Organizer") {
+        if (props.state.userType == 'Organizer') {
             //here request for organizer to authenticate
             // if response allows you to join as organizer with your token -
             // then navigate to main organizer view
@@ -39,9 +38,8 @@ const TokenInput = () => {
             //for now NO MATTER what TOKEN IS USED ! EVERYTIME redirect!
 
             setOrganizerJoining(true);
-        }
-        else {
-            //Main or Side referee is joining - set referee joining and send request with passed token 
+        } else {
+            //Main or Side referee is joining - set referee joining and send request with passed token
             //to get match instance which token allows you to join
 
             Api.get('/matches/token/' + token)
@@ -52,12 +50,19 @@ const TokenInput = () => {
                     setMatchDataLoaded(true);
                     getFightersData(res.data);
 
-                    if ((props.state.userType == "Main" && res.data.mainRefereeToken == token) ||
-                        (props.state.userType == "Side" && (res.data.sideRefereeToken1 == token || res.data.sideRefereeToken2 == token))) {
+                    if (
+                        (props.state.userType == 'Main' && res.data.mainRefereeToken == token) ||
+                        (props.state.userType == 'Side' &&
+                            (res.data.sideRefereeToken1 == token ||
+                                res.data.sideRefereeToken2 == token))
+                    ) {
                         setRefereeJoining(true);
-                    }
-                    else {
-                        console.log("You are not authorized to join as " + props.state.userType + "Referee with this token!");
+                    } else {
+                        console.log(
+                            'You are not authorized to join as ' +
+                                props.state.userType +
+                                'Referee with this token!'
+                        );
                         setError(true);
                     }
                 })
@@ -69,7 +74,7 @@ const TokenInput = () => {
         }
     };
 
-    const getFightersData = (data) => {
+    const getFightersData = data => {
         const fighterId1 = data.fighterId1;
         const fighterId2 = data.fighterId2;
 
@@ -84,7 +89,6 @@ const TokenInput = () => {
             setSecondFighter(res.data);
             setF2Loaded(true);
         });
-
     };
 
     //do we need this? maybe we can just keep using props.state.userType
@@ -113,9 +117,21 @@ const TokenInput = () => {
                     {userType}
                 </Text>
                 <VStack width="90%">
-                    <Input marginTop="20px" placeholder="Enter your login token" onChangeText={value => { setToken(value); }}></Input>
-                    <Button marginTop="20px" marginRight="50px" marginLeft="50px" bg="#059669" _text={{ color: 'white', }}
-                        onPress={joinAction}>
+                    <Input
+                        marginTop="20px"
+                        placeholder="Enter your login token"
+                        onChangeText={value => {
+                            setToken(value);
+                        }}
+                    ></Input>
+                    <Button
+                        marginTop="20px"
+                        marginRight="50px"
+                        marginLeft="50px"
+                        bg="#059669"
+                        _text={{ color: 'white' }}
+                        onPress={joinAction}
+                    >
                         Enter the app
                     </Button>
                     <Text color="red.500">
@@ -124,16 +140,18 @@ const TokenInput = () => {
                 </VStack>
             </Center>
             {organizerJoining && <Navigate to="/matchList" state={{ token: token }}></Navigate>}
-            {refereeJoining && matchDataLoaded && f1Loaded && f2Loaded &&
-                <Navigate to="/displayMatch"
+            {refereeJoining && matchDataLoaded && f1Loaded && f2Loaded && (
+                <Navigate
+                    to="/displayMatch"
                     state={{
                         userType: props.state.userType,
                         matchData: matchData,
                         fighter1: fighter1,
-                        fighter2: fighter2
-                    }}>
-                </Navigate>}
-
+                        fighter2: fighter2,
+                        token: token,
+                    }}
+                ></Navigate>
+            )}
         </>
     );
 };
