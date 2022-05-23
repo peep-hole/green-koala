@@ -1,7 +1,7 @@
 import React from "react";
 import { Text } from "react-native";
 import FormHeader from "./util/FormHeader";
-import { NativeBaseProvider, VStack, Input, Button,  Radio, Switch, InputGroup, InputRightAddon, Center } from "native-base";
+import { NativeBaseProvider, VStack, Input, Button,  Radio, Switch, InputGroup, Center } from "native-base";
 import Api from "./util/Api";
 
 const RegisterPlayerForm = () =>{
@@ -87,7 +87,6 @@ const RegisterPlayerForm = () =>{
                 <Input padding={padding} placeholder="Age" onChangeText={value => {setData({...formData, age: value})}} />
                 <InputGroup padding={padding}>
                     <Input flexGrow="1" placeholder="Weight" onChangeText={value => {setData({...formData, weight: value})}} />
-                    <InputRightAddon children={"kg"} />
                 </InputGroup>
             </VStack>
             <VStack space={optionsSpacing} w="100%" marginTop={marginTop}>

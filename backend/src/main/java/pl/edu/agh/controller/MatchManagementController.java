@@ -58,7 +58,7 @@ public class MatchManagementController {
                 new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/cancel/{id}")
+    @DeleteMapping("/cancel/{id}")
     public ResponseEntity<Boolean> cancelMatch(@PathVariable String id) {
         UUID uuidId = UUID.fromString(id);
 

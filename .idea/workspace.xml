@@ -4,19 +4,42 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="67074e83-e987-4a3b-a23d-f00431171d6b" name="Changes" comment="improved match cancelling">
+    <list default="true" id="b8decdcf-1dc5-42ba-b639-c41f48852093" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/controller/MatchManagementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/controller/MatchManagementController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/model/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/model/Match.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/service/MatchManagementService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/service/MatchManagementService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/bootRunMainClassName" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/reports/tests/test/classes/pl.edu.agh.api.RefereeApplicationTests.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/reports/tests/test/classes/pl.edu.agh.api.controller.ActorsControllerTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/reports/tests/test/classes/pl.edu.agh.api.controller.MatchManagementControllerTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/reports/tests/test/classes/pl.edu.agh.api.service.FighterServiceTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/reports/tests/test/classes/pl.edu.agh.api.service.MatchManagementServiceTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/reports/tests/test/css/base-style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/reports/tests/test/css/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/reports/tests/test/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/reports/tests/test/js/report.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/reports/tests/test/packages/pl.edu.agh.api.controller.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/reports/tests/test/packages/pl.edu.agh.api.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/reports/tests/test/packages/pl.edu.agh.api.service.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/resources/main/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/test-results/test/TEST-pl.edu.agh.api.RefereeApplicationTests.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/test-results/test/TEST-pl.edu.agh.api.controller.ActorsControllerTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/test-results/test/TEST-pl.edu.agh.api.controller.MatchManagementControllerTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/test-results/test/TEST-pl.edu.agh.api.service.FighterServiceTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/test-results/test/TEST-pl.edu.agh.api.service.MatchManagementServiceTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/test-results/test/binary/output.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/test-results/test/binary/output.bin.idx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/test-results/test/binary/results.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/tmp/compileTestJava/previous-compilation-data.bin" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
   </component>
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
@@ -53,7 +76,6 @@
       <list>
         <option value="Enum" />
         <option value="Class" />
-        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -85,7 +107,7 @@
       <map>
         <entry key="com.haulmont.jpb.jpaInspector" value="false" />
         <entry key="com.haulmont.jpb.jpaPalette" value="false" />
-        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
       </map>
     </option>
   </component>
@@ -99,16 +121,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="RequestMappingsPanelOrder0" value="0" />
-    <property name="RequestMappingsPanelOrder1" value="1" />
-    <property name="RequestMappingsPanelWidth0" value="75" />
-    <property name="RequestMappingsPanelWidth1" value="75" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -253,8 +266,6 @@
       <workItem from="1650977038088" duration="606000" />
       <workItem from="1650983241087" duration="9000" />
       <workItem from="1651084549415" duration="4918000" />
-      <workItem from="1652619283522" duration="1233000" />
-      <workItem from="1653333919542" duration="442000" />
     </task>
     <task id="LOCAL-00001" summary="Project Init">
       <created>1648742798290</created>
@@ -382,14 +393,7 @@
       <option name="project" value="LOCAL" />
       <updated>1652387164143</updated>
     </task>
-    <task id="LOCAL-00019" summary="improved match cancelling">
-      <created>1652453862042</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1652453862042</updated>
-    </task>
-    <option name="localTasksCounter" value="20" />
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -422,7 +426,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Project Init" />
@@ -436,8 +439,7 @@
     <MESSAGE value="[GK-extra] Added getFighterById endpoint" />
     <MESSAGE value="made database persistent" />
     <MESSAGE value="fixed storing entity id in db" />
-    <MESSAGE value="improved match cancelling" />
-    <option name="LAST_COMMIT_MESSAGE" value="improved match cancelling" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed storing entity id in db" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -454,9 +456,5 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
   </component>
 </project>

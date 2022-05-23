@@ -48,11 +48,15 @@ public class MatchManagementService {
         return matchManagementRepository.existsById(id);
     }
 
-    public void deleteMatch(UUID id) {matchManagementRepository.deleteById(id);}
+    public void deleteMatch(UUID id) {
+        matchManagementRepository.deleteById(id);
+    }
 
-    public void updateMatch(Match match) {matchManagementRepository.save(match);}
+    public void updateMatch(Match match) {
+        matchManagementRepository.save(match);
+    }
 
-    public void addEvent(UUID id){
+    public void addEvent(UUID id) {
         Match match = matchManagementRepository.getById(id);
         match.addEvent(Event.ATTACK);
         matchManagementRepository.save(match);
