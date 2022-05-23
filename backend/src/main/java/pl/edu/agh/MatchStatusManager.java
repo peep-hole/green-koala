@@ -62,4 +62,8 @@ public class MatchStatusManager {
             decision.decision = message.getDecision();
         }
     }
+
+    public Match getMatch(UUID matchId){
+        return matchMap.get(matchId);
+    }
 }
