@@ -22,16 +22,14 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-;
-
 
 @WebMvcTest(ActorsController.class)
 public class ActorsControllerTest {
+    private final ObjectMapper objectMapper = new ObjectMapper();
     @Autowired
     private MockMvc mockMvc;
     @MockBean
     private FighterService fighterService;
-    private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Test
     void getAllFighters() throws Exception {

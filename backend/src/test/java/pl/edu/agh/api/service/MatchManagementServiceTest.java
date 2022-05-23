@@ -19,7 +19,8 @@ import static org.mockito.Mockito.verify;
 @ExtendWith(MockitoExtension.class)
 public class MatchManagementServiceTest {
     private MatchManagementService matchManagementService;
-    @Mock private MatchManagementRepository matchManagementRepository;
+    @Mock
+    private MatchManagementRepository matchManagementRepository;
 
     @BeforeEach
     void setUp() {

@@ -51,7 +51,7 @@ public class Match {
         return getClass().hashCode();
     }
 
-    public void addEvent(Event event){
+    public void addEvent(Event event) {
         this.events.add(event);
     }
 }

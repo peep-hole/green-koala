@@ -25,11 +25,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(MatchManagementController.class)
 public class MatchManagementControllerTest {
+    private final ObjectMapper objectMapper = new ObjectMapper();
     @Autowired
     private MockMvc mockMvc;
     @MockBean
     private MatchManagementService matchManagementService;
-    private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Test
     void getMatches() throws Exception {
