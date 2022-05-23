@@ -23,22 +23,16 @@ public class ActorsController {
 
     @PostMapping(value = "/register-fighter")
     public ResponseEntity<UUID> registerFighter(@RequestBody Fighter fighter) {
-        fighterService.registerFighter(fighter);
-        return new ResponseEntity<>(fighter.getId(), HttpStatus.OK);
+        return new ResponseEntity<>(fighterService.registerFighter(fighter).getId(), HttpStatus.OK);
     }
 
     @GetMapping("/fighters/id/{id}")
     public ResponseEntity<Fighter> getFighterById(@PathVariable String id) {
 
         UUID uuidId = UUID.fromString(id);
-        List<Fighter> fighters = fighterService.getAllFighters();
 
-        for (Fighter fighter : fighters) {
-            if (fighter.getId().equals(uuidId)) {
-                return new ResponseEntity<>(fighter, HttpStatus.OK);
-            }
-        }
-
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return fighterService.fighterIdExists(uuidId) ?
+                new ResponseEntity<>(fighterService.getFighterById(uuidId), HttpStatus.OK) :
+                new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }

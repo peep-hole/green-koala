@@ -1,20 +1,21 @@
-import React, {useEffect, useState} from 'react';
-import FormHeader from "./util/FormHeader";
-import {Button, Center, Flex, FormControl, Text, VStack} from "native-base";
+import React, { useEffect, useState } from 'react';
+import FormHeaderLink from "./util/FormHeaderLink";
+import { Button, Center, Flex, FormControl, Text, VStack } from "native-base";
 import Api from "./util/Api";
-import {FontAwesome} from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
 import DateTimePicker from "@react-native-community/datetimepicker"
 import SearchableDropdown from "react-native-searchable-dropdown";
-import {Platform, StyleSheet} from "react-native";
+import { Platform } from "react-native";
+import { Navigate } from "react-router-native";
 
 const CreateMatchForm = () => {
-    const [firstPlayer, setFirstPlayer] = useState({})
-    const [secondPlayer, setSecondPlayer] = useState({})
+    const [firstPlayer, setFirstPlayer] = useState('')
+    const [secondPlayer, setSecondPlayer] = useState('')
 
     const [players, setPlayers] = useState([])
 
     const [date, setDate] = useState(new Date())
-    const [mode , setMode] = useState('date')
+    const [mode, setMode] = useState('date')
     const [show, setShow] = useState(false)
     const [showSearch1, setShowSearch1] = useState(true)
     const [showSearch2, setShowSearch2] = useState(true)
@@ -22,17 +23,21 @@ const CreateMatchForm = () => {
     const [dateString, setDateString] = useState(date.getDate() + "-" + date.getMonth() + "-" + date.getFullYear())
     const [timeString, setTimeString] = useState(date.getHours() + ":" + date.getMinutes().toString().padStart(2, "0"))
 
+    const [playersLoaded, setPlayersLoaded] = useState(false);
+    const [matchCreated, setMatchCreated] = useState(false);
+
     const getAllPlayers = () => {
-        Api.get('/players' // TODO type proper url when backend is ready
+        Api.get('/actors/fighters' // TODO type proper url when backend is ready
         ).then(res => {
             setPlayers(res.data)
+            console.log(res.data)
+            setPlayersLoaded(true);
         }).catch(e => {
             console.log(e) // TODO handle it somehow
         })
     }
 
     useEffect(() => {
-        console.log(typeof firstPlayer.name)
         getAllPlayers()
     }, [])
 
@@ -42,30 +47,36 @@ const CreateMatchForm = () => {
     }
 
     const onChange = (event, selectedDate) => {
-        event.preventDefault()
         const currDate = selectedDate || date
         setShow(Platform.OS === "ios")
-        setDateString(date.getDate() + "-" + date.getMonth() + "-" + date.getFullYear()) // example date format
-        setTimeString(date.getHours() + ":" + date.getMinutes().toString().padStart(2, "0"))
         setDate(currDate)
+        setDateString(selectedDate.getDate() + "-" + selectedDate.getMonth() + "-" + selectedDate.getFullYear()) // example date format
+        setTimeString(selectedDate.getHours() + ":" + selectedDate.getMinutes().toString().padStart(2, "0"))
     }
 
     const onCreateClick = () => {
-        Api.post("/match", { // temporary request body
+        console.log({
             firstPlayer: firstPlayer,
             secondPlayer: secondPlayer,
             date: dateString,
             time: timeString
-          }).then(res => {
-              console.log(res)
-          }).catch(e => {
-              console.log(e)
+        })
+        Api.post("/matches/new-match", { // temporary request body
+            firstPlayer: firstPlayer,
+            secondPlayer: secondPlayer,
+            date: dateString,
+            time: timeString
+        }).then(res => {
+            console.log(res)
+            setMatchCreated(true);
+        }).catch(e => {
+            console.log(e)
         })
     }
 
     return (
-        <>
-            <FormHeader name="Create fight"> </FormHeader>
+        playersLoaded && <>
+            <FormHeaderLink pathname="MatchList" state={{}} name="Create fight"> </FormHeaderLink>
             <Center>
                 <Text marginBottom="20px" color="black" fontSize="18" fontWeight="bold">
                     Choose fighters
@@ -74,8 +85,11 @@ const CreateMatchForm = () => {
                     <FormControl>
                         <SearchableDropdown
                             onItemSelect={(item) => {
+                                console.log(item)
                                 setFirstPlayer(item)
+                                console.log(firstPlayer)
                                 setShowSearch1(false)
+                                console.log(item)
                             }}
                             itemStyle={{
                                 padding: 10,
@@ -107,6 +121,7 @@ const CreateMatchForm = () => {
                                     nestedScrollEnabled: true,
                                 }
                             }
+                            value={firstPlayer}
                         />
                         <Center>
                             <Text color="black" fontSize="16" padding="5px" fontWeight="bold">
@@ -165,12 +180,12 @@ const CreateMatchForm = () => {
                             </Flex>
                             <Flex direction="row" marginTop="30px">
                                 <Button
-                                        onPress={() => showMode('time')}
-                                        variant="outline"
-                                        borderColor="#ccc"
-                                        _text={{
-                                            color: "#ccc"
-                                        }}>
+                                    onPress={() => showMode('time')}
+                                    variant="outline"
+                                    borderColor="#ccc"
+                                    _text={{
+                                        color: "#ccc"
+                                    }}>
                                     Select time
                                 </Button>
                                 <Center marginLeft="5px">
@@ -183,8 +198,8 @@ const CreateMatchForm = () => {
                                 size="lg"
                                 marginRight="30px"
                                 bg="#059669" _text={{
-                                        color: "white"
-                                    }}>
+                                    color: "white"
+                                }}>
                                 Create
                             </Button>
                         </Center>
@@ -201,6 +216,7 @@ const CreateMatchForm = () => {
                     onChange={onChange}>
                 </DateTimePicker>
             )}
+            {matchCreated && <Navigate to="/matchList"></Navigate>}
         </>
     );
 };
