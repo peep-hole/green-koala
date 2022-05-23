@@ -6,6 +6,7 @@ import pl.edu.agh.SideRefereeDecision;
 import pl.edu.agh.constants.Event;
 
 import javax.persistence.*;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -17,7 +18,6 @@ import java.util.UUID;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class Match {
     @Id
     @Column(nullable = false, unique = true, updatable = false, columnDefinition = "uuid")
@@ -36,13 +36,13 @@ public class Match {
     private int points2;
 
     @Transient
-    SideRefereeDecision referee1Decision = new SideRefereeDecision();
+    private final SideRefereeDecision referee1Decision = new SideRefereeDecision();
 
     @Transient
-    SideRefereeDecision referee2Decision = new SideRefereeDecision();
+    private final SideRefereeDecision referee2Decision = new SideRefereeDecision();
 
     @Transient
-    List<List<Event>> events;
+    private final List<List<Event>> events = new LinkedList<>();
 
     @Override
     public boolean equals(Object o) {
