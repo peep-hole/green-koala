@@ -1,16 +1,18 @@
 package pl.edu.agh.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.edu.agh.MatchStatusManager;
+import pl.edu.agh.model.Match;
 import pl.edu.agh.websocket.DecisionMessage;
+import java.util.UUID;
 
 @RequiredArgsConstructor
+@RestController
 @Controller
 @RequestMapping("/status")
 public class MatchUpdateWSController {
@@ -18,9 +20,15 @@ public class MatchUpdateWSController {
     private final MatchStatusManager matchStatusManager;
 
     @PostMapping("/{id}/decision")
-    public void updateDecision(@PathVariable String id, @RequestBody DecisionMessage decision) {
-        matchStatusManager.processStatusMessage(decision);
+    public ResponseEntity<Boolean> updateDecision(@PathVariable String id, @RequestBody DecisionMessage decision) {
+        try {
+            matchStatusManager.processStatusMessage(UUID.fromString(id), decision);
+        } catch (RuntimeException e){
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         sendUpdateNotificationToReferees();
+        return new ResponseEntity<>(true, HttpStatus.OK);
     }
 
     private void sendUpdateNotificationToReferees() {
