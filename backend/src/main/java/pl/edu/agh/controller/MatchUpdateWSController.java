@@ -37,6 +37,11 @@ public class MatchUpdateWSController {
         sendUpdateNotificationToReferees();
     }
 
+    @PostMapping("/{id}/start")
+    public void startMatch(@PathVariable String id) {
+        matchStatusManager.startMatch(UUID.fromString(id));
+        sendUpdateNotificationToReferees();
+    }
 
     private void sendUpdateNotificationToReferees() {
         System.out.println("SENDING UPDATE");
