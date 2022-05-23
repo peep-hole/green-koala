@@ -39,7 +39,27 @@ public class MatchStatusManager {
         matchMap.remove(matchId);
     }
 
-    public void processStatusMessage(DecisionMessage message){
+    public void processStatusMessage(UUID matchId, DecisionMessage message) throws RuntimeException {
+        Match match = matchMap.get(matchId);
 
+        if (message.getRefereeToken().equals(match.getMainRefereeToken())) {
+            match.setPoints1(match.getPoints1() + message.getPoints1());
+            match.setPoints2(match.getPoints2() + message.getPoints2());
+            // todo update event list in match
+        } else {
+            SideRefereeDecision decision;
+            if (message.getRefereeToken().equals(match.getSideRefereeToken1())) {
+                decision = match.getReferee1Decision();
+            } else if (message.getRefereeToken().equals(match.getSideRefereeToken2())) {
+                decision = match.getReferee2Decision();
+            }
+            else {
+                throw new RuntimeException("WRONG REFEREE ID");
+            }
+
+            decision.points1 = message.getPoints1();
+            decision.points2 = message.getPoints2();
+            decision.decision = message.getDecision();
+        }
     }
 }
