@@ -3,7 +3,7 @@ import { Button, Modal, Center, Text, VStack, Radio, HStack } from 'native-base'
 import { useState, useEffect } from 'react';
 import FormHeader from './util/FormHeader';
 import { useNavigate, useLocation } from 'react-router-native';
-
+import FormHeaderLink from './util/FormHeaderLink';
 const data = {
     pickData: [
         {
@@ -112,8 +112,10 @@ function reset(setCurrentStrings, setCurrentOptions, setIndexHistory) {
 
 export const SuggestPoints = () => {
     const locationData = useLocation();
-    const props = locationData.state.navState;
+    const navigate = useNavigate();
+    const props = locationData.state.state;
     console.log(props);
+    console.log(props.state);
     const [showModal, setShowModal] = useState(false);
     const [currentStrings, setCurrentStrings] = useState([]);
     const [indexHistory, setIndexHistory] = useState([[0, 1]]);
@@ -128,7 +130,16 @@ export const SuggestPoints = () => {
 
     return (
         <>
-            <FormHeader name="Event chain" />
+            <FormHeaderLink
+                name="Event chain"
+                pathname="displayMatch"
+                state={{
+                    matchData: props.matchData,
+                    fighter1: props.fighter1,
+                    fighter2: props.fighter2,
+                    userType: props.userType,
+                }}
+            />
             <Center bg={mainPromptColor} width="100%" p="5" border>
                 <Text color="white">
                     Event chain {props.fighter != 0 && 'potentially giving points to'}
@@ -145,7 +156,9 @@ export const SuggestPoints = () => {
             {/*<Text>{indexHistory.map(el => "[" + el + "]")}</Text>*/}
 
             <VStack space={1} m={1}>
-                <Text>Choose next block:</Text>
+                <Center>
+                    <Text>Choose next block:</Text>
+                </Center>
                 <Center>
                     {currentOptions.map(option => (
                         <Button
@@ -172,7 +185,7 @@ export const SuggestPoints = () => {
 
             {/*<Text>{indexHistory.length}</Text>*/}
 
-            <Center>
+            <Center mb={3}>
                 <HStack space={1}>
                     <Button
                         bg="#059669"
@@ -314,6 +327,15 @@ export const SuggestPoints = () => {
                                     }
                                     //THEN NAVIGATE TO THE MATCH DISPLAY AGAIN
                                     //navigate. ...
+                                    //CURRENTLY PASSING MATCH HERE, WE WILL ALMOST CERTAINLY CHANGE IT TO REFRESH IN DISPLAYMATCH
+                                    navigate('/displayMatch', {
+                                        state: {
+                                            matchData: props.matchData,
+                                            fighter1: props.fighter1,
+                                            fighter2: props.fighter2,
+                                            userType: props.userType,
+                                        },
+                                    });
                                 }}
                             >
                                 <Text>Yes</Text>

@@ -15,17 +15,25 @@ const navigateToPointPick = (
     token,
     points1,
     points2,
+    fighter1,
+    fighter2,
+    matchData,
+    userType,
     navigate
 ) => {
-    const navState = {
+    const state = {
         fighter: fighter,
         fighterName: fighterName,
         isMainReferee: isMainReferee,
         token: token,
         points1: points1,
         points2: points2,
+        fighter1: fighter1,
+        fighter2: fighter2,
+        matchData: matchData,
+        userType: userType,
     };
-    navigate('/suggestPoints', { state: { navState } });
+    navigate('/suggestPoints', { state: { state } });
 };
 
 const DisplayMatch = () => {
@@ -118,20 +126,65 @@ const DisplayMatch = () => {
                                                 props.state.token,
                                                 fighterScore1,
                                                 fighterScore2,
+                                                props.state.fighter1,
+                                                props.state.fighter2,
+                                                props.state.matchData,
+                                                props.state.userType,
                                                 navigate
                                             );
                                         }}
                                     >
                                         RED point
                                     </Button>
-                                    <Button width="50%" p="20px" mb="2px" bg="blue.500" n>
+                                    <Button
+                                        width="50%"
+                                        p="20px"
+                                        mb="2px"
+                                        bg="blue.500"
+                                        n
+                                        onPress={() => {
+                                            navigateToPointPick(
+                                                2,
+                                                props.state.fighter2.name +
+                                                    ' ' +
+                                                    props.state.fighter2.surname,
+                                                props.state.userType === 'Main',
+                                                props.state.token,
+                                                fighterScore1,
+                                                fighterScore2,
+                                                props.state.fighter1,
+                                                props.state.fighter2,
+                                                props.state.matchData,
+                                                props.state.userType,
+                                                navigate
+                                            );
+                                        }}
+                                    >
                                         BLUE point
                                     </Button>
                                 </HStack>
                             </Center>
 
                             <Center>
-                                <Button bg="gray.500" width="100%">
+                                <Button
+                                    bg="gray.500"
+                                    width="100%"
+                                    onPress={() => {
+                                        navigateToPointPick(
+                                            0,
+                                            ' ',
+                                            props.state.userType === 'Main',
+                                            props.state.token,
+                                            fighterScore1,
+                                            fighterScore2,
+                                            props.state.fighter1,
+                                            props.state.fighter2,
+                                            props.state.matchData,
+                                            props.state.userType,
+                                            navigate
+                                        );
+                                    }}
+                                >
                                     No point
                                 </Button>
                             </Center>
