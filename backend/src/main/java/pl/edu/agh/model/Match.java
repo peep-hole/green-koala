@@ -19,7 +19,7 @@ import java.util.UUID;
 @Builder
 public class Match {
     @Id
-    @Column(nullable = false, unique = true, updatable = false, columnDefinition = "uuid")
+    @Column(columnDefinition = "uuid")
     private UUID id;
     private UUID fighterId1;
     private UUID fighterId2;
@@ -35,7 +35,7 @@ public class Match {
     private Integer fighter2Points;
     @ElementCollection
     private List<Event> events;
-    // TODO add event lis
+    // TODO add event list
     // TODO consider dividing into two separate classes
 
     @Override

@@ -4,34 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b8decdcf-1dc5-42ba-b639-c41f48852093" name="Changes" comment="">
+    <list default="true" id="b8decdcf-1dc5-42ba-b639-c41f48852093" name="Changes" comment=";-;">
       <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/build/bootRunMainClassName" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/build/reports/tests/test/classes/pl.edu.agh.api.RefereeApplicationTests.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/build/reports/tests/test/classes/pl.edu.agh.api.controller.ActorsControllerTest.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/build/reports/tests/test/classes/pl.edu.agh.api.controller.MatchManagementControllerTest.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/build/reports/tests/test/classes/pl.edu.agh.api.service.FighterServiceTest.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/build/reports/tests/test/classes/pl.edu.agh.api.service.MatchManagementServiceTest.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/build/reports/tests/test/css/base-style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/build/reports/tests/test/css/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/build/reports/tests/test/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/build/reports/tests/test/js/report.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/build/reports/tests/test/packages/pl.edu.agh.api.controller.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/build/reports/tests/test/packages/pl.edu.agh.api.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/build/reports/tests/test/packages/pl.edu.agh.api.service.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/build/resources/main/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/build/test-results/test/TEST-pl.edu.agh.api.RefereeApplicationTests.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/build/test-results/test/TEST-pl.edu.agh.api.controller.ActorsControllerTest.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/build/test-results/test/TEST-pl.edu.agh.api.controller.MatchManagementControllerTest.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/build/test-results/test/TEST-pl.edu.agh.api.service.FighterServiceTest.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/build/test-results/test/TEST-pl.edu.agh.api.service.MatchManagementServiceTest.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/build/test-results/test/binary/output.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/build/test-results/test/binary/output.bin.idx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/build/test-results/test/binary/results.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/build/tmp/compileTestJava/previous-compilation-data.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/model/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/model/Match.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/pl/edu/agh/api/controller/MatchManagementControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/pl/edu/agh/api/controller/MatchManagementControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,6 +57,9 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="develop" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -129,24 +111,24 @@
       <recent name="$PROJECT_DIR$/Backend" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.RefereeApplication (2)">
-    <configuration name="green-koala [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.MatchManagementControllerTest">
+    <configuration name="MatchManagementControllerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
+        <option name="scriptParameters" value="--tests &quot;pl.edu.agh.api.controller.MatchManagementControllerTest&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
           <list>
-            <option value="dependencies" />
+            <option value=":backend:test" />
           </list>
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
@@ -242,11 +224,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.MatchManagementControllerTest" />
         <item itemvalue="Spring Boot.RefereeApplication (1)" />
         <item itemvalue="Spring Boot.MessagingStompWebsocketApplication" />
         <item itemvalue="Gradle.green-koala [test]" />
         <item itemvalue="Gradle.green-koala [run]" />
-        <item itemvalue="Gradle.green-koala [dependencies]" />
       </list>
     </recent_temporary>
   </component>
@@ -426,6 +408,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Project Init" />
