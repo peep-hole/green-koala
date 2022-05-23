@@ -2,11 +2,10 @@ package pl.edu.agh.model;
 
 import lombok.*;
 import org.hibernate.Hibernate;
+import pl.edu.agh.constants.Event;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -34,6 +33,8 @@ public class Match {
     private Long sideRefereeId2;
     private Integer fighter1Points;
     private Integer fighter2Points;
+    @ElementCollection
+    private List<Event> events;
     // TODO add event lis
     // TODO consider dividing into two separate classes
 
@@ -48,5 +49,9 @@ public class Match {
     @Override
     public int hashCode() {
         return getClass().hashCode();
+    }
+
+    public void addEvent(Event event){
+        this.events.add(event);
     }
 }

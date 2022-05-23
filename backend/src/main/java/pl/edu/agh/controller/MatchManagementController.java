@@ -69,4 +69,10 @@ public class MatchManagementController {
 
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
+    @PutMapping("/add-event/{id}")
+    public ResponseEntity<Boolean> addEvent(@PathVariable String id){
+        matchManagementService.addEvent(UUID.fromString(id));
+        return new ResponseEntity<>(true, HttpStatus.OK);
+    }
 }
