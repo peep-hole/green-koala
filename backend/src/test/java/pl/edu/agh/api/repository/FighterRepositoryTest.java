@@ -83,7 +83,7 @@ public class FighterRepositoryTest {
     }
 
     @Test
-    public void shouldFindFighterById() {
+    public void shouldFindExistentFighterById() {
         // given
         fighterRepository.save(fighter);
 
@@ -94,6 +94,16 @@ public class FighterRepositoryTest {
         assertThat(foundFighter)
                 .isNotNull()
                 .isEqualTo(fighter);
+    }
+
+    @Test
+    public void shouldNotFindNotExistentFighterById() {
+        // when
+        Fighter foundFighter = fighterRepository.findById(UUID.randomUUID()).orElse(null);
+
+        // then
+        assertThat(foundFighter)
+                .isNull();
     }
 
     @Test
@@ -123,5 +133,4 @@ public class FighterRepositoryTest {
         // then
         assertThat(foundFighter).isNull();
     }
-
 }
