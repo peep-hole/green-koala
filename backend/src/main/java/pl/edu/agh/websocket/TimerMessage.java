@@ -8,7 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 public class TimerMessage {
-    public enum Action {START, STOP, GET, RESTART}
-
     Action action;
+
+    public enum Action {START, STOP, GET, RESET}
 }

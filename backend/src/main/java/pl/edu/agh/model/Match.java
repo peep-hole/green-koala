@@ -18,9 +18,10 @@ import java.util.UUID;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Match {
     @Id
-    @Column(nullable = false, unique = true, updatable = false, columnDefinition = "uuid")
+    @Column(columnDefinition = "uuid")
     private UUID id;
     private UUID fighterId1;
     private UUID fighterId2;
@@ -32,8 +33,8 @@ public class Match {
     private Long sideRefereeId1;
     private UUID sideRefereeToken2;
     private Long sideRefereeId2;
-    private int points1;
-    private int points2;
+    private Integer fighter1Points;
+    private Integer fighter2Points;
 
     @Transient
     private final SideRefereeDecision referee1Decision = new SideRefereeDecision();

@@ -58,9 +58,21 @@ public class MatchManagementController {
                 new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/cancel/{id}")
+    @DeleteMapping("/cancel/{id}")
     public ResponseEntity<Boolean> cancelMatch(@PathVariable String id) {
-        matchManagementService.deleteMatch(UUID.fromString(id));
+        UUID uuidId = UUID.fromString(id);
+
+        if (matchManagementService.matchIdExists(uuidId)) {
+            matchManagementService.deleteMatch(uuidId);
+            return new ResponseEntity<>(true, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @PutMapping("/add-event/{id}")
+    public ResponseEntity<Boolean> addEvent(@PathVariable String id) {
+        matchManagementService.addEvent(UUID.fromString(id));
         return new ResponseEntity<>(true, HttpStatus.OK);
     }
 }

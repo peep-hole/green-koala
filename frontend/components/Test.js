@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import sock from "./util/Websocket";
-import {over} from 'stompjs';
+import { over } from 'stompjs';
 import {NativeBaseProvider, Button} from 'native-base';
 
 let stompClient = null;
@@ -29,7 +29,7 @@ const Test = () => {
     const onMessageReceived = (payload) => {
         let message = payload.body;
         console.log(message)
-        setResponse(message);
+        setResponse(message)
     }
 
     const onError = (error) => {

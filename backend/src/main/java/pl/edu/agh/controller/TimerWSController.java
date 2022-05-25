@@ -31,7 +31,7 @@ public class TimerWSController {
             case START:
                 timerManager.startTime();
                 break;
-            case RESTART:
+            case RESET:
                 timerManager.resetTime();
                 break;
             default:
@@ -42,7 +42,7 @@ public class TimerWSController {
     }
 
     @Scheduled(fixedRate = 500)
-    public void sendTimerToReferees(){
+    public void sendTimerToReferees() {
         this.template.convertAndSend("/response/timer", new TimerResponseMessage(timerManager.getTime(), false));
     }
 }
