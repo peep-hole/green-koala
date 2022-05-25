@@ -7,9 +7,12 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import pl.edu.agh.component.MatchStatusManager;
+import pl.edu.agh.constants.Action;
 import pl.edu.agh.model.Match;
 import pl.edu.agh.websocket.RefereeDecision;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -47,6 +50,11 @@ public class MatchUpdateWSController {
     @GetMapping("/{id}")
     public ResponseEntity<Match> getMatchStatus(@PathVariable String id) {
         return new ResponseEntity<>(matchStatusManager.getMatch(UUID.fromString(id)), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}/allowed-actions")
+    public ResponseEntity<List<Action>> getAllowedActions(@PathVariable String id) {
+        return new ResponseEntity<>(Arrays.asList(Action.values()), HttpStatus.OK);
     }
 
     private void sendUpdateNotificationToReferees() {
