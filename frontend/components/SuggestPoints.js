@@ -3,6 +3,8 @@ import { Button, Modal, Center, Text, VStack, Radio, HStack } from 'native-base'
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-native';
 import FormHeaderLink from './util/FormHeaderLink';
+import Api from "./util/Api";
+
 const data = {
     pickData: [
         {
@@ -109,10 +111,31 @@ function reset(setCurrentStrings, setCurrentOptions, setIndexHistory) {
     setCurrentOptions([data.pickData[0], data.pickData[1]]);
 }
 
+const sendDecision = (events, id) => {
+    Api.post(`status/${id}/decision`, {
+        events
+    })
+    .then(response => console.log(response.data))
+    .catch(e => {
+        console.log(e)
+    });
+}
+
+const updatePoints = (points, id) => {
+    Api.post(`status/${id}/points`, {
+        points
+    })
+    .then(response => console.log(response.data))
+    .catch(e => {
+        console.log(e)
+    });
+}
+
 export const SuggestPoints = () => {
     const locationData = useLocation();
     const navigate = useNavigate();
     const props = locationData.state.state;
+    const { id } = props.matchData;
     console.log(props);
     console.log(props.state);
     const [showModal, setShowModal] = useState(false);
@@ -289,6 +312,7 @@ export const SuggestPoints = () => {
                             <Button
                                 onPress={() => {
                                     setShowModal(false);
+                                    // updatePoints();
                                     //TODO:
                                     //SEND CURRENT EVENT TO BACKEND - should be ok if we replace current console.log() calls with proper API calls
                                     //NAVIGATE TO THE PREVIOUS SCREEN
@@ -308,6 +332,7 @@ export const SuggestPoints = () => {
                                         decision: currentStrings,
                                     };
                                     console.log(newEvent);
+                                    sendDecision(newEvent, id);
 
                                     //if main - should also update point count
                                     //points should not change in the meantime - there is only one main referee
@@ -323,6 +348,7 @@ export const SuggestPoints = () => {
                                                     : props.points2,
                                         };
                                         console.log(newPoints);
+                                        updatePoints(newPoints, id);
                                     }
                                     //THEN NAVIGATE TO THE MATCH DISPLAY AGAIN
                                     //navigate. ...
