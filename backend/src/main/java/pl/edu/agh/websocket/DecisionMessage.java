@@ -12,9 +12,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @ToString
 public class DecisionMessage {
-    int points1;
-    int points2;
-
+    Integer points1;
+    Integer points2;
     List<Event> decision;
     UUID refereeToken;
 }

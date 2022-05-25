@@ -2,7 +2,6 @@ package pl.edu.agh.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import pl.edu.agh.constants.Event;
 import pl.edu.agh.constants.RefereeType;
 import pl.edu.agh.model.Match;
 import pl.edu.agh.repository.MatchManagementRepository;
@@ -53,12 +52,6 @@ public class MatchManagementService {
     }
 
     public void updateMatch(Match match) {
-        matchManagementRepository.save(match);
-    }
-
-    public void addEvent(UUID id) {
-        Match match = matchManagementRepository.getById(id);
-        match.addEvent(Event.ATTACK);
         matchManagementRepository.save(match);
     }
 }

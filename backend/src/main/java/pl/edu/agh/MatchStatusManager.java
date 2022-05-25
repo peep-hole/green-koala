@@ -43,8 +43,8 @@ public class MatchStatusManager {
         Match match = matchMap.get(matchId);
 
         if (message.getRefereeToken().equals(match.getMainRefereeToken())) {
-            match.setPoints1(match.getPoints1() + message.getPoints1());
-            match.setPoints2(match.getPoints2() + message.getPoints2());
+            match.setFighter1Points(match.getFighter1Points() + message.getPoints1());
+            match.setFighter2Points(match.getFighter2Points() + message.getPoints2());
             // todo update event list in match
         } else {
             SideRefereeDecision decision;
@@ -52,8 +52,7 @@ public class MatchStatusManager {
                 decision = match.getReferee1Decision();
             } else if (message.getRefereeToken().equals(match.getSideRefereeToken2())) {
                 decision = match.getReferee2Decision();
-            }
-            else {
+            } else {
                 throw new RuntimeException("WRONG REFEREE ID");
             }
 
@@ -63,7 +62,7 @@ public class MatchStatusManager {
         }
     }
 
-    public Match getMatch(UUID matchId){
+    public Match getMatch(UUID matchId) {
         return matchMap.get(matchId);
     }
 }
