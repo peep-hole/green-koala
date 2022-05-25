@@ -5,10 +5,10 @@ import { VStack, Button, Center, Flex, Text, ScrollView } from 'native-base';
 import { FontAwesome } from '@expo/vector-icons';
 import { Navigate } from 'react-router-native';
 import { useLocation } from 'react-router-native';
-
+import QRCode from 'react-qr-code';
+import { Box } from 'native-base';
 
 const FightInfo = () => {
-
     const props = useLocation();
     const [fightData, setFightData] = useState({});
     const [fighter1, setFirstFighter] = useState({});
@@ -19,9 +19,7 @@ const FightInfo = () => {
 
     const [fightCancelling, setFightCancelling] = useState(false);
 
-
     useEffect(() => {
-
         Api.get('/matches/id/' + props.state.fightId).then(res => {
             setFightData(res.data);
             // console.log(res.data);
@@ -45,7 +43,7 @@ const FightInfo = () => {
 
     const cancelFight = () => {
         setFightCancelling(true);
-    }
+    };
 
     return (
         <>
@@ -83,13 +81,7 @@ const FightInfo = () => {
                     >
                         VS
                     </Text>
-                    <Flex
-                        direction="row"
-                        rounded="lg"
-                        borderColor="black"
-                        borderWidth="1"
-                        p="4px"
-                    >
+                    <Flex direction="row" rounded="lg" borderColor="black" borderWidth="1" p="4px">
                         <FontAwesome name="user-circle" size={28} color="black" />
                         <Text marginLeft={5} color="black" fontSize={20} fontWeight="bold">
                             {!f2loading && fighter2.name + ' ' + fighter2.surname}
@@ -101,9 +93,9 @@ const FightInfo = () => {
                         Rules:
                     </Text>
                     <Text marginLeft="35px" marginRight="40px" color="grey" fontSize={15}>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting
-                        industry. Lorem Ipsum has been the industry`&apos;`s standard dummy text ever
-                        since the{' '}
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        Lorem Ipsum has been the industry`&apos;`s standard dummy text ever since
+                        the{' '}
                     </Text>
 
                     {/* Joining codes for referees */}
@@ -117,37 +109,47 @@ const FightInfo = () => {
                         <Text color="black" fontSize={16}>
                             {fightData.mainRefereeToken}
                         </Text>
+                        <Box mb={4}>
+                            {!loading && <QRCode size={80} value={fightData.mainRefereeToken} />}
+                        </Box>
                         <Text marginTop="5px" color="black" fontSize={14} fontWeight="bold">
                             Side Referee 1:
                         </Text>
                         <Text color="black" fontSize={16}>
                             {fightData.sideRefereeToken1}
                         </Text>
+                        <Box mb={4}>
+                            {!loading && <QRCode size={80} value={fightData.sideRefereeToken1} />}
+                        </Box>
                         <Text marginTop="5px" color="black" fontSize={14} fontWeight="bold">
                             Side Referee 2:
                         </Text>
                         <Text color="black" fontSize={16}>
                             {fightData.sideRefereeToken2}
                         </Text>
+                        <Box mb={4}>
+                            {!loading && <QRCode size={80} value={fightData.sideRefereeToken2} />}
+                        </Box>
                     </VStack>
 
                     {/* Fight cancelling button*/}
-                    <Button marginTop="30px" colorScheme="red"
-                        onPress={cancelFight}>
+                    <Button marginTop="30px" colorScheme="red" onPress={cancelFight}>
                         <Text>Cancel fight</Text>
                     </Button>
                 </Center>
             </ScrollView>
 
-            {fightCancelling &&
-                <Navigate to="/cancelMatch"
+            {fightCancelling && (
+                <Navigate
+                    to="/cancelMatch"
                     state={{
                         fightId: props.state.fightId,
                         date: fightData.date + ' ' + fightData.time,
                         fighter1: fighter1.name + ' ' + fighter1.surname,
-                        fighter2: fighter2.name + ' ' + fighter2.surname
-                    }}>
-                </Navigate>}
+                        fighter2: fighter2.name + ' ' + fighter2.surname,
+                    }}
+                ></Navigate>
+            )}
         </>
     );
 };
