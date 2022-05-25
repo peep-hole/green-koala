@@ -5,10 +5,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.stereotype.Component;
-import pl.edu.agh.SideRefereeDecision;
 import pl.edu.agh.model.Match;
 import pl.edu.agh.service.MatchManagementService;
-import pl.edu.agh.websocket.DecisionMessage;
+import pl.edu.agh.websocket.RefereeDecision;
 
 import javax.annotation.PostConstruct;
 import java.util.HashMap;
@@ -40,15 +39,18 @@ public class MatchStatusManager {
         matchMap.remove(matchId);
     }
 
-    public void processStatusMessage(UUID matchId, DecisionMessage message) throws RuntimeException {
+    public void processStatusMessage(UUID matchId, RefereeDecision message) throws RuntimeException {
+        if (!matchMap.containsKey(matchId)) {
+            throw new RuntimeException("No match found with id: " + matchId);
+        }
         Match match = matchMap.get(matchId);
 
         if (message.getRefereeToken().equals(match.getMainRefereeToken())) {
             match.setFighter1Points(match.getFighter1Points() + message.getFighter1Points());
             match.setFighter2Points(match.getFighter2Points() + message.getFighter2Points());
-            // todo update event list in match
+            match.getAcceptedDecisions().add(message);
         } else {
-            SideRefereeDecision decision;
+            RefereeDecision decision;
             if (message.getRefereeToken().equals(match.getSideRefereeToken1())) {
                 decision = match.getReferee1Decision();
             } else if (message.getRefereeToken().equals(match.getSideRefereeToken2())) {
@@ -57,10 +59,10 @@ public class MatchStatusManager {
                 throw new RuntimeException("WRONG REFEREE ID");
             }
 
+            decision.setRefereeToken(message.getRefereeToken());
             decision.setFighter1Points(message.getFighter1Points());
             decision.setFighter2Points(message.getFighter2Points());
             decision.setDecision(message.getDecision());
-
         }
     }
 
