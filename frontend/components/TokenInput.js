@@ -19,8 +19,7 @@ const TokenInput = () => {
     const [matchDataLoaded, setMatchDataLoaded] = useState(false);
     const [isQRScanning, setIsQRScanning] = useState(false);
 
-    const [hasPermission, setHasPermission] = useState(null);
-    const [caughtCode, setCaughtCode] = useState(false);
+    const [, setHasPermission] = useState(null);
 
     const [fighter1, setFirstFighter] = useState({});
     const [fighter2, setSecondFighter] = useState({});
@@ -189,7 +188,7 @@ const TokenInput = () => {
             {isQRScanning && (
                 <>
                     <BarCodeScanner
-                        onBarCodeScanned={caughtCode ? undefined : handleCodeScanned}
+                        onBarCodeScanned={handleCodeScanned}
                         style={StyleSheet.absoluteFillObject}
                     />
                 </>
