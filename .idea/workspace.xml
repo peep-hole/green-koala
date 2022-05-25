@@ -7,17 +7,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b8decdcf-1dc5-42ba-b639-c41f48852093" name="Changes" comment="resolve conflicts, adjust tests">
+    <list default="true" id="b8decdcf-1dc5-42ba-b639-c41f48852093" name="Changes" comment="correct access modifiers, code cleanup">
       <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/MatchStatusManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/MatchStatusManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/SideRefereeDecision.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/SideRefereeDecision.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/TimerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/TimerManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/controller/ErrorHandlerController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/utils/Tokenizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/utils/Tokenizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/websocket/DecisionMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/websocket/DecisionMessage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,13 +124,13 @@
       <recent name="$PROJECT_DIR$/Backend" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.RefereeApplication (2)">
-    <configuration name="ActorsControllerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.RefereeApplicationTests">
+    <configuration name="RefereeApplicationTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;pl.edu.agh.api.controller.ActorsControllerTest&quot;" />
+        <option name="scriptParameters" value="--tests &quot;pl.edu.agh.api.RefereeApplicationTests&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -152,12 +146,12 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="FighterRepositoryTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="Tests in 'green-koala.backend.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;pl.edu.agh.api.repository.FighterRepositoryTest&quot;" />
+        <option name="scriptParameters" value="--tests *" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -173,12 +167,12 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="FighterServiceTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="Tests in 'pl.edu.agh.api.controller'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;pl.edu.agh.api.service.FighterServiceTest&quot;" />
+        <option name="scriptParameters" value="--tests &quot;pl.edu.agh.api.controller.*&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -194,12 +188,12 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="MatchManagementRepositoryTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="Tests in 'pl.edu.agh.api.repository'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;pl.edu.agh.api.repository.MatchManagementRepositoryTest&quot;" />
+        <option name="scriptParameters" value="--tests &quot;pl.edu.agh.api.repository.*&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -215,12 +209,12 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="MatchManagementServiceTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="Tests in 'pl.edu.agh.api.service'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;pl.edu.agh.api.service.MatchManagementServiceTest&quot;" />
+        <option name="scriptParameters" value="--tests &quot;pl.edu.agh.api.service.*&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -259,11 +253,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.MatchManagementRepositoryTest" />
-        <item itemvalue="Gradle.FighterRepositoryTest" />
-        <item itemvalue="Gradle.MatchManagementServiceTest" />
-        <item itemvalue="Gradle.FighterServiceTest" />
-        <item itemvalue="Gradle.ActorsControllerTest" />
+        <item itemvalue="Gradle.RefereeApplicationTests" />
+        <item itemvalue="Gradle.Tests in 'pl.edu.agh.api.service'" />
+        <item itemvalue="Gradle.Tests in 'pl.edu.agh.api.repository'" />
+        <item itemvalue="Gradle.Tests in 'pl.edu.agh.api.controller'" />
+        <item itemvalue="Gradle.Tests in 'green-koala.backend.test'" />
       </list>
     </recent_temporary>
   </component>
@@ -438,7 +432,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653509263904</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="correct access modifiers, code cleanup">
+      <created>1653511297641</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1653511297641</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -489,7 +490,8 @@
     <MESSAGE value="code formatting" />
     <MESSAGE value="add some unit tests for FighterRepository" />
     <MESSAGE value="resolve conflicts, adjust tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="resolve conflicts, adjust tests" />
+    <MESSAGE value="correct access modifiers, code cleanup" />
+    <option name="LAST_COMMIT_MESSAGE" value="correct access modifiers, code cleanup" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

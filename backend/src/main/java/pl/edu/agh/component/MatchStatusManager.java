@@ -1,10 +1,11 @@
-package pl.edu.agh;
+package pl.edu.agh.component;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.stereotype.Component;
+import pl.edu.agh.SideRefereeDecision;
 import pl.edu.agh.model.Match;
 import pl.edu.agh.service.MatchManagementService;
 import pl.edu.agh.websocket.DecisionMessage;
@@ -47,7 +48,6 @@ public class MatchStatusManager {
             match.setFighter2Points(match.getFighter2Points() + message.getFighter2Points());
             // todo update event list in match
         } else {
-            // ?????
             SideRefereeDecision decision;
             if (message.getRefereeToken().equals(match.getSideRefereeToken1())) {
                 decision = match.getReferee1Decision();
@@ -57,10 +57,6 @@ public class MatchStatusManager {
                 throw new RuntimeException("WRONG REFEREE ID");
             }
 
-            // ?????
-//            decision.points1 = message.getFighter1Points();
-//            decision.points2 = message.getFighter2Points();
-//            decision.decision = message.getDecision();
             decision.setFighter1Points(message.getFighter1Points());
             decision.setFighter2Points(message.getFighter2Points());
             decision.setDecision(message.getDecision());

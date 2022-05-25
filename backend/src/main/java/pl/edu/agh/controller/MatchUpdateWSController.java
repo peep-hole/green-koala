@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import pl.edu.agh.MatchStatusManager;
+import pl.edu.agh.component.MatchStatusManager;
 import pl.edu.agh.model.Match;
 import pl.edu.agh.websocket.DecisionMessage;
 

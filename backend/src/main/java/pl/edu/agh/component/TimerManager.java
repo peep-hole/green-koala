@@ -1,4 +1,4 @@
-package pl.edu.agh;
+package pl.edu.agh.component;
 
 
 import org.springframework.stereotype.Component;
