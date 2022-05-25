@@ -9,8 +9,7 @@ import java.util.List;
 @Getter
 @Setter
 public class SideRefereeDecision {
-    Integer points1;
-    Integer points2;
-
-    List<Event> decision;
+    private Integer fighter1Points;
+    private Integer fighter2Points;
+    private List<Event> decision;
 }

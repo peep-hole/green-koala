@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.edu.agh.MatchStatusManager;
 import pl.edu.agh.model.Match;
 import pl.edu.agh.websocket.DecisionMessage;
+
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -23,7 +24,7 @@ public class MatchUpdateWSController {
     public ResponseEntity<Boolean> updateDecision(@PathVariable String id, @RequestBody DecisionMessage decision) {
         try {
             matchStatusManager.processStatusMessage(UUID.fromString(id), decision);
-        } catch (RuntimeException e){
+        } catch (RuntimeException e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

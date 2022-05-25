@@ -21,7 +21,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class MatchStatusManager {
     private final MatchManagementService matchManagementService;
-    Map<UUID, Match> matchMap = new HashMap<>();
+    private final Map<UUID, Match> matchMap = new HashMap<>();
 
     @PostConstruct
     public void init() {
@@ -43,10 +43,11 @@ public class MatchStatusManager {
         Match match = matchMap.get(matchId);
 
         if (message.getRefereeToken().equals(match.getMainRefereeToken())) {
-            match.setFighter1Points(match.getFighter1Points() + message.getPoints1());
-            match.setFighter2Points(match.getFighter2Points() + message.getPoints2());
+            match.setFighter1Points(match.getFighter1Points() + message.getFighter1Points());
+            match.setFighter2Points(match.getFighter2Points() + message.getFighter2Points());
             // todo update event list in match
         } else {
+            // ?????
             SideRefereeDecision decision;
             if (message.getRefereeToken().equals(match.getSideRefereeToken1())) {
                 decision = match.getReferee1Decision();
@@ -56,9 +57,14 @@ public class MatchStatusManager {
                 throw new RuntimeException("WRONG REFEREE ID");
             }
 
-            decision.points1 = message.getPoints1();
-            decision.points2 = message.getPoints2();
-            decision.decision = message.getDecision();
+            // ?????
+//            decision.points1 = message.getFighter1Points();
+//            decision.points2 = message.getFighter2Points();
+//            decision.decision = message.getDecision();
+            decision.setFighter1Points(message.getFighter1Points());
+            decision.setFighter2Points(message.getFighter2Points());
+            decision.setDecision(message.getDecision());
+
         }
     }
 

@@ -8,7 +8,7 @@ import javax.annotation.PostConstruct;
 
 @Component
 public class TimerManager {
-    public Timer timer = new Timer();
+    public final Timer timer = new Timer();
 
     @PostConstruct
     public void init() {

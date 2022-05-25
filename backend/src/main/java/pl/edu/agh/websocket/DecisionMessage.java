@@ -12,8 +12,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @ToString
 public class DecisionMessage {
-    Integer points1;
-    Integer points2;
-    List<Event> decision;
-    UUID refereeToken;
+    private Integer fighter1Points;
+    private Integer fighter2Points;
+    private List<Event> decision;
+    private UUID refereeToken;
 }

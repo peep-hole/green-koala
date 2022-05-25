@@ -20,6 +20,12 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 public class Match {
+    @Transient
+    private final SideRefereeDecision referee1Decision = new SideRefereeDecision();
+    @Transient
+    private final SideRefereeDecision referee2Decision = new SideRefereeDecision();
+    @Transient
+    private final List<List<Event>> events = new LinkedList<>();
     @Id
     @Column(columnDefinition = "uuid")
     private UUID id;
@@ -35,15 +41,6 @@ public class Match {
     private Long sideRefereeId2;
     private Integer fighter1Points;
     private Integer fighter2Points;
-
-    @Transient
-    private final SideRefereeDecision referee1Decision = new SideRefereeDecision();
-
-    @Transient
-    private final SideRefereeDecision referee2Decision = new SideRefereeDecision();
-
-    @Transient
-    private final List<List<Event>> events = new LinkedList<>();
 
     @Override
     public boolean equals(Object o) {

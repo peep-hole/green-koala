@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="CUSTOM_SCOPE_NAME" value="All Places" />
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b8decdcf-1dc5-42ba-b639-c41f48852093" name="Changes" comment="fixed storing entity id in db">
+    <list default="true" id="b8decdcf-1dc5-42ba-b639-c41f48852093" name="Changes" comment="resolve conflicts, adjust tests">
       <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/MatchStatusManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/MatchStatusManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/SideRefereeDecision.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/SideRefereeDecision.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/controller/MatchManagementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/controller/MatchManagementController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/service/MatchManagementService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/service/MatchManagementService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/TimerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/TimerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/controller/ErrorHandlerController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/utils/Tokenizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/utils/Tokenizer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/websocket/DecisionMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/websocket/DecisionMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/test/java/pl/edu/agh/api/controller/MatchManagementControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/pl/edu/agh/api/controller/MatchManagementControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,6 +103,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="4" />
+  </component>
   <component name="ProjectId" id="279qYQmWJ6n9KOjtUwxzRffP1Yc" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -111,7 +117,12 @@
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -420,7 +431,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653346073404</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="resolve conflicts, adjust tests">
+      <created>1653509263904</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1653509263904</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -470,7 +488,8 @@
     <MESSAGE value="fixed MatchManagementControllerTest" />
     <MESSAGE value="code formatting" />
     <MESSAGE value="add some unit tests for FighterRepository" />
-    <option name="LAST_COMMIT_MESSAGE" value="add some unit tests for FighterRepository" />
+    <MESSAGE value="resolve conflicts, adjust tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="resolve conflicts, adjust tests" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
