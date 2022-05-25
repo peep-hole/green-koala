@@ -112,18 +112,12 @@ function reset(setCurrentStrings, setCurrentOptions, setIndexHistory) {
 }
 
 const sendDecision = (events, id) => {
+    const { points1, points2, token, decision } = events;
     Api.post(`status/${id}/decision`, {
-        events
-    })
-    .then(response => console.log(response.data))
-    .catch(e => {
-        console.log(e)
-    });
-}
-
-const updatePoints = (points, id) => {
-    Api.post(`status/${id}/points`, {
-        points
+        fighter1Points: points1, 
+        fighter2Points: points2, 
+        decision: [],               /// !!! process events here
+        refereeToken: token
     })
     .then(response => console.log(response.data))
     .catch(e => {
@@ -312,14 +306,6 @@ export const SuggestPoints = () => {
                             <Button
                                 onPress={() => {
                                     setShowModal(false);
-                                    // updatePoints();
-                                    //TODO:
-                                    //SEND CURRENT EVENT TO BACKEND - should be ok if we replace current console.log() calls with proper API calls
-                                    //NAVIGATE TO THE PREVIOUS SCREEN
-
-                                    // localhost:8080/api/status/{id}/decision - endpoint for changing decision
-                                    // localhost:8080/api/status/{id}/points - endpoint for point change - main referee
-
                                     //remove empty strings used for rewind
                                     setCurrentStrings(currentStrings =>
                                         currentStrings.filter(el => el !== '')
@@ -334,22 +320,6 @@ export const SuggestPoints = () => {
                                     console.log(newEvent);
                                     sendDecision(newEvent, id);
 
-                                    //if main - should also update point count
-                                    //points should not change in the meantime - there is only one main referee
-                                    if (props.isMainReferee) {
-                                        const newPoints = {
-                                            points1:
-                                                props.fighter == 1
-                                                    ? chosenPointPick + props.points1
-                                                    : props.points1,
-                                            points2:
-                                                props.fighter == 2
-                                                    ? chosenPointPick + props.points2
-                                                    : props.points2,
-                                        };
-                                        console.log(newPoints);
-                                        updatePoints(newPoints, id);
-                                    }
                                     //THEN NAVIGATE TO THE MATCH DISPLAY AGAIN
                                     //navigate. ...
                                     //CURRENTLY PASSING MATCH HERE, WE WILL ALMOST CERTAINLY CHANGE IT TO REFRESH IN DISPLAYMATCH
