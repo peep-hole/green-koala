@@ -20,7 +20,7 @@ import CancelFightConfirmation from './components/CancelFightConfirmation';
 import FighterList from './components/FighterList';
 import TournamentList from './components/TournamentList';
 import FightResult from './components/FightResult';
-
+import SuggestPoints from './components/SuggestPoints';
 
 export default function App() {
     return (
@@ -38,10 +38,24 @@ export default function App() {
                         <Route path="/createMatchForm" element={<CreateMatchForm />} />
                         <Route path="/fightHistory" element={<FightHistory />} />
                         <Route path="/fightStats" element={<FightStats />} />
+                        <Route
+                            path="/suggestPoints"
+                            element={
+                                <SuggestPoints
+                                    fighter={0}
+                                    fighterName="Fighter One"
+                                    matchId=""
+                                    isMainReferee={true}
+                                    token="d445a1df-f492-4239-86c0-abb6185ce543"
+                                    points1={0}
+                                    points2={3}
+                                />
+                            }
+                        />
                         <Route path="/cancelMatch" element={<CancelFightConfirmation />} />
                         <Route path="/matchList" element={<MatchList />} />
-                        <Route path="/fighterList" element={<FighterList/>} />
-                        <Route path="/tournamentList" element={<TournamentList/>} />
+                        <Route path="/fighterList" element={<FighterList />} />
+                        <Route path="/tournamentList" element={<TournamentList />} />
                     </Routes>
                 </NativeRouter>
             </SSRProvider>
