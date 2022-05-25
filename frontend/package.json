@@ -40,7 +40,8 @@
     "react-router-native": "^6.3.0",
     "react-test-renderer": "^17.0.1",
     "sockjs-client": "^1.6.0",
-    "stompjs": "^2.3.3"
+    "stompjs": "^2.3.3",
+    "expo-barcode-scanner": "~11.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

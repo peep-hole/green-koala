@@ -3,8 +3,9 @@ import { Input, Text, Center, Button, VStack } from 'native-base';
 import FormHeaderLink from './util/FormHeaderLink';
 import Api from './util/Api';
 import { Navigate, useLocation } from 'react-router-native';
-
+import { BarCodeScanner } from 'expo-barcode-scanner';
 //example call for App.js - <TokenInput userType="Organizer" />
+import { StyleSheet } from 'react-native';
 
 const TokenInput = () => {
     const props = useLocation();
@@ -16,12 +17,22 @@ const TokenInput = () => {
     const [refereeJoining, setRefereeJoining] = useState(false);
     const [organizerJoining, setOrganizerJoining] = useState(false);
     const [matchDataLoaded, setMatchDataLoaded] = useState(false);
+    const [isQRScanning, setIsQRScanning] = useState(false);
+
+    const [hasPermission, setHasPermission] = useState(null);
+    const [caughtCode, setCaughtCode] = useState(false);
 
     const [fighter1, setFirstFighter] = useState({});
     const [fighter2, setSecondFighter] = useState({});
 
     const [f1Loaded, setF1Loaded] = useState(false);
     const [f2Loaded, setF2Loaded] = useState(false);
+
+    const handleCodeScanned = ({ type, data }) => {
+        console.log(data);
+        setToken(data);
+        setIsQRScanning(false);
+    };
 
     // temporary example request handler - for referee
     // needs an endpoint on the backend which will return match data fitting the token and fail if token is invalid
@@ -106,51 +117,82 @@ const TokenInput = () => {
             default:
                 setUserType("We don't have that one, sorry");
         }
+        (async () => {
+            const { status } = await BarCodeScanner.requestPermissionsAsync();
+            setHasPermission(status === 'granted');
+        })();
     });
 
     return (
         <>
-            <FormHeaderLink pathname="loginPick" name="Token"></FormHeaderLink>
-            <Center marginTop="20%">
-                <Text fontSize="20">You are entering the app as</Text>
-                <Text fontWeight="bold" fontSize="30">
-                    {userType}
-                </Text>
-                <VStack width="90%">
-                    <Input
-                        marginTop="20px"
-                        placeholder="Enter your login token"
-                        onChangeText={value => {
-                            setToken(value);
-                        }}
-                    ></Input>
-                    <Button
-                        marginTop="20px"
-                        marginRight="50px"
-                        marginLeft="50px"
-                        bg="#059669"
-                        _text={{ color: 'white' }}
-                        onPress={joinAction}
-                    >
-                        Enter the app
-                    </Button>
-                    <Text color="red.500">
-                        {error && 'Unable to join, please check the token and try again'}
-                    </Text>
-                </VStack>
-            </Center>
-            {organizerJoining && <Navigate to="/matchList" state={{ token: token }}></Navigate>}
-            {refereeJoining && matchDataLoaded && f1Loaded && f2Loaded && (
-                <Navigate
-                    to="/displayMatch"
-                    state={{
-                        userType: props.state.userType,
-                        matchData: matchData,
-                        fighter1: fighter1,
-                        fighter2: fighter2,
-                        token: token,
-                    }}
-                ></Navigate>
+            {!isQRScanning && (
+                <>
+                    <FormHeaderLink pathname="loginPick" name="Token"></FormHeaderLink>
+                    <Center marginTop="20%">
+                        <Text fontSize="20">You are entering the app as</Text>
+                        <Text fontWeight="bold" fontSize="30">
+                            {userType}
+                        </Text>
+                        <VStack width="90%">
+                            <Input
+                                marginTop="20px"
+                                placeholder="Enter your login token"
+                                onChangeText={value => {
+                                    setToken(value);
+                                }}
+                            ></Input>
+                            <Button
+                                marginTop="20px"
+                                marginRight="50px"
+                                marginLeft="50px"
+                                bg="#059669"
+                                _text={{ color: 'white' }}
+                                onPress={joinAction}
+                            >
+                                Enter the app
+                            </Button>
+                            <Button
+                                marginTop="20px"
+                                marginRight="50px"
+                                marginLeft="50px"
+                                bg="#059669"
+                                _text={{ color: 'white' }}
+                                onPress={() => {
+                                    setIsQRScanning(true);
+                                }}
+                            >
+                                Scan a QR code
+                            </Button>
+                            <Text color="red.500">
+                                {error && 'Unable to join, please check the token and try again'}
+                            </Text>
+                        </VStack>
+                    </Center>
+                    {organizerJoining && (
+                        <Navigate to="/matchList" state={{ token: token }}></Navigate>
+                    )}
+                    {refereeJoining && matchDataLoaded && f1Loaded && f2Loaded && (
+                        <Navigate
+                            to="/displayMatch"
+                            state={{
+                                userType: props.state.userType,
+                                matchData: matchData,
+                                fighter1: fighter1,
+                                fighter2: fighter2,
+                                token: token,
+                            }}
+                        ></Navigate>
+                    )}
+                </>
+            )}
+
+            {isQRScanning && (
+                <>
+                    <BarCodeScanner
+                        onBarCodeScanned={caughtCode ? undefined : handleCodeScanned}
+                        style={StyleSheet.absoluteFillObject}
+                    />
+                </>
             )}
         </>
     );
