@@ -29,6 +29,7 @@ const TokenInput = () => {
 
     const handleCodeScanned = ({ type, data }) => {
         console.log(data);
+        console.log(type);
         setToken(data);
         setIsQRScanning(false);
     };
