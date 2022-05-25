@@ -42,7 +42,7 @@ public class TimerWSController {
     }
 
     @Scheduled(fixedRate = 500)
-    public void sendTimerToReferees(){
+    public void sendTimerToReferees() {
         this.template.convertAndSend("/response/timer", new TimerResponseMessage(timerManager.getTime(), false));
     }
 }

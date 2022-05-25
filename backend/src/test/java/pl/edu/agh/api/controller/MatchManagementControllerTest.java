@@ -8,12 +8,10 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import pl.edu.agh.constants.RefereeType;
-import pl.edu.agh.controller.ActorsController;
 import pl.edu.agh.controller.MatchManagementController;
 import pl.edu.agh.model.Match;
 import pl.edu.agh.service.MatchManagementService;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -21,24 +19,24 @@ import java.util.UUID;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(MatchManagementController.class)
 public class MatchManagementControllerTest {
-    @Autowired private MockMvc mockMvc;
-    @MockBean private MatchManagementService matchManagementService;
     private final ObjectMapper objectMapper = new ObjectMapper();
+    @Autowired
+    private MockMvc mockMvc;
+    @MockBean
+    private MatchManagementService matchManagementService;
 
     @Test
-    void getMatches() throws Exception{
+    void getMatches() throws Exception {
         //given
         UUID id = UUID.randomUUID();
-        Match match = new Match(id, null, null, null, null, null,
-                null, null, null, null, null);
+        Match match = new Match();
+        match.setId(id);
         List<Match> matchList = List.of(match);
         given(matchManagementService.getAllMatches()).willReturn(matchList);
 
@@ -51,14 +49,14 @@ public class MatchManagementControllerTest {
     }
 
     @Test
-    void addNewMatch() throws Exception{
+    void addNewMatch() throws Exception {
         //given
         UUID id = UUID.randomUUID();
         UUID mainToken = UUID.randomUUID();
         UUID sideToken1 = UUID.randomUUID();
         UUID sideToken2 = UUID.randomUUID();
         Match match = new Match(id, null, null, null, null, mainToken,
-                null, sideToken1, null, sideToken2, null);
+                null, sideToken1, null, sideToken2, null, null, null, null);
         given(matchManagementService.addNewMatch(match)).willReturn(Map.of(
                 RefereeType.MAIN_REFEREE, match.getMainRefereeToken(),
                 RefereeType.SIDE_REFEREE_1, match.getSideRefereeToken1(),
@@ -74,14 +72,14 @@ public class MatchManagementControllerTest {
     }
 
     @Test
-    void getMatchByRefereeTokenFound() throws Exception{
+    void getMatchByRefereeTokenFound() throws Exception {
         //given
         UUID id = UUID.randomUUID();
         UUID mainToken = UUID.randomUUID();
         UUID sideToken1 = UUID.randomUUID();
         UUID sideToken2 = UUID.randomUUID();
         Match match = new Match(id, null, null, null, null, mainToken,
-                null, sideToken1, null, sideToken2, null);
+                null, sideToken1, null, sideToken2, null, null, null, null);
         List<Match> matchList = List.of(match);
         given(matchManagementService.getAllMatches()).willReturn(matchList);
 
@@ -94,7 +92,7 @@ public class MatchManagementControllerTest {
     }
 
     @Test
-    void getMatchByRefereeTokenNotFound() throws Exception{
+    void getMatchByRefereeTokenNotFound() throws Exception {
         //given
         UUID id = UUID.randomUUID();
         UUID mainToken = UUID.randomUUID();
@@ -102,7 +100,7 @@ public class MatchManagementControllerTest {
         UUID sideToken2 = UUID.randomUUID();
         UUID randomUUID = UUID.randomUUID();
         Match match = new Match(id, null, null, null, null, mainToken,
-                null, sideToken1, null, sideToken2, null);
+                null, sideToken1, null, sideToken2, null, null, null, null);
         List<Match> matchList = List.of(match);
         given(matchManagementService.getAllMatches()).willReturn(matchList);
 
@@ -113,11 +111,11 @@ public class MatchManagementControllerTest {
     }
 
     @Test
-    void getMatchByIdFound() throws Exception{
+    void getMatchByIdFound() throws Exception {
         //given
         UUID id = UUID.randomUUID();
-        Match match = new Match(id, null, null, null, null, null,
-                null, null, null, null, null);
+        Match match = new Match();
+        match.setId(id);
         given(matchManagementService.getMatchById(id)).willReturn(match);
         given(matchManagementService.matchIdExists(id)).willReturn(true);
 
@@ -129,7 +127,7 @@ public class MatchManagementControllerTest {
     }
 
     @Test
-    void getMatchByIdNotFound() throws Exception{
+    void getMatchByIdNotFound() throws Exception {
         //given
         UUID id = UUID.randomUUID();
         given(matchManagementService.matchIdExists(id)).willReturn(false);
@@ -141,11 +139,27 @@ public class MatchManagementControllerTest {
     }
 
     @Test
-    void cancelMatch() throws Exception{
+    void cancelMatchFound() throws Exception {
+        //given
         UUID id = UUID.randomUUID();
+        given(matchManagementService.matchIdExists(id)).willReturn(true);
+
+        //when & then
         mockMvc.perform(delete("/matches/cancel/" + id)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", is(true)));
+    }
+
+    @Test
+    void cancelMatchNotFound() throws Exception {
+        //given
+        UUID id = UUID.randomUUID();
+        given(matchManagementService.matchIdExists(id)).willReturn(false);
+
+        //when & then
+        mockMvc.perform(delete("/matches/cancel/" + id)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
     }
 }

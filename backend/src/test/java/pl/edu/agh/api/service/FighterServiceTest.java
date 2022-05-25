@@ -19,7 +19,8 @@ import static org.mockito.Mockito.verify;
 @ExtendWith(MockitoExtension.class)
 public class FighterServiceTest {
     private FighterService fighterService;
-    @Mock private FighterRepository fighterRepository;
+    @Mock
+    private FighterRepository fighterRepository;
 
     @BeforeEach
     void setUp() {
