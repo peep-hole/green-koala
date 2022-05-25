@@ -55,8 +55,13 @@ public class MatchManagementControllerTest {
         UUID mainToken = UUID.randomUUID();
         UUID sideToken1 = UUID.randomUUID();
         UUID sideToken2 = UUID.randomUUID();
-        Match match = new Match(id, null, null, null, null, mainToken,
-                null, sideToken1, null, sideToken2, null, null, null, null);
+        Match match = Match.builder()
+                .id(id)
+                .mainRefereeToken(mainToken)
+                .sideRefereeToken1(sideToken1)
+                .sideRefereeToken2(sideToken2)
+                .build();
+
         given(matchManagementService.addNewMatch(match)).willReturn(Map.of(
                 RefereeType.MAIN_REFEREE, match.getMainRefereeToken(),
                 RefereeType.SIDE_REFEREE_1, match.getSideRefereeToken1(),
@@ -78,8 +83,12 @@ public class MatchManagementControllerTest {
         UUID mainToken = UUID.randomUUID();
         UUID sideToken1 = UUID.randomUUID();
         UUID sideToken2 = UUID.randomUUID();
-        Match match = new Match(id, null, null, null, null, mainToken,
-                null, sideToken1, null, sideToken2, null, null, null, null);
+        Match match = Match.builder()
+                .id(id)
+                .mainRefereeToken(mainToken)
+                .sideRefereeToken1(sideToken1)
+                .sideRefereeToken2(sideToken2)
+                .build();
         List<Match> matchList = List.of(match);
         given(matchManagementService.getAllMatches()).willReturn(matchList);
 
@@ -99,8 +108,12 @@ public class MatchManagementControllerTest {
         UUID sideToken1 = UUID.randomUUID();
         UUID sideToken2 = UUID.randomUUID();
         UUID randomUUID = UUID.randomUUID();
-        Match match = new Match(id, null, null, null, null, mainToken,
-                null, sideToken1, null, sideToken2, null, null, null, null);
+        Match match = Match.builder()
+                .id(id)
+                .mainRefereeToken(mainToken)
+                .sideRefereeToken1(sideToken1)
+                .sideRefereeToken2(sideToken2)
+                .build();
         List<Match> matchList = List.of(match);
         given(matchManagementService.getAllMatches()).willReturn(matchList);
 
