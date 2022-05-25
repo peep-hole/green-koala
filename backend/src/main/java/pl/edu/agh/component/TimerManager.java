@@ -1,4 +1,4 @@
-package pl.edu.agh;
+package pl.edu.agh.component;
 
 
 import org.springframework.stereotype.Component;
@@ -8,7 +8,7 @@ import javax.annotation.PostConstruct;
 
 @Component
 public class TimerManager {
-    public Timer timer = new Timer();
+    public final Timer timer = new Timer();
 
     @PostConstruct
     public void init() {

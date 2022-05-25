@@ -2,9 +2,11 @@ package pl.edu.agh.model;
 
 import lombok.*;
 import org.hibernate.Hibernate;
+import pl.edu.agh.SideRefereeDecision;
 import pl.edu.agh.constants.Event;
 
 import javax.persistence.*;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -18,6 +20,12 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 public class Match {
+    @Transient
+    private final SideRefereeDecision referee1Decision = new SideRefereeDecision();
+    @Transient
+    private final SideRefereeDecision referee2Decision = new SideRefereeDecision();
+    @Transient
+    private final List<List<Event>> events = new LinkedList<>();
     @Id
     @Column(columnDefinition = "uuid")
     private UUID id;
@@ -33,10 +41,6 @@ public class Match {
     private Long sideRefereeId2;
     private Integer fighter1Points;
     private Integer fighter2Points;
-    @ElementCollection
-    private List<Event> events;
-    // TODO add event list
-    // TODO consider dividing into two separate classes
 
     @Override
     public boolean equals(Object o) {
@@ -49,9 +53,5 @@ public class Match {
     @Override
     public int hashCode() {
         return getClass().hashCode();
-    }
-
-    public void addEvent(Event event) {
-        this.events.add(event);
     }
 }
