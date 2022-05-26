@@ -28,7 +28,7 @@ export default function App() {
             <SSRProvider>
                 <NativeRouter>
                     <Routes>
-                        <Route path="/" element={<Demo />} />
+                        <Route path="/" element={<LoginPick />} />
                         <Route path="/tokenInput" element={<TokenInput />} />
                         <Route path="/registerPlayerForm" element={<RegisterPlayerForm />} />
                         <Route path="/loginPick" element={<LoginPick />} />
