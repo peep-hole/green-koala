@@ -50,6 +50,11 @@ public class MatchUpdateWSController {
         return new ResponseEntity<>(matchStatusManager.getMatch(UUID.fromString(id)), HttpStatus.OK);
     }
 
+    @GetMapping("/{id}/events")
+    public ResponseEntity<List<RefereeDecision>> getEvents(@PathVariable String id) {
+        return new ResponseEntity<>(matchStatusManager.getMatch(UUID.fromString(id)).getAcceptedDecisions(), HttpStatus.OK);
+    }
+
     @GetMapping("/{id}/allowed-actions")
     public ResponseEntity<Map<Action, List<String>>> getAllowedActions(@PathVariable String id) {
 
