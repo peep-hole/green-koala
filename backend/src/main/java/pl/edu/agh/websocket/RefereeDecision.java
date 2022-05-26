@@ -1,7 +1,7 @@
 package pl.edu.agh.websocket;
 
 import lombok.*;
-import pl.edu.agh.constants.Event;
+import pl.edu.agh.utils.Event;
 
 import java.util.List;
 import java.util.UUID;
@@ -11,7 +11,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class DecisionMessage {
+public class RefereeDecision {
     private Integer fighter1Points;
     private Integer fighter2Points;
     private List<Event> decision;

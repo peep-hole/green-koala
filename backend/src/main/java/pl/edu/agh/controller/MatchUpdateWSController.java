@@ -7,10 +7,11 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import pl.edu.agh.component.MatchStatusManager;
+import pl.edu.agh.constants.Action;
 import pl.edu.agh.model.Match;
-import pl.edu.agh.websocket.DecisionMessage;
+import pl.edu.agh.websocket.RefereeDecision;
 
-import java.util.UUID;
+import java.util.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -21,7 +22,7 @@ public class MatchUpdateWSController {
     private final MatchStatusManager matchStatusManager;
 
     @PostMapping("/{id}/decision")
-    public ResponseEntity<Boolean> updateDecision(@PathVariable String id, @RequestBody DecisionMessage decision) {
+    public ResponseEntity<Boolean> updateDecision(@PathVariable String id, @RequestBody RefereeDecision decision) {
         try {
             matchStatusManager.processStatusMessage(UUID.fromString(id), decision);
         } catch (RuntimeException e) {
@@ -47,6 +48,17 @@ public class MatchUpdateWSController {
     @GetMapping("/{id}")
     public ResponseEntity<Match> getMatchStatus(@PathVariable String id) {
         return new ResponseEntity<>(matchStatusManager.getMatch(UUID.fromString(id)), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}/events")
+    public ResponseEntity<List<RefereeDecision>> getEvents(@PathVariable String id) {
+        return new ResponseEntity<>(matchStatusManager.getMatch(UUID.fromString(id)).getAcceptedDecisions(), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}/allowed-actions")
+    public ResponseEntity<Map<Action, List<String>>> getAllowedActions(@PathVariable String id) {
+
+        return new ResponseEntity<>(matchStatusManager.getMatch(UUID.fromString(id)).getAllowedActions(), HttpStatus.OK);
     }
 
     private void sendUpdateNotificationToReferees() {

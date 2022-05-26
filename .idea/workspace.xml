@@ -7,11 +7,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b8decdcf-1dc5-42ba-b639-c41f48852093" name="Changes" comment="correct access modifiers, code cleanup">
+    <list default="true" id="b8decdcf-1dc5-42ba-b639-c41f48852093" name="Changes" comment="cosmetic changes">
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/utils/Event.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/SideRefereeDecision.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/component/MatchStatusManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/component/MatchStatusManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/constants/Action.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/constants/Action.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/controller/MatchUpdateWSController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/controller/MatchUpdateWSController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/controller/MatchWSController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/model/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/model/Match.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/websocket/DecisionMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/websocket/RefereeDecision.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,12 +68,12 @@
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="develop" />
+    <option name="BRANCH" value="GK-100-backend-zapisuje-odebrana-decyzje" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="develop" />
+        <entry key="$PROJECT_DIR$" value="GK-90-websocket-do-wysylania-informacji-o-tym-ze-byl-update" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -124,7 +132,7 @@
       <recent name="$PROJECT_DIR$/Backend" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.RefereeApplicationTests">
+  <component name="RunManager" selected="Spring Boot.RefereeApplication (2)">
     <configuration name="RefereeApplicationTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -253,11 +261,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.RefereeApplicationTests" />
         <item itemvalue="Gradle.Tests in 'pl.edu.agh.api.service'" />
         <item itemvalue="Gradle.Tests in 'pl.edu.agh.api.repository'" />
         <item itemvalue="Gradle.Tests in 'pl.edu.agh.api.controller'" />
         <item itemvalue="Gradle.Tests in 'green-koala.backend.test'" />
+        <item itemvalue="Gradle.RefereeApplicationTests" />
       </list>
     </recent_temporary>
   </component>
@@ -439,7 +447,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653511297641</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="cosmetic changes">
+      <created>1653512858394</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1653512858394</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -491,22 +506,7 @@
     <MESSAGE value="add some unit tests for FighterRepository" />
     <MESSAGE value="resolve conflicts, adjust tests" />
     <MESSAGE value="correct access modifiers, code cleanup" />
-    <option name="LAST_COMMIT_MESSAGE" value="correct access modifiers, code cleanup" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/controller/ActorsController.java</url>
-          <line>31</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-jpa/2.6.3/f8a00876d4d23efe8ced44c42a94ef108488e12f/spring-data-jpa-2.6.3-sources.jar!/org/springframework/data/jpa/repository/support/SimpleJpaRepository.java</url>
-          <line>352</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="cosmetic changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="cosmetic changes" />
   </component>
 </project>
