@@ -5,6 +5,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.stereotype.Component;
+import pl.edu.agh.constants.MatchRule;
+import pl.edu.agh.constants.MatchRules;
 import pl.edu.agh.model.Match;
 import pl.edu.agh.service.MatchManagementService;
 import pl.edu.agh.websocket.RefereeDecision;
@@ -35,6 +37,7 @@ public class MatchStatusManager {
 
     public void endMatch(UUID matchId) {
         Match match = matchMap.get(matchId);
+        match.setFinished(true);
         matchManagementService.addNewMatch(match);
         matchMap.remove(matchId);
     }
@@ -67,7 +70,7 @@ public class MatchStatusManager {
     }
 
     public boolean checkIfMatchShouldEnd(long time) {
-        if (time > 20 * 60 * 1000)
+        if (time > (int) MatchRules.getMatchRules().get(MatchRule.MAX_TIME) * 60 * 1000)
             return true;
         return false;
     }
