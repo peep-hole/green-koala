@@ -30,4 +30,8 @@ public class Timer {
         isRunning = false;
         sumTime = 0;
     }
+
+    public boolean isRunning() {
+        return isRunning;
+    }
 }
