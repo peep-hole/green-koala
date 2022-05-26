@@ -13,4 +13,5 @@ import java.util.UUID;
 public class Event {
     private UUID fighterId;
     private Action action;
+    private String actionInfo;
 }
