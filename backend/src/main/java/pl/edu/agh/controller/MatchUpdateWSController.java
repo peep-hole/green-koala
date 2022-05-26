@@ -11,9 +11,7 @@ import pl.edu.agh.constants.Action;
 import pl.edu.agh.model.Match;
 import pl.edu.agh.websocket.RefereeDecision;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -53,8 +51,13 @@ public class MatchUpdateWSController {
     }
 
     @GetMapping("/{id}/allowed-actions")
-    public ResponseEntity<List<Action>> getAllowedActions(@PathVariable String id) {
-        return new ResponseEntity<>(Arrays.asList(Action.values()), HttpStatus.OK);
+    public ResponseEntity<Map<Action, List<String>>> getAllowedActions(@PathVariable String id) {
+        Map<Action, List<String>> possibleActions = new HashMap<>();
+        possibleActions.put(Action.ATTACK, Arrays.asList("succeed", "failed"));
+        possibleActions.put(Action.DEFENSE, Arrays.asList("succeed", "failed"));
+        possibleActions.put(Action.HIT, Arrays.asList("head", "arm", "forearm", "hand", "leg", "knee"));
+
+        return new ResponseEntity<>(possibleActions, HttpStatus.OK);
     }
 
     private void sendUpdateNotificationToReferees() {
