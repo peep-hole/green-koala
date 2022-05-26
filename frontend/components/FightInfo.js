@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import Api from './util/Api';
-import FormHeader from './util/FormHeader';
+import FormHeaderLink from './util/FormHeaderLink';
 import { VStack, Button, Center, Flex, Text, ScrollView } from 'native-base';
 import { FontAwesome } from '@expo/vector-icons';
-import axios from 'axios';
+import { Navigate } from 'react-router-native';
+import { useLocation } from 'react-router-native';
 
-const FightInfo = props => {
+
+const FightInfo = () => {
+
+    const props = useLocation();
     const [fightData, setFightData] = useState({});
     const [fighter1, setFirstFighter] = useState({});
     const [fighter2, setSecondFighter] = useState({});
@@ -13,39 +17,46 @@ const FightInfo = props => {
     const [f1loading, setF1Loading] = useState(true);
     const [f2loading, setF2Loading] = useState(true);
 
+    const [fightCancelling, setFightCancelling] = useState(false);
+
+
     useEffect(() => {
-        Api.get('/matches/id/' + props.fightId).then(data => {
-            setFightData(data.data);
-            console.log(data);
-            //console.log(fightData.data);
-            const fighterId1 = data.data.fighterId1;
-            const fighterId2 = data.data.fighterId2;
+
+        Api.get('/matches/id/' + props.state.fightId).then(res => {
+            setFightData(res.data);
+            // console.log(res.data);
+            const fighterId1 = res.data.fighterId1;
+            const fighterId2 = res.data.fighterId2;
             setLoading(false);
 
             Api.get('/actors/fighters/id/' + fighterId1).then(res => {
-                console.log(res);
                 console.log(res.data);
                 setFirstFighter(res.data);
                 setF1Loading(false);
             });
 
             Api.get('/actors/fighters/id/' + fighterId2).then(res => {
+                console.log(res.data);
                 setSecondFighter(res.data);
                 setF2Loading(false);
             });
         });
     }, []);
 
+    const cancelFight = () => {
+        setFightCancelling(true);
+    }
+
     return (
         <>
-            <FormHeader name="Fight Details" />
+            <FormHeaderLink pathname="matchList" state={{}} name="Fight Details" />
             <ScrollView>
                 <Center>
                     {/* Fight date-time */}
                     <Flex direction="row">
                         <FontAwesome name="calendar" size={28} color="black" />
                         <Text marginLeft={5} color="black" fontSize={22} fontWeight="bold">
-                            {!loading && fightData.date && ' ' && fightData.time}
+                            {!loading && fightData.date + ' ' + fightData.time}
                         </Text>
                     </Flex>
 
@@ -91,7 +102,7 @@ const FightInfo = props => {
                     </Text>
                     <Text marginLeft="35px" marginRight="40px" color="grey" fontSize={15}>
                         Lorem Ipsum is simply dummy text of the printing and typesetting
-                        industry. Lorem Ipsum has been the industry's standard dummy text ever
+                        industry. Lorem Ipsum has been the industry`&apos;`s standard dummy text ever
                         since the{' '}
                     </Text>
 
@@ -120,18 +131,23 @@ const FightInfo = props => {
                         </Text>
                     </VStack>
 
-                    {/* Fight cancelling button TODO: send request to backend */}
-                    <Button
-                        marginTop="30px"
-                        colorScheme="red"
-                        onPress={() => console.log('Handling fight cancelling...')}
-                    >
-                        Cancel fight
+                    {/* Fight cancelling button*/}
+                    <Button marginTop="30px" colorScheme="red"
+                        onPress={cancelFight}>
+                        <Text>Cancel fight</Text>
                     </Button>
                 </Center>
             </ScrollView>
 
-            {/* Here footer component containing administrator's navigation bar */}
+            {fightCancelling &&
+                <Navigate to="/cancelMatch"
+                    state={{
+                        fightId: props.state.fightId,
+                        date: fightData.date + ' ' + fightData.time,
+                        fighter1: fighter1.name + ' ' + fighter1.surname,
+                        fighter2: fighter2.name + ' ' + fighter2.surname
+                    }}>
+                </Navigate>}
         </>
     );
 };

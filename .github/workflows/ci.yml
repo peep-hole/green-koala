@@ -1,5 +1,5 @@
 name: CI
-on: [push, pull_request]
+on: push
 
 jobs:
   
@@ -31,14 +31,18 @@ jobs:
       - name: Build and test front 
         run: cd frontend && npm test
   
-  #run_linters:
-  #  runs-on: ubuntu-latest
-  #
-  #  steps:
-  #    - uses: actions/checkout@v2
-  #  
-  #    - name: Super-Linter
-  #      uses: github/super-linter@v4.9.2
-  #      env:
-  #        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  run_linters:
+   runs-on: ubuntu-latest
+
+   steps:
+      - uses: actions/checkout@v2
+
+      - name: Install modules
+        run: cd frontend && npm install
+
+      - name: run ESLint
+        run: cd frontend && npm run lint
+
+      - name: Run Checkstyle for Java
+        run: cd backend && ./gradlew checkstyleMain
         

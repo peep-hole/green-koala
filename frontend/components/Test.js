@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import url from "./util/Websocket";
 import {over} from 'stompjs';
+import sock from "./util/Websocket";
 import {NativeBaseProvider, Button} from 'native-base';
 import SockJS from 'sockjs-client';
 
@@ -33,7 +34,7 @@ const Test = () => {
     const onMessageReceived = (payload) => {
         let message = payload.body;
         console.log(message)
-        setResponse(message);
+        setResponse(message)
     }
 
     const onError = (error) => {
@@ -67,6 +68,15 @@ const Test = () => {
         }
     }
 
+    const sendRestart = () => {
+        if (stompClient) {
+            let message = {
+                action: "RESTART"
+            };
+            stompClient.send('/timer', {}, JSON.stringify(message));
+        }
+    }
+
     return (
         <>
             {userData.connected ? "YES" : "NO"}
@@ -82,6 +92,10 @@ const Test = () => {
                 <Button
                     onPress={sendGet}>
                     Send get
+                </Button>
+                <Button
+                    onPress={sendRestart}>
+                    Send RESTART
                 </Button>
             </NativeBaseProvider>
             {response}

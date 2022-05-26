@@ -17,10 +17,26 @@ public class FighterService {
         return fighterRepository.findAll();
     }
 
-    public void registerFighter(Fighter fighter) {
+    public Fighter registerFighter(Fighter fighter) {
         if (fighter.getId() == null) {
-            fighter.setId(UUID.randomUUID());
+            do {
+                fighter.setId(UUID.randomUUID());
+            }
+            while (fighterExists(fighter));
         }
-        fighterRepository.save(fighter);
+
+        return fighterRepository.save(fighter);
+    }
+
+    public Fighter getFighterById(UUID id) {
+        return fighterRepository.findById(id).orElse(null);
+    }
+
+    public boolean fighterExists(Fighter fighter) {
+        return fighterIdExists(fighter.getId());
+    }
+
+    public boolean fighterIdExists(UUID id) {
+        return fighterRepository.existsById(id);
     }
 }

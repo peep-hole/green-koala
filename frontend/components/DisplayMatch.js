@@ -1,40 +1,59 @@
 import React, { useEffect, useState } from 'react';
-import { HStack, VStack, Text, Button, Center, Box, Flex } from 'native-base';
+import { HStack, VStack, Text, Button, Center, Box, Flex, View } from 'native-base';
 import FormHeader from './util/FormHeader';
 import DisplayScore from './DisplayScore';
 import Timer from "./Timer";
 import {over} from "stompjs"
 import SockJS from 'sockjs-client';
 import url from './util/Websocket';
-
-//mockup to use in testing - we will pass a correct object with props from token input
-const match = {
-    time: 0,
-    fighter1Name: 'Fighter One',
-    fighter2Name: 'Fighter Two',
-    fighter1Score: 3,
-    fighter2Score: 2,
-};
+import MainRefereeFooter from './util/MainRefereeFooter';
+import { useLocation, useNavigate } from 'react-router-native';
 
 let sock = null;
 let stompClient = null;
-/// must be globals!
+    
+const fighterScore1 = 3;
+const fighterScore2 = 2;
 
-const DisplayMatch = props => {
-    const [matchTime, setMatchTime] = useState(match.time);
-    const [fighter1Name, setFighter1Name] = useState(match.fighter1Name);
-    const [fighter2Name, setFighter2Name] = useState(match.fighter2Name);
-    const [fighter1Score, setFighter1Score] = useState(match.fighter1Score);
-    const [fighter2Score, setFighter2Score] = useState(match.fighter2Score);
-    const [sideDecisions, setSideDecisions] = useState({
-        side1: "Decision arrived - mock", /// remove mocks before merge!
-        side2: "Somethin looooooooooooooooooooooooooooooooooooooong to test behaviour in more than one line",
-    })
+const navigateToPointPick = (
+    fighter,
+    fighterName,
+    isMainReferee,
+    token,
+    points1,
+    points2,
+    fighter1,
+    fighter2,
+    matchData,
+    userType,
+    navigate
+) => {
+    const state = {
+        fighter: fighter,
+        fighterName: fighterName,
+        isMainReferee: isMainReferee,
+        token: token,
+        points1: points1,
+        points2: points2,
+        fighter1: fighter1,
+        fighter2: fighter2,
+        matchData: matchData,
+        userType: userType,
+    };
+    navigate('/suggestPoints', { state: { state } });
+};
 
-    // will be used to determine which elements of the interface should be shown - either "Main" or "Side"
-    // const refereeType = props.refereeType;
+const DisplayMatch = () => {
+    const props = useLocation();
+    const navigate = useNavigate();
 
     useEffect(() => {
+        console.log('passed to displaymatch:');
+        console.log(props.state.matchData);
+        console.log(props.state.fighter1);
+        console.log(props.state.fighter2);
+        console.log('Joined match as:');
+        console.log(props.state.userType);
         sock = new SockJS(url);
         stompClient = over(sock);
         stompClient.connect({}, onConnected, onError);
@@ -42,10 +61,10 @@ const DisplayMatch = props => {
 
     const onConnected = () => {
         stompClient.subscribe("/response/status", () => {
-            Api.get(`/status/${props.fightId}`
+            Api.get(`/status/${props.state.matchData.id}`
             ).then(res => {
                 console.log(res.data) /// TODO: make sure that everything works when back implementation will be ready
-                setSideDecisions({
+                setSideDecisions({  /// to check
                     side1: res.data.side1ActualDecision,
                     side2: res.data.side2ActualDecision,
                 })
@@ -64,15 +83,16 @@ const DisplayMatch = props => {
     }
 
     return (
-        <>
-            <FormHeader name="Match" marginBottom="200px"/>
-            <Center>
+        <View height="100%">
+            <Box safeAreaTop bg="#065f46" />
+            {/* maxTime={props.state.matchData.matchRules.maxTime}  will be set when matchRules appear in get match by ID- so far only in match status*/}
+            <Timer isMain={props.state.userType === 'Main'} maxTime="00:30" />
+            <Center height="70%" marginTop={5}>
                 <VStack width="90%">
-                    <Timer/>
                     <Center>
                         <HStack width="100%" mb="20px">
                             <Box
-                                bg="red.400"
+                                bg="red.500"
                                 p="5px"
                                 width="50%"
                                 borderColor="black"
@@ -80,11 +100,15 @@ const DisplayMatch = props => {
                                 height="40px"
                             >
                                 <Center>
-                                    <Text color="white">{fighter1Name.toString()}</Text>
+                                    <Text color="white">
+                                        {props.state.fighter1.name +
+                                            ' ' +
+                                            props.state.fighter1.surname}
+                                    </Text>
                                 </Center>
                             </Box>
                             <Box
-                                bg="blue.400"
+                                bg="blue.500"
                                 p="5px"
                                 width="50%"
                                 borderColor="black"
@@ -92,17 +116,21 @@ const DisplayMatch = props => {
                                 height="40px"
                             >
                                 <Center>
-                                    <Text color="white">{fighter2Name.toString()}</Text>
+                                    <Text color="white">
+                                        {props.state.fighter2.name +
+                                            ' ' +
+                                            props.state.fighter2.surname}
+                                    </Text>
                                 </Center>
                             </Box>
                         </HStack>
 
                         <DisplayScore
-                        fighter1Score={fighter1Score}
-                        fighter2Score={fighter2Score}
-                        />
+                            fighter1Score={fighterScore1}
+                            fighter2Score={fighterScore2}
+                        ></DisplayScore>
 
-                        <Box bg="gray.300" mb="20px" width="100%" >
+                        <Box bg="gray.300" mb="20px" width="100%" height="30%">
                             <VStack>
                                 <Box p="10px" width="100%">
                                     <Box width="100%" borderColor="black" borderWidth={1}>
@@ -119,20 +147,83 @@ const DisplayMatch = props => {
                             </VStack>
                         </Box>
 
-                        <VStack>
+                        <VStack width="100%">
                             <Center>
-                                <HStack>
-                                    <Button width="50%" p="20px" m="2px" bg="red.500">
+                                <HStack width="100%">
+                                    <Button
+                                        width="50%"
+                                        p="20px"
+                                        mb="2px"
+                                        bg="red.500"
+                                        onPress={() => {
+                                            navigateToPointPick(
+                                                1,
+                                                props.state.fighter1.name +
+                                                    ' ' +
+                                                    props.state.fighter1.surname,
+                                                props.state.userType === 'Main',
+                                                props.state.token,
+                                                fighterScore1,
+                                                fighterScore2,
+                                                props.state.fighter1,
+                                                props.state.fighter2,
+                                                props.state.matchData,
+                                                props.state.userType,
+                                                navigate
+                                            );
+                                        }}
+                                    >
                                         RED point
                                     </Button>
-                                    <Button width="50%" p="20px" m="2px" bg="blue.500" n>
+                                    <Button
+                                        width="50%"
+                                        p="20px"
+                                        mb="2px"
+                                        bg="blue.500"
+                                        n
+                                        onPress={() => {
+                                            navigateToPointPick(
+                                                2,
+                                                props.state.fighter2.name +
+                                                    ' ' +
+                                                    props.state.fighter2.surname,
+                                                props.state.userType === 'Main',
+                                                props.state.token,
+                                                fighterScore1,
+                                                fighterScore2,
+                                                props.state.fighter1,
+                                                props.state.fighter2,
+                                                props.state.matchData,
+                                                props.state.userType,
+                                                navigate
+                                            );
+                                        }}
+                                    >
                                         BLUE point
                                     </Button>
                                 </HStack>
                             </Center>
 
                             <Center>
-                                <Button bg="gray.500" p="15px" width="100%">
+                                <Button
+                                    bg="gray.500"
+                                    width="100%"
+                                    onPress={() => {
+                                        navigateToPointPick(
+                                            0,
+                                            ' ',
+                                            props.state.userType === 'Main',
+                                            props.state.token,
+                                            fighterScore1,
+                                            fighterScore2,
+                                            props.state.fighter1,
+                                            props.state.fighter2,
+                                            props.state.matchData,
+                                            props.state.userType,
+                                            navigate
+                                        );
+                                    }}
+                                >
                                     No point
                                 </Button>
                             </Center>
@@ -141,10 +232,20 @@ const DisplayMatch = props => {
                 </VStack>
             </Center>
 
-            <Text marginTop="auto" textAlign={'center'}>
-                Navbar placeholder
-            </Text>
-        </>
+            {props.state.userType == 'Main' && (
+                <MainRefereeFooter
+                    selected={1}
+                    state={{
+                        matchData: props.state.matchData,
+                        fighter1: props.state.fighter1,
+                        fighter2: props.state.fighter2,
+                        fighter1Score: fighterScore1,
+                        fighter2Score: fighterScore2,
+                        userType: props.state.userType,
+                    }}
+                ></MainRefereeFooter>
+            )}
+        </View>
     );
 };
 

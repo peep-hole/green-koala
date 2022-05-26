@@ -10,8 +10,4 @@ public class Tokenizer {
     public UUID generateToken() {
         return UUID.randomUUID();
     }
-
-    public int getMatchIdByToken(UUID token) {
-        return 0;
-    }
 }
