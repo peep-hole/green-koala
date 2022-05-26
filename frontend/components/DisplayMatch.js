@@ -39,7 +39,6 @@ const navigateToPointPick = (
 const DisplayMatch = () => {
     const props = useLocation();
     const navigate = useNavigate();
-    //will be used to determine which elements of the interface should be shown - either "Main" or "Side"
 
     useEffect(() => {
         console.log('passed to displaymatch:');
@@ -53,7 +52,8 @@ const DisplayMatch = () => {
     return (
         <View height="100%">
             <Box safeAreaTop bg="#065f46" />
-            <Timer isMain={props.state.userType === 'Main'} />
+            {/* maxTime={props.state.matchData.matchRules.maxTime}  will be set when matchRules appear in get match by ID- so far only in match status*/}
+            <Timer isMain={props.state.userType === 'Main'} maxTime="00:30" />
             <Center height="70%" marginTop={5}>
                 <VStack width="90%">
                     <Center>

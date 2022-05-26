@@ -116,12 +116,22 @@ const Timer = props => {
         }
     }
 
+    const isOvertime = () => {
+
+        if(props.maxTime < minutes.toString().padStart(2, "0") + ":" + seconds.toString().padStart(2, "0")){
+            return true;
+        }
+        return false;
+    }
+
+
     if(props.isMain){
         return <>
                 <HStack bg={bg} px="1" py="3" justifyContent="center" alignItems="center" w="100%">
                     {isActive? <FontAwesome style={styles.ionicons} name="pause" size={24} color="black" onPress={toggle}/> :
                     <FontAwesome style={styles.ionicons} name="play" size={24} color="black" onPress={toggle}/>}
-                    <Text fontSize={24} color="white">{minutes.toString().padStart(2, "0") + ":" + seconds.toString().padStart(2, "0")}</Text>
+                    {!isOvertime() && <Text fontSize={24} color="white">{minutes.toString().padStart(2, "0") + ":" + seconds.toString().padStart(2, "0")}</Text>}
+                    {isOvertime() && <Text fontSize={24} color="red">{minutes.toString().padStart(2, "0") + ":" + seconds.toString().padStart(2, "0")}</Text>}
                     <FontAwesome style={styles.ionicons} name="stop" size={24} color="black" onPress={reset}/>
                     <FontAwesome style={styles.closeIcon} name="close" size={32} color="black" onPress={end}/>
                 </HStack>
