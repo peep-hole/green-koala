@@ -118,7 +118,7 @@ const Timer = props => {
 
     const isOvertime = () => {
 
-        if(props.maxTime < minutes.toString() + ":" + seconds.toString()){
+        if(props.maxTime < minutes.toString().padStart(2, "0") + ":" + seconds.toString().padStart(2, "0")){
             return true;
         }
         return false;
