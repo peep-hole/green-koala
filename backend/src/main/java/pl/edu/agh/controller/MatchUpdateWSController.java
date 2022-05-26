@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import pl.edu.agh.component.MatchStatusManager;
 import pl.edu.agh.model.Match;
-import pl.edu.agh.websocket.DecisionMessage;
+import pl.edu.agh.websocket.RefereeDecision;
 
 import java.util.UUID;
 
@@ -21,7 +21,7 @@ public class MatchUpdateWSController {
     private final MatchStatusManager matchStatusManager;
 
     @PostMapping("/{id}/decision")
-    public ResponseEntity<Boolean> updateDecision(@PathVariable String id, @RequestBody DecisionMessage decision) {
+    public ResponseEntity<Boolean> updateDecision(@PathVariable String id, @RequestBody RefereeDecision decision) {
         try {
             matchStatusManager.processStatusMessage(UUID.fromString(id), decision);
         } catch (RuntimeException e) {

@@ -2,8 +2,7 @@ package pl.edu.agh.model;
 
 import lombok.*;
 import org.hibernate.Hibernate;
-import pl.edu.agh.SideRefereeDecision;
-import pl.edu.agh.constants.Event;
+import pl.edu.agh.websocket.RefereeDecision;
 
 import javax.persistence.*;
 import java.util.LinkedList;
@@ -21,11 +20,11 @@ import java.util.UUID;
 @Builder
 public class Match {
     @Transient
-    private final SideRefereeDecision referee1Decision = new SideRefereeDecision();
+    private final RefereeDecision referee1Decision = new RefereeDecision();
     @Transient
-    private final SideRefereeDecision referee2Decision = new SideRefereeDecision();
+    private final RefereeDecision referee2Decision = new RefereeDecision();
     @Transient
-    private final List<List<Event>> events = new LinkedList<>();
+    private final List<RefereeDecision> acceptedDecisions = new LinkedList<>();
     @Id
     @Column(columnDefinition = "uuid")
     private UUID id;
