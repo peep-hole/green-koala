@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { HStack, VStack, Text, Button, Center, Box, Flex, View } from 'native-base';
-import FormHeader from './util/FormHeader';
+import { HStack, VStack, Text, Button, Center, Box, View } from 'native-base';
 import DisplayScore from './DisplayScore';
 import Timer from "./Timer";
 import {over} from "stompjs"
@@ -8,6 +7,7 @@ import SockJS from 'sockjs-client';
 import url from './util/Websocket';
 import MainRefereeFooter from './util/MainRefereeFooter';
 import { useLocation, useNavigate } from 'react-router-native';
+import Api from './util/Api';
 
 let sock = null;
 let stompClient = null;
@@ -46,6 +46,10 @@ const navigateToPointPick = (
 const DisplayMatch = () => {
     const props = useLocation();
     const navigate = useNavigate();
+    const [sideDecisions, setSideDecisions] = useState({
+        side1: "",
+        side2: "",
+    })
 
     useEffect(() => {
         console.log('passed to displaymatch:');
@@ -57,6 +61,10 @@ const DisplayMatch = () => {
         sock = new SockJS(url);
         stompClient = over(sock);
         stompClient.connect({}, onConnected, onError);
+        const { id } = props.state.matchData;
+        Api.post(`status/${id}/start`, {})
+        .then(res => console.log(res))
+        .catch(e => e.printStackTrace());
     }, []);
 
     const onConnected = () => {

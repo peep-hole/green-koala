@@ -111,12 +111,17 @@ function reset(setCurrentStrings, setCurrentOptions, setIndexHistory) {
     setCurrentOptions([data.pickData[0], data.pickData[1]]);
 }
 
-const sendDecision = (events, id) => {
+
+const sendDecision = (events, id, currentStrings, setCurrentStrings) => {
     const { points1, points2, token, decision } = events;
+    setCurrentStrings(currentStrings =>
+        currentStrings.filter(el => el !== '')
+    );
+    console.log(decision);
     Api.post(`status/${id}/decision`, {
         fighter1Points: points1, 
         fighter2Points: points2, 
-        decision: [],               /// !!! process events here
+        decision: currentStrings,
         refereeToken: token
     })
     .then(response => console.log(response.data))
@@ -131,7 +136,6 @@ export const SuggestPoints = () => {
     const props = locationData.state.state;
     const { id } = props.matchData;
     console.log(props);
-    console.log(props.state);
     const [showModal, setShowModal] = useState(false);
     const [currentStrings, setCurrentStrings] = useState([]);
     const [indexHistory, setIndexHistory] = useState([[0, 1]]);
@@ -318,7 +322,7 @@ export const SuggestPoints = () => {
                                         decision: currentStrings,
                                     };
                                     console.log(newEvent);
-                                    sendDecision(newEvent, id);
+                                    sendDecision(newEvent, id, currentStrings, setCurrentStrings);
 
                                     //THEN NAVIGATE TO THE MATCH DISPLAY AGAIN
                                     //navigate. ...

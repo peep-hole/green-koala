@@ -11,7 +11,5 @@ import java.util.UUID;
 @AllArgsConstructor
 @ToString
 public class Event {
-    private UUID fighterId;
-    private Action action;
-    private String actionInfo;
+    private String desc;
 }
