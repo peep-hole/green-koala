@@ -1,11 +1,15 @@
 import React, {useEffect, useState} from 'react';
+import url from "./util/Websocket";
+import {over} from 'stompjs';
 import sock from "./util/Websocket";
-import { over } from 'stompjs';
 import {NativeBaseProvider, Button} from 'native-base';
+import SockJS from 'sockjs-client';
 
+let sock = null;
 let stompClient = null;
 
 const Test = () => {
+    
     const [userData, setUserData] = useState({
         connected: false,
         message: ''
@@ -13,6 +17,7 @@ const Test = () => {
     const [response, setResponse] = useState('');
 
     useEffect(() => {
+        sock = new SockJS(url);
         stompClient = over(sock);
         stompClient.connect({}, onConnected, onError);
     }, []);

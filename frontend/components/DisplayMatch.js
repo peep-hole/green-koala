@@ -1,10 +1,17 @@
-import React, { useEffect } from 'react';
-import { HStack, VStack, Text, Button, Center, Box, View } from 'native-base';
+import React, { useEffect, useState } from 'react';
+import { HStack, VStack, Text, Button, Center, Box, Flex, View } from 'native-base';
+import FormHeader from './util/FormHeader';
 import DisplayScore from './DisplayScore';
-import Timer from './Timer';
+import Timer from "./Timer";
+import {over} from "stompjs"
+import SockJS from 'sockjs-client';
+import url from './util/Websocket';
 import MainRefereeFooter from './util/MainRefereeFooter';
 import { useLocation, useNavigate } from 'react-router-native';
 
+let sock = null;
+let stompClient = null;
+    
 const fighterScore1 = 3;
 const fighterScore2 = 2;
 
@@ -47,7 +54,33 @@ const DisplayMatch = () => {
         console.log(props.state.fighter2);
         console.log('Joined match as:');
         console.log(props.state.userType);
+        sock = new SockJS(url);
+        stompClient = over(sock);
+        stompClient.connect({}, onConnected, onError);
     }, []);
+
+    const onConnected = () => {
+        stompClient.subscribe("/response/status", () => {
+            Api.get(`/status/${props.state.matchData.id}`
+            ).then(res => {
+                console.log(res.data) /// TODO: make sure that everything works when back implementation will be ready
+                setSideDecisions({  /// to check
+                    side1: res.data.side1ActualDecision,
+                    side2: res.data.side2ActualDecision,
+                })
+                setSideDecisions({
+                    side1: res.data.side1ActualDecision,
+                    side2: res.data.side2ActualDecision
+                })
+            }).catch(e => {
+                console.log(e)
+            })
+        })
+    }
+
+    const onError = (error) => {
+        console.log("Error: " + error);
+    }
 
     return (
         <View height="100%">
@@ -99,12 +132,18 @@ const DisplayMatch = () => {
 
                         <Box bg="gray.300" mb="20px" width="100%" height="30%">
                             <VStack>
-                                <Center>
-                                    <Text>event1 placeholder</Text>
-                                </Center>
-                                <Center>
-                                    <Text>event2 placeholder</Text>
-                                </Center>
+                                <Box p="10px" width="100%">
+                                    <Box width="100%" borderColor="black" borderWidth={1}>
+                                        <Text fontSize="16px" p="10px">{`Referee1: ${sideDecisions.side1}`}</Text>
+                                        <Box width="100%" pt="10px" height="15px" bgColor={"blue.500"} />
+                                    </Box>
+                                </Box>
+                                <Box p="10px" width="100%">
+                                    <Box width="100%" borderColor="black" borderWidth={1}>
+                                        <Text fontSize="16px" p="10px">{`Referee2: ${sideDecisions.side2}`}</Text>
+                                        <Box width="100%" pt="10px" height="15px" bgColor={"red.500"} />
+                                    </Box>
+                                </Box>
                             </VStack>
                         </Box>
 
