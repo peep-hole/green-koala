@@ -38,8 +38,8 @@ public class Match {
     private Long sideRefereeId1;
     private UUID sideRefereeToken2;
     private Long sideRefereeId2;
-    private Integer fighter1Points;
-    private Integer fighter2Points;
+    private Integer fighter1Points = 0;
+    private Integer fighter2Points = 0;
 
     @Override
     public boolean equals(Object o) {
