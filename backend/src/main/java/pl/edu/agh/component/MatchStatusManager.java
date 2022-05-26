@@ -66,6 +66,12 @@ public class MatchStatusManager {
         }
     }
 
+    public boolean checkIfMatchShouldEnd(long time) {
+        if (time > 20 * 60 * 1000)
+            return true;
+        return false;
+    }
+
     public Match getMatch(UUID matchId) {
         return matchMap.get(matchId);
     }
