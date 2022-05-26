@@ -13,4 +13,5 @@ import java.io.Serializable;
 public class TimerResponseMessage implements Serializable {
     long time;
     boolean matchEnded;
+    boolean timerRunning;
 }

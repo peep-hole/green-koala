@@ -40,11 +40,11 @@ public class TimerWSController {
                 break;
         }
 
-        return new TimerResponseMessage(timerManager.getTime(), matchStatusManager.checkIfMatchShouldEnd(timerManager.getTime()));
+        return new TimerResponseMessage(timerManager.getTime(), matchStatusManager.checkIfMatchShouldEnd(timerManager.getTime()), timerManager.timer.isRunning());
     }
 
     @Scheduled(fixedRate = 500)
     public void sendTimerToReferees() {
-        this.template.convertAndSend("/response/timer", new TimerResponseMessage(timerManager.getTime(), false));
+        this.template.convertAndSend("/response/timer", new TimerResponseMessage(timerManager.getTime(), matchStatusManager.checkIfMatchShouldEnd(timerManager.getTime()), timerManager.timer.isRunning()));
     }
 }
