@@ -52,12 +52,8 @@ public class MatchUpdateWSController {
 
     @GetMapping("/{id}/allowed-actions")
     public ResponseEntity<Map<Action, List<String>>> getAllowedActions(@PathVariable String id) {
-        Map<Action, List<String>> possibleActions = new HashMap<>();
-        possibleActions.put(Action.ATTACK, Arrays.asList("succeed", "failed"));
-        possibleActions.put(Action.DEFENSE, Arrays.asList("succeed", "failed"));
-        possibleActions.put(Action.HIT, Arrays.asList("head", "arm", "forearm", "hand", "leg", "knee"));
 
-        return new ResponseEntity<>(possibleActions, HttpStatus.OK);
+        return new ResponseEntity<>(matchStatusManager.getMatch(UUID.fromString(id)).getAllowedActions(), HttpStatus.OK);
     }
 
     private void sendUpdateNotificationToReferees() {

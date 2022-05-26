@@ -2,13 +2,14 @@ package pl.edu.agh.model;
 
 import lombok.*;
 import org.hibernate.Hibernate;
+import pl.edu.agh.constants.Action;
+import pl.edu.agh.constants.AllowedActions;
+import pl.edu.agh.constants.MatchRule;
+import pl.edu.agh.constants.MatchRules;
 import pl.edu.agh.websocket.RefereeDecision;
 
 import javax.persistence.*;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Table
@@ -25,6 +26,10 @@ public class Match {
     private final RefereeDecision referee2Decision = new RefereeDecision();
     @Transient
     private final List<RefereeDecision> acceptedDecisions = new LinkedList<>();
+    @Transient
+    private final Map<Action, List<String>> allowedActions = AllowedActions.getAllowedActions();
+    @Transient
+    private final Map<MatchRule, Object> matchRules = MatchRules.getMatchRules();
     @Id
     @Column(columnDefinition = "uuid")
     private UUID id;
@@ -40,6 +45,7 @@ public class Match {
     private Long sideRefereeId2;
     private Integer fighter1Points = 0;
     private Integer fighter2Points = 0;
+    private boolean finished;
 
     @Override
     public boolean equals(Object o) {
