@@ -14,10 +14,10 @@ const FightHistory = () => {
     const [, setEventsLoaded] = useState(false);
 
     const getMatchEvents = () => {
-        Api.get('/proper/endpoint/match/{id}' //TODO: special endpoint for getting match events
+        Api.get('/status/'+props.state.matchData.id+'/events'
         ).then(res => {
             setEvents(res.data);
-            // console.log(res.data);
+            console.log(res.data);
             setEventsLoaded(true);
         }).catch(e => {
             console.log(e);
@@ -26,33 +26,6 @@ const FightHistory = () => {
 
     useEffect(() => {
         getMatchEvents();
-        setEvents([
-            {
-                eventID: "1234324",
-                time: "00:12",
-                referee: "Side referee 1",
-                decision: "RED: attack, hit, 2 points IDK."
-            },
-            {
-                eventID: "1243543",
-                time: "01:00",
-                referee: "Side referee 2",
-                decision: "BLUE: defense, miss, 0 points IDK. RED: attack, hit, 1 points IDK."
-            },
-            {
-                eventID: "12342344",
-                time: "01:34",
-                referee: "Main referee",
-                decision: "RED: attack, hit, 2 points IDK."
-            },
-            {
-                eventID: "1213123324",
-                time: "02:33",
-                referee: "Main referee",
-                decision: "BLUE: defense, miss, 0 points IDK."
-            },
-        ])
-        // console.log(events);
     }, [])
 
     return (
@@ -88,7 +61,6 @@ const FightHistory = () => {
                             Event decisions
                         </Text>
                     </Center>
-                    {/* TODO: update filtering when model will contain bool determining if fight is over / or maybe score is not null? */}
                     <FlatList backgroundColor="gray.200"
                         data={events} renderItem={
                             ({ item }) =>

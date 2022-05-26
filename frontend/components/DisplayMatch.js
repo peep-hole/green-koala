@@ -39,7 +39,6 @@ const navigateToPointPick = (
 const DisplayMatch = () => {
     const props = useLocation();
     const navigate = useNavigate();
-    //will be used to determine which elements of the interface should be shown - either "Main" or "Side"
 
     useEffect(() => {
         console.log('passed to displaymatch:');
