@@ -38,6 +38,9 @@ const Timer = props => {
     }
 
     const onMessageReceived = (payload) => {
+        if(JSON.parse(payload.body)['timerRunning']) {
+            setIsActive(true)
+        }
         let millis = JSON.parse(payload.body).time
         let minutes = Math.floor(millis / 60000)
         let seconds = Number(((millis % 60000) / 1000).toFixed(0))

@@ -8,6 +8,7 @@ import SockJS from 'sockjs-client';
 import url from './util/Websocket';
 import MainRefereeFooter from './util/MainRefereeFooter';
 import { useLocation, useNavigate } from 'react-router-native';
+import Api from "./util/Api";
 
 let sock = null;
 let stompClient = null;
@@ -46,6 +47,11 @@ const navigateToPointPick = (
 const DisplayMatch = () => {
     const props = useLocation();
     const navigate = useNavigate();
+
+    const [sideDecisions, setSideDecisions] = useState({
+        side1: "",
+        side2: "",
+    })
 
     useEffect(() => {
         console.log('passed to displaymatch:');
