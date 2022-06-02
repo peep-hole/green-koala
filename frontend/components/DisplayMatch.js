@@ -66,20 +66,19 @@ const DisplayMatch = () => {
         stompClient.subscribe("/response/status", () => {
             Api.get(`/status/${props.state.matchData.id}`
             ).then(res => {
-                console.log(res.data)
                 const {referee1Decision, referee2Decision} = res.data;
                 if(referee1Decision.decision){
-                    setSideDecisions({
-                        ...sideDecisions,
+                    setSideDecisions(decision => ({
+                        ...decision,
                         side1: referee1Decision.decision.toString(),
-                    })
+                    }))
                 }
 
                 if(referee2Decision.decision){
-                    setSideDecisions({
-                        ...sideDecisions,
+                    setSideDecisions(decision => ({
+                        ...decision,
                         side2: referee2Decision.decision.toString(),
-                    })
+                    }))
                 }
             }).catch(e => {
                 console.log(e)
