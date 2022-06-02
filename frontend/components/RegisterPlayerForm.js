@@ -53,7 +53,7 @@ const RegisterPlayerForm = () =>{
             Api.post("/player_add", {
                 player_data: {...formData, gender: gender}
             })
-            .then(response => console.log(response.data))
+            .then(() => console.log("Player added"))
             .catch(e => {
                 console.log(e)
           });

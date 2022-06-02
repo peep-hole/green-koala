@@ -113,18 +113,21 @@ function reset(setCurrentStrings, setCurrentOptions, setIndexHistory) {
 
 
 const sendDecision = (events, id, currentStrings, setCurrentStrings) => {
+    console.log(events);
     const { points1, points2, token, decision } = events;
     setCurrentStrings(currentStrings =>
         currentStrings.filter(el => el !== '')
     );
-    console.log(decision);
+    console.log(`Decision ${decision}`);
     Api.post(`status/${id}/decision`, {
         fighter1Points: points1, 
         fighter2Points: points2, 
         decision: currentStrings,
         refereeToken: token
     })
-    .then(response => console.log(response.data))
+    .then(response => {
+        console.log(`Decision response: ${response.data}`)
+    })
     .catch(e => {
         console.log(e)
     });
@@ -133,9 +136,9 @@ const sendDecision = (events, id, currentStrings, setCurrentStrings) => {
 export const SuggestPoints = () => {
     const locationData = useLocation();
     const navigate = useNavigate();
+    console.log(locationData.state)
     const props = locationData.state.state;
     const { id } = props.matchData;
-    console.log(props);
     const [showModal, setShowModal] = useState(false);
     const [currentStrings, setCurrentStrings] = useState([]);
     const [indexHistory, setIndexHistory] = useState([[0, 1]]);
@@ -321,7 +324,7 @@ export const SuggestPoints = () => {
                                         token: props.token,
                                         decision: currentStrings,
                                     };
-                                    console.log(newEvent);
+                                    console.log(newEvent)
                                     sendDecision(newEvent, id, currentStrings, setCurrentStrings);
 
                                     //THEN NAVIGATE TO THE MATCH DISPLAY AGAIN
@@ -332,6 +335,7 @@ export const SuggestPoints = () => {
                                             matchData: props.matchData,
                                             fighter1: props.fighter1,
                                             fighter2: props.fighter2,
+                                            token: props.token,
                                             userType: props.userType,
                                         },
                                     });

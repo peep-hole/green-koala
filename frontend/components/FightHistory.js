@@ -17,7 +17,6 @@ const FightHistory = () => {
         Api.get('/status/'+props.state.matchData.id
         ).then(res => {
             setEvents(res.data);
-            console.log(res);
             setEventsLoaded(true);
         }).catch(e => {
             console.log(e);

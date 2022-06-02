@@ -14,6 +14,6 @@ import java.util.UUID;
 public class RefereeDecision {
     private Integer fighter1Points;
     private Integer fighter2Points;
-    private List<String> decision;
+    private List<Event> decision;
     private UUID refereeToken;
 }

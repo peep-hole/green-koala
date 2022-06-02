@@ -30,13 +30,13 @@ const FightInfo = () => {
             setLoading(false);
 
             Api.get('/actors/fighters/id/' + fighterId1).then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 setFirstFighter(res.data);
                 setF1Loading(false);
             });
 
             Api.get('/actors/fighters/id/' + fighterId2).then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 setSecondFighter(res.data);
                 setF2Loading(false);
             });

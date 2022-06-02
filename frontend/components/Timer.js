@@ -24,7 +24,7 @@ const Timer = props => {
 
 
     const onConnected = () => {
-        console.log("CONNECTED")
+        //console.log("CONNECTED")
         stompClient.subscribe("/response/timer", onMessageReceived)
         stompClient.send("/timer", {}, JSON.stringify({
             action: "GET"

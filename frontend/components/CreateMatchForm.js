@@ -30,7 +30,6 @@ const CreateMatchForm = () => {
         Api.get('/actors/fighters' // TODO type proper url when backend is ready
         ).then(res => {
             setPlayers(res.data)
-            console.log(res.data)
             setPlayersLoaded(true);
         }).catch(e => {
             console.log(e) // TODO handle it somehow
@@ -55,12 +54,12 @@ const CreateMatchForm = () => {
     }
 
     const onCreateClick = () => {
-        console.log({
-            firstPlayer: firstPlayer,
-            secondPlayer: secondPlayer,
-            date: dateString,
-            time: timeString
-        })
+        // console.log({
+        //     firstPlayer: firstPlayer,
+        //     secondPlayer: secondPlayer,
+        //     date: dateString,
+        //     time: timeString
+        // })
         Api.post("/matches/new-match", { // temporary request body
             firstPlayer: firstPlayer,
             secondPlayer: secondPlayer,
@@ -85,11 +84,11 @@ const CreateMatchForm = () => {
                     <FormControl>
                         <SearchableDropdown
                             onItemSelect={(item) => {
-                                console.log(item)
+                                //console.log(item)
                                 setFirstPlayer(item)
-                                console.log(firstPlayer)
+                                //console.log(firstPlayer)
                                 setShowSearch1(false)
-                                console.log(item)
+                                //console.log(item)
                             }}
                             itemStyle={{
                                 padding: 10,
