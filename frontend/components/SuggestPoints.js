@@ -126,7 +126,7 @@ const sendDecision = (events, id, currentStrings, setCurrentStrings) => {
         refereeToken: token
     })
     .then(response => {
-        console.log(`Decision response: ${response.data}`)
+        console.log(response.data)
     })
     .catch(e => {
         console.log(e)

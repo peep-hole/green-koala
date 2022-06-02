@@ -49,6 +49,7 @@ public class MatchStatusManager {
         Match match = matchMap.get(matchId);
 
         if (message.getRefereeToken().equals(match.getMainRefereeToken())) {
+            System.out.println("MAIN REFEREE");
             match.setFighter1Points(match.getFighter1Points() + message.getFighter1Points());
             match.setFighter2Points(match.getFighter2Points() + message.getFighter2Points());
             match.getAcceptedDecisions().add(message);

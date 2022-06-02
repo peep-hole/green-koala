@@ -11,9 +11,6 @@ import Api from './util/Api';
 
 let sock = null;
 let stompClient = null;
-    
-const fighterScore1 = 3;
-const fighterScore2 = 2;
 
 const navigateToPointPick = (
     fighter,
@@ -52,6 +49,8 @@ const DisplayMatch = () => {
         side2: "",
     })
     const { id } = props.state.matchData;
+    const [fighterScore1, setFighter1Score] = useState(0);
+    const [fighterScore2, setFighter2Score] = useState(0);
 
     useEffect(() => {
         sock = new SockJS(url);
@@ -66,7 +65,12 @@ const DisplayMatch = () => {
         stompClient.subscribe("/response/status", () => {
             Api.get(`/status/${props.state.matchData.id}`
             ).then(res => {
-                const {referee1Decision, referee2Decision} = res.data;
+                console.log(res.data)
+                const {referee1Decision, referee2Decision, fighter1Points, fighter2Points} = res.data;
+
+                setFighter1Score(fighter1Points);
+                setFighter2Score(fighter2Points);
+
                 if(referee1Decision.decision){
                     setSideDecisions(decision => ({
                         ...decision,
@@ -80,6 +84,7 @@ const DisplayMatch = () => {
                         side2: referee2Decision.decision.toString(),
                     }))
                 }
+
             }).catch(e => {
                 console.log(e)
             })
