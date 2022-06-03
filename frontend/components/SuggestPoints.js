@@ -118,7 +118,12 @@ const sendDecision = (events, id, currentStrings, setCurrentStrings) => {
     setCurrentStrings(currentStrings =>
         currentStrings.filter(el => el !== '')
     );
-    console.log(`Decision ${decision}`);
+    console.log({
+        fighter1Points: points1, 
+        fighter2Points: points2, 
+        decision: currentStrings,
+        refereeToken: token
+    });
     Api.post(`status/${id}/decision`, {
         fighter1Points: points1, 
         fighter2Points: points2, 

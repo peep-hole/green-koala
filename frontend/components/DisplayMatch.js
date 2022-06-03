@@ -62,14 +62,39 @@ const DisplayMatch = () => {
     }, []);
 
     const onConnected = () => {
+        Api.get(`/status/${props.state.matchData.id}`
+            ).then(res => {
+                console.log(res.data)
+                const {referee1Decision, referee2Decision, fighter1Points, fighter2Points} = res.data;
+
+                if(fighter1Points) setFighter1Score(fighter1Points);
+                if(fighter2Points) setFighter2Score(fighter2Points);
+
+                if(referee1Decision.decision){
+                    setSideDecisions(decision => ({
+                        ...decision,
+                        side1: referee1Decision.decision.toString(),
+                    }))
+                }
+
+                if(referee2Decision.decision){
+                    setSideDecisions(decision => ({
+                        ...decision,
+                        side2: referee2Decision.decision.toString(),
+                    }))
+                }
+
+            }).catch(e => {
+                console.log(e)
+            })
         stompClient.subscribe("/response/status", () => {
             Api.get(`/status/${props.state.matchData.id}`
             ).then(res => {
                 console.log(res.data)
                 const {referee1Decision, referee2Decision, fighter1Points, fighter2Points} = res.data;
 
-                setFighter1Score(fighter1Points);
-                setFighter2Score(fighter2Points);
+                if(fighter1Points) setFighter1Score(fighter1Points);
+                if(fighter2Points) setFighter2Score(fighter2Points);
 
                 if(referee1Decision.decision){
                     setSideDecisions(decision => ({
