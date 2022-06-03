@@ -3,6 +3,8 @@ import { Button, Modal, Center, Text, VStack, Radio, HStack } from 'native-base'
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-native';
 import FormHeaderLink from './util/FormHeaderLink';
+import Api from "./util/Api";
+
 const data = {
     pickData: [
         {
@@ -109,12 +111,39 @@ function reset(setCurrentStrings, setCurrentOptions, setIndexHistory) {
     setCurrentOptions([data.pickData[0], data.pickData[1]]);
 }
 
+
+const sendDecision = (events, id, currentStrings, setCurrentStrings) => {
+    console.log(events);
+    const { points1, points2, token } = events;
+    setCurrentStrings(currentStrings =>
+        currentStrings.filter(el => el !== '')
+    );
+    console.log({
+        fighter1Points: points1, 
+        fighter2Points: points2, 
+        decision: currentStrings,
+        refereeToken: token
+    });
+    Api.post(`status/${id}/decision`, {
+        fighter1Points: points1, 
+        fighter2Points: points2, 
+        decision: currentStrings,
+        refereeToken: token
+    })
+    .then(response => {
+        console.log(response.data)
+    })
+    .catch(e => {
+        console.log(e)
+    });
+}
+
 export const SuggestPoints = () => {
     const locationData = useLocation();
     const navigate = useNavigate();
+    console.log(locationData.state)
     const props = locationData.state.state;
-    console.log(props);
-    console.log(props.state);
+    const { id } = props.matchData;
     const [showModal, setShowModal] = useState(false);
     const [currentStrings, setCurrentStrings] = useState([]);
     const [indexHistory, setIndexHistory] = useState([[0, 1]]);
@@ -289,13 +318,6 @@ export const SuggestPoints = () => {
                             <Button
                                 onPress={() => {
                                     setShowModal(false);
-                                    //TODO:
-                                    //SEND CURRENT EVENT TO BACKEND - should be ok if we replace current console.log() calls with proper API calls
-                                    //NAVIGATE TO THE PREVIOUS SCREEN
-
-                                    // localhost:8080/api/status/{id}/decision - endpoint for changing decision
-                                    // localhost:8080/api/status/{id}/points - endpoint for point change - main referee
-
                                     //remove empty strings used for rewind
                                     setCurrentStrings(currentStrings =>
                                         currentStrings.filter(el => el !== '')
@@ -307,23 +329,9 @@ export const SuggestPoints = () => {
                                         token: props.token,
                                         decision: currentStrings,
                                     };
-                                    console.log(newEvent);
+                                    console.log(newEvent)
+                                    sendDecision(newEvent, id, currentStrings, setCurrentStrings);
 
-                                    //if main - should also update point count
-                                    //points should not change in the meantime - there is only one main referee
-                                    if (props.isMainReferee) {
-                                        const newPoints = {
-                                            points1:
-                                                props.fighter == 1
-                                                    ? chosenPointPick + props.points1
-                                                    : props.points1,
-                                            points2:
-                                                props.fighter == 2
-                                                    ? chosenPointPick + props.points2
-                                                    : props.points2,
-                                        };
-                                        console.log(newPoints);
-                                    }
                                     //THEN NAVIGATE TO THE MATCH DISPLAY AGAIN
                                     //navigate. ...
                                     //CURRENTLY PASSING MATCH HERE, WE WILL ALMOST CERTAINLY CHANGE IT TO REFRESH IN DISPLAYMATCH
@@ -332,6 +340,7 @@ export const SuggestPoints = () => {
                                             matchData: props.matchData,
                                             fighter1: props.fighter1,
                                             fighter2: props.fighter2,
+                                            token: props.token,
                                             userType: props.userType,
                                         },
                                     });

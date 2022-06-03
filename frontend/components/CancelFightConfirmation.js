@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Api from './util/Api';
 import FormHeaderLink from './util/FormHeaderLink';
 import { Flex, Center, Button, Text, ScrollView, Heading } from 'native-base';
@@ -10,10 +10,6 @@ const CancelFightConfirmation = () => {
     const props = useLocation({});
     const [cancelled, setCancelled] = useState(false);
     const [deleted, setDeleted] = useState(false);
-
-    useEffect(() => {
-        console.log(props);
-    }, []);
 
     const deleteFight = () => {
         Api.delete('/matches/cancel/' + props.state.fightId
@@ -91,7 +87,6 @@ const CancelFightConfirmation = () => {
                     {/* Delete button */}
                     <Button marginTop="5px" colorScheme="red"
                         onPress={() => {
-                            console.log('Handling fight cancelling...')
                             deleteFight();
                         }}>
                         <Text color="white" >Delete</Text>

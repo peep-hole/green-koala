@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import url from "./util/Websocket";
 import {over} from 'stompjs';
-import sock from "./util/Websocket";
 import {NativeBaseProvider, Button} from 'native-base';
 import SockJS from 'sockjs-client';
 

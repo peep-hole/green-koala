@@ -18,12 +18,13 @@ const Timer = props => {
     useEffect(() => {
         sock = new SockJS(url)
         stompClient = over(sock)
+        stompClient.debug = null
         stompClient.connect({}, onConnected, onError)
     }, [])
 
 
     const onConnected = () => {
-        console.log("CONNECTED")
+        //console.log("CONNECTED")
         stompClient.subscribe("/response/timer", onMessageReceived)
         stompClient.send("/timer", {}, JSON.stringify({
             action: "GET"
@@ -131,7 +132,7 @@ const Timer = props => {
                     {isActive? <FontAwesome style={styles.ionicons} name="pause" size={24} color="black" onPress={toggle}/> :
                     <FontAwesome style={styles.ionicons} name="play" size={24} color="black" onPress={toggle}/>}
                     {!isOvertime() && <Text fontSize={24} color="white">{minutes.toString().padStart(2, "0") + ":" + seconds.toString().padStart(2, "0")}</Text>}
-                    {isOvertime() && <Text fontSize={24} color="red">{minutes.toString().padStart(2, "0") + ":" + seconds.toString().padStart(2, "0")}</Text>}
+                    {isOvertime() && <Text fontSize={24} color="red.500">{minutes.toString().padStart(2, "0") + ":" + seconds.toString().padStart(2, "0")}</Text>}
                     <FontAwesome style={styles.ionicons} name="stop" size={24} color="black" onPress={reset}/>
                     <FontAwesome style={styles.closeIcon} name="close" size={32} color="black" onPress={end}/>
                 </HStack>

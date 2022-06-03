@@ -11,13 +11,12 @@ const FightHistory = () => {
 
     const props = useLocation({});
     const [events, setEvents] = useState([]);
-    const [, setEventsLoaded] = useState(false);
+    const [eventsLoaded, setEventsLoaded] = useState(false);
 
     const getMatchEvents = () => {
-        Api.get('/status/'+props.state.matchData.id+'/events'
+        Api.get('/status/'+props.state.matchData.id
         ).then(res => {
             setEvents(res.data);
-            console.log(res.data);
             setEventsLoaded(true);
         }).catch(e => {
             console.log(e);
@@ -61,7 +60,8 @@ const FightHistory = () => {
                             Event decisions
                         </Text>
                     </Center>
-                    <FlatList backgroundColor="gray.200"
+                    {
+                    eventsLoaded && <FlatList backgroundColor="gray.200"
                         data={events} renderItem={
                             ({ item }) =>
                                 <Box borderBottomWidth={1} borderTopWidth={1} _dark={{ borderColor: "gray.800" }} borderColor="coolGray.400" pl="4" pr="5" py="2">
@@ -79,6 +79,7 @@ const FightHistory = () => {
                                     </Text>
                                 </Box>
                         } keyExtractor={item => item.eventID} />
+                    }
                 </Box>
 
             </Center >

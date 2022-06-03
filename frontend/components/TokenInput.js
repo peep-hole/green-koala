@@ -55,9 +55,9 @@ const TokenInput = () => {
 
             Api.get('/matches/token/' + token)
                 .then(res => {
-                    console.log('Tokent sent');
+                    // console.log('Tokent sent');
                     setMatchData(res.data);
-                    console.log(res.data);
+                    // console.log(res.data);
                     setMatchDataLoaded(true);
                     getFightersData(res.data);
 
@@ -69,18 +69,18 @@ const TokenInput = () => {
                     ) {
                         setRefereeJoining(true);
                     } else {
-                        console.log(
-                            'You are not authorized to join as ' +
-                                props.state.userType +
-                                'Referee with this token!'
-                        );
+                        // console.log(
+                        //     'You are not authorized to join as ' +
+                        //         props.state.userType +
+                        //         'Referee with this token!'
+                        // );
                         setError(true);
                     }
                 })
                 .catch(e => {
                     setError(true);
                     console.log(e);
-                    console.log('Could not send mock token to back');
+                    // console.log('Could not send mock token to back');
                 });
         }
     };
@@ -90,13 +90,13 @@ const TokenInput = () => {
         const fighterId2 = data.fighterId2;
 
         Api.get('/actors/fighters/id/' + fighterId1).then(res => {
-            console.log(res.data);
+            // console.log(res.data);
             setFirstFighter(res.data);
             setF1Loaded(true);
         });
 
         Api.get('/actors/fighters/id/' + fighterId2).then(res => {
-            console.log(res.data);
+            // console.log(res.data);
             setSecondFighter(res.data);
             setF2Loaded(true);
         });

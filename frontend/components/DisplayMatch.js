@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { HStack, VStack, Text, Button, Center, Box, Flex, View } from 'native-base';
-import FormHeader from './util/FormHeader';
+import { HStack, VStack, Text, Button, Center, Box, View } from 'native-base';
 import DisplayScore from './DisplayScore';
 import Timer from "./Timer";
 import {over} from "stompjs"
@@ -8,12 +7,10 @@ import SockJS from 'sockjs-client';
 import url from './util/Websocket';
 import MainRefereeFooter from './util/MainRefereeFooter';
 import { useLocation, useNavigate } from 'react-router-native';
+import Api from './util/Api';
 
 let sock = null;
 let stompClient = null;
-    
-const fighterScore1 = 3;
-const fighterScore2 = 2;
 
 const navigateToPointPick = (
     fighter,
@@ -45,33 +42,74 @@ const navigateToPointPick = (
 
 const DisplayMatch = () => {
     const props = useLocation();
+    console.log(props)
     const navigate = useNavigate();
+    const [sideDecisions, setSideDecisions] = useState({
+        side1: "",
+        side2: "",
+    })
+    const { id } = props.state.matchData;
+    const [fighterScore1, setFighter1Score] = useState(0);
+    const [fighterScore2, setFighter2Score] = useState(0);
 
     useEffect(() => {
-        console.log('passed to displaymatch:');
-        console.log(props.state.matchData);
-        console.log(props.state.fighter1);
-        console.log(props.state.fighter2);
-        console.log('Joined match as:');
-        console.log(props.state.userType);
         sock = new SockJS(url);
         stompClient = over(sock);
         stompClient.connect({}, onConnected, onError);
+        Api.post(`status/${id}/start`, {})
+        .then(() => console.log("START"))
+        .catch(e => e.printStackTrace());
     }, []);
 
     const onConnected = () => {
+        Api.get(`/status/${props.state.matchData.id}`
+            ).then(res => {
+                console.log(res.data)
+                const {referee1Decision, referee2Decision, fighter1Points, fighter2Points} = res.data;
+
+                if(fighter1Points) setFighter1Score(fighter1Points);
+                if(fighter2Points) setFighter2Score(fighter2Points);
+
+                if(referee1Decision.decision){
+                    setSideDecisions(decision => ({
+                        ...decision,
+                        side1: referee1Decision.decision.toString(),
+                    }))
+                }
+
+                if(referee2Decision.decision){
+                    setSideDecisions(decision => ({
+                        ...decision,
+                        side2: referee2Decision.decision.toString(),
+                    }))
+                }
+
+            }).catch(e => {
+                console.log(e)
+            })
         stompClient.subscribe("/response/status", () => {
             Api.get(`/status/${props.state.matchData.id}`
             ).then(res => {
-                console.log(res.data) /// TODO: make sure that everything works when back implementation will be ready
-                setSideDecisions({  /// to check
-                    side1: res.data.side1ActualDecision,
-                    side2: res.data.side2ActualDecision,
-                })
-                setSideDecisions({
-                    side1: res.data.side1ActualDecision,
-                    side2: res.data.side2ActualDecision
-                })
+                console.log(res.data)
+                const {referee1Decision, referee2Decision, fighter1Points, fighter2Points} = res.data;
+
+                if(fighter1Points) setFighter1Score(fighter1Points);
+                if(fighter2Points) setFighter2Score(fighter2Points);
+
+                if(referee1Decision.decision){
+                    setSideDecisions(decision => ({
+                        ...decision,
+                        side1: referee1Decision.decision.toString(),
+                    }))
+                }
+
+                if(referee2Decision.decision){
+                    setSideDecisions(decision => ({
+                        ...decision,
+                        side2: referee2Decision.decision.toString(),
+                    }))
+                }
+
             }).catch(e => {
                 console.log(e)
             })
@@ -156,6 +194,7 @@ const DisplayMatch = () => {
                                         mb="2px"
                                         bg="red.500"
                                         onPress={() => {
+                                            console.log(props.state.token)
                                             navigateToPointPick(
                                                 1,
                                                 props.state.fighter1.name +
@@ -182,6 +221,7 @@ const DisplayMatch = () => {
                                         bg="blue.500"
                                         n
                                         onPress={() => {
+                                            console.log(props.state.token)
                                             navigateToPointPick(
                                                 2,
                                                 props.state.fighter2.name +
@@ -209,6 +249,7 @@ const DisplayMatch = () => {
                                     bg="gray.500"
                                     width="100%"
                                     onPress={() => {
+                                        console.log(props.state.token)
                                         navigateToPointPick(
                                             0,
                                             ' ',
