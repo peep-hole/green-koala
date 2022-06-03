@@ -114,7 +114,7 @@ function reset(setCurrentStrings, setCurrentOptions, setIndexHistory) {
 
 const sendDecision = (events, id, currentStrings, setCurrentStrings) => {
     console.log(events);
-    const { points1, points2, token, decision } = events;
+    const { points1, points2, token } = events;
     setCurrentStrings(currentStrings =>
         currentStrings.filter(el => el !== '')
     );
