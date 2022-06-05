@@ -51,6 +51,10 @@ const DisplayMatch = () => {
     const { id } = props.state.matchData;
     const [fighterScore1, setFighter1Score] = useState(0);
     const [fighterScore2, setFighter2Score] = useState(0);
+    const [sideBarsColors, setSideBarsColors] = useState({
+        side1: "gray.500",
+        side2: "gray.500",
+    })
 
     useEffect(() => {
         sock = new SockJS(url);
@@ -60,6 +64,13 @@ const DisplayMatch = () => {
         .then(() => console.log("START"))
         .catch(e => e.printStackTrace());
     }, []);
+
+    const switchColor = (decision) => {
+        const {fighter1Points, fighter2Points} = decision
+        if(fighter1Points) return "red.500";
+        if(fighter2Points) return "blue.500";
+        return "gray.500";
+    }
 
     const onConnected = () => {
         Api.get(`/status/${props.state.matchData.id}`
@@ -75,12 +86,20 @@ const DisplayMatch = () => {
                         ...decision,
                         side1: referee1Decision.decision.toString(),
                     }))
+                    setSideBarsColors(oldColors => ({
+                        ...oldColors,
+                        side1: switchColor(referee1Decision)
+                    }))
                 }
 
                 if(referee2Decision.decision){
                     setSideDecisions(decision => ({
                         ...decision,
                         side2: referee2Decision.decision.toString(),
+                    }))
+                    setSideBarsColors(oldColors => ({
+                        ...oldColors,
+                        side2: switchColor(referee2Decision)
                     }))
                 }
 
@@ -101,12 +120,20 @@ const DisplayMatch = () => {
                         ...decision,
                         side1: referee1Decision.decision.toString(),
                     }))
+                    setSideBarsColors(oldColors => ({
+                        ...oldColors,
+                        side1: switchColor(referee1Decision)
+                    }))
                 }
 
                 if(referee2Decision.decision){
                     setSideDecisions(decision => ({
                         ...decision,
                         side2: referee2Decision.decision.toString(),
+                    }))
+                    setSideBarsColors(oldColors => ({
+                        ...oldColors,
+                        side2: switchColor(referee2Decision)
                     }))
                 }
 
@@ -118,6 +145,10 @@ const DisplayMatch = () => {
 
     const onError = (error) => {
         console.log("Error: " + error);
+    }
+
+    const isSide1 = () => {
+        return props.state.token === props.state.matchData.sideRefereeToken1
     }
 
     return (
@@ -168,22 +199,33 @@ const DisplayMatch = () => {
                             fighter2Score={fighterScore2}
                         ></DisplayScore>
 
-                        <Box bg="gray.300" mb="20px" width="100%" height="30%">
+                        {props.state.userType === 'Main'  
+                        ? <Box bg="gray.300" mb="20px" width="100%" height="30%">
                             <VStack>
                                 <Box p="10px" width="100%">
                                     <Box width="100%" borderColor="black" borderWidth={1}>
                                         <Text fontSize="16px" p="10px">{`Referee1: ${sideDecisions.side1}`}</Text>
-                                        <Box width="100%" pt="10px" height="15px" bgColor={"blue.500"} />
+                                        <Box width="100%" pt="10px" height="15px" bgColor={sideBarsColors.side1} />
                                     </Box>
                                 </Box>
                                 <Box p="10px" width="100%">
                                     <Box width="100%" borderColor="black" borderWidth={1}>
                                         <Text fontSize="16px" p="10px">{`Referee2: ${sideDecisions.side2}`}</Text>
-                                        <Box width="100%" pt="10px" height="15px" bgColor={"red.500"} />
+                                        <Box width="100%" pt="10px" height="15px" bgColor={sideBarsColors.side2} />
                                     </Box>
                                 </Box>
                             </VStack>
                         </Box>
+                        :
+                        <Box bg="gray.300" mb="20px" width="100%" height="80px">
+                            <Box p="10px" width="100%">
+                                <Box width="100%" borderColor="black" borderWidth={1}>
+                                    <Text fontSize="16px" p="10px">{`Your decision: ${isSide1() ? sideDecisions.side1 : sideDecisions.side2}`}</Text>
+                                    <Box width="100%" pt="10px" height="15px" bgColor={isSide1() ? sideBarsColors.side1 : sideBarsColors.side2} />
+                                </Box>
+                            </Box>
+                        </Box>
+                        }
 
                         <VStack width="100%">
                             <Center>
