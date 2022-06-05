@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { HStack, VStack, Text, Button, Center, Box, View } from 'native-base';
+import { HStack, VStack, Text, Button, Center, Box, View, Modal } from 'native-base';
 import DisplayScore from './DisplayScore';
 import Timer from "./Timer";
 import {over} from "stompjs"
@@ -57,6 +57,7 @@ const DisplayMatch = () => {
         side1: "gray.500",
         side2: "gray.500",
     })
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         sock = new SockJS(url);
@@ -157,6 +158,19 @@ const DisplayMatch = () => {
         return props.state.token === props.state.matchData.sideRefereeToken1
     }
 
+    const resetDecision = () => {
+        Api.post(`status/${id}/decision`, {
+            fighter1Points: 0, 
+            fighter2Points: 0, 
+            decision: [],
+            refereeToken: props.state.token
+        })
+        .then(() => setShowModal(false))
+        .catch(e => {
+            console.log(e)
+        });
+    }
+
     return (
         <View height="100%">
             <Box safeAreaTop bg="#065f46" />
@@ -235,6 +249,10 @@ const DisplayMatch = () => {
                                     <HStack justifyContent="space-between">
                                         <Text fontSize="16px" p="10px">{`Your decision: ${isSide1() ? sideDecisions.side1 : sideDecisions.side2}`}</Text>
                                         <Text fontSize="16px" p="10px">{`${isSide1() ? sideDecisions.side1Points : sideDecisions.side2Points} points`}</Text>
+                                        <Button bg="gray.300" width={10} height={10}
+                                            onPress={() => setShowModal(true)}>
+                                            <Text color="black" p="5px">X</Text>
+                                        </Button>
                                     </HStack>
                                     <Box width="100%" pt="10px" height="15px" bgColor={isSide1() ? sideBarsColors.side1 : sideBarsColors.side2} />
                                 </Box>
@@ -344,6 +362,32 @@ const DisplayMatch = () => {
                     }}
                 ></MainRefereeFooter>
             )}
+
+            <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+                <Modal.Content>
+                    <Modal.CloseButton></Modal.CloseButton>
+                    <Modal.Header>Undo event confirmation</Modal.Header>
+                    <Modal.Body>
+                        <Text>
+                            Are you sure you want to cancel your decision?
+                        </Text>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button.Group space={2}>
+                            <Button
+                                variant="ghost"
+                                colorScheme="blueGray"
+                                onPress={() => {setShowModal(false)}}
+                            >
+                                <Text>No</Text>
+                            </Button>
+                            <Button onPress={resetDecision}>
+                                <Text>Yes</Text>
+                            </Button>
+                        </Button.Group>
+                    </Modal.Footer>
+                </Modal.Content>
+            </Modal>
         </View>
     );
 };
