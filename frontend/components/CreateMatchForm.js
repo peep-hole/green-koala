@@ -54,12 +54,6 @@ const CreateMatchForm = () => {
     }
 
     const onCreateClick = () => {
-        // console.log({
-        //     firstPlayer: firstPlayer,
-        //     secondPlayer: secondPlayer,
-        //     date: dateString,
-        //     time: timeString
-        // })
         Api.post("/matches/new-match", { // temporary request body
             firstPlayer: firstPlayer,
             secondPlayer: secondPlayer,
@@ -84,11 +78,8 @@ const CreateMatchForm = () => {
                     <FormControl>
                         <SearchableDropdown
                             onItemSelect={(item) => {
-                                //console.log(item)
                                 setFirstPlayer(item)
-                                //console.log(firstPlayer)
                                 setShowSearch1(false)
-                                //console.log(item)
                             }}
                             itemStyle={{
                                 padding: 10,

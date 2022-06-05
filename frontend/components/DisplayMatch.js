@@ -42,7 +42,6 @@ const navigateToPointPick = (
 
 const DisplayMatch = () => {
     const props = useLocation();
-    console.log(props)
     const navigate = useNavigate();
     const [sideDecisions, setSideDecisions] = useState({
         side1: "",
@@ -78,7 +77,6 @@ const DisplayMatch = () => {
     const onConnected = () => {
         Api.get(`/status/${props.state.matchData.id}`
             ).then(res => {
-                console.log(res.data)
                 const {referee1Decision, referee2Decision, fighter1Points, fighter2Points} = res.data;
 
                 if(fighter1Points) setFighter1Score(fighter1Points);
@@ -114,7 +112,6 @@ const DisplayMatch = () => {
         stompClient.subscribe("/response/status", () => {
             Api.get(`/status/${props.state.matchData.id}`
             ).then(res => {
-                console.log(res.data)
                 const {referee1Decision, referee2Decision, fighter1Points, fighter2Points} = res.data;
 
                 if(fighter1Points) setFighter1Score(fighter1Points);
@@ -269,7 +266,6 @@ const DisplayMatch = () => {
                                         mb="2px"
                                         bg="red.500"
                                         onPress={() => {
-                                            console.log(props.state.token)
                                             navigateToPointPick(
                                                 1,
                                                 props.state.fighter1.name +
@@ -296,7 +292,6 @@ const DisplayMatch = () => {
                                         bg="blue.500"
                                         n
                                         onPress={() => {
-                                            console.log(props.state.token)
                                             navigateToPointPick(
                                                 2,
                                                 props.state.fighter2.name +
@@ -324,7 +319,6 @@ const DisplayMatch = () => {
                                     bg="gray.500"
                                     width="100%"
                                     onPress={() => {
-                                        console.log(props.state.token)
                                         navigateToPointPick(
                                             0,
                                             ' ',

@@ -18,7 +18,6 @@ const FightHistory = () => {
         ).then(res => {
             setEvents(res.data.acceptedDecisions);
             setEventsLoaded(true);
-            console.log(res.data.acceptedDecisions)
         }).catch(e => {
             console.log(e);
         })

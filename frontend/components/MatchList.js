@@ -15,7 +15,6 @@ const MatchList = () => {
         Api.get('/matches/all' //TODO: special endpoint for getting matches + fighters
         ).then(res => {
             setMatches(res.data);
-            // console.log(res.data);
             setMatchesLoaded(true);
         }).catch(e => {
             console.log(e);
@@ -24,7 +23,6 @@ const MatchList = () => {
 
     useEffect(() => {
         getAllMatches();
-        // console.log(matches);
     }, [])
 
 

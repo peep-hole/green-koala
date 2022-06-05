@@ -20,19 +20,16 @@ const FightResult = () => {
 
         Api.get('/matches/id/' + props.state.fightId).then(res => {
             setFightData(res.data);
-            //console.log(fightData.data);
             const fighterId1 = res.data.fighterId1;
             const fighterId2 = res.data.fighterId2;
             setLoading(false);
 
             Api.get('/actors/fighters/id/' + fighterId1).then(res => {
-                // console.log(res.data);
                 setFirstFighter(res.data);
                 setF1Loading(false);
             });
 
             Api.get('/actors/fighters/id/' + fighterId2).then(res => {
-                // console.log(res.data);
                 setSecondFighter(res.data);
                 setF2Loading(false);
             });
