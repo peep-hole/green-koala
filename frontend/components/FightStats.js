@@ -50,7 +50,8 @@ const FightStats = () => {
                     fighter2: props.state.fighter2,
                     fighter1Score: props.state.fighter1Score,
                     fighter2Score: props.state.fighter2Score,
-                    userType: props.state.userType
+                    userType: props.state.userType,
+                    token: props.state.token
                 }}>
             </MainRefereeFooter>
         </>

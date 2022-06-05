@@ -47,6 +47,8 @@ const DisplayMatch = () => {
     const [sideDecisions, setSideDecisions] = useState({
         side1: "",
         side2: "",
+        side1Points: 0,
+        side2Points: 0
     })
     const { id } = props.state.matchData;
     const [fighterScore1, setFighter1Score] = useState(0);
@@ -85,6 +87,7 @@ const DisplayMatch = () => {
                     setSideDecisions(decision => ({
                         ...decision,
                         side1: referee1Decision.decision.toString(),
+                        side1Points: referee1Decision.fighter1Points || referee1Decision.fighter2Points
                     }))
                     setSideBarsColors(oldColors => ({
                         ...oldColors,
@@ -96,6 +99,7 @@ const DisplayMatch = () => {
                     setSideDecisions(decision => ({
                         ...decision,
                         side2: referee2Decision.decision.toString(),
+                        side2Points: referee2Decision.fighter1Points || referee2Decision.fighter2Points
                     }))
                     setSideBarsColors(oldColors => ({
                         ...oldColors,
@@ -119,6 +123,7 @@ const DisplayMatch = () => {
                     setSideDecisions(decision => ({
                         ...decision,
                         side1: referee1Decision.decision.toString(),
+                        side1Points: referee1Decision.fighter1Points || referee1Decision.fighter2Points
                     }))
                     setSideBarsColors(oldColors => ({
                         ...oldColors,
@@ -130,6 +135,7 @@ const DisplayMatch = () => {
                     setSideDecisions(decision => ({
                         ...decision,
                         side2: referee2Decision.decision.toString(),
+                        side2Points: referee2Decision.fighter1Points || referee2Decision.fighter2Points
                     }))
                     setSideBarsColors(oldColors => ({
                         ...oldColors,
@@ -204,13 +210,19 @@ const DisplayMatch = () => {
                             <VStack>
                                 <Box p="10px" width="100%">
                                     <Box width="100%" borderColor="black" borderWidth={1}>
-                                        <Text fontSize="16px" p="10px">{`Referee1: ${sideDecisions.side1}`}</Text>
+                                        <HStack justifyContent="space-between">
+                                            <Text fontSize="16px" p="10px">{`Referee1: ${sideDecisions.side1}`}</Text>
+                                            <Text fontSize="16px" p="10px">{`${sideDecisions.side1Points} points`}</Text>
+                                        </HStack>
                                         <Box width="100%" pt="10px" height="15px" bgColor={sideBarsColors.side1} />
                                     </Box>
                                 </Box>
                                 <Box p="10px" width="100%">
                                     <Box width="100%" borderColor="black" borderWidth={1}>
-                                        <Text fontSize="16px" p="10px">{`Referee2: ${sideDecisions.side2}`}</Text>
+                                        <HStack justifyContent="space-between">
+                                            <Text fontSize="16px" p="10px">{`Referee2: ${sideDecisions.side2}`}</Text>
+                                            <Text fontSize="16px" p="10px">{`${sideDecisions.side2Points} points`}</Text>
+                                        </HStack>
                                         <Box width="100%" pt="10px" height="15px" bgColor={sideBarsColors.side2} />
                                     </Box>
                                 </Box>
@@ -220,7 +232,10 @@ const DisplayMatch = () => {
                         <Box bg="gray.300" mb="20px" width="100%" height="80px">
                             <Box p="10px" width="100%">
                                 <Box width="100%" borderColor="black" borderWidth={1}>
-                                    <Text fontSize="16px" p="10px">{`Your decision: ${isSide1() ? sideDecisions.side1 : sideDecisions.side2}`}</Text>
+                                    <HStack justifyContent="space-between">
+                                        <Text fontSize="16px" p="10px">{`Your decision: ${isSide1() ? sideDecisions.side1 : sideDecisions.side2}`}</Text>
+                                        <Text fontSize="16px" p="10px">{`${isSide1() ? sideDecisions.side1Points : sideDecisions.side2Points} points`}</Text>
+                                    </HStack>
                                     <Box width="100%" pt="10px" height="15px" bgColor={isSide1() ? sideBarsColors.side1 : sideBarsColors.side2} />
                                 </Box>
                             </Box>
@@ -325,6 +340,7 @@ const DisplayMatch = () => {
                         fighter1Score: fighterScore1,
                         fighter2Score: fighterScore2,
                         userType: props.state.userType,
+                        token: props.state.token
                     }}
                 ></MainRefereeFooter>
             )}
