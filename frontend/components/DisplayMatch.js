@@ -206,10 +206,10 @@ const DisplayMatch = () => {
                         ></DisplayScore>
 
                         {props.state.userType === 'Main'  
-                        ? <Box bg="gray.300" mb="20px" width="100%" height="30%">
+                        ? <Box bg="gray.300" mb="20px" width="100%" height="160px">
                             <VStack>
                                 <Box p="10px" width="100%">
-                                    <Box width="100%" borderColor="black" borderWidth={1}>
+                                    <Box width="100%" borderColor="black" borderWidth={1} height="60px" overflowY="scroll">
                                         <HStack justifyContent="space-between">
                                             <Text fontSize="16px" p="10px">{`Referee1: ${sideDecisions.side1}`}</Text>
                                             <Text fontSize="16px" p="10px">{`${sideDecisions.side1Points} points`}</Text>
@@ -218,7 +218,7 @@ const DisplayMatch = () => {
                                     </Box>
                                 </Box>
                                 <Box p="10px" width="100%">
-                                    <Box width="100%" borderColor="black" borderWidth={1}>
+                                    <Box width="100%" borderColor="black" borderWidth={1} height="60px" overflowY="scroll">
                                         <HStack justifyContent="space-between">
                                             <Text fontSize="16px" p="10px">{`Referee2: ${sideDecisions.side2}`}</Text>
                                             <Text fontSize="16px" p="10px">{`${sideDecisions.side2Points} points`}</Text>
@@ -229,7 +229,7 @@ const DisplayMatch = () => {
                             </VStack>
                         </Box>
                         :
-                        <Box bg="gray.300" mb="20px" width="100%" height="80px">
+                        <Box bg="gray.300" mb="20px" width="100%" height="80px" overflowY="scroll">
                             <Box p="10px" width="100%">
                                 <Box width="100%" borderColor="black" borderWidth={1}>
                                     <HStack justifyContent="space-between">
