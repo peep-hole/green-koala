@@ -18,6 +18,7 @@ import FighterList from './components/FighterList';
 import TournamentList from './components/TournamentList';
 import FightResult from './components/FightResult';
 import SuggestPoints from './components/SuggestPoints';
+import FighterInfo from './components/FighterInfo';
 
 export default function App() {
     return (
@@ -53,6 +54,7 @@ export default function App() {
                         <Route path="/matchList" element={<MatchList />} />
                         <Route path="/fighterList" element={<FighterList />} />
                         <Route path="/tournamentList" element={<TournamentList />} />
+                        <Route path="/fighterInfo" element={<FighterInfo />}/>
                     </Routes>
                 </NativeRouter>
             </SSRProvider>

@@ -1,6 +1,6 @@
 import React from "react";
 import { Text } from "react-native";
-import FormHeader from "./util/FormHeader";
+import FormHeaderLink from "./util/FormHeaderLink";
 import { NativeBaseProvider, VStack, Input, Button,  Radio, Switch, InputGroup, Center } from "native-base";
 import Api from "./util/Api";
 
@@ -20,11 +20,12 @@ const RegisterPlayerForm = () =>{
         surname: '',
         age: '',
         weight: '',
-        option1: '',
-        option2: '',
-        option3: ''
+        // option1: '',
+        // option2: '',
+        // option3: ''
     });
     const [error, setError] = React.useState('');
+    const [playerAdded, setPlayerAdded] = React.useState(false);
 
     const validate = () => {        /// form logic
         for(const property in formData){    /// required fields
@@ -50,10 +51,17 @@ const RegisterPlayerForm = () =>{
 
     const onSubmit = () => {
         if(validate()){
-            Api.post("/player_add", {
-                player_data: {...formData, gender: gender}
+            Api.post("/actors/register-fighter", {
+                // player_data: {...formData, gender: gender}
+                name: formData.name,
+                surname: formData.surname,
+                age: formData.age,
+                weight: formData.weight
             })
-            .then(() => console.log("Player added"))
+            .then(() => {
+                console.log("Player added")
+
+            })
             .catch(e => {
                 console.log(e)
           });
@@ -62,7 +70,7 @@ const RegisterPlayerForm = () =>{
 
     return(
         <NativeBaseProvider>
-            <FormHeader name="New fighter"/>
+            <FormHeaderLink pathname="fighterList" name="New fighter"/>
             {/* radio group in separate component? */}
             <Radio.Group    
             name="playerGender"
@@ -96,21 +104,21 @@ const RegisterPlayerForm = () =>{
                     colorScheme={colorScheme}
                     isChecked={formData.option1} 
                     onToggle={() => {setData({...formData, option1: !formData.option1})}} />
-                    <Text> Option1 </Text>
+                    <Text> Can fight with weapon: </Text>
                 </Center>
                 <Center display="flex" flexDirection="row" alignItems="center">
                     <Switch 
                     colorScheme={colorScheme}
                     isChecked={formData.option2} 
                     onToggle={() => {setData({...formData, option2: !formData.option2})}} />
-                    <Text> Option2 </Text>
+                    <Text> Can fight on fists: </Text>
                 </Center>
                 <Center display="flex" flexDirection="row" alignItems="center">
                     <Switch 
                     colorScheme={colorScheme}
                     isChecked={formData.option3}  
                     onToggle={() => {setData({...formData, option3: !formData.option3})}} />
-                    <Text> Option3 </Text>
+                    <Text> Is popular: </Text>
                 </Center> 
             </VStack>
             <Center padding={padding} marginTop={marginTop}>
