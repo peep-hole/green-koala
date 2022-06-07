@@ -51,9 +51,9 @@ const FighterList = () => {
                                 </Box>
                             </Link>
                     } keyExtractor={item => item.id} />
-                <Flex direction="row-reverse" marginRight="15px" marginTop="2px">
+                <Flex direction="row-reverse" marginRight="14px" marginTop="3px">
                     <Link to="/registerPlayerForm">
-                        <Box width="58px" height="58px" borderRadius="100" borderWidth="3px" borderColor="#065f46" backgroundColor="#065f46" p="10px" alignItems="center">
+                        <Box width="57px" height="57px" borderRadius="100" borderWidth="3px" borderColor="#065f46" backgroundColor="#065f46" p="10px" alignItems="center">
                             <Ionicons name="person-add" size={30} color="white" />
                         </Box>
                     </Link>
