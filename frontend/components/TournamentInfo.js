@@ -52,7 +52,7 @@ const TournamentInfo = () => {
                     </Text>
 
                     <Text margin="30px" color="black" fontSize={18} fontWeight="bold">
-                        HERE DONE "DRABINKA"
+                        HERE DONE TOURNAMENT BRACKET
                         click match - link to FightResult?
                     </Text>
 
