@@ -3,7 +3,7 @@ import Api from './util/Api';
 import FormHeaderLink from './util/FormHeaderLink';
 import { VStack, Flex, Center, Box, Heading, FlatList, HStack, Spacer, Text } from 'native-base';
 import { Link } from "react-router-native";
-import { MaterialIcons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import AdminFooter from './util/AdminFooter';
 
 const MatchList = () => {
@@ -51,7 +51,7 @@ const MatchList = () => {
                                                 </Text>
                                             </VStack>
                                             <Spacer />
-                                            <Text fontSize="xs" _dark={{ color: "warmGray.50" }} color="coolGray.800" alignSelf="flex-start">
+                                            <Text fontSize="xs" _dark={{ color: "warmGray.50" }} color="#065f46" alignSelf="flex-start">
                                                 {item.date}
                                             </Text>
                                         </HStack>
@@ -77,7 +77,7 @@ const MatchList = () => {
                                                 </Text>
                                             </VStack>
                                             <Spacer />
-                                            <Text fontSize="xs" _dark={{ color: "warmGray.50" }} color="coolGray.800" alignSelf="flex-start">
+                                            <Text fontSize="xs" _dark={{ color: "warmGray.50" }} color="#065f46" alignSelf="flex-start">
                                                 {item.date}
                                             </Text>
                                         </HStack>
@@ -85,13 +85,11 @@ const MatchList = () => {
                                 </Link>}
                         keyExtractor={item => item.id} />
                 </Box>
-                <Flex direction="row-reverse">
+                <Flex direction="row-reverse" marginRight="5px">
                     <Link to="/createMatchForm">
-                        <MaterialIcons name="add-circle-outline" size={70} color="black" />
+                        <Ionicons name="md-add-circle-sharp" size={70} color="#065f46" />
                     </Link>
                 </Flex>
-
-
             </>}
             <AdminFooter selected={1}></AdminFooter>
         </>
