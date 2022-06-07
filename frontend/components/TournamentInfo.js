@@ -64,15 +64,7 @@ const TournamentInfo = () => {
             </ScrollView>
 
             {tournamentCancelling && (
-                <Navigate
-                    to="/cancelTournament"
-                    state={{
-                        fightId: props.state.fightId,
-                        date: fightData.date + ' ' + fightData.time,
-                        fighter1: fighter1.name + ' ' + fighter1.surname,
-                        fighter2: fighter2.name + ' ' + fighter2.surname,
-                    }}
-                ></Navigate>
+                <Navigate to="/cancelTournament" state={{tournament: props.state.tournament }}></Navigate>
             )}
         </>
     );
