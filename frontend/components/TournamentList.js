@@ -72,7 +72,7 @@ const TournamentList = () => {
                     <FlatList margin={3} backgroundColor="gray.200"
                         data={tournaments.filter(tournament => !tournament.isFinished)} renderItem={
                             ({ item }) =>
-                                <Link to="/tournamentInfo" state={{ tournamentId: item.id }} >
+                                <Link to="/tournamentInfo" state={{ tournament: item }} >
                                     <Box borderBottomWidth={1} borderTopWidth={1} _dark={{ borderColor: "gray.800" }} borderColor="coolGray.400" pl="4" pr="5" py="2">
                                         <HStack space={3} justifyContent="space-between">
                                             <VStack>
@@ -96,9 +96,9 @@ const TournamentList = () => {
                         </Heading>
                     </Center>
                     <FlatList margin={3} backgroundColor="gray.200"
-                        data={tournaments.filter(tournament => !tournament.isFinished)} renderItem={
+                        data={tournaments.filter(tournament => tournament.isFinished)} renderItem={
                             ({ item }) =>
-                                <Link to="/tournamentResult" state={{ tournamentId: item.id }} >
+                                <Link to="/tournamentResult" state={{ tournament: item }} >
                                     <Box borderBottomWidth={1} borderTopWidth={1} _dark={{ borderColor: "gray.800" }} borderColor="coolGray.400" pl="4" pr="5" py="2">
                                         <HStack space={3} justifyContent="space-between">
                                             <VStack>
