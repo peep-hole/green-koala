@@ -98,4 +98,22 @@ public class FighterServiceTest {
         UUID capturedUuid = uuidArgumentCaptor.getValue();
         assertThat(capturedUuid).isEqualTo(id);
     }
+
+    @Test
+    void deleteFighter() {
+        //given
+        Fighter fighter = new Fighter();
+        UUID id = UUID.randomUUID();
+        fighter.setId(id);
+
+        //when
+        fighterService.deleteFighter(id);
+
+        //then
+        ArgumentCaptor<UUID> uuidArgumentCaptor = ArgumentCaptor.forClass(UUID.class);
+        verify(fighterRepository).deleteById(uuidArgumentCaptor.capture());
+        UUID capturedUuid = uuidArgumentCaptor.getValue();
+        assertThat(capturedUuid).isEqualTo(id);
+    }
+
 }
