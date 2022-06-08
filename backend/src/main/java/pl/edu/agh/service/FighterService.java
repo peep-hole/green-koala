@@ -39,4 +39,8 @@ public class FighterService {
     public boolean fighterIdExists(UUID id) {
         return fighterRepository.existsById(id);
     }
+
+    public void deleteFighter(UUID id) {
+        fighterRepository.deleteById(id);
+    }
 }

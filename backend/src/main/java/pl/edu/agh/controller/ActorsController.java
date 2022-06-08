@@ -35,4 +35,16 @@ public class ActorsController {
                 new ResponseEntity<>(fighterService.getFighterById(uuidId), HttpStatus.OK) :
                 new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
+    @DeleteMapping("/fighters/delete/{id}")
+    public ResponseEntity<Boolean> deleteFighter(@PathVariable String id) {
+        UUID uuidId = UUID.fromString(id);
+
+        if (fighterService.fighterIdExists(uuidId)) {
+            fighterService.deleteFighter(uuidId);
+            return new ResponseEntity<>(true, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 }
