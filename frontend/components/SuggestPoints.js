@@ -111,19 +111,11 @@ function reset(setCurrentStrings, setCurrentOptions, setIndexHistory) {
     setCurrentOptions([data.pickData[0], data.pickData[1]]);
 }
 
-
 const sendDecision = (events, id, currentStrings, setCurrentStrings) => {
-    console.log(events);
     const { points1, points2, token } = events;
     setCurrentStrings(currentStrings =>
         currentStrings.filter(el => el !== '')
     );
-    console.log({
-        fighter1Points: points1, 
-        fighter2Points: points2, 
-        decision: currentStrings,
-        refereeToken: token
-    });
     Api.post(`status/${id}/decision`, {
         fighter1Points: points1, 
         fighter2Points: points2, 
@@ -141,7 +133,6 @@ const sendDecision = (events, id, currentStrings, setCurrentStrings) => {
 export const SuggestPoints = () => {
     const locationData = useLocation();
     const navigate = useNavigate();
-    console.log(locationData.state)
     const props = locationData.state.state;
     const { id } = props.matchData;
     const [showModal, setShowModal] = useState(false);
@@ -155,6 +146,27 @@ export const SuggestPoints = () => {
     useEffect(() => {
         //TODO: Grab rule data from backend (current const data), alternatively - pass it in props from displayMatch if it gets it froim backend
     }, []);
+    
+    const resetSidesDecisions = () => {
+        Api.post(`status/${id}/decision`, {
+            fighter1Points: 0, 
+            fighter2Points: 0, 
+            decision: [],
+            refereeToken: props.matchData.sideRefereeToken1
+        })
+        .catch(e => {
+            console.log(e)
+        });
+        Api.post(`status/${id}/decision`, {
+            fighter1Points: 0, 
+            fighter2Points: 0, 
+            decision: [],
+            refereeToken: props.matchData.sideRefereeToken2
+        })
+        .catch(e => {
+            console.log(e)
+        });
+    }
 
     return (
         <>
@@ -329,8 +341,8 @@ export const SuggestPoints = () => {
                                         token: props.token,
                                         decision: currentStrings,
                                     };
-                                    console.log(newEvent)
                                     sendDecision(newEvent, id, currentStrings, setCurrentStrings);
+                                    if(props.isMainReferee) resetSidesDecisions();
 
                                     //THEN NAVIGATE TO THE MATCH DISPLAY AGAIN
                                     //navigate. ...

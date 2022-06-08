@@ -22,7 +22,6 @@ const Test = () => {
     }, []);
 
     const onConnected = () => {
-        console.log("CONNECTED")
         stompClient.subscribe("/response/timer", onMessageReceived);
         stompClient.send("/timer", {}, JSON.stringify({
             action: "GET"
@@ -32,7 +31,6 @@ const Test = () => {
 
     const onMessageReceived = (payload) => {
         let message = payload.body;
-        console.log(message)
         setResponse(message)
     }
 
