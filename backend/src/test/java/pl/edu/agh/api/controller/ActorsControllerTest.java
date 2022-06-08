@@ -17,8 +17,7 @@ import java.util.UUID;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -83,6 +82,31 @@ public class ActorsControllerTest {
 
         //when & then
         mockMvc.perform(get("/actors/fighters/id/" + fighter.getId())
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    void deleteFighterFound() throws Exception {
+        //given
+        UUID id = UUID.randomUUID();
+        given(fighterService.fighterIdExists(id)).willReturn(true);
+
+        //when & then
+        mockMvc.perform(delete("/actors/fighters/delete/" + id)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", is(true)));
+    }
+
+    @Test
+    void deleteFighterNotFound() throws Exception {
+        //given
+        UUID id = UUID.randomUUID();
+        given(fighterService.fighterIdExists(id)).willReturn(false);
+
+        //when & then
+        mockMvc.perform(delete("/actors/fighters/delete/" + id)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
     }
