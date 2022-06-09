@@ -11,7 +11,9 @@ import pl.edu.agh.constants.Action;
 import pl.edu.agh.model.Match;
 import pl.edu.agh.websocket.RefereeDecision;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @RestController
@@ -34,30 +36,46 @@ public class MatchUpdateWSController {
     }
 
     @PostMapping("/{id}/stop")
-    public void stopMatch(@PathVariable String id) {
+    public ResponseEntity<Void> stopMatch(@PathVariable String id) {
+        if (!matchStatusManager.isMatchRunning(UUID.fromString(id))) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         matchStatusManager.endMatch(UUID.fromString(id));
         sendUpdateNotificationToReferees();
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PostMapping("/{id}/start")
-    public void startMatch(@PathVariable String id) {
+    public ResponseEntity<Void> startMatch(@PathVariable String id) {
+        if (!matchStatusManager.isMatchExisting(UUID.fromString(id))) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         matchStatusManager.startMatch(UUID.fromString(id));
         sendUpdateNotificationToReferees();
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Match> getMatchStatus(@PathVariable String id) {
+        if (!matchStatusManager.isMatchRunning(UUID.fromString(id))) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(matchStatusManager.getMatch(UUID.fromString(id)), HttpStatus.OK);
     }
 
     @GetMapping("/{id}/events")
     public ResponseEntity<List<RefereeDecision>> getEvents(@PathVariable String id) {
+        if (!matchStatusManager.isMatchRunning(UUID.fromString(id))) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(matchStatusManager.getMatch(UUID.fromString(id)).getAcceptedDecisions(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}/allowed-actions")
     public ResponseEntity<Map<Action, List<String>>> getAllowedActions(@PathVariable String id) {
-
+        if (!matchStatusManager.isMatchRunning(UUID.fromString(id))) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(matchStatusManager.getMatch(UUID.fromString(id)).getAllowedActions(), HttpStatus.OK);
     }
 
