@@ -66,7 +66,7 @@ const FightHistory = () => {
                     <FlatList backgroundColor="gray.200"
                         data={events} renderItem={
                             ({ item }) =>
-                                <Box borderBottomWidth={1} borderTopWidth={1} _dark={{ borderColor: "gray.800" }} borderColor="coolGray.400" pl="4" pr="5" py="2">
+                                <Box key={item.decision + item.fighter1Points + item.fighter2Points} borderBottomWidth={1} borderTopWidth={1} _dark={{ borderColor: "gray.800" }} borderColor="coolGray.400" pl="4" pr="5" py="2">
                                     <VStack space={3} justifyContent="space-between">
                                         <Text _dark={{ color: "warmGray.50" }} color="coolGray.800" bold>
                                             Main:
