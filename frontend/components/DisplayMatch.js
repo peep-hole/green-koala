@@ -58,11 +58,6 @@ const DisplayMatch = () => {
     })
     const [showModal, setShowModal] = useState(false);
 
-    const [sideDecisions, setSideDecisions] = useState({
-        side1: "",
-        side2: "",
-    })
-
     useEffect(() => {
         sock = new SockJS(url);
         stompClient = over(sock);

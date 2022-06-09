@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Button, HStack, Modal, Text} from "native-base";
 import { FontAwesome } from '@expo/vector-icons';
-import {StyleSheet, Alert} from "react-native";
+import {StyleSheet} from "react-native";
 import url from "./util/Websocket";
 import SockJS from 'sockjs-client';
 import { over } from 'stompjs';
@@ -118,7 +118,7 @@ const Timer = props => {
                 <Modal.Content>
                     <Modal.CloseButton/>
                     <Modal.Header>Are your sure?</Modal.Header>
-                    <Modal.Body>"Are you sure you want to reset the timer?"</Modal.Body>
+                    <Modal.Body>Are you sure you want to reset the timer?</Modal.Body>
                     <Modal.Footer>
                         <Button.Group space={2}>
                             <Button
@@ -151,7 +151,7 @@ const Timer = props => {
                 <Modal.Content>
                     <Modal.CloseButton/>
                     <Modal.Header>Are your sure?</Modal.Header>
-                    <Modal.Body>"Are you sure you want to reset the timer?"</Modal.Body>
+                    <Modal.Body>Are you sure you want to reset the timer?</Modal.Body>
                     <Modal.Footer>
                         <Button.Group space={2}>
                             <Button
