@@ -5,13 +5,10 @@ import { SSRProvider } from 'react-bootstrap';
 import React from 'react';
 import { NativeRouter, Route, Routes } from 'react-router-native';
 import FightInfo from './components/FightInfo';
-import Timer from './components/Timer';
-import FormHeader from './components/util/FormHeader';
 import RegisterPlayerForm from './components/RegisterPlayerForm';
 import Demo from './components/Demo';
 import TokenInput from './components/TokenInput';
 import LoginPick from './components/LoginPick';
-import DisplayScore from './components/DisplayScore';
 import DisplayMatch from './components/DisplayMatch';
 import FightHistory from './components/FightHistory';
 import FightStats from './components/FightStats';
@@ -21,6 +18,8 @@ import FighterList from './components/FighterList';
 import TournamentList from './components/TournamentList';
 import FightResult from './components/FightResult';
 import SuggestPoints from './components/SuggestPoints';
+import FighterInfo from './components/FighterInfo';
+import DeleteFighterConfirmation from './components/DeleteFighterConfirmation';
 
 export default function App() {
     return (
@@ -56,6 +55,8 @@ export default function App() {
                         <Route path="/matchList" element={<MatchList />} />
                         <Route path="/fighterList" element={<FighterList />} />
                         <Route path="/tournamentList" element={<TournamentList />} />
+                        <Route path="/fighterInfo" element={<FighterInfo />} />
+                        <Route path="/deleteFighter" element={<DeleteFighterConfirmation />} />
                     </Routes>
                 </NativeRouter>
             </SSRProvider>

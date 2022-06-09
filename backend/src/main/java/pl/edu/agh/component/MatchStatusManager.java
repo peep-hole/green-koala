@@ -32,7 +32,7 @@ public class MatchStatusManager {
 
     public void startMatch(UUID matchId) {
         Match match = matchManagementService.getMatchById(matchId);
-        matchMap.put(matchId, match);
+        if (!matchMap.containsKey(matchId)) matchMap.put(matchId, match);
     }
 
     public void endMatch(UUID matchId) {
@@ -49,6 +49,7 @@ public class MatchStatusManager {
         Match match = matchMap.get(matchId);
 
         if (message.getRefereeToken().equals(match.getMainRefereeToken())) {
+            System.out.println("MAIN REFEREE");
             match.setFighter1Points(match.getFighter1Points() + message.getFighter1Points());
             match.setFighter2Points(match.getFighter2Points() + message.getFighter2Points());
             match.getAcceptedDecisions().add(message);
@@ -77,5 +78,13 @@ public class MatchStatusManager {
 
     public Match getMatch(UUID matchId) {
         return matchMap.get(matchId);
+    }
+
+    public boolean isMatchRunning(UUID matchId) {
+        return getMatchMap().containsKey(matchId);
+    }
+
+    public boolean isMatchExisting(UUID matchId) {
+        return matchManagementService.matchIdExists(matchId);
     }
 }

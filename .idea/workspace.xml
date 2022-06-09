@@ -7,19 +7,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b8decdcf-1dc5-42ba-b639-c41f48852093" name="Changes" comment="cosmetic changes">
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/utils/Event.java" afterDir="false" />
+    <list default="true" id="b8decdcf-1dc5-42ba-b639-c41f48852093" name="Changes" comment="add endpoint for getting allowed actions">
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/model/DetailedMatch.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/SideRefereeDecision.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/component/MatchStatusManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/component/MatchStatusManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/constants/Action.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/constants/Action.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/controller/MatchUpdateWSController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/controller/MatchUpdateWSController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/controller/MatchWSController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/model/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/model/Match.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/websocket/DecisionMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/websocket/RefereeDecision.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/controller/MatchManagementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/pl/edu/agh/controller/MatchManagementController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +67,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="GK-90-websocket-do-wysylania-informacji-o-tym-ze-byl-update" />
+        <entry key="$PROJECT_DIR$" value="GK-81-endpoint-do-mozliwych-zdarzen" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -123,6 +117,7 @@
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
@@ -133,33 +128,12 @@
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.RefereeApplication (2)">
-    <configuration name="RefereeApplicationTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="Tests in 'pl.edu.agh.api'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;pl.edu.agh.api.RefereeApplicationTests&quot;" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":backend:test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="Tests in 'green-koala.backend.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests *" />
+        <option name="scriptParameters" value="--tests &quot;pl.edu.agh.api.*&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -238,7 +212,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="RefereeApplication (2)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <configuration name="RefereeApplication (2)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true">
       <module name="green-koala.backend.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="pl.edu.agh.RefereeApplication" />
       <method v="2">
@@ -261,18 +235,18 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.RefereeApplication (2)" />
+        <item itemvalue="Gradle.Tests in 'pl.edu.agh.api'" />
+        <item itemvalue="Gradle.Tests in 'pl.edu.agh.api.controller'" />
         <item itemvalue="Gradle.Tests in 'pl.edu.agh.api.service'" />
         <item itemvalue="Gradle.Tests in 'pl.edu.agh.api.repository'" />
-        <item itemvalue="Gradle.Tests in 'pl.edu.agh.api.controller'" />
-        <item itemvalue="Gradle.Tests in 'green-koala.backend.test'" />
-        <item itemvalue="Gradle.RefereeApplicationTests" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="67074e83-e987-4a3b-a23d-f00431171d6b" name="Changes" comment="" />
+      <changelist id="b8decdcf-1dc5-42ba-b639-c41f48852093" name="Changes" comment="add endpoint for getting allowed actions" />
       <created>1648742698502</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -285,6 +259,8 @@
       <workItem from="1650977038088" duration="606000" />
       <workItem from="1650983241087" duration="9000" />
       <workItem from="1651084549415" duration="4918000" />
+      <workItem from="1653669033767" duration="324000" />
+      <workItem from="1654701972560" duration="3054000" />
     </task>
     <task id="LOCAL-00001" summary="Project Init">
       <created>1648742798290</created>
@@ -454,7 +430,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653512858394</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="add endpoint for getting allowed actions">
+      <created>1653521764819</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1653521764819</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -507,6 +490,7 @@
     <MESSAGE value="resolve conflicts, adjust tests" />
     <MESSAGE value="correct access modifiers, code cleanup" />
     <MESSAGE value="cosmetic changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="cosmetic changes" />
+    <MESSAGE value="add endpoint for getting allowed actions" />
+    <option name="LAST_COMMIT_MESSAGE" value="add endpoint for getting allowed actions" />
   </component>
 </project>

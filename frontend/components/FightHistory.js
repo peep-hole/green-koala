@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import FormHeader from './util/FormHeader';
 import MainRefereeFooter from './util/MainRefereeFooter';
 import DisplayScore from './DisplayScore';
-import { HStack, VStack, Text, Center, Box, FlatList, Spacer } from 'native-base';
+import { HStack, VStack, Text, Center, Box, FlatList } from 'native-base';
 import { useLocation } from "react-router-native"
 import Api from './util/Api';
 
@@ -11,13 +11,12 @@ const FightHistory = () => {
 
     const props = useLocation({});
     const [events, setEvents] = useState([]);
-    const [, setEventsLoaded] = useState(false);
+    const [eventsLoaded, setEventsLoaded] = useState(false);
 
     const getMatchEvents = () => {
-        Api.get('/status/'+props.state.matchData.id+'/events'
+        Api.get('/status/'+props.state.matchData.id
         ).then(res => {
-            setEvents(res.data);
-            console.log(res.data);
+            setEvents(res.data.acceptedDecisions);
             setEventsLoaded(true);
         }).catch(e => {
             console.log(e);
@@ -61,24 +60,32 @@ const FightHistory = () => {
                             Event decisions
                         </Text>
                     </Center>
-                    <FlatList backgroundColor="gray.200"
+                    {
+                    eventsLoaded && <FlatList backgroundColor="gray.200"
                         data={events} renderItem={
                             ({ item }) =>
                                 <Box borderBottomWidth={1} borderTopWidth={1} _dark={{ borderColor: "gray.800" }} borderColor="coolGray.400" pl="4" pr="5" py="2">
                                     <HStack space={3} justifyContent="space-between">
                                         <Text _dark={{ color: "warmGray.50" }} color="coolGray.800" bold>
-                                            {item.referee + ": "}
+                                            Main:
                                         </Text>
-                                        <Spacer />
-                                        <Text fontSize="xs" _dark={{ color: "warmGray.50" }} color="coolGray.800" alignSelf="flex-start">
-                                            {item.time}
+                                        <Text _dark={{ color: "warmGray.50" }} color="coolGray.800" alignSelf="center">
+                                            {item.decision}
                                         </Text>
+                                        {!!item.fighter1Points &&
+                                            <Text _dark={{ color: "warmGray.50" }} color="coolGray.800" alignSelf="center">
+                                                {item.fighter1Points} for red
+                                            </Text>
+                                        }
+                                        {!!item.fighter2Points &&
+                                            <Text _dark={{ color: "warmGray.50" }} color="coolGray.800" alignSelf="center">
+                                                {item.fighter2Points} for blue
+                                            </Text>
+                                        }
                                     </HStack>
-                                    <Text _dark={{ color: "warmGray.50" }} color="coolGray.800" alignSelf="center">
-                                        {item.decision}
-                                    </Text>
                                 </Box>
                         } keyExtractor={item => item.eventID} />
+                    }
                 </Box>
 
             </Center >
@@ -90,7 +97,8 @@ const FightHistory = () => {
                     fighter2: props.state.fighter2,
                     fighter1Score: props.state.fighter1Score,
                     fighter2Score: props.state.fighter2Score,
-                    userType: props.state.userType
+                    userType: props.state.userType,
+                    token: props.state.token
                 }}>
             </MainRefereeFooter>
         </>

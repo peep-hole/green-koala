@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { HStack, VStack, Text, Button, Center, Box, Flex, View } from 'native-base';
-import FormHeader from './util/FormHeader';
+import { HStack, VStack, Text, Button, Center, Box, View, Modal } from 'native-base';
 import DisplayScore from './DisplayScore';
 import Timer from "./Timer";
 import {over} from "stompjs"
@@ -8,13 +7,10 @@ import SockJS from 'sockjs-client';
 import url from './util/Websocket';
 import MainRefereeFooter from './util/MainRefereeFooter';
 import { useLocation, useNavigate } from 'react-router-native';
-import Api from "./util/Api";
+import Api from './util/Api';
 
 let sock = null;
 let stompClient = null;
-    
-const fighterScore1 = 3;
-const fighterScore2 = 2;
 
 const navigateToPointPick = (
     fighter,
@@ -47,6 +43,20 @@ const navigateToPointPick = (
 const DisplayMatch = () => {
     const props = useLocation();
     const navigate = useNavigate();
+    const [sideDecisions, setSideDecisions] = useState({
+        side1: "",
+        side2: "",
+        side1Points: 0,
+        side2Points: 0
+    })
+    const { id } = props.state.matchData;
+    const [fighterScore1, setFighter1Score] = useState(0);
+    const [fighterScore2, setFighter2Score] = useState(0);
+    const [sideBarsColors, setSideBarsColors] = useState({
+        side1: "gray.500",
+        side2: "gray.500",
+    })
+    const [showModal, setShowModal] = useState(false);
 
     const [sideDecisions, setSideDecisions] = useState({
         side1: "",
@@ -54,30 +64,88 @@ const DisplayMatch = () => {
     })
 
     useEffect(() => {
-        console.log('passed to displaymatch:');
-        console.log(props.state.matchData);
-        console.log(props.state.fighter1);
-        console.log(props.state.fighter2);
-        console.log('Joined match as:');
-        console.log(props.state.userType);
         sock = new SockJS(url);
         stompClient = over(sock);
         stompClient.connect({}, onConnected, onError);
+        Api.post(`status/${id}/start`, {})
+        .then(() => console.log("START"))
+        .catch(e => e.printStackTrace());
     }, []);
 
+    const switchColor = (decision) => {
+        const {fighter1Points, fighter2Points} = decision
+        if(fighter1Points) return "red.500";
+        if(fighter2Points) return "blue.500";
+        return "gray.500";
+    }
+
     const onConnected = () => {
+        Api.get(`/status/${props.state.matchData.id}`
+            ).then(res => {
+                const {referee1Decision, referee2Decision, fighter1Points, fighter2Points} = res.data;
+
+                if(fighter1Points) setFighter1Score(fighter1Points);
+                if(fighter2Points) setFighter2Score(fighter2Points);
+
+                if(referee1Decision.decision){
+                    setSideDecisions(decision => ({
+                        ...decision,
+                        side1: referee1Decision.decision.toString(),
+                        side1Points: referee1Decision.fighter1Points || referee1Decision.fighter2Points
+                    }))
+                    setSideBarsColors(oldColors => ({
+                        ...oldColors,
+                        side1: switchColor(referee1Decision)
+                    }))
+                }
+
+                if(referee2Decision.decision){
+                    setSideDecisions(decision => ({
+                        ...decision,
+                        side2: referee2Decision.decision.toString(),
+                        side2Points: referee2Decision.fighter1Points || referee2Decision.fighter2Points
+                    }))
+                    setSideBarsColors(oldColors => ({
+                        ...oldColors,
+                        side2: switchColor(referee2Decision)
+                    }))
+                }
+
+            }).catch(e => {
+                console.log(e)
+            })
         stompClient.subscribe("/response/status", () => {
             Api.get(`/status/${props.state.matchData.id}`
             ).then(res => {
-                console.log(res.data) /// TODO: make sure that everything works when back implementation will be ready
-                setSideDecisions({  /// to check
-                    side1: res.data.side1ActualDecision,
-                    side2: res.data.side2ActualDecision,
-                })
-                setSideDecisions({
-                    side1: res.data.side1ActualDecision,
-                    side2: res.data.side2ActualDecision
-                })
+                const {referee1Decision, referee2Decision, fighter1Points, fighter2Points} = res.data;
+
+                if(fighter1Points) setFighter1Score(fighter1Points);
+                if(fighter2Points) setFighter2Score(fighter2Points);
+
+                if(referee1Decision.decision){
+                    setSideDecisions(decision => ({
+                        ...decision,
+                        side1: referee1Decision.decision.toString(),
+                        side1Points: referee1Decision.fighter1Points || referee1Decision.fighter2Points
+                    }))
+                    setSideBarsColors(oldColors => ({
+                        ...oldColors,
+                        side1: switchColor(referee1Decision)
+                    }))
+                }
+
+                if(referee2Decision.decision){
+                    setSideDecisions(decision => ({
+                        ...decision,
+                        side2: referee2Decision.decision.toString(),
+                        side2Points: referee2Decision.fighter1Points || referee2Decision.fighter2Points
+                    }))
+                    setSideBarsColors(oldColors => ({
+                        ...oldColors,
+                        side2: switchColor(referee2Decision)
+                    }))
+                }
+
             }).catch(e => {
                 console.log(e)
             })
@@ -86,6 +154,23 @@ const DisplayMatch = () => {
 
     const onError = (error) => {
         console.log("Error: " + error);
+    }
+
+    const isSide1 = () => {
+        return props.state.token === props.state.matchData.sideRefereeToken1
+    }
+
+    const resetDecision = () => {
+        Api.post(`status/${id}/decision`, {
+            fighter1Points: 0, 
+            fighter2Points: 0, 
+            decision: [],
+            refereeToken: props.state.token
+        })
+        .then(() => setShowModal(false))
+        .catch(e => {
+            console.log(e)
+        });
     }
 
     return (
@@ -136,22 +221,46 @@ const DisplayMatch = () => {
                             fighter2Score={fighterScore2}
                         ></DisplayScore>
 
-                        <Box bg="gray.300" mb="20px" width="100%" height="30%">
+                        {props.state.userType === 'Main'  
+                        ? <Box bg="gray.300" mb="20px" width="100%" height="160px">
                             <VStack>
                                 <Box p="10px" width="100%">
-                                    <Box width="100%" borderColor="black" borderWidth={1}>
-                                        <Text fontSize="16px" p="10px">{`Referee1: ${sideDecisions.side1}`}</Text>
-                                        <Box width="100%" pt="10px" height="15px" bgColor={"blue.500"} />
+                                    <Box width="100%" borderColor="black" borderWidth={1} height="60px" overflowY="scroll">
+                                        <HStack justifyContent="space-between">
+                                            <Text fontSize="16px" p="10px">{`Referee1: ${sideDecisions.side1}`}</Text>
+                                            <Text fontSize="16px" p="10px">{`${sideDecisions.side1Points} points`}</Text>
+                                        </HStack>
+                                        <Box width="100%" pt="10px" height="15px" bgColor={sideBarsColors.side1} />
                                     </Box>
                                 </Box>
                                 <Box p="10px" width="100%">
-                                    <Box width="100%" borderColor="black" borderWidth={1}>
-                                        <Text fontSize="16px" p="10px">{`Referee2: ${sideDecisions.side2}`}</Text>
-                                        <Box width="100%" pt="10px" height="15px" bgColor={"red.500"} />
+                                    <Box width="100%" borderColor="black" borderWidth={1} height="60px" overflowY="scroll">
+                                        <HStack justifyContent="space-between">
+                                            <Text fontSize="16px" p="10px">{`Referee2: ${sideDecisions.side2}`}</Text>
+                                            <Text fontSize="16px" p="10px">{`${sideDecisions.side2Points} points`}</Text>
+                                        </HStack>
+                                        <Box width="100%" pt="10px" height="15px" bgColor={sideBarsColors.side2} />
                                     </Box>
                                 </Box>
                             </VStack>
                         </Box>
+                        :
+                        <Box bg="gray.300" mb="20px" width="100%" height="80px" overflowY="scroll">
+                            <Box p="10px" width="100%">
+                                <Box width="100%" borderColor="black" borderWidth={1}>
+                                    <HStack justifyContent="space-between">
+                                        <Text fontSize="16px" p="10px">{`Your decision: ${isSide1() ? sideDecisions.side1 : sideDecisions.side2}`}</Text>
+                                        <Text fontSize="16px" p="10px">{`${isSide1() ? sideDecisions.side1Points : sideDecisions.side2Points} points`}</Text>
+                                        <Button bg="gray.300" width={10} height={10}
+                                            onPress={() => setShowModal(true)}>
+                                            <Text color="black" p="5px">X</Text>
+                                        </Button>
+                                    </HStack>
+                                    <Box width="100%" pt="10px" height="15px" bgColor={isSide1() ? sideBarsColors.side1 : sideBarsColors.side2} />
+                                </Box>
+                            </Box>
+                        </Box>
+                        }
 
                         <VStack width="100%">
                             <Center>
@@ -248,9 +357,36 @@ const DisplayMatch = () => {
                         fighter1Score: fighterScore1,
                         fighter2Score: fighterScore2,
                         userType: props.state.userType,
+                        token: props.state.token
                     }}
                 ></MainRefereeFooter>
             )}
+
+            <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+                <Modal.Content>
+                    <Modal.CloseButton></Modal.CloseButton>
+                    <Modal.Header>Undo event confirmation</Modal.Header>
+                    <Modal.Body>
+                        <Text>
+                            Are you sure you want to cancel your decision?
+                        </Text>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button.Group space={2}>
+                            <Button
+                                variant="ghost"
+                                colorScheme="blueGray"
+                                onPress={() => {setShowModal(false)}}
+                            >
+                                <Text>No</Text>
+                            </Button>
+                            <Button onPress={resetDecision}>
+                                <Text>Yes</Text>
+                            </Button>
+                        </Button.Group>
+                    </Modal.Footer>
+                </Modal.Content>
+            </Modal>
         </View>
     );
 };

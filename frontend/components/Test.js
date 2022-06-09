@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import url from "./util/Websocket";
 import {over} from 'stompjs';
-import sock from "./util/Websocket";
 import {NativeBaseProvider, Button} from 'native-base';
 import SockJS from 'sockjs-client';
 
@@ -23,7 +22,6 @@ const Test = () => {
     }, []);
 
     const onConnected = () => {
-        console.log("CONNECTED")
         stompClient.subscribe("/response/timer", onMessageReceived);
         stompClient.send("/timer", {}, JSON.stringify({
             action: "GET"
@@ -33,7 +31,6 @@ const Test = () => {
 
     const onMessageReceived = (payload) => {
         let message = payload.body;
-        console.log(message)
         setResponse(message)
     }
 
