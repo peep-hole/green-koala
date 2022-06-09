@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Api from './util/Api';
 import FormHeaderLink from './util/FormHeaderLink';
-import { Flex, Center, Button, Text, ScrollView, Heading } from 'native-base';
+import { HStack, Flex, Center, Button, Text, ScrollView, Heading } from 'native-base';
 import { Navigate, useLocation } from "react-router-native";
 import { FontAwesome } from '@expo/vector-icons';
 
@@ -78,19 +78,21 @@ const CancelFightConfirmation = () => {
                         </Text>
                     </Flex>
 
-                    {/* Cancell button */}
-                    <Button marginTop="30px" colorScheme="gray"
-                        onPress={cancel}>
-                        <Text color="white" p="0px" m="0px">Cancel</Text>
-                    </Button>
+                    <HStack marginTop="30px" p="10px">
+                        {/* Cancell button */}
+                        <Button colorScheme="gray"
+                            onPress={cancel}>
+                            <Text color="white" p="0px" m="0px">Cancel</Text>
+                        </Button>
 
-                    {/* Delete button */}
-                    <Button marginTop="5px" colorScheme="red"
-                        onPress={() => {
-                            deleteFight();
-                        }}>
-                        <Text color="white" >Delete</Text>
-                    </Button>
+                        {/* Delete button */}
+                        <Button marginLeft="20px" colorScheme="red"
+                            onPress={() => {
+                                deleteFight();
+                            }}>
+                            <Text color="white" >Delete</Text>
+                        </Button>
+                    </HStack>
                 </Center>
             </ScrollView>
             {deleted && <Navigate to="/matchList"></Navigate>}

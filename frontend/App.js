@@ -20,6 +20,9 @@ import FightResult from './components/FightResult';
 import SuggestPoints from './components/SuggestPoints';
 import FighterInfo from './components/FighterInfo';
 import DeleteFighterConfirmation from './components/DeleteFighterConfirmation';
+import TournamentInfo from './components/TournamentInfo';
+import TournamentResult from './components/TournamentResult';
+import CancelTournamentConfirmation from './components/CancelTournamentConfirmation';
 
 export default function App() {
     return (
@@ -57,6 +60,10 @@ export default function App() {
                         <Route path="/tournamentList" element={<TournamentList />} />
                         <Route path="/fighterInfo" element={<FighterInfo />} />
                         <Route path="/deleteFighter" element={<DeleteFighterConfirmation />} />
+                        <Route path="/tournamentInfo" element={<TournamentInfo />} />
+                        <Route path="/tournamentResult" element={<TournamentResult />} />
+                        <Route path="/cancelTournament" element={<CancelTournamentConfirmation />} />
+
                     </Routes>
                 </NativeRouter>
             </SSRProvider>
