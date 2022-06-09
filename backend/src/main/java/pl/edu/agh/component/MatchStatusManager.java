@@ -32,7 +32,7 @@ public class MatchStatusManager {
 
     public void startMatch(UUID matchId) {
         Match match = matchManagementService.getMatchById(matchId);
-        if(!matchMap.containsKey(matchId)) matchMap.put(matchId, match);
+        if (!matchMap.containsKey(matchId)) matchMap.put(matchId, match);
     }
 
     public void endMatch(UUID matchId) {
@@ -53,6 +53,9 @@ public class MatchStatusManager {
             match.setFighter1Points(match.getFighter1Points() + message.getFighter1Points());
             match.setFighter2Points(match.getFighter2Points() + message.getFighter2Points());
             match.getAcceptedDecisions().add(message);
+
+            match.getReferee1Decision().reset();
+            match.getReferee2Decision().reset();
         } else {
             RefereeDecision decision;
             if (message.getRefereeToken().equals(match.getSideRefereeToken1())) {
@@ -63,10 +66,14 @@ public class MatchStatusManager {
                 throw new RuntimeException("WRONG REFEREE ID");
             }
 
-            decision.setRefereeToken(message.getRefereeToken());
-            decision.setFighter1Points(message.getFighter1Points());
-            decision.setFighter2Points(message.getFighter2Points());
-            decision.setDecision(message.getDecision());
+            if (message.isEmpty()) {
+                decision.reset();
+            } else {
+                decision.setRefereeToken(message.getRefereeToken());
+                decision.setFighter1Points(message.getFighter1Points());
+                decision.setFighter2Points(message.getFighter2Points());
+                decision.setDecision(message.getDecision());
+            }
         }
     }
 
