@@ -14,9 +14,7 @@ jobs:
           distribution: 'adopt'
           cache: gradle
       - name: Backend build
-        run: cd backend && ./gradlew build
-      - name: Backend test
-        run: cd backend && ./gradlew test
+        run: cd backend && ./gradlew
   
   frontend_build:
     runs-on: ubuntu-latest
