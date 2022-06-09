@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { HStack, VStack, Text, Button, Center, Box, View, Modal } from 'native-base';
+import { HStack, VStack, Text, Button, Center, Box, View, Modal, ScrollView } from 'native-base';
 import DisplayScore from './DisplayScore';
 import Timer from "./Timer";
 import {over} from "stompjs"
@@ -220,37 +220,43 @@ const DisplayMatch = () => {
                         ? <Box bg="gray.300" mb="20px" width="100%" height="160px">
                             <VStack>
                                 <Box p="10px" width="100%">
-                                    <Box width="100%" borderColor="black" borderWidth={1} height="60px" overflowY="scroll">
-                                        <HStack justifyContent="space-between">
+                                    <Box width="100%" borderColor="black" borderWidth={1} height="60px">
+                                        <ScrollView>
+                                        <VStack justifyContent="space-between">
                                             <Text fontSize="16px" p="10px">{`Referee1: ${sideDecisions.side1}`}</Text>
                                             <Text fontSize="16px" p="10px">{`${sideDecisions.side1Points} points`}</Text>
-                                        </HStack>
+                                        </VStack>
+                                        </ScrollView>
                                         <Box width="100%" pt="10px" height="15px" bgColor={sideBarsColors.side1} />
                                     </Box>
                                 </Box>
                                 <Box p="10px" width="100%">
-                                    <Box width="100%" borderColor="black" borderWidth={1} height="60px" overflowY="scroll">
-                                        <HStack justifyContent="space-between">
+                                    <Box width="100%" borderColor="black" borderWidth={1} height="60px">
+                                        <ScrollView>
+                                        <VStack justifyContent="space-between">
                                             <Text fontSize="16px" p="10px">{`Referee2: ${sideDecisions.side2}`}</Text>
                                             <Text fontSize="16px" p="10px">{`${sideDecisions.side2Points} points`}</Text>
-                                        </HStack>
+                                        </VStack>
+                                        </ScrollView>
                                         <Box width="100%" pt="10px" height="15px" bgColor={sideBarsColors.side2} />
                                     </Box>
                                 </Box>
                             </VStack>
                         </Box>
                         :
-                        <Box bg="gray.300" mb="20px" width="100%" height="80px" overflowY="scroll">
+                        <Box bg="gray.300" mb="20px" width="100%" height="100px">
                             <Box p="10px" width="100%">
-                                <Box width="100%" borderColor="black" borderWidth={1}>
-                                    <HStack justifyContent="space-between">
-                                        <Text fontSize="16px" p="10px">{`Your decision: ${isSide1() ? sideDecisions.side1 : sideDecisions.side2}`}</Text>
-                                        <Text fontSize="16px" p="10px">{`${isSide1() ? sideDecisions.side1Points : sideDecisions.side2Points} points`}</Text>
-                                        <Button bg="gray.300" width={10} height={10}
-                                            onPress={() => setShowModal(true)}>
-                                            <Text color="black" p="5px">X</Text>
-                                        </Button>
-                                    </HStack>
+                                <Box width="100%" borderColor="black" borderWidth={1} position="relative">
+                                    <VStack maxHeight="60px">
+                                        <ScrollView>
+                                            <Text fontSize="16px" p="10px">{`Your decision: ${isSide1() ? sideDecisions.side1 : sideDecisions.side2}`}</Text>
+                                            <Text fontSize="16px" p="10px">{`${isSide1() ? sideDecisions.side1Points : sideDecisions.side2Points} points`}</Text>
+                                            <Button bg="gray.300" width={10} height={10} position="absolute" top="0" right="0"
+                                                onPress={() => setShowModal(true)}>
+                                                <Text color="black" p="0">X</Text>
+                                            </Button>
+                                        </ScrollView>
+                                    </VStack>
                                     <Box width="100%" pt="10px" height="15px" bgColor={isSide1() ? sideBarsColors.side1 : sideBarsColors.side2} />
                                 </Box>
                             </Box>

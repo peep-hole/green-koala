@@ -61,30 +61,33 @@ const FightHistory = () => {
                         </Text>
                     </Center>
                     {
-                    eventsLoaded && <FlatList backgroundColor="gray.200"
+                    eventsLoaded && 
+                    <Box height={"250"}>
+                    <FlatList backgroundColor="gray.200"
                         data={events} renderItem={
                             ({ item }) =>
-                                <Box borderBottomWidth={1} borderTopWidth={1} _dark={{ borderColor: "gray.800" }} borderColor="coolGray.400" pl="4" pr="5" py="2">
-                                    <HStack space={3} justifyContent="space-between">
+                                <Box key={item.decision + item.fighter1Points + item.fighter2Points} borderBottomWidth={1} borderTopWidth={1} _dark={{ borderColor: "gray.800" }} borderColor="coolGray.400" pl="4" pr="5" py="2">
+                                    <VStack space={3} justifyContent="space-between">
                                         <Text _dark={{ color: "warmGray.50" }} color="coolGray.800" bold>
                                             Main:
                                         </Text>
-                                        <Text _dark={{ color: "warmGray.50" }} color="coolGray.800" alignSelf="center">
+                                        <Text _dark={{ color: "warmGray.50" }} color="coolGray.800">
                                             {item.decision}
                                         </Text>
                                         {!!item.fighter1Points &&
-                                            <Text _dark={{ color: "warmGray.50" }} color="coolGray.800" alignSelf="center">
+                                            <Text _dark={{ color: "warmGray.50" }} color="coolGray.800">
                                                 {item.fighter1Points} for red
                                             </Text>
                                         }
                                         {!!item.fighter2Points &&
-                                            <Text _dark={{ color: "warmGray.50" }} color="coolGray.800" alignSelf="center">
+                                            <Text _dark={{ color: "warmGray.50" }} color="coolGray.800">
                                                 {item.fighter2Points} for blue
                                             </Text>
                                         }
-                                    </HStack>
+                                    </VStack>
                                 </Box>
                         } keyExtractor={item => item.eventID} />
+                        </Box>
                     }
                 </Box>
 
