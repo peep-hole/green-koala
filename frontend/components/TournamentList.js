@@ -115,13 +115,13 @@ const TournamentList = () => {
                                 </Link>}
                         keyExtractor={item => item.id} />
                 </Box>
-                <Flex direction="row-reverse" marginRight="14px" marginTop="10px">
+                {/* <Flex direction="row-reverse" marginRight="14px" marginTop="10px">
                     <Link to="/createTournamentForm">
                         <Box width="57px" height="57px" borderRadius="100" borderWidth="3px" borderColor="#065f46" backgroundColor="#065f46" p="9px" alignItems="center">
                             <FontAwesome name="calendar-plus-o" size={30} color="white" />
                         </Box>
                     </Link>
-                </Flex>
+                </Flex> */}
             </>}
             <AdminFooter selected={2}></AdminFooter>
         </>

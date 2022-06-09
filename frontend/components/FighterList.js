@@ -33,7 +33,7 @@ const FighterList = () => {
         <>
             <FormHeader name="Fighters"></FormHeader>
             {fightersLoaded && <>
-                <FlatList height="50vh" margin={3} backgroundColor="gray.200"
+                <FlatList height="50%" margin={3} backgroundColor="gray.200"
                     data={fighters} renderItem={
                         ({ item }) =>
                             <Link to="/fighterInfo" state={{ fighterData: item }} >
@@ -53,7 +53,7 @@ const FighterList = () => {
                     } keyExtractor={item => item.id} />
                 <Flex direction="row-reverse" marginRight="14px" marginTop="3px">
                     <Link to="/registerPlayerForm">
-                        <Box width="57px" height="57px" borderRadius="100" borderWidth="3px" borderColor="#065f46" backgroundColor="#065f46" p="10px" alignItems="center">
+                        <Box width="57px" height="57px" marginRight="14px" borderRadius="100" borderWidth="3px" borderColor="#065f46" backgroundColor="#065f46" p="10px" alignItems="center">
                             <Ionicons name="person-add" size={30} color="white" />
                         </Box>
                     </Link>
