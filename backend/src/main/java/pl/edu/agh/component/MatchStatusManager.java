@@ -32,7 +32,7 @@ public class MatchStatusManager {
 
     public void startMatch(UUID matchId) {
         Match match = matchManagementService.getMatchById(matchId);
-        if(!matchMap.containsKey(matchId)) matchMap.put(matchId, match);
+        if (!matchMap.containsKey(matchId)) matchMap.put(matchId, match);
     }
 
     public void endMatch(UUID matchId) {
@@ -78,5 +78,13 @@ public class MatchStatusManager {
 
     public Match getMatch(UUID matchId) {
         return matchMap.get(matchId);
+    }
+
+    public boolean isMatchRunning(UUID matchId) {
+        return getMatchMap().containsKey(matchId);
+    }
+
+    public boolean isMatchExisting(UUID matchId) {
+        return matchManagementService.matchIdExists(matchId);
     }
 }
