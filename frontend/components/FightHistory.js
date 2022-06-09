@@ -62,6 +62,7 @@ const FightHistory = () => {
                     </Center>
                     {
                     eventsLoaded && 
+                    <Box height={"250"}>
                     <FlatList backgroundColor="gray.200"
                         data={events} renderItem={
                             ({ item }) =>
@@ -86,6 +87,7 @@ const FightHistory = () => {
                                     </VStack>
                                 </Box>
                         } keyExtractor={item => item.eventID} />
+                        </Box>
                     }
                 </Box>
 
