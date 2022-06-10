@@ -7,15 +7,14 @@ import { Ionicons } from '@expo/vector-icons';
 import AdminFooter from './util/AdminFooter';
 
 const FightersInfo = ({item}) => {
-    console.log(item)
     const [content, setContent] = useState("");
 
-    const getFightersNames = () => {
-        Api.get('/actors/fighters/id/' + item.fighterId1).then((res) => {
+    const getFightersNames = async () => {
+        await Api.get('/actors/fighters/id/' + item.fighterId1).then((res) => {
             setContent((old) => old + res.data.name + " " + res.data.surname + " vs ");
         });
         
-        Api.get('/actors/fighters/id/' + item.fighterId2).then((res) => {
+        await Api.get('/actors/fighters/id/' + item.fighterId2).then((res) => {
             setContent((old) => old + res.data.name + " " + res.data.surname);
         });
     }
