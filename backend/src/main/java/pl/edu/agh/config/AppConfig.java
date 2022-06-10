@@ -6,18 +6,25 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import pl.edu.agh.model.Fighter;
 import pl.edu.agh.model.Match;
+import pl.edu.agh.model.Tournament;
+import pl.edu.agh.model.TournamentRules;
 import pl.edu.agh.service.FighterService;
 import pl.edu.agh.service.MatchManagementService;
+import pl.edu.agh.service.TournamentRulesService;
+import pl.edu.agh.service.TournamentService;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+
+import static pl.edu.agh.constants.Action.HIT;
 
 @Configuration
 public class AppConfig {
 
     @Bean
-    public CommandLineRunner commandLineRunner(FighterService fighterService, MatchManagementService matchManagementService) {
+    public CommandLineRunner commandLineRunner(FighterService fighterService, MatchManagementService matchManagementService, TournamentService tournamentService, TournamentRulesService tournamentRulesService) {
 
         return args -> {
 
@@ -30,6 +37,7 @@ public class AppConfig {
             match1.setId(UUID.fromString("ea5d74b4-c70b-11ec-9d64-0242ac120002"));
             match1.setFighterId1(fighter1.getId());
             match1.setFighterId2(fighter2.getId());
+            match1.setTournamentId(2L);
             match1.setDate("29.04.2022");
             match1.setTime("16:15");
 
@@ -37,6 +45,7 @@ public class AppConfig {
             match2.setId(UUID.fromString("ea5d7716-c70b-11ec-9d64-0242ac120002"));
             match2.setFighterId1(fighter3.getId());
             match2.setFighterId2(fighter4.getId());
+            match2.setTournamentId(2L);
             match2.setDate("13.05.2022");
             match2.setTime("13:13");
 
@@ -44,6 +53,7 @@ public class AppConfig {
             match3.setId(UUID.fromString("ea5d4355-c70b-11ec-9d64-0242ac120002"));
             match3.setFighterId1(fighter3.getId());
             match3.setFighterId2(fighter4.getId());
+            match3.setTournamentId(2L);
             match3.setDate("18.05.2022");
             match3.setTime("13:13");
 
@@ -51,15 +61,40 @@ public class AppConfig {
             match4.setId(UUID.fromString("ea5d4222-c70b-11ec-9d64-0242ac120002"));
             match4.setFighterId1(fighter3.getId());
             match4.setFighterId2(fighter4.getId());
+            match4.setTournamentId(2L);
             match4.setDate("18.06.2022");
             match4.setTime("13:13");
+
 
             Match match5 = new Match();
             match5.setId(UUID.fromString("ea5d1111-c70b-11ec-9d64-0242ac120002"));
             match5.setFighterId1(fighter1.getId());
             match5.setFighterId2(fighter2.getId());
+            match5.setTournamentId(2L);
             match5.setDate("29.11.2022");
             match5.setTime("16:15");
+
+            TournamentRules tournamentRules = new TournamentRules();
+
+            tournamentRules.setMaxTime(20);
+            tournamentRules.setAllowedActions(
+                    Map.of(
+                            "HIT", "head;arm;hand",
+                            "ATTACK", "succeed;failed",
+                            "DEFENSE", "succeed;failed"
+                    )
+            );
+            tournamentRules.setWeaponTypes(
+                    List.of("sword", "axe", "baseball")
+            );
+
+            tournamentRulesService.add(tournamentRules);
+
+            Tournament tournament = new Tournament();
+            tournament.setRulesId(tournamentRules.getId());
+            tournament.setDate("29.11.2022");
+            tournament.setName("demo");
+            tournamentService.add(tournament);
 
             List<Fighter> fighters = Arrays.asList(fighter1, fighter2, fighter3, fighter4);
             fighters.forEach((Fighter fighter) -> {

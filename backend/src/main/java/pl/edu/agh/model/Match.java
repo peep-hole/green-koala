@@ -26,10 +26,10 @@ public class Match {
     private final RefereeDecision referee2Decision = new RefereeDecision();
     @Transient
     private final List<RefereeDecision> acceptedDecisions = new LinkedList<>();
-    @Transient
-    private final Map<Action, List<String>> allowedActions = AllowedActions.getAllowedActions();
-    @Transient
-    private final Map<MatchRule, Object> matchRules = MatchRules.getMatchRules();
+//    @Transient
+//    private final Map<Action, List<String>> allowedActions = AllowedActions.getAllowedActions();
+//    @Transient
+//    private final Map<MatchRule, Object> matchRules = MatchRules.getMatchRules();
     @Id
     @Column(columnDefinition = "uuid")
     private UUID id;
@@ -46,6 +46,8 @@ public class Match {
     private Integer fighter1Points = 0;
     private Integer fighter2Points = 0;
     private boolean finished;
+
+    private Long tournamentId;
 
     @Override
     public boolean equals(Object o) {

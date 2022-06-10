@@ -1,10 +1,11 @@
 package pl.edu.agh.model;
 
 import lombok.*;
+import pl.edu.agh.constants.Action;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 @Entity
@@ -17,9 +18,15 @@ import java.util.Objects;
 @Builder
 public class TournamentRules {
     @Id
+    @GeneratedValue
     private Long id;
-
     private Integer maxTime;
+
+    @ElementCollection
+    private List<String> weaponTypes;
+
+    @ElementCollection
+    private Map<String, String> allowedActions; // actions split by ';'
 
     @Override
     public boolean equals(Object o) {

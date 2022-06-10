@@ -12,6 +12,6 @@ import java.util.UUID;
 @ToString
 public class Event {
     private UUID fighterId;
-    private Action action;
+    private String action;
     private String actionInfo;
 }

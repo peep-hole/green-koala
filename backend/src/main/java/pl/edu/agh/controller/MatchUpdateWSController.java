@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.*;
 import pl.edu.agh.component.MatchStatusManager;
 import pl.edu.agh.constants.Action;
 import pl.edu.agh.model.Match;
+import pl.edu.agh.model.Tournament;
+import pl.edu.agh.model.TournamentRules;
+import pl.edu.agh.service.TournamentRulesService;
+import pl.edu.agh.service.TournamentService;
 import pl.edu.agh.websocket.RefereeDecision;
 
 import java.util.List;
@@ -22,6 +26,8 @@ import java.util.UUID;
 public class MatchUpdateWSController {
     private final SimpMessagingTemplate template;
     private final MatchStatusManager matchStatusManager;
+    private final TournamentService tournamentService;
+    private final TournamentRulesService rulesService;
 
     @PostMapping("/{id}/decision")
     public ResponseEntity<Boolean> updateDecision(@PathVariable String id, @RequestBody RefereeDecision decision) {
@@ -72,11 +78,15 @@ public class MatchUpdateWSController {
     }
 
     @GetMapping("/{id}/allowed-actions")
-    public ResponseEntity<Map<Action, List<String>>> getAllowedActions(@PathVariable String id) {
+    public ResponseEntity<Map<String, String>> getAllowedActions(@PathVariable String id) {
         if (!matchStatusManager.isMatchRunning(UUID.fromString(id))) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(matchStatusManager.getMatch(UUID.fromString(id)).getAllowedActions(), HttpStatus.OK);
+        Match match = matchStatusManager.getMatch(UUID.fromString(id));
+        Tournament tournament = tournamentService.getById(match.getTournamentId());
+        TournamentRules rules = rulesService.getById(tournament.getRulesId());
+
+        return new ResponseEntity<>(rules.getAllowedActions(), HttpStatus.OK);
     }
 
     private void sendUpdateNotificationToReferees() {
