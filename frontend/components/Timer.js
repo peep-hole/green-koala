@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
     },
     closeIcon: {
         position: "absolute",
-        marginLeft: "85%",
+        right: 20,
         color: "white"
     }
 })
