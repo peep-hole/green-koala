@@ -6,5 +6,5 @@ import axios from 'axios';
 //localhost should work with Android emulator and on web
 
 export default axios.create({
-    baseURL: `https://calm-moose-jog-89-64-36-135.loca.lt/api`,
+    baseURL: `https://eleven-rings-bow-89-64-36-135.loca.lt/api`,
 });
