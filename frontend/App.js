@@ -1,4 +1,3 @@
-import { StyleSheet } from 'react-native-web';
 import { NativeBaseProvider } from 'native-base';
 import CreateMatchForm from './components/CreateMatchForm';
 import { SSRProvider } from 'react-bootstrap';

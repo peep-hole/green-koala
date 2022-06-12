@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Input, Text, Center, Button, VStack } from 'native-base';
+import { Input, Text, Center, Button, VStack, View } from 'native-base';
 import FormHeaderLink from './util/FormHeaderLink';
 import Api from './util/Api';
 import { Navigate, useLocation } from 'react-router-native';
@@ -177,9 +177,10 @@ const TokenInput = () => {
 
             {isQRScanning && (
                 <>
+                    <View zIndex={10}><FormHeaderLink pathname="loginPick" name="QR"></FormHeaderLink></View>
                     <BarCodeScanner
                         onBarCodeScanned={handleCodeScanned}
-                        style={StyleSheet.absoluteFillObject}
+                        style={StyleSheet.absoluteFill}
                     />
                 </>
             )}
