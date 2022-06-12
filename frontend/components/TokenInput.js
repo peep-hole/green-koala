@@ -19,7 +19,7 @@ const TokenInput = () => {
     const [matchDataLoaded, setMatchDataLoaded] = useState(false);
     const [isQRScanning, setIsQRScanning] = useState(false);
 
-    const [, setHasPermission] = useState(null);
+    const [hasPermission, setHasPermission] = useState(null);
 
     const [fighter1, setFirstFighter] = useState({});
     const [fighter2, setSecondFighter] = useState({});
@@ -178,10 +178,14 @@ const TokenInput = () => {
             {isQRScanning && (
                 <>
                     <View zIndex={10}><FormHeaderLink pathname="loginPick" name="QR"></FormHeaderLink></View>
-                    <BarCodeScanner
-                        onBarCodeScanned={handleCodeScanned}
-                        style={StyleSheet.absoluteFill}
-                    />
+                    {
+                        hasPermission
+                        ? <BarCodeScanner
+                            onBarCodeScanned={handleCodeScanned}
+                            style={StyleSheet.absoluteFill}
+                        />
+                        : <Text>Allow camera access to scan the code</Text>
+                    }
                 </>
             )}
         </>
