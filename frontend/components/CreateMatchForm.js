@@ -71,8 +71,8 @@ const CreateMatchForm = () => {
     const onCreateClick = () => {
         if(validate()) {
             Api.post("/matches/new-match", { // temporary request body
-                firstPlayer: firstPlayer,
-                secondPlayer: secondPlayer,
+                fighterId1: firstPlayer.id,
+                fighterId2: secondPlayer.id,
                 date: dateString,
                 time: timeString
             }).then(res => {
