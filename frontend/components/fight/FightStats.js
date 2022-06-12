@@ -2,8 +2,8 @@ import React from 'react';
 import FormHeader from '../util/FormHeader';
 import MainRefereeFooter from '../util/MainRefereeFooter';
 import DisplayScore from '../DisplayScore';
-import { HStack, VStack, Text, Center, Box } from 'native-base';
-import { useLocation } from "react-router-native"
+import {Box, Center, HStack, Text, VStack} from 'native-base';
+import {useLocation} from "react-router-native"
 
 
 const FightStats = () => {

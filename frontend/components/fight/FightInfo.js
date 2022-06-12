@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import Api from '../util/Api';
 import FormHeaderLink from '../util/FormHeaderLink';
-import { VStack, Button, Center, Flex, Text, ScrollView } from 'native-base';
-import { FontAwesome } from '@expo/vector-icons';
-import { Navigate } from 'react-router-native';
-import { useLocation } from 'react-router-native';
+import {Box, Button, Center, Flex, ScrollView, Text, VStack} from 'native-base';
+import {FontAwesome} from '@expo/vector-icons';
+import {Navigate, useLocation} from 'react-router-native';
 import QRCode from 'react-qr-code';
-import { Box } from 'native-base';
 
 const FightInfo = () => {
     const props = useLocation();

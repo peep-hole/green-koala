@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
-import { Box, HStack, Icon, Pressable, Center, Text } from "native-base";
-import { Link } from "react-router-native"
-import { MaterialIcons } from '@expo/vector-icons';
-import { Entypo } from '@expo/vector-icons';
+import React, {useEffect} from 'react';
+import {Box, Center, HStack, Icon, Pressable, Text} from "native-base";
+import {Link} from "react-router-native"
+import {Entypo, MaterialIcons} from '@expo/vector-icons';
 
 
 const AdminFooter = props => {

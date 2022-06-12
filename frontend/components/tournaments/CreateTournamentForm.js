@@ -1,21 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import Api from "../util/Api";
-import {
-    Box,
-    Button,
-    Center,
-    FlatList,
-    Flex, HStack,
-    Input,
-    InputGroup,
-    NativeBaseProvider,
-    Radio,
-    Switch,
-    VStack
-} from "native-base";
+import {Box, Button, Center, FlatList, Flex, HStack, Input, NativeBaseProvider, VStack} from "native-base";
 import FormHeaderLink from "../util/FormHeaderLink";
 import {Platform, Text} from "react-native";
-import {Navigate, useNavigate} from "react-router-native";
+import {Navigate} from "react-router-native";
 import {AntDesign, FontAwesome} from "@expo/vector-icons";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import AdminFooter from "../util/AdminFooter";

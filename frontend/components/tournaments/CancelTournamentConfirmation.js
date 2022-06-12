@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import Api from '../util/Api';
 import FormHeaderLink from '../util/FormHeaderLink';
-import { HStack, Flex, Center, Button, Text, ScrollView, Heading } from 'native-base';
-import { Navigate, useLocation } from "react-router-native";
-import { FontAwesome, MaterialIcons } from '@expo/vector-icons';
+import {Button, Center, Flex, Heading, HStack, ScrollView, Text} from 'native-base';
+import {Navigate, useLocation} from "react-router-native";
+import {FontAwesome, MaterialIcons} from '@expo/vector-icons';
 
 const CancelTournamentConfirmation = () => {
 

@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import Api from '../util/Api';
 import FormHeader from '../util/FormHeader';
-import { VStack, Flex, Center, Box, Heading, FlatList, HStack, Spacer, Text } from 'native-base';
-import { Link } from "react-router-native";
+import {Box, Center, FlatList, Flex, Heading, HStack, Spacer, Text, VStack} from 'native-base';
+import {Link} from "react-router-native";
 import AdminFooter from '../util/AdminFooter';
-import { FontAwesome } from '@expo/vector-icons';
+import {FontAwesome} from '@expo/vector-icons';
 
 
 const TournamentList = () => {

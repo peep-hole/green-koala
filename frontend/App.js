@@ -1,9 +1,9 @@
-import { StyleSheet } from 'react-native-web';
-import { NativeBaseProvider } from 'native-base';
+import {StyleSheet} from 'react-native-web';
+import {NativeBaseProvider} from 'native-base';
 import CreateMatchForm from './components/match/CreateMatchForm';
-import { SSRProvider } from 'react-bootstrap';
+import {SSRProvider} from 'react-bootstrap';
 import React from 'react';
-import { NativeRouter, Route, Routes } from 'react-router-native';
+import {NativeRouter, Route, Routes} from 'react-router-native';
 import FightInfo from './components/fight/FightInfo';
 import RegisterPlayerForm from './components/fighter/RegisterPlayerForm';
 import TokenInput from './components/TokenInput';

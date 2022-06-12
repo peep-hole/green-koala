@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import FormHeaderLink from '../util/FormHeaderLink';
-import { Flex, Center, Button, Text, ScrollView, Heading, HStack } from 'native-base';
-import { Navigate, useLocation } from "react-router-native";
-import { FontAwesome } from '@expo/vector-icons';
+import {Button, Center, Flex, Heading, HStack, ScrollView, Text} from 'native-base';
+import {Navigate, useLocation} from "react-router-native";
+import {FontAwesome} from '@expo/vector-icons';
 
 const DeleteFighterConfirmation = () => {
 

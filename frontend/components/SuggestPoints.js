@@ -1,7 +1,6 @@
-import React from 'react';
-import { Button, Modal, Center, Text, VStack, Radio, HStack } from 'native-base';
-import { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-native';
+import React, {useEffect, useState} from 'react';
+import {Button, Center, HStack, Modal, Radio, Text, VStack} from 'native-base';
+import {useLocation, useNavigate} from 'react-router-native';
 import FormHeaderLink from './util/FormHeaderLink';
 import Api from "./util/Api";
 

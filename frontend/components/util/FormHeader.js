@@ -1,6 +1,6 @@
 import React from 'react';
-import { Box, HStack, StatusBar, Text } from "native-base";
-import { Link } from "react-router-native"
+import {Box, HStack, StatusBar, Text} from "native-base";
+import {Link} from "react-router-native"
 
 const FormHeader = (props) => {
     /* #065f46 -> Headers

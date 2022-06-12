@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { HStack, VStack, Text, Button, Center, Box, View, Modal, ScrollView } from 'native-base';
+import React, {useEffect, useState} from 'react';
+import {Box, Button, Center, HStack, Modal, ScrollView, Text, View, VStack} from 'native-base';
 import DisplayScore from '../DisplayScore';
 import Timer from "./Timer";
 import {over} from "stompjs"
 import SockJS from 'sockjs-client';
 import url from '../util/Websocket';
 import MainRefereeFooter from '../util/MainRefereeFooter';
-import { useLocation, useNavigate } from 'react-router-native';
+import {useLocation, useNavigate} from 'react-router-native';
 import Api from '../util/Api';
 
 let sock = null;
