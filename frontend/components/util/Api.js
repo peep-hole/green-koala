@@ -6,5 +6,5 @@ import axios from 'axios';
 //localhost should work with Android emulator and on web
 
 export default axios.create({
-    baseURL: `https://witty-cycles-nail-89-64-36-135.loca.lt/api`,
+    baseURL: `https://dirty-spiders-swim-89-64-36-135.loca.lt/api`,
 });
