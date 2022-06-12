@@ -1,8 +1,8 @@
 import React from 'react';
-import { Button, Center, Text, View, VStack } from 'native-base';
-import { Link } from 'react-router-native';
+import {Button, Center, Text, View, VStack} from 'native-base';
+import {Link} from 'react-router-native';
 import FormHeader from './util/FormHeader';
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 
 const Demo = () => {
     return (

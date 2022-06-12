@@ -1,9 +1,7 @@
-import React, { useEffect } from 'react';
-import { Box, HStack, Icon, Pressable, Center, Text } from "native-base";
-import { Link } from "react-router-native"
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { Ionicons } from '@expo/vector-icons';
-import { MaterialIcons } from '@expo/vector-icons';
+import React, {useEffect} from 'react';
+import {Box, Center, HStack, Icon, Pressable, Text} from "native-base";
+import {Link} from "react-router-native"
+import {Ionicons, MaterialCommunityIcons, MaterialIcons} from '@expo/vector-icons';
 
 
 const MainRefereeFooter = props => {

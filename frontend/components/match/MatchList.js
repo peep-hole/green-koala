@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import Api from './util/Api';
-import FormHeaderLink from './util/FormHeaderLink';
-import { VStack, Flex, Center, Box, Heading, FlatList, HStack, Spacer, Text } from 'native-base';
-import { Link } from "react-router-native";
-import { Ionicons } from '@expo/vector-icons';
-import AdminFooter from './util/AdminFooter';
+import React, {useEffect, useState} from 'react';
+import Api from '../util/Api';
+import FormHeaderLink from '../util/FormHeaderLink';
+import {Box, Center, FlatList, Flex, Heading, HStack, Spacer, Text, VStack} from 'native-base';
+import {Link} from "react-router-native";
+import {Ionicons} from '@expo/vector-icons';
+import AdminFooter from '../util/AdminFooter';
 
 const MatchList = () => {
 

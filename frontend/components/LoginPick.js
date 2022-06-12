@@ -1,8 +1,8 @@
 import FormHeader from './util/FormHeader';
-import { Center, Button, VStack, Text } from 'native-base';
-import React, { useState } from 'react';
-import { FontAwesome } from '@expo/vector-icons';
-import { Navigate } from 'react-router-native';
+import {Button, Center, Text, VStack} from 'native-base';
+import React, {useState} from 'react';
+import {FontAwesome} from '@expo/vector-icons';
+import {Navigate} from 'react-router-native';
 
 const LoginPick = () => {
 

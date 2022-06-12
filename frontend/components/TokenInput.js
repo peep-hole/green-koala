@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { Input, Text, Center, Button, VStack } from 'native-base';
+import React, {useEffect, useState} from 'react';
+import {Button, Center, Input, Text, VStack} from 'native-base';
 import FormHeaderLink from './util/FormHeaderLink';
 import Api from './util/Api';
-import { Navigate, useLocation } from 'react-router-native';
-import { BarCodeScanner } from 'expo-barcode-scanner';
+import {Navigate, useLocation} from 'react-router-native';
+import {BarCodeScanner} from 'expo-barcode-scanner';
 //example call for App.js - <TokenInput userType="Organizer" />
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 
 const TokenInput = () => {
     const props = useLocation();

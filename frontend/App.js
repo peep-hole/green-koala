@@ -1,28 +1,28 @@
-import { StyleSheet } from 'react-native-web';
-import { NativeBaseProvider } from 'native-base';
-import CreateMatchForm from './components/CreateMatchForm';
-import { SSRProvider } from 'react-bootstrap';
+import {StyleSheet} from 'react-native-web';
+import {NativeBaseProvider} from 'native-base';
+import CreateMatchForm from './components/match/CreateMatchForm';
+import {SSRProvider} from 'react-bootstrap';
 import React from 'react';
-import { NativeRouter, Route, Routes } from 'react-router-native';
-import FightInfo from './components/FightInfo';
-import RegisterPlayerForm from './components/RegisterPlayerForm';
-import Demo from './components/Demo';
+import {NativeRouter, Route, Routes} from 'react-router-native';
+import FightInfo from './components/fight/FightInfo';
+import RegisterPlayerForm from './components/fighter/RegisterPlayerForm';
 import TokenInput from './components/TokenInput';
 import LoginPick from './components/LoginPick';
-import DisplayMatch from './components/DisplayMatch';
-import FightHistory from './components/FightHistory';
-import FightStats from './components/FightStats';
-import MatchList from './components/MatchList';
-import CancelFightConfirmation from './components/CancelFightConfirmation';
-import FighterList from './components/FighterList';
-import TournamentList from './components/TournamentList';
-import FightResult from './components/FightResult';
+import DisplayMatch from './components/match/DisplayMatch';
+import FightHistory from './components/fight/FightHistory';
+import FightStats from './components/fight/FightStats';
+import MatchList from './components/match/MatchList';
+import CancelFightConfirmation from './components/fight/CancelFightConfirmation';
+import FighterList from './components/fighter/FighterList';
+import TournamentList from './components/tournaments/TournamentList';
+import FightResult from './components/fight/FightResult';
 import SuggestPoints from './components/SuggestPoints';
-import FighterInfo from './components/FighterInfo';
-import DeleteFighterConfirmation from './components/DeleteFighterConfirmation';
-import TournamentInfo from './components/TournamentInfo';
+import FighterInfo from './components/fighter/FighterInfo';
+import DeleteFighterConfirmation from './components/fighter/DeleteFighterConfirmation';
+import TournamentInfo from './components/tournaments/TournamentInfo';
 import TournamentResult from './components/TournamentResult';
-import CancelTournamentConfirmation from './components/CancelTournamentConfirmation';
+import CancelTournamentConfirmation from './components/tournaments/CancelTournamentConfirmation';
+import CreateTournamentForm from "./components/tournaments/CreateTournamentForm";
 
 export default function App() {
     return (
@@ -63,7 +63,7 @@ export default function App() {
                         <Route path="/tournamentInfo" element={<TournamentInfo />} />
                         <Route path="/tournamentResult" element={<TournamentResult />} />
                         <Route path="/cancelTournament" element={<CancelTournamentConfirmation />} />
-
+                        <Route path="/createTournamentForm" element={<CreateTournamentForm />} />
                     </Routes>
                 </NativeRouter>
             </SSRProvider>

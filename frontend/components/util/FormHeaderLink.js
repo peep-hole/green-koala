@@ -1,7 +1,7 @@
 import React from 'react';
-import { Box, HStack, StatusBar, Text } from "native-base";
-import { Link } from "react-router-native"
-import { AntDesign } from '@expo/vector-icons';
+import {Box, HStack, StatusBar, Text} from "native-base";
+import {Link} from "react-router-native"
+import {AntDesign} from '@expo/vector-icons';
 
 
 const FormHeaderLink = (props) => {

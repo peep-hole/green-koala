@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import FormHeader from './util/FormHeader';
-import MainRefereeFooter from './util/MainRefereeFooter';
-import DisplayScore from './DisplayScore';
-import { HStack, VStack, Text, Center, Box, FlatList } from 'native-base';
-import { useLocation } from "react-router-native"
-import Api from './util/Api';
+import React, {useEffect, useState} from 'react';
+import FormHeader from '../util/FormHeader';
+import MainRefereeFooter from '../util/MainRefereeFooter';
+import DisplayScore from '../DisplayScore';
+import {Box, Center, FlatList, HStack, Text, VStack} from 'native-base';
+import {useLocation} from "react-router-native"
+import Api from '../util/Api';
 
 
 const FightHistory = () => {

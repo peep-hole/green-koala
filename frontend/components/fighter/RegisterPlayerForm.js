@@ -1,9 +1,9 @@
 import React from "react";
-import { Text } from "react-native";
-import FormHeaderLink from "./util/FormHeaderLink";
-import { NativeBaseProvider, VStack, Input, Button, Radio, Switch, InputGroup, Center } from "native-base";
-import Api from "./util/Api";
-import { Navigate } from "react-router-native";
+import {Text} from "react-native";
+import FormHeaderLink from "../util/FormHeaderLink";
+import {Button, Center, Input, InputGroup, NativeBaseProvider, Radio, Switch, VStack} from "native-base";
+import Api from "../util/Api";
+import {Navigate} from "react-router-native";
 
 const RegisterPlayerForm = () => {
     const submitColor = "tertiary.600";

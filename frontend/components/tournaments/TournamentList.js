@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import Api from './util/Api';
-import FormHeader from './util/FormHeader';
-import { VStack, Flex, Center, Box, Heading, FlatList, HStack, Spacer, Text } from 'native-base';
-import { Link } from "react-router-native";
-import AdminFooter from './util/AdminFooter';
-import { FontAwesome } from '@expo/vector-icons';
+import React, {useEffect, useState} from 'react';
+import Api from '../util/Api';
+import FormHeader from '../util/FormHeader';
+import {Box, Center, FlatList, Flex, Heading, HStack, Spacer, Text, VStack} from 'native-base';
+import {Link} from "react-router-native";
+import AdminFooter from '../util/AdminFooter';
+import {FontAwesome} from '@expo/vector-icons';
 
 
 const TournamentList = () => {
 
-    const [tournaments, setTournamnets] = useState([]);
+    const [tournaments, setTournaments] = useState([]);
     const [tournamentsLoaded, setTournamentsLoaded] = useState(false);
 
     const getTournamnets = () => {
         Api.get('/tournaments/' //TODO: special endpoint for getting tournaments
         ).then(res => {
-            setTournamnets(res.data);
+            setTournaments(res.data);
             // console.log(res.data);
             // setTournamentsLoaded(true);
         }).catch(e => {
@@ -25,7 +25,7 @@ const TournamentList = () => {
 
     useEffect(() => {
         getTournamnets();
-        setTournamnets([
+        setTournaments([
             {
                 id: "fwefwf32",
                 title: "Tournament V",
@@ -116,11 +116,11 @@ const TournamentList = () => {
                         keyExtractor={item => item.id} />
                 </Box>
                 <Flex direction="row-reverse" marginRight="14px" marginTop="10px">
-                    {/* <Link to="/createTournamentForm"> */}
+                     <Link to="/createTournamentForm">
                         <Box width="57px" height="57px" borderRadius="100" borderWidth="3px" borderColor="#065f46" backgroundColor="#065f46" p="9px" alignItems="center">
                             <FontAwesome name="calendar-plus-o" size={30} color="white" />
                         </Box>
-                    {/* </Link> */}
+                     </Link>
                 </Flex>
             </>}
             <AdminFooter selected={2}></AdminFooter>

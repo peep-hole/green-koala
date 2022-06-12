@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import FormHeaderLink from './util/FormHeaderLink';
-import { Button, Center, Flex, Text, ScrollView } from 'native-base';
-import { FontAwesome } from '@expo/vector-icons';
-import { Navigate } from 'react-router-native';
-import { useLocation } from 'react-router-native';
-import { MaterialIcons } from '@expo/vector-icons';
+import React, {useEffect, useState} from 'react';
+import FormHeaderLink from '../util/FormHeaderLink';
+import {Button, Center, Flex, ScrollView, Text} from 'native-base';
+import {FontAwesome, MaterialIcons} from '@expo/vector-icons';
+import {Navigate, useLocation} from 'react-router-native';
 
 
 const TournamentInfo = () => {

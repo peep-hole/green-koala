@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import FormHeaderLink from "./util/FormHeaderLink";
-import { Button, Center, Flex, FormControl, Text, VStack } from "native-base";
-import Api from "./util/Api";
-import { FontAwesome } from "@expo/vector-icons";
+import React, {useEffect, useState} from 'react';
+import FormHeaderLink from "../util/FormHeaderLink";
+import {Button, Center, Flex, FormControl, Text, VStack} from "native-base";
+import Api from "../util/Api";
+import {FontAwesome} from "@expo/vector-icons";
 import DateTimePicker from "@react-native-community/datetimepicker"
 import SearchableDropdown from "react-native-searchable-dropdown";
-import { Platform } from "react-native";
-import { Navigate } from "react-router-native";
+import {Platform} from "react-native";
+import {Navigate} from "react-router-native";
 
 const CreateMatchForm = () => {
     const [firstPlayer, setFirstPlayer] = useState('')
@@ -206,7 +206,7 @@ const CreateMatchForm = () => {
                     onChange={onChange}>
                 </DateTimePicker>
             )}
-            {matchCreated && <Navigate to="/matchList"></Navigate>}
+            {matchCreated && <Navigate to="/matchList"/>}
         </>
     );
 };
