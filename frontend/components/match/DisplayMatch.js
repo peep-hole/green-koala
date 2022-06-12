@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { HStack, VStack, Text, Button, Center, Box, View, Modal, ScrollView } from 'native-base';
-import DisplayScore from './DisplayScore';
+import DisplayScore from '../DisplayScore';
 import Timer from "./Timer";
 import {over} from "stompjs"
 import SockJS from 'sockjs-client';

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import FormHeaderLink from './util/FormHeaderLink';
+import FormHeaderLink from '../util/FormHeaderLink';
 import { Button, Center, Flex, Text, ScrollView } from 'native-base';
 import { FontAwesome } from '@expo/vector-icons';
 import { Navigate } from 'react-router-native';

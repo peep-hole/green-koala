@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Button, HStack, Modal, Text} from "native-base";
 import { FontAwesome } from '@expo/vector-icons';
 import {StyleSheet} from "react-native";
-import url from "./util/Websocket";
+import url from "../util/Websocket";
 import SockJS from 'sockjs-client';
 import { over } from 'stompjs';
 

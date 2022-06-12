@@ -31,7 +31,7 @@ const FighterList = () => {
 
     return (
         <>
-            <FormHeader name="Fighters"></FormHeader>
+            <FormHeader name="Fighters"/>
             {fightersLoaded && <>
                 <FlatList height="50%" margin={3} backgroundColor="gray.200"
                     data={fighters} renderItem={
