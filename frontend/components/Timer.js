@@ -26,6 +26,7 @@ const Timer = props => {
 
 
     const onConnected = () => {
+        console.log("CONNECTED")
         stompClient.subscribe("/response/timer", onMessageReceived)
         stompClient.send("/timer", {}, JSON.stringify({
             action: "GET"
@@ -106,8 +107,8 @@ const Timer = props => {
 
     if(props.isMain){
         return <>
-                <HStack bg={bg} px="1" py="3" justifyContent="center" alignItems="center" w="100%">
-                    {isActive? <FontAwesome style={styles.ionicons} name="pause" size={24} color="black" onPress={toggle}/> :
+            <HStack bg={bg} px="1" py="3" justifyContent="center" alignItems="center" w="100%">
+                {isActive? <FontAwesome style={styles.ionicons} name="pause" size={24} color="black" onPress={toggle}/> :
                     <FontAwesome style={styles.ionicons} name="play" size={24} color="black" onPress={toggle}/>}
                     {!isOvertime() && <Text fontSize={24} color="white">{minutes.toString().padStart(2, "0") + ":" + seconds.toString().padStart(2, "0")}</Text>}
                     {isOvertime() && <Text fontSize={24} color="red.500">{minutes.toString().padStart(2, "0") + ":" + seconds.toString().padStart(2, "0")}</Text>}
@@ -183,8 +184,8 @@ const Timer = props => {
         </>
     } else {
         return <HStack bg={bg} px="1" py="3" justifyContent="center" alignItems="center" w="100%">
-                    <Text fontSize={24}>{minutes.toString().padStart(2, "0") + ":" + seconds.toString().padStart(2, "0")}</Text>
-                </HStack>
+            <Text fontSize={24}>{minutes.toString().padStart(2, "0") + ":" + seconds.toString().padStart(2, "0")}</Text>
+        </HStack>
     }
 };
 

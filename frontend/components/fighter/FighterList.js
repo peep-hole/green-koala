@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import AdminFooter from './util/AdminFooter';
-import FormHeader from './util/FormHeader';
+import AdminFooter from '../util/AdminFooter';
+import FormHeader from '../util/FormHeader';
 import { Flex, Box, FlatList, HStack, Text } from 'native-base';
-import Api from './util/Api';
+import Api from '../util/Api';
 import { Link } from "react-router-native";
 import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';

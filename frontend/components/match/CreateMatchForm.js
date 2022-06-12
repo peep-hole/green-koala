@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import FormHeaderLink from "./util/FormHeaderLink";
+import FormHeaderLink from "../util/FormHeaderLink";
 import { Button, Center, Flex, FormControl, Text, VStack } from "native-base";
-import Api from "./util/Api";
+import Api from "../util/Api";
 import { FontAwesome } from "@expo/vector-icons";
 import DateTimePicker from "@react-native-community/datetimepicker"
 import SearchableDropdown from "react-native-searchable-dropdown";
@@ -206,7 +206,7 @@ const CreateMatchForm = () => {
                     onChange={onChange}>
                 </DateTimePicker>
             )}
-            {matchCreated && <Navigate to="/matchList"></Navigate>}
+            {matchCreated && <Navigate to="/matchList"/>}
         </>
     );
 };

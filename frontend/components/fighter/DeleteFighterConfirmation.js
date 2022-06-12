@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import FormHeaderLink from './util/FormHeaderLink';
+import FormHeaderLink from '../util/FormHeaderLink';
 import { Flex, Center, Button, Text, ScrollView, Heading, HStack } from 'native-base';
 import { Navigate, useLocation } from "react-router-native";
 import { FontAwesome } from '@expo/vector-icons';
 
 const DeleteFighterConfirmation = () => {
 
-    const props = useLocation({});
+    const props = useLocation();
     const [cancelled, setCancelled] = useState(false);
     const [deleted, setDeleted] = useState(false);
 

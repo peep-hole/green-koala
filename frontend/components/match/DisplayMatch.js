@@ -4,10 +4,10 @@ import DisplayScore from './DisplayScore';
 import Timer from "./Timer";
 import {over} from "stompjs"
 import SockJS from 'sockjs-client';
-import url from './util/Websocket';
-import MainRefereeFooter from './util/MainRefereeFooter';
+import url from '../util/Websocket';
+import MainRefereeFooter from '../util/MainRefereeFooter';
 import { useLocation, useNavigate } from 'react-router-native';
-import Api from './util/Api';
+import Api from '../util/Api';
 
 let sock = null;
 let stompClient = null;

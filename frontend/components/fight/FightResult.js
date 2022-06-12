@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Api from './util/Api';
-import FormHeaderLink from './util/FormHeaderLink';
+import Api from '../util/Api';
+import FormHeaderLink from '../util/FormHeaderLink';
 import { Center, Flex, Text, ScrollView } from 'native-base';
 import { FontAwesome } from '@expo/vector-icons';
 import { useLocation} from 'react-router-native';

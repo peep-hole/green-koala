@@ -1,8 +1,8 @@
 import React from "react";
 import { Text } from "react-native";
-import FormHeaderLink from "./util/FormHeaderLink";
+import FormHeaderLink from "../util/FormHeaderLink";
 import { NativeBaseProvider, VStack, Input, Button, Radio, Switch, InputGroup, Center } from "native-base";
-import Api from "./util/Api";
+import Api from "../util/Api";
 import { Navigate } from "react-router-native";
 
 const RegisterPlayerForm = () => {
