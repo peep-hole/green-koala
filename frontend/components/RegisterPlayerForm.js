@@ -35,14 +35,30 @@ const RegisterPlayerForm = () => {
                 return false;
             }
         }
+        const nameRegex = /^[A-Z][a-z]*$/;       /// age must be int
+        if (!nameRegex.test(formData.name)) {
+            setError("name can contains only letters");
+            return false;
+        }
+        if (!nameRegex.test(formData.surname)) {
+            setError("surname can contains only letters");
+            return false;
+        }
         const intRegex = /^\d+$/;       /// age must be int
         if (!intRegex.test(formData.age)) {
             setError("age must be a number");
             return false;
         }
-        const floatRegex = /^\d+(\.\d+)?$/; /// weight must be float
-        if (!floatRegex.test(formData.weight)) {
-            setError("weight must be in a format: number(.number)");
+        if (!intRegex.test(formData.weight)) {
+            setError("weight must be a number");
+            return false;
+        }
+        if(!parseInt(formData.age)){
+            setError("age should be positive number");
+            return false;
+        }
+        if(!parseInt(formData.weight)){
+            setError("weight should be positive number");
             return false;
         }
 

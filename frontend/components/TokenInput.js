@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Input, Text, Center, Button, VStack } from 'native-base';
+import { Input, Text, Center, Button, VStack, View } from 'native-base';
 import FormHeaderLink from './util/FormHeaderLink';
 import Api from './util/Api';
 import { Navigate, useLocation } from 'react-router-native';
@@ -19,7 +19,7 @@ const TokenInput = () => {
     const [matchDataLoaded, setMatchDataLoaded] = useState(false);
     const [isQRScanning, setIsQRScanning] = useState(false);
 
-    const [, setHasPermission] = useState(null);
+    const [hasPermission, setHasPermission] = useState(null);
 
     const [fighter1, setFirstFighter] = useState({});
     const [fighter2, setSecondFighter] = useState({});
@@ -177,10 +177,15 @@ const TokenInput = () => {
 
             {isQRScanning && (
                 <>
-                    <BarCodeScanner
-                        onBarCodeScanned={handleCodeScanned}
-                        style={StyleSheet.absoluteFillObject}
-                    />
+                    <View zIndex={10}><FormHeaderLink pathname="loginPick" name="QR"></FormHeaderLink></View>
+                    {
+                        hasPermission
+                        ? <BarCodeScanner
+                            onBarCodeScanned={handleCodeScanned}
+                            style={StyleSheet.absoluteFill}
+                        />
+                        : <Text>Allow camera access to scan the code</Text>
+                    }
                 </>
             )}
         </>

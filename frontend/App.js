@@ -1,4 +1,3 @@
-import { StyleSheet } from 'react-native-web';
 import { NativeBaseProvider } from 'native-base';
 import CreateMatchForm from './components/CreateMatchForm';
 import { SSRProvider } from 'react-bootstrap';
@@ -6,7 +5,6 @@ import React from 'react';
 import { NativeRouter, Route, Routes } from 'react-router-native';
 import FightInfo from './components/FightInfo';
 import RegisterPlayerForm from './components/RegisterPlayerForm';
-import Demo from './components/Demo';
 import TokenInput from './components/TokenInput';
 import LoginPick from './components/LoginPick';
 import DisplayMatch from './components/DisplayMatch';
@@ -71,11 +69,11 @@ export default function App() {
     );
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});
+// const styles = StyleSheet.create({
+//     container: {
+//         flex: 1,
+//         backgroundColor: '#fff',
+//         alignItems: 'center',
+//         justifyContent: 'center',
+//     },
+// });

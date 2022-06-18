@@ -20,7 +20,7 @@ const CreateMatchForm = () => {
     const [showSearch1, setShowSearch1] = useState(true)
     const [showSearch2, setShowSearch2] = useState(true)
 
-    const [dateString, setDateString] = useState(date.getDate() + "-" + date.getMonth() + "-" + date.getFullYear())
+    const [dateString, setDateString] = useState(date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear())
     const [timeString, setTimeString] = useState(date.getHours() + ":" + date.getMinutes().toString().padStart(2, "0"))
 
     const [playersLoaded, setPlayersLoaded] = useState(false);
@@ -36,6 +36,21 @@ const CreateMatchForm = () => {
         })
     }
 
+    const [error, setError] = React.useState('');
+
+    const validate = () => {        /// form logic
+        if (date < new Date()) {
+            setError("cannot create match in the past");
+            return false;
+        }
+        if (firstPlayer.id === secondPlayer.id) {
+            setError("fighter cannot figth with himself");
+            return false;
+        }
+        setError(''); // everything is ok
+        return true;
+    };
+
     useEffect(() => {
         getAllPlayers()
     }, [])
@@ -49,23 +64,25 @@ const CreateMatchForm = () => {
         const currDate = selectedDate || date
         setShow(Platform.OS === "ios")
         setDate(currDate)
-        setDateString(selectedDate.getDate() + "-" + selectedDate.getMonth() + "-" + selectedDate.getFullYear()) // example date format
+        setDateString(selectedDate.getDate() + "." + (selectedDate.getMonth() + 1) + "." + selectedDate.getFullYear()) // example date format
         setTimeString(selectedDate.getHours() + ":" + selectedDate.getMinutes().toString().padStart(2, "0"))
     }
 
     const onCreateClick = () => {
-        Api.post("/matches/new-match", { // temporary request body
-            firstPlayer: firstPlayer,
-            secondPlayer: secondPlayer,
-            date: dateString,
-            time: timeString
-        }).then(res => {
-            console.log(res)
-            setMatchCreated(true);
-        }).catch(e => {
-            console.log(e)
-        })
-    }
+        if(validate()) {
+            Api.post("/matches/new-match", { // temporary request body
+                fighterId1: firstPlayer.id,
+                fighterId2: secondPlayer.id,
+                date: dateString,
+                time: timeString
+            }).then(res => {
+                console.log(res)
+                setMatchCreated(true);
+            }).catch(e => {
+                console.log(e)
+            })
+        }
+    }   
 
     return (
         playersLoaded && <>
@@ -93,7 +110,6 @@ const CreateMatchForm = () => {
                             itemsContainerStyle={{ maxHeight: 140 }}
                             items={players}
                             resetValue={false}
-                            defaultIndex={2}
                             placeholder={showSearch1 ? "Search" : firstPlayer.name}
                             textInputProps={
                                 {
@@ -111,7 +127,6 @@ const CreateMatchForm = () => {
                                     nestedScrollEnabled: true,
                                 }
                             }
-                            value={firstPlayer}
                         />
                         <Center>
                             <Text color="black" fontSize="16" padding="5px" fontWeight="bold">
@@ -206,6 +221,9 @@ const CreateMatchForm = () => {
                     onChange={onChange}>
                 </DateTimePicker>
             )}
+            <Center px={"30px"} py={"10px"}>
+                <Text style={{ color: "#b91c1c", fontWeight: "600" }}>{error}</Text>
+            </Center>
             {matchCreated && <Navigate to="/matchList"></Navigate>}
         </>
     );

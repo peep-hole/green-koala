@@ -6,6 +6,30 @@ import { Link } from "react-router-native";
 import { Ionicons } from '@expo/vector-icons';
 import AdminFooter from './util/AdminFooter';
 
+const FightersInfo = ({item}) => {
+    const [content, setContent] = useState("");
+
+    const getFightersNames = async () => {
+        await Api.get('/actors/fighters/id/' + item.fighterId1).then((res) => {
+            setContent((old) => old + res.data.name + " " + res.data.surname + " vs ");
+        });
+        
+        await Api.get('/actors/fighters/id/' + item.fighterId2).then((res) => {
+            setContent((old) => old + res.data.name + " " + res.data.surname);
+        });
+    }
+
+    useEffect(() => {
+        getFightersNames();
+    }, []);
+
+    return (
+        <Text _dark={{ color: "warmGray.50" }} color="coolGray.800" bold>
+            {content}
+        </Text>
+    )
+}
+
 const MatchList = () => {
 
     const [matches, setMatches] = useState([]);
@@ -25,7 +49,6 @@ const MatchList = () => {
         getAllMatches();
     }, [])
 
-
     return (
         <>
             <FormHeaderLink pathname="" state={{}} name="Matches" />
@@ -44,9 +67,7 @@ const MatchList = () => {
                                     <Box borderBottomWidth={1} borderTopWidth={1} _dark={{ borderColor: "gray.800" }} borderColor="coolGray.400" pl="4" pr="5" py="2">
                                         <HStack space={3} justifyContent="space-between">
                                             <VStack>
-                                                <Text _dark={{ color: "warmGray.50" }} color="coolGray.800" bold>
-                                                    Fighter1 vs Fighter2
-                                                </Text>
+                                                <FightersInfo item={item}/>
                                             </VStack>
                                             <Spacer />
                                             <Text fontSize="xs" _dark={{ color: "warmGray.50" }} color="#065f46" alignSelf="flex-start">
@@ -71,7 +92,7 @@ const MatchList = () => {
                                         <HStack space={3} justifyContent="space-between">
                                             <VStack>
                                                 <Text _dark={{ color: "warmGray.50" }} color="coolGray.800" bold>
-                                                    Fighter1 vs Fighter2
+                                                    <FightersInfo item={item}/>
                                                 </Text>
                                             </VStack>
                                             <Spacer />

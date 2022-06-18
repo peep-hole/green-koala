@@ -37,7 +37,7 @@ const Timer = props => {
     }
 
     const onMessageReceived = (payload) => {
-        if(JSON.parse(payload.body)['timerRunning']) {
+        if(JSON.parse(payload.body)['timerRunning'] && !props.isMain) {
             setIsActive(true)
         }
         let millis = JSON.parse(payload.body).time
@@ -102,7 +102,6 @@ const Timer = props => {
         }
         return false;
     }
-
 
     if(props.isMain){
         return <>
@@ -196,7 +195,7 @@ const styles = StyleSheet.create({
     },
     closeIcon: {
         position: "absolute",
-        marginLeft: "85%",
+        right: 20,
         color: "white"
     }
 })

@@ -3,6 +3,7 @@ import FormHeaderLink from './util/FormHeaderLink';
 import { Flex, Center, Button, Text, ScrollView, Heading, HStack } from 'native-base';
 import { Navigate, useLocation } from "react-router-native";
 import { FontAwesome } from '@expo/vector-icons';
+import Api from './util/Api';
 
 const DeleteFighterConfirmation = () => {
 
@@ -11,9 +12,13 @@ const DeleteFighterConfirmation = () => {
     const [deleted, setDeleted] = useState(false);
 
     const deleteFighter = () => {
-        //here delete request - waiting for endpoint
-        setDeleted(true)
-        console.log("Fighter deleted.")
+        Api.delete(`/actors/fighters/delete/${props.state.fighterData.id}`
+        ).then(() => {
+            setDeleted(true);
+            console.log("Fighter deleted.");
+        }).catch(e => {
+            console.log(e)
+        })
     }
 
     const cancel = () => {
