@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Api from '../util/Api';
 import FormHeaderLink from '../util/FormHeaderLink';
-import {Button, Center, Flex, Heading, ScrollView, Text} from 'native-base';
+import {Button, Center, Flex, Heading, ScrollView, Text, HStack} from 'native-base';
 import {Navigate, useLocation} from "react-router-native";
 import {FontAwesome} from '@expo/vector-icons';
 
