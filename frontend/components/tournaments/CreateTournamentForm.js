@@ -130,7 +130,7 @@ const CreateTournamentForm = () => {
                                     _text={{
                                         color: "#ccc"
                                     }}>
-                                    Select date
+                                    <Text>Select date</Text>
                                 </Button>
                                 <Center marginLeft="5px">
                                     <FontAwesome name="calendar" size={30}> </FontAwesome>
@@ -144,7 +144,7 @@ const CreateTournamentForm = () => {
                                     _text={{
                                         color: "#ccc"
                                     }}>
-                                    Select time
+                                    <Text>Select time</Text>
                                 </Button>
                                 <Center marginLeft="5px">
                                     <FontAwesome name="clock-o" size={30}> </FontAwesome>
@@ -157,7 +157,7 @@ const CreateTournamentForm = () => {
                         <Button
                             onPress={navigateToFighters}
                             backgroundColor={submitColor}>
-                            Add player
+                            <Text>Add player</Text>
                         </Button>
                     </Center>
                     {tournamentAdd && <Navigate to="/fighterList"/>}
@@ -199,13 +199,13 @@ const CreateTournamentForm = () => {
                             <Button
                                 onPress={onSubmit}
                                 backgroundColor={submitColor}>
-                                Submit
+                                <Text>Submit</Text>
                             </Button>
                             <Button
                                 onPress={onBack}
                                 backgroundColor={submitColor}
                                 marginTop="20px">
-                                Go back
+                                <Text>Go back</Text>
                             </Button>
                         </Center>
                         <Center px={horizontalPadding} py={verticalPadding}>

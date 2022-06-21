@@ -1,19 +1,21 @@
 import React, {useEffect, useState} from 'react';
 import Api from '../util/Api';
 import FormHeader from '../util/FormHeader';
-import {Box, Center, FlatList, Flex, Heading, HStack, Spacer, Text, VStack} from 'native-base';
+import {Box, Center, FlatList, Flex, Heading, HStack, Spacer, Text, VStack, View} from 'native-base';
 import {Link} from "react-router-native";
 import AdminFooter from '../util/AdminFooter';
 import {FontAwesome} from '@expo/vector-icons';
+import FormHeaderLink from '../util/FormHeaderLink';
 
 
 const TournamentList = () => {
 
+    const ready = false;
     const [tournaments, setTournaments] = useState([]);
     const [tournamentsLoaded, setTournamentsLoaded] = useState(false);
 
     const getTournamnets = () => {
-        Api.get('/tournaments/' //TODO: special endpoint for getting tournaments
+        Api.get('/tournaments' //TODO: special endpoint for getting tournaments
         ).then(res => {
             setTournaments(res.data);
             // console.log(res.data);
@@ -25,40 +27,13 @@ const TournamentList = () => {
 
     useEffect(() => {
         getTournamnets();
-        setTournaments([
-            {
-                id: "fwefwf32",
-                title: "Tournament V",
-                date: "17.05.2022",
-                isFinished: true,
-            },
-            {
-                id: "fwefw222231112",
-                title: "Tournament X",
-                date: "17.12.2022",
-                isFinished: false,
-            },
-            {
-                id: "fwefw222234232",
-                title: "Tournament Z",
-                date: "10.06.2022",
-                isFinished: true,
-            },
-            {
-                id: "fwefw22232232",
-                title: "Tournament Y",
-                date: "20.01.2022",
-                isFinished: false,
-            }
-
-
-        ]);
         setTournamentsLoaded(true);
         // console.log(tournaments);
     }, [])
 
 
     return (
+        ready ? 
         <>
             <FormHeader state={{}} name="Tournaments" />
             {tournamentsLoaded && <>
@@ -124,6 +99,14 @@ const TournamentList = () => {
                 </Flex>
             </>}
             <AdminFooter selected={2}></AdminFooter>
+        </>
+        :
+        <>
+            <FormHeaderLink pathname="loginPick" state={{}} name="Tournaments" />
+            <View flex='1' display='flex' alignItems='center' justifyContent='flex-end'>
+                <Text  textAlign='center' fontSize='40' fontWeight="700">Comming soon...</Text>
+            </View>
+            <AdminFooter selected={2}/>
         </>
     );
 };

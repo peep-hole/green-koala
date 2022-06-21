@@ -1,3 +1,3 @@
-const url = 'http://localhost:8080/api/ws'
+const url = 'https://fruity-groups-allow-89-64-34-129.loca.lt/api/ws'
 
 export default url;

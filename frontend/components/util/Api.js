@@ -6,5 +6,5 @@ import axios from 'axios';
 //localhost should work with Android emulator and on web
 
 export default axios.create({
-    baseURL: `http://localhost:8080/api`,
+    baseURL: `https://fruity-groups-allow-89-64-34-129.loca.lt/api`,
 });
